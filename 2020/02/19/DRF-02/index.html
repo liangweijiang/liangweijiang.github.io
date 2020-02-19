@@ -401,7 +401,7 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
     <article class="article-entry">
-        <h1 id="viewsets"><a href="#viewsets" class="headerlink" title="viewsets"></a>viewsets</h1><p>def中  viewsets  对  view  进行了更加深层的封装,在CBV编程中减少代码的冗余,截取viewsets源码如下</p>
+        <h1 id="viewsets"><a href="#viewsets" class="headerlink" title="viewsets"></a>viewsets</h1><p>drf中  viewsets  对  view  进行了更加深层的封装,在CBV编程中减少代码的冗余,截取viewsets源码如下</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ModelViewSet</span><span class="params">(mixins.CreateModelMixin,</span></span></span><br><span class="line"><span class="class"><span class="params">                   mixins.RetrieveModelMixin,</span></span></span><br><span class="line"><span class="class"><span class="params">                   mixins.UpdateModelMixin,</span></span></span><br><span class="line"><span class="class"><span class="params">                   mixins.DestroyModelMixin,</span></span></span><br><span class="line"><span class="class"><span class="params">                   mixins.ListModelMixin,</span></span></span><br><span class="line"><span class="class"><span class="params">                   GenericViewSet)</span>:</span></span><br><span class="line"><span class="comment"># 可以看到viewsets中的ModelViewSet只是继承了各种类,每一个类对应CBV的每一个方法,如CreateModelMixin则对应post方法</span></span><br><span class="line">    <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
 
 
@@ -426,7 +426,7 @@ height:50vh;
             <p>Author：<a href="https://liangweijiang.github.io">liangweijiang</a>
             <p>原文链接：<a href="https://liangweijiang.github.io/2020/02/19/DRF-02/">https://liangweijiang.github.io/2020/02/19/DRF-02/</a>
             <p>发表日期：<a href="https://liangweijiang.github.io/2020/02/19/DRF-02/">February 19th 2020, 9:47:47 pm</a>
-            <p>更新日期：<a href="https://liangweijiang.github.io/2020/02/19/DRF-02/">February 19th 2020, 9:49:32 pm</a>
+            <p>更新日期：<a href="https://liangweijiang.github.io/2020/02/19/DRF-02/">February 19th 2020, 11:08:42 pm</a>
             <p>版权声明：本文采用<a rel="license noopener" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
         </div>
     
