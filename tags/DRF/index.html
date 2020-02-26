@@ -346,6 +346,37 @@
     
     
     <article class="index-post">
+        <a class="abstract-title" href = "/2020/02/26/DRF-06/" >
+            
+                <span>DRF源码解析6--权限组件的封装和初始化</span>
+        </a>
+        <div class="abstract-content">
+            1.权限组件的初始化在前面的版本控制和认证组件里提到的initia初始化函数, 同时也对权限组件进行了初始化
+1234567def initial(self, request, *args, **kwargs):       # 认证组件       self.perform_authentication(request)       # 权限组件       self.check_permissions(request)       # 频率       self.check_throttles(request)
+1.1 check_permissions可以看到,check_perm...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/02/26</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "DRF">DRF</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href = "/2020/02/24/DRF-05/" >
             
                 <span>DRF源码解析5--认证组件的封装和初始化</span>
@@ -639,9 +670,18 @@ routersDef...
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 6
+        Total : 7
         </div>
         <!-- search  -->
         
@@ -701,6 +741,20 @@ routersDef...
     
         <li class="archive-post-item">
             <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href= "/2020/02/24/DRF-05/" >DRF源码解析5--认证组件的封装和初始化</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> Invalid date </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href= "/2020/02/26/DRF-06/" >DRF源码解析6--权限组件的封装和初始化</a>
         </li>
     
     </div>
