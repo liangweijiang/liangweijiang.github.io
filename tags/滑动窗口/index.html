@@ -346,29 +346,30 @@
     
     
     <article class="index-post">
-        <a class="abstract-title" href = "/2020/02/24/algorithm-15/" >
+        <a class="abstract-title" href = "/2020/02/29/algorithm-3/" >
             
-                <span>每日一道算法之--三数之和</span>
+                <span>每日一道算法之--无重复的最长的子字符串</span>
         </a>
         <div class="abstract-content">
-            三数之和力扣第15题：https://leetcode-cn.com/problems/3sum/给定一个包含 n 个整数的数组 nums，判断 nums 中是否存在三个元素 a，b，c ，使得 a + b + c = 0 ？找出所有满足条件且不重复的三元组。
-注意：答案中不可以包含重复的三元组。
-示例：
+            无重复的最长的子字符串力扣第3题:https://leetcode-cn.com/problems/longest-substring-without-repeating-characters/
 
-给定数组 nums = [-1, 0, 1, 2, -1, -4]，满足要求的三元组集合为：[  [-1, 0, 1],  [-1, -1, 2]]
+1 暴力解决暴力方法就是将所有的肯恩列举出来,在会超过时间限制,这里就不列举了
+2 滑动窗口这道题是我第一道碰到的滑动窗口的题目,当时想了很久都想不出来,后来去看一一下别人的题解恍然大悟,滑动窗口确实是解决字符串问题的一非常好的方法
 
-1. 排序 + 双指针解法题目中的要求是不能含有相同的三元组，所以在算法中我们需要去重，排序是一个很好的方法，因为排序可以让相同的数...
+滑动窗口的顾名思义就是可以滑动的数据结构,遍历整个字符串,当滑动窗口里没有该字符时,就将该字符加进滑动窗口
+
+当遇到有重复字符时,要将滑动窗口该字符前面的的字符...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
             <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/02/24</span>
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/02/29</span>
             </div>
             <!-- tags  -->
             
             <div class= abstract-tags >
     
-        <a class="post-tag" href="javascript:void(0);" data-tags = "双指针,哈希">双指针,哈希</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags = "滑动窗口">滑动窗口</a>
     
 </div>
             
