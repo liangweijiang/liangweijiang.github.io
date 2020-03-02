@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>每日一道算法之--无重复的最长的子字符串 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="无重复的最长的子字符串力扣第3题:https:&#x2F;&#x2F;leetcode-cn.com&#x2F;problems&#x2F;longest-substring-without-repeating-characters&#x2F;  1 暴力解决暴力方法就是将所有的肯恩列举出来,在会超过时间限制,这里就不列举了 2 滑动窗口这道题是我第一道碰到的滑动窗口的题目,当时想了很久都想不出来,后来去看一一下别人的题解恍然大悟,滑动窗口确实是">
+<meta property="og:type" content="article">
+<meta property="og:title" content="每日一道算法之--无重复的最长的子字符串">
+<meta property="og:url" content="https://liangweijiang.github.io/2020/02/29/algorithm-3/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="无重复的最长的子字符串力扣第3题:https:&#x2F;&#x2F;leetcode-cn.com&#x2F;problems&#x2F;longest-substring-without-repeating-characters&#x2F;  1 暴力解决暴力方法就是将所有的肯恩列举出来,在会超过时间限制,这里就不列举了 2 滑动窗口这道题是我第一道碰到的滑动窗口的题目,当时想了很久都想不出来,后来去看一一下别人的题解恍然大悟,滑动窗口确实是">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://s2.ax1x.com/2020/02/29/3ykYNt.png">
+<meta property="og:image" content="https://i.loli.net/2020/02/29/TjZEK2krRgbVWpn.png">
+<meta property="og:image" content="https://s2.ax1x.com/2020/02/29/3y1Zs1.png">
+<meta property="og:image" content="https://s2.ax1x.com/2020/02/29/3yJm1e.png">
+<meta property="article:published_time" content="2020-02-29T08:59:16.674Z">
+<meta property="article:modified_time" content="2020-02-29T09:00:09.921Z">
+<meta property="article:author" content="liangweijiang">
+<meta property="article:tag" content="滑动窗口">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.ax1x.com/2020/02/29/3ykYNt.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://liangweijiang.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-algorithm-3" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/02/29/algorithm-3/" class="article-date">
+  <time datetime="2020-02-29T08:59:16.674Z" itemprop="datePublished">2020-02-29</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">数据结构与算法</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      每日一道算法之--无重复的最长的子字符串
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="无重复的最长的子字符串"><a href="#无重复的最长的子字符串" class="headerlink" title="无重复的最长的子字符串"></a>无重复的最长的子字符串</h1><p>力扣第3题:<a href="https://leetcode-cn.com/problems/longest-substring-without-repeating-characters/" target="_blank" rel="noopener">https://leetcode-cn.com/problems/longest-substring-without-repeating-characters/</a></p>
+<p><img src="https://s2.ax1x.com/2020/02/29/3ykYNt.png" alt="3ykYNt.png"></p>
+<h2 id="1-暴力解决"><a href="#1-暴力解决" class="headerlink" title="1 暴力解决"></a>1 暴力解决</h2><p>暴力方法就是将所有的肯恩列举出来,在会超过时间限制,这里就不列举了</p>
+<h2 id="2-滑动窗口"><a href="#2-滑动窗口" class="headerlink" title="2 滑动窗口"></a>2 滑动窗口</h2><p>这道题是我第一道碰到的滑动窗口的题目,当时想了很久都想不出来,后来去看一一下别人的题解恍然大悟,<strong>滑动窗口</strong>确实是解决字符串问题的一非常好的方法</p>
+<ul>
+<li><p>滑动窗口的顾名思义就是可以滑动的数据结构,遍历整个字符串,当滑动窗口里没有该字符时,就将该字符加进滑动窗口</p>
+</li>
+<li><p>当遇到有重复字符时,要将滑动窗口该字符前面的的字符(包括该字符)全部去除,然后在将该字符加进滑动窗口</p>
+</li>
+</ul>
+<p>代码如下:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">lengthOfLongestSubstring</span><span class="params">(self, s: str)</span> -&gt; int:</span></span><br><span class="line">        <span class="comment"># 集合可以保证唯一性</span></span><br><span class="line">        silde_win = set()</span><br><span class="line">        <span class="comment"># 设置滑动窗口的值</span></span><br><span class="line">        left = <span class="number">0</span></span><br><span class="line">        <span class="comment"># 记录最长子串的长度</span></span><br><span class="line">        max_len = <span class="number">0</span></span><br><span class="line">        <span class="comment"># 记录当前的子串长度</span></span><br><span class="line">        cur_len = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(len(s)):</span><br><span class="line">            cur_len += <span class="number">1</span></span><br><span class="line">            <span class="comment"># 设置滑动窗口的值</span></span><br><span class="line">            <span class="keyword">while</span> s[i] <span class="keyword">in</span> silde_win:</span><br><span class="line">                silde_win.remove(s[left]) </span><br><span class="line">                left += <span class="number">1</span></span><br><span class="line">                cur_len -= <span class="number">1</span></span><br><span class="line">            silde_win.add(s[i])</span><br><span class="line">            max_len = max(max_len, cur_len)</span><br><span class="line">        <span class="keyword">return</span> max_len</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-1-复杂度分析"><a href="#2-1-复杂度分析" class="headerlink" title="2.1 复杂度分析"></a>2.1 复杂度分析</h2><p><strong>时间复杂度:</strong>遍历了一次数组,时间复杂度为$$0(N)$$, 但是每次滑动窗口的都有重复字符,如字符串为’aaaaaaaaaaaaaaaaaaa’,会浪费没必要的时间,但是均摊时间复杂度依然为$$O(N)$$</p>
+<p><strong>空间复杂度:</strong>用了集合,所以空间复杂度为$$O(N)$$</p>
+<p><img src="https://i.loli.net/2020/02/29/TjZEK2krRgbVWpn.png" alt="无重复最大子序_滑动1_.png"></p>
+<h2 id="滑动窗口的优化"><a href="#滑动窗口的优化" class="headerlink" title="滑动窗口的优化"></a>滑动窗口的优化</h2><p>可以看到提交的成绩不是很理想,所以我一直在想着怎么优化,想到了几个优化方法</p>
+<ul>
+<li>如果字符串有相邻的子串,直接忽视<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">lengthOfLongestSubstring</span><span class="params">(self, s: str)</span> -&gt; int:</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> s :<span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">        silde_win = set()</span><br><span class="line">        left = <span class="number">0</span></span><br><span class="line">        max_len = <span class="number">0</span></span><br><span class="line">        cur_len = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(len(s)):</span><br><span class="line">            <span class="comment"># 如果字符串有相邻的子串,直接忽视</span></span><br><span class="line">            <span class="keyword">if</span> i &gt; <span class="number">0</span> <span class="keyword">and</span> s[i<span class="number">-1</span>] == s[i]:</span><br><span class="line">                silde_win = set()</span><br><span class="line">                silde_win.add(s[i])</span><br><span class="line">                left = i</span><br><span class="line">                cur_len = <span class="number">1</span></span><br><span class="line">                <span class="keyword">continue</span></span><br><span class="line">            cur_len += <span class="number">1</span></span><br><span class="line">            <span class="comment"># 设置滑动窗口的值</span></span><br><span class="line">            <span class="keyword">while</span> s[i] <span class="keyword">in</span> silde_win:</span><br><span class="line">                silde_win.remove(s[left]) </span><br><span class="line">                left += <span class="number">1</span></span><br><span class="line">                cur_len -= <span class="number">1</span></span><br><span class="line">            silde_win.add(s[i])</span><br><span class="line">            max_len = max(max_len, cur_len)</span><br><span class="line">        <span class="keyword">return</span> max_len</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<p><img src="https://s2.ax1x.com/2020/02/29/3y1Zs1.png" alt="3y1Zs1.png"></p>
+<p>可以发现成绩有了提升,但不是很明显</p>
+<ul>
+<li>然后在看看我么你写的代码,silde_win这个数据结构其实是有很多操作的,话费了很多时间,换个思路想一想,我们能又能用更好地数据结构来代替这个集合呢,其实这个滑动窗口只是一个辅助的数据结构,只是用来暂时存储字符串的字串的,那为什么不直接用分片呢</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">lengthOfLongestSubstring</span><span class="params">(self, s: str)</span> -&gt; int:</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> s :<span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">        <span class="comment"># 设置滑动窗口的值</span></span><br><span class="line">        left = <span class="number">0</span></span><br><span class="line">        <span class="comment"># 记录最长子串的长度</span></span><br><span class="line">        max_len = <span class="number">0</span></span><br><span class="line">        <span class="comment"># 记录当前的子串长度</span></span><br><span class="line">        cur_len = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(len(s)):</span><br><span class="line">            <span class="keyword">if</span> i &gt; <span class="number">0</span> <span class="keyword">and</span> s[i<span class="number">-1</span>] == s[i]:</span><br><span class="line">                left = i</span><br><span class="line">                cur_len = <span class="number">1</span></span><br><span class="line">                <span class="keyword">continue</span></span><br><span class="line">            cur_len += <span class="number">1</span></span><br><span class="line">            <span class="comment"># 设置滑动窗口的值</span></span><br><span class="line">            <span class="keyword">while</span> s[i] <span class="keyword">in</span> s[left:i]: </span><br><span class="line">                left += <span class="number">1</span></span><br><span class="line">                cur_len -= <span class="number">1</span></span><br><span class="line">            max_len = max(max_len, cur_len)</span><br><span class="line">        <span class="keyword">return</span> max_len</span><br></pre></td></tr></table></figure>
+
+<p><a href="https://imgchr.com/i/3yJm1e" target="_blank" rel="noopener"><img src="https://s2.ax1x.com/2020/02/29/3yJm1e.png" alt="3yJm1e.png"></a></p>
+<p>只能优化到这种程度了,再去看看别人的题解拓展一下</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://liangweijiang.github.io/2020/02/29/algorithm-3/" data-id="ck77dkkzq0000a4uweoq2d6pr" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3/" rel="tag">滑动窗口</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/03/02/algorithm-stock/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          每日一道算法之--股票问题总结
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/02/29/algorithm-121/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">每日一道算法之--买卖股票的最佳时机</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/django-rest-framework/">django-rest-framework</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">数据结构与算法</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/DRF/" rel="tag">DRF</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" rel="tag">动态规划</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8F%8C%E6%8C%87%E9%92%88/" rel="tag">双指针</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%93%88%E5%B8%8C%E8%A1%A8/" rel="tag">哈希表</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%8C%87%E9%92%88/" rel="tag">指针</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%8E%92%E5%BA%8F/" rel="tag">排序</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3/" rel="tag">滑动窗口</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%8A%B6%E6%80%81%E6%9C%BA/" rel="tag">状态机</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%80%92%E5%BD%92/" rel="tag">递归</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%93%BE%E8%A1%A8/" rel="tag">链表</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/DRF/" style="font-size: 20px;">DRF</a> <a href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" style="font-size: 15px;">动态规划</a> <a href="/tags/%E5%8F%8C%E6%8C%87%E9%92%88/" style="font-size: 10px;">双指针</a> <a href="/tags/%E5%93%88%E5%B8%8C%E8%A1%A8/" style="font-size: 10px;">哈希表</a> <a href="/tags/%E6%8C%87%E9%92%88/" style="font-size: 10px;">指针</a> <a href="/tags/%E6%8E%92%E5%BA%8F/" style="font-size: 10px;">排序</a> <a href="/tags/%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3/" style="font-size: 10px;">滑动窗口</a> <a href="/tags/%E7%8A%B6%E6%80%81%E6%9C%BA/" style="font-size: 10px;">状态机</a> <a href="/tags/%E9%80%92%E5%BD%92/" style="font-size: 10px;">递归</a> <a href="/tags/%E9%93%BE%E8%A1%A8/" style="font-size: 10px;">链表</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/03/02/algorithm-206/">每日一道算法之--链表反转</a>
+          </li>
+        
+          <li>
+            <a href="/2020/03/02/algorithm-stock/">每日一道算法之--股票问题总结</a>
+          </li>
+        
+          <li>
+            <a href="/2020/02/29/algorithm-3/">每日一道算法之--无重复的最长的子字符串</a>
+          </li>
+        
+          <li>
+            <a href="/2020/02/29/algorithm-121/">每日一道算法之--买卖股票的最佳时机</a>
+          </li>
+        
+          <li>
+            <a href="/2020/02/26/DRF-06/">DRF源码解析6--权限组件的封装和初始化</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 liangweijiang<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

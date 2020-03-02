@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="https://liangweijiang.github.io/page/2/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:locale" content="en_US">
+<meta property="article:author" content="liangweijiang">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://liangweijiang.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-DRF-02" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/02/19/DRF-02/" class="article-date">
+  <time datetime="2020-02-19T13:47:47.427Z" itemprop="datePublished">2020-02-19</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/django-rest-framework/">django-rest-framework</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/02/19/DRF-02/">DRF源码解析2--viewsets.ModelViewSet对视图的封装</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="viewsets"><a href="#viewsets" class="headerlink" title="viewsets"></a>viewsets</h1><p>drf中  viewsets  对  view  进行了更加深层的封装,在CBV编程中减少代码的冗余,截取viewsets源码如下</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ModelViewSet</span><span class="params">(mixins.CreateModelMixin,</span></span></span><br><span class="line"><span class="class"><span class="params">                   mixins.RetrieveModelMixin,</span></span></span><br><span class="line"><span class="class"><span class="params">                   mixins.UpdateModelMixin,</span></span></span><br><span class="line"><span class="class"><span class="params">                   mixins.DestroyModelMixin,</span></span></span><br><span class="line"><span class="class"><span class="params">                   mixins.ListModelMixin,</span></span></span><br><span class="line"><span class="class"><span class="params">                   GenericViewSet)</span>:</span></span><br><span class="line"><span class="comment"># 可以看到viewsets中的ModelViewSet只是继承了各种类,每一个类对应CBV的每一个方法,如CreateModelMixin则对应post方法</span></span><br><span class="line">    <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
+
+
+<p>进入GenericViewSet的源码中,不难发现,GenericViewSet这个类主要是获取我们的数据和处理数据的组件</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">GenericViewSet</span><span class="params">(ViewSetMixin, generics.GenericAPIView)</span>:</span></span><br><span class="line">    <span class="comment"># GenericViewSet同样是继承了两个类</span></span><br><span class="line">    <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
+<p>进入generics.GenericAPIView</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">GenericAPIView</span><span class="params">(views.APIView)</span>:</span></span><br><span class="line">   <span class="comment"># queryset就是获取的ORM对象</span></span><br><span class="line">    queryset = <span class="literal">None</span></span><br><span class="line">   <span class="comment"># serializer_class是序列化的类</span></span><br><span class="line">    serializer_class = <span class="literal">None</span></span><br><span class="line"></span><br><span class="line">    lookup_field = <span class="string">'pk'</span></span><br><span class="line">    lookup_url_kwarg = <span class="literal">None</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># The filter backend classes to use for queryset filtering</span></span><br><span class="line">    filter_backends = api_settings.DEFAULT_FILTER_BACKENDS</span><br><span class="line"></span><br><span class="line">    <span class="comment"># The style to use for queryset pagination.</span></span><br><span class="line">	<span class="comment"># pagination_class就是和分页组件相关的类,默认为drf配置中的组件</span></span><br><span class="line">    pagination_class = api_settings.DEFAULT_PAGINATION_CLASS</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get_queryset</span><span class="params">(self)</span>:</span></span><br><span class="line">		<span class="comment"># 这里断言就是为了说明在继承这个类时,一定要有queryset属性或覆盖这个方法</span></span><br><span class="line">        <span class="keyword">assert</span> self.queryset <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>, (</span><br><span class="line">            <span class="string">"'%s' should either include a `queryset` attribute, "</span></span><br><span class="line">            <span class="string">"or override the `get_queryset()` method."</span></span><br><span class="line">            % self.__class__.__name__</span><br><span class="line">        )</span><br><span class="line">		<span class="comment"># 获取ORM对象</span></span><br><span class="line">        queryset = self.queryset</span><br><span class="line">        <span class="keyword">if</span> isinstance(queryset, QuerySet):</span><br><span class="line">            <span class="comment"># Ensure queryset is re-evaluated on each request.</span></span><br><span class="line">            queryset = queryset.all()</span><br><span class="line">        <span class="keyword">return</span> queryset</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get_serializer</span><span class="params">(self, *args, **kwargs)</span>:</span></span><br><span class="line">        serializer_class = self.get_serializer_class()</span><br><span class="line">        kwargs[<span class="string">'context'</span>] = self.get_serializer_context()</span><br><span class="line">		<span class="comment"># serializer_class接收的参数可能不同</span></span><br><span class="line">        <span class="keyword">return</span> serializer_class(*args, **kwargs)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get_serializer_class</span><span class="params">(self)</span>:</span></span><br><span class="line">		<span class="comment"># 继承这个类时,一定要有serializer_classt属性或覆盖这个方法</span></span><br><span class="line">        <span class="keyword">assert</span> self.serializer_class <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>, (</span><br><span class="line">            <span class="string">"'%s' should either include a `serializer_class` attribute, "</span></span><br><span class="line">            <span class="string">"or override the `get_serializer_class()` method."</span></span><br><span class="line">            % self.__class__.__name__</span><br><span class="line">        )</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> self.serializer_class</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get_serializer_context</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> &#123;</span><br><span class="line">            <span class="string">'request'</span>: self.request,</span><br><span class="line">            <span class="string">'format'</span>: self.format_kwarg,</span><br><span class="line">            <span class="string">'view'</span>: self</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">filter_queryset</span><span class="params">(self, queryset)</span>:</span></span><br><span class="line">        <span class="keyword">for</span> backend <span class="keyword">in</span> list(self.filter_backends):</span><br><span class="line">            queryset = backend().filter_queryset(self.request, queryset, self)</span><br><span class="line">        <span class="keyword">return</span> queryset</span><br></pre></td></tr></table></figure>
+
+<p>接着回到ModelViewSet中,进入到mixins.CreateModelMixin的源码中</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CreateModelMixin</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    Create a model instance.</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">create</span><span class="params">(self, request, *args, **kwargs)</span>:</span></span><br><span class="line">		<span class="comment"># 这里调用的就是GenericAPIView中的get_serializer</span></span><br><span class="line">        serializer = self.get_serializer(data=request.data)</span><br><span class="line">        serializer.is_valid(raise_exception=<span class="literal">True</span>)</span><br><span class="line">        self.perform_create(serializer)</span><br><span class="line">        headers = self.get_success_headers(serializer.data)</span><br><span class="line">        <span class="keyword">return</span> Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">perform_create</span><span class="params">(self, serializer)</span>:</span></span><br><span class="line">        serializer.save()</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get_success_headers</span><span class="params">(self, data)</span>:</span></span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            <span class="keyword">return</span> &#123;<span class="string">'Location'</span>: str(data[api_settings.URL_FIELD_NAME])&#125;</span><br><span class="line">        <span class="keyword">except</span> (TypeError, KeyError):</span><br><span class="line">            <span class="keyword">return</span> &#123;&#125;</span><br></pre></td></tr></table></figure>
+
+
+<p>现在我们只需要继承ModelViewSet,然后重写queryset和处理数据所需要的组件类如序列化的类等,但是怎么将self.post对应上self.list方法呢,GenericViewSet还继承了ViewSetMixin,看一下ViewSetMixin的源码的截取</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ViewSetMixin</span>:</span></span><br><span class="line"><span class="meta">    @classonlymethod</span></span><br><span class="line">	<span class="comment"># 对as_view()方法又一次封装,action表示可以接收参数了</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">as_view</span><span class="params">(cls, actions=None, **initkwargs)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> actions:</span><br><span class="line">            <span class="keyword">raise</span> TypeError(<span class="string">"The `actions` argument must be provided when "</span></span><br><span class="line">                            <span class="string">"calling `.as_view()` on a ViewSet. For example "</span></span><br><span class="line">                            <span class="string">"`.as_view(&#123;'get': 'list'&#125;)`"</span>)</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">def</span> <span class="title">view</span><span class="params">(request, *args, **kwargs)</span>:</span></span><br><span class="line">            self = cls(**initkwargs)</span><br><span class="line">            <span class="comment"># We also store the mapping of request methods to actions,</span></span><br><span class="line">            <span class="comment"># so that we can later set the action attribute.</span></span><br><span class="line">            <span class="comment"># eg. `self.action = 'list'` on an incoming GET request.</span></span><br><span class="line">            self.action_map = actions</span><br><span class="line"></span><br><span class="line">            <span class="comment"># Bind methods to actions</span></span><br><span class="line">            <span class="comment"># This is the bit that's different to a standard view</span></span><br><span class="line">			<span class="comment"># method, action退出action为一个字典,&#123;'get':'list'&#125;</span></span><br><span class="line">            <span class="keyword">for</span> method, action <span class="keyword">in</span> actions.items():</span><br><span class="line">				<span class="comment">#  handler为实例中的各个方法</span></span><br><span class="line">                handler = getattr(self, action)</span><br><span class="line">				<span class="comment"># 这里setattr相当于metmod == handler</span></span><br><span class="line">                setattr(self, method, handler)</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> hasattr(self, <span class="string">'get'</span>) <span class="keyword">and</span> <span class="keyword">not</span> hasattr(self, <span class="string">'head'</span>):</span><br><span class="line">                self.head = self.get</span><br><span class="line"></span><br><span class="line">            self.request = request</span><br><span class="line">            self.args = args</span><br><span class="line">            self.kwargs = kwargs</span><br><span class="line"></span><br><span class="line">            <span class="comment"># And continue as usual</span></span><br><span class="line">            <span class="keyword">return</span> self.dispatch(request, *args, **kwargs)</span><br><span class="line">        <span class="keyword">return</span> csrf_exempt(view)</span><br></pre></td></tr></table></figure>
+
+<h3 id="奉献一张图来看下我们的继承顺序"><a href="#奉献一张图来看下我们的继承顺序" class="headerlink" title="奉献一张图来看下我们的继承顺序"></a>奉献一张图来看下我们的继承顺序</h3><p><img src="https://i.loli.net/2020/02/19/d53XTFVloNsIiCZ.png" alt="viewsets.png"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://liangweijiang.github.io/2020/02/19/DRF-02/" data-id="ck6tdit6w0000s8uwens17rgf" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DRF/" rel="tag">DRF</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-DRF-01" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/02/19/DRF-01/" class="article-date">
+  <time datetime="2020-02-19T08:58:37.586Z" itemprop="datePublished">2020-02-19</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/django-rest-framework/">django-rest-framework</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/02/19/DRF-01/">DRF源码解析1--APIView对request的重新封装</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="截取APIView"><a href="#截取APIView" class="headerlink" title="截取APIView"></a>截取APIView</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@classmethod</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">APIView</span><span class="params">(View)</span>:</span></span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">as_view</span><span class="params">(cls, **initkwargs)</span>:</span></span><br><span class="line">		<span class="keyword">if</span> isinstance(getattr(cls, <span class="string">'queryset'</span>, <span class="literal">None</span>), models.query.QuerySet):</span><br><span class="line">		<span class="function"><span class="keyword">def</span> <span class="title">force_evaluation</span><span class="params">()</span>:</span></span><br><span class="line">		<span class="keyword">raise</span> RuntimeError(</span><br><span class="line">		<span class="string">'Do not evaluate the `.queryset` attribute directly, '</span></span><br><span class="line">		<span class="string">'as the result will be cached and reused between requests. '</span></span><br><span class="line">		<span class="string">'Use `.all()` or call `.get_queryset()` instead.'</span></span><br><span class="line">		)</span><br><span class="line">		cls.queryset._fetch_all = force_evaluation</span><br><span class="line">		<span class="comment"># 继承了django中View类的的as_view()方法,然后重写了dispatch方法</span></span><br><span class="line">		view = super().as_view(**initkwargs)</span><br><span class="line">		view.cls = cls</span><br><span class="line">		view.initkwargs = initkwargs</span><br><span class="line"></span><br><span class="line">		<span class="keyword">return</span> csrf_exempt(view)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">dispatch</span><span class="params">(self, request, *args, **kwargs)</span>:</span></span><br><span class="line">		self.args = args</span><br><span class="line">		self.kwargs = kwargs</span><br><span class="line">		<span class="comment"># 在传入request是,apiview对request进行了一次包装</span></span><br><span class="line">		request = self.initialize_request(request, *args, **kwargs)</span><br><span class="line">		<span class="comment"># 此时self.request是initialize_request方法返回的Request</span></span><br><span class="line">		self.request = request</span><br><span class="line">		self.headers = self.default_response_headers  <span class="comment"># deprecate?</span></span><br><span class="line"></span><br><span class="line">		<span class="keyword">try</span>:</span><br><span class="line">		<span class="comment"># 相比于View类的dispatch方法,Apiview在这里进行了一次初始化的方法</span></span><br><span class="line">		self.initial(request, *args, **kwargs)</span><br><span class="line"></span><br><span class="line">		<span class="comment"># Get the appropriate handler method</span></span><br><span class="line">		<span class="keyword">if</span> request.method.lower() <span class="keyword">in</span> self.http_method_names:</span><br><span class="line">		handler = getattr(self, request.method.lower(),</span><br><span class="line">		self.http_method_not_allowed)</span><br><span class="line">		<span class="keyword">else</span>:</span><br><span class="line">		handler = self.http_method_not_allowed</span><br><span class="line"></span><br><span class="line">		response = handler(request, *args, **kwargs)</span><br><span class="line"></span><br><span class="line">		<span class="keyword">except</span> Exception <span class="keyword">as</span> exc:</span><br><span class="line">		response = self.handle_exception(exc)</span><br><span class="line"></span><br><span class="line">		self.response = self.finalize_response(request, response, *args, **kwargs)</span><br><span class="line">		<span class="keyword">return</span> self.response</span><br></pre></td></tr></table></figure>
+<h2 id="进入self-initalize-request"><a href="#进入self-initalize-request" class="headerlink" title="进入self.initalize_request()"></a>进入self.initalize_request()</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">initialize_request</span><span class="params">(self, request, *args, **kwargs)</span>:</span></span><br><span class="line">	parser_context = self.get_parser_context(request)</span><br><span class="line">	<span class="comment"># 可以看到, request已经被封装成Request返回,而request则被封装成Request的一个属性</span></span><br><span class="line">	<span class="keyword">return</span> Request(</span><br><span class="line">	request,</span><br><span class="line">	parsers=self.get_parsers(),</span><br><span class="line">	authenticators=self.get_authenticators(),</span><br><span class="line">	negotiator=self.get_content_negotiator(),</span><br><span class="line">	parser_context=parser_context</span><br><span class="line">	)</span><br></pre></td></tr></table></figure>
+
+<h2 id="截取Ruquest"><a href="#截取Ruquest" class="headerlink" title="截取Ruquest"></a>截取Ruquest</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Request</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, request, parsers=None, authenticators=None,</span></span></span><br><span class="line"><span class="function"><span class="params">                 negotiator=None, parser_context=None)</span>:</span></span><br><span class="line">        <span class="keyword">assert</span> isinstance(request, HttpRequest), (</span><br><span class="line">            <span class="string">'The `request` argument must be an instance of '</span></span><br><span class="line">            <span class="string">'`django.http.HttpRequest`, not `&#123;&#125;.&#123;&#125;`.'</span></span><br><span class="line">            .format(request.__class__.__module__, request.__class__.__name__)</span><br><span class="line">        )</span><br><span class="line">		<span class="comment"># request被封装了私有属性</span></span><br><span class="line">        self._request = request</span><br><span class="line"><span class="meta">    @property</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">content_type</span><span class="params">(self)</span>:</span></span><br><span class="line">        meta = self._request.META</span><br><span class="line">		<span class="comment"># 封装了content_type方法获取传输类型</span></span><br><span class="line">        <span class="keyword">return</span> meta.get(<span class="string">'CONTENT_TYPE'</span>, meta.get(<span class="string">'HTTP_CONTENT_TYPE'</span>, <span class="string">''</span>))</span><br><span class="line"></span><br><span class="line"><span class="meta">    @property</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">query_params</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        More semantically correct name for request.GET.</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">		<span class="comment"># django的view中的request.Get属性封装成了query_params属性</span></span><br><span class="line">        <span class="keyword">return</span> self._request.GET</span><br><span class="line"></span><br><span class="line"><span class="meta">    @property</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">data</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> _hasattr(self, <span class="string">'_full_data'</span>):</span><br><span class="line">            self._load_data_and_files()</span><br><span class="line">		<span class="comment"># django的view中的request.Post属性封装成了data属性</span></span><br><span class="line">        <span class="keyword">return</span> self._full_data</span><br></pre></td></tr></table></figure>
+<hr>
+<p>  我们可以看出~CBV在内部做了一个分发,本质和FBV是一样的。</p>
+<p>以后做接口开发的时候，就要用CBV，学习了restful规范，现在就很容易理解我们为什么用CBV了。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://liangweijiang.github.io/2020/02/19/DRF-01/" data-id="ck6t39928000038uwa5k7e0xh" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DRF/" rel="tag">DRF</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+
+
+  <nav id="page-nav">
+    
+    <a class="extend prev" rel="prev" href="/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+  </nav>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/django-rest-framework/">django-rest-framework</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">数据结构与算法</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/DRF/" rel="tag">DRF</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" rel="tag">动态规划</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8F%8C%E6%8C%87%E9%92%88/" rel="tag">双指针</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%93%88%E5%B8%8C%E8%A1%A8/" rel="tag">哈希表</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%8C%87%E9%92%88/" rel="tag">指针</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%8E%92%E5%BA%8F/" rel="tag">排序</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3/" rel="tag">滑动窗口</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%8A%B6%E6%80%81%E6%9C%BA/" rel="tag">状态机</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%80%92%E5%BD%92/" rel="tag">递归</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%93%BE%E8%A1%A8/" rel="tag">链表</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/DRF/" style="font-size: 20px;">DRF</a> <a href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" style="font-size: 15px;">动态规划</a> <a href="/tags/%E5%8F%8C%E6%8C%87%E9%92%88/" style="font-size: 10px;">双指针</a> <a href="/tags/%E5%93%88%E5%B8%8C%E8%A1%A8/" style="font-size: 10px;">哈希表</a> <a href="/tags/%E6%8C%87%E9%92%88/" style="font-size: 10px;">指针</a> <a href="/tags/%E6%8E%92%E5%BA%8F/" style="font-size: 10px;">排序</a> <a href="/tags/%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3/" style="font-size: 10px;">滑动窗口</a> <a href="/tags/%E7%8A%B6%E6%80%81%E6%9C%BA/" style="font-size: 10px;">状态机</a> <a href="/tags/%E9%80%92%E5%BD%92/" style="font-size: 10px;">递归</a> <a href="/tags/%E9%93%BE%E8%A1%A8/" style="font-size: 10px;">链表</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/03/02/algorithm-206/">每日一道算法之--链表反转</a>
+          </li>
+        
+          <li>
+            <a href="/2020/03/02/algorithm-stock/">每日一道算法之--股票问题总结</a>
+          </li>
+        
+          <li>
+            <a href="/2020/02/29/algorithm-3/">每日一道算法之--无重复的最长的子字符串</a>
+          </li>
+        
+          <li>
+            <a href="/2020/02/29/algorithm-121/">每日一道算法之--买卖股票的最佳时机</a>
+          </li>
+        
+          <li>
+            <a href="/2020/02/26/DRF-06/">DRF源码解析6--权限组件的封装和初始化</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 liangweijiang<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
