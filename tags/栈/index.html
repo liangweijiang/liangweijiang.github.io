@@ -346,115 +346,41 @@
     
     
     <article class="index-post">
-        <a class="abstract-title" href = "/2020/02/22/DRF-04/" >
+        <a class="abstract-title" href = "/2020/03/03/algorithm-20/" >
             
-                <span>DRF源码解析4--版本控制组件的封装</span>
+                <span>每日一道算法之--有效的括号</span>
         </a>
         <div class="abstract-content">
-            一.DRF中APIView的initial()方法初始化版本信息在讲到DRF对ruquest的封装时,返回新封装的Request后,DRF执行了initial()方法对组件的初始化
-12345678910111213def initial(self, request, *args, **kwargs):	# 版本控制组件       version, scheme = self.determine_version(request, *args, **kwargs)	# 将版本空值信息写入request中       request.version, request.versioning_...
+            有效的括号力扣第20题 : https://leetcode-cn.com/problems/valid-parentheses/
+给定一个只包括 ‘(‘，’)’，’{‘，’}’，’[‘，’]’ 的字符串，判断字符串是否有效。
+有效字符串需满足：
+左括号必须用相同类型的右括号闭合。左括号必须以正确的顺序闭合。注意空字符串可被认为是有效字符串。
+示例 1:
+
+输入: “()”输出: true
+
+示例 2:
+
+输入: “()[]{}”输出: true
+
+示例 3:
+
+输入: “(]”输出: false
+
+题目分析题目不难理解,就是括号要一一对应,换句话来说,只要出现了右括号,name就必定有...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
             <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/02/22</span>
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/03/03</span>
             </div>
             <!-- tags  -->
             
             <div class= abstract-tags >
     
-        <a class="post-tag" href="javascript:void(0);" data-tags = "DRF">DRF</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags = "栈">栈</a>
     
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2020/02/20/DRF-03/" >
-            
-                <span>DRF源码解析3--routers对路由的封装</span>
-        </a>
-        <div class="abstract-content">
-            当我们想最方便的使用drf的路由的时候,只需要用DefaultRoute实例化一个路由实例,然后注册,再讲注册后的组件加入urlpatterns即可
-123456from rest_framework.routers import DefaultRouterrouter = DefaultRouter()# 其中BookModelView继承了viewsets.ModelViewSetrouter.register(r'^book', views.BookModelView)urlpatterns += router.urls
-到底routers底层是怎么样实现的呢
-routersDef...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/02/20</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "DRF">DRF</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2020/02/19/DRF-02/" >
-            
-                <span>DRF源码解析2--viewsets.ModelViewSet对视图的封装</span>
-        </a>
-        <div class="abstract-content">
-            viewsetsdrf中  viewsets  对  view  进行了更加深层的封装,在CBV编程中减少代码的冗余,截取viewsets源码如下
-12345678class ModelViewSet(mixins.CreateModelMixin,                   mixins.RetrieveModelMixin,                   mixins.UpdateModelMixin,                   mixins.DestroyModelMixin,                   mixins.ListModelMixin...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/02/19</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "DRF">DRF</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2020/02/19/DRF-01/" >
-            
-                <span>DRF源码解析1--APIView对request的重新封装</span>
-        </a>
-        <div class="abstract-content">
-            截取APIView12345678910111213141516171819202122232425262728293031323334353637383940414243444546@classmethodclass APIView(View):	def as_view(cls, **initkwargs):		if isinstance(getattr(cls, 'queryset', None), models.query.QuerySet):		def force_evaluation():		raise RuntimeError(		'Do not evaluate the `...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/02/19</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "DRF">DRF</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags = "数组">数组</a>
     
 </div>
             
@@ -462,10 +388,6 @@ routersDef...
     </article>
     
     <!-- paginator  -->
-    
-    <nav class="page-nav">
-        <a class="extend prev" rel="prev" href="/archives/2020/">&lt; PREV</a><a class="page-number" href="/archives/2020/">1</a><span class="page-number current">2</span>
-    </nav>
     
 </main>
             <!-- profile -->
