@@ -22,7 +22,7 @@
     <meta name="description" content="">
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-    <title>每日一道算法之--无重复的最长的子字符串 · Jiang&#39;s Blog</title>
+    <title>python与其他语言的对比 · Jiang&#39;s Blog</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -217,7 +217,7 @@
                 <a href="/" >Jiang&#39;s blog</a>
             </div>
             <div class="post-title">
-                <a href="#" class="post-name">每日一道算法之--无重复的最长的子字符串</a>
+                <a href="#" class="post-name">python与其他语言的对比</a>
             </div>
     </div>
     
@@ -247,7 +247,7 @@ height:50vh;
         <h1 class="intro-title">
             <!-- 主页  -->
             
-            每日一道算法之--无重复的最长的子字符串
+            python与其他语言的对比
             <!-- 404 -->
             
         </h1>
@@ -266,18 +266,18 @@ height:50vh;
                 
                     <div class= post-intro-tags >
     
-        <a class="post-tag" href="javascript:void(0);" data-tags = "滑动窗口">滑动窗口</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags = "python">python</a>
     
 </div>
                 
                 
                     <div class="post-intro-read">
-                        <span>Word count: <span class="post-count word-count">810</span>Reading time: <span class="post-count reading-time">3 min</span></span>
+                        <span>Word count: <span class="post-count word-count">2.9k</span>Reading time: <span class="post-count reading-time">10 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
                     <span class="post-intro-calander iconfont-archer">&#xe676;</span>
-                    <span class="post-intro-time">2020/02/29</span>
+                    <span class="post-intro-time">2020/03/04</span>
                     
                     <span id="busuanzi_container_page_pv" class="busuanzi-pv">
                         <span class="iconfont-archer">&#xe602;</span>
@@ -401,46 +401,54 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
     <article class="article-entry">
-        <h1 id="无重复的最长的子字符串"><a href="#无重复的最长的子字符串" class="headerlink" title="无重复的最长的子字符串"></a>无重复的最长的子字符串</h1><p>力扣第3题:<a href="https://leetcode-cn.com/problems/longest-substring-without-repeating-characters/" target="_blank" rel="noopener">https://leetcode-cn.com/problems/longest-substring-without-repeating-characters/</a></p>
-<p><img src="https://s2.ax1x.com/2020/02/29/3ykYNt.png" alt="3ykYNt.png"></p>
-<h2 id="1-暴力解决"><a href="#1-暴力解决" class="headerlink" title="1 暴力解决"></a>1 暴力解决</h2><p>暴力方法就是将所有的肯恩列举出来,在会超过时间限制,这里就不列举了</p>
-<h2 id="2-滑动窗口"><a href="#2-滑动窗口" class="headerlink" title="2 滑动窗口"></a>2 滑动窗口</h2><p>这道题是我第一道碰到的滑动窗口的题目,当时想了很久都想不出来,后来去看一一下别人的题解恍然大悟,<strong>滑动窗口</strong>确实是解决字符串问题的一非常好的方法</p>
+        <h1 id="python与其他语言的对比"><a href="#python与其他语言的对比" class="headerlink" title="python与其他语言的对比"></a>python与其他语言的对比</h1><h3 id="1-C语言"><a href="#1-C语言" class="headerlink" title="1.C语言"></a>1.C语言</h3><pre><code>它既有高级语言的特点，又具有汇编语言的特点，它是结构式语言。C语言应用指针：可以直接进行靠近硬件的操作，但是C的指针操作不做保护，也给它带来了很多不安全的因素。C++在这方面做了改进，在保留了指针操作的同时又增强了安全性，受到了一些用户的支持，但是，由于这些改进增加语言的复杂度，也为另一部分所诟病。Java则吸取了C++的教训，取消了指针操作，也取消了C++改进中一些备受争议的地方，在安全性和适合性方面均取得良好的效果，但其本身解释在虚拟机中运行，运行效率低于C++/C。一般而言，C，C++，java被视为同一系的语言，它们长期占据着程序使用榜的前三名。
+C语言的优点：简洁紧凑、灵活方便；运算符丰富；数据类型丰富；表达方式灵活实用；允许直接访问物理地址，对硬件进行操作；生成目标代码质量高，程序执行效率高；可移植性好；表达力强；
+C语言的缺点：C语言的缺点主要表现在数据的封装性上，这一点使得C在数据的安全性上有很大缺陷，这也是C和C++的一大区别。 C语言的语法限制不太严格，对变量的类型约束不严格，影响程序的安全性，对数组下标越界不作检查等。从应用的角度，C语言比其他高级语言较难掌握。也就是说，对用C语言的人，要求对程序设计更熟练一些。</code></pre><h3 id="2-c-语言"><a href="#2-c-语言" class="headerlink" title="2.c++语言"></a>2.c++语言</h3><pre><code>C++是C语言的继承，它既可以进行C语言的过程化程序设计，又可以进行以抽象数据类型为特点的基于对象的程序设计，还可以进行以继承和多态为特点的面向对象的程序设计。C++擅长面向对象程序设计的同时，还可以进行基于过程的程序设计，因而C++就适应的问题规模而论，大小由之。 
+C++不仅拥有计算机高效运行的实用性特征，同时还致力于提高大规模程序的编程质量与程序设计语言的问题描述能力。
+C++语言的程序因为要体现高性能，所以都是编译型的。但其开发环境，为了方便测试，将调试环境做成解释型的。即开发过程中，以解释型的逐条语句执行方式来进行调试，以编译型的脱离开发环境而启动运行的方式来生成程序最终的执行代码。
+生成程序是指将源码（C++语句）转换成一个可以运行的应用程序的过程。如果程序的编写是正确的，那么通常只需按一个功能键，即可搞定这个过程。该过程实际上分成两个步骤。
+第一步是对程序进行编译，这需要用到编译器（compiler）。编译器将C++语句转换成机器码(也称为目标码)；如果这个步骤成功，下一步就是对程序进行链接，这需要用到链接器（linker）。链接器将编译获得机器码与C++库中的代码进行合并。C++库包含了执行某些常见任务的函数（“函数”是子程序的另一种称呼）。例如，一个C++库中包含标准的平方根函数sqrt，所以不必亲自计算平方根。C++库中还包含一些子程序，它们把数据发送到显示器，并知道如何读写硬盘上的数据文件。</code></pre><h3 id="3-C-语言"><a href="#3-C-语言" class="headerlink" title="3. C#语言"></a>3. C#语言</h3><pre><code>C#是微软公司发布的一种面向对象的、运行于.NET Framework之上的高级程序设计语言。C#看起来与Java有着惊人的相似；它包括了诸如单一继承、接口、与Java几乎同样的语法和编译成中间代码再运行的过程。但是C#与Java有着明显的不同，它借鉴了Delphi的一个特点，与COM（组件对象模型）是直接集成的，而且它是微软公司 .NET windows网络框架的主角。首先，C# 和JAVA一样，简直就是照搬了C++的部分语法，因此，对于数量众多的C++程序员学习起来很容易上手，另外，对于新手来说，比C++要简单一些。其次，Windows是占垄断地位的平台，而开发Windows应用，当然微软的声音是不能忽略的。最重要的是，相对于C++，用C# 开发应用软件可以大大缩短开发周期，同时可以利用原来除用户界面代码之外的C++代码。</code></pre><h3 id="4-Java语言"><a href="#4-Java语言" class="headerlink" title="4. Java语言"></a>4. Java语言</h3><pre><code>Java是一种可以撰写跨平台应用软件的面向对象的程序设计语言，是由Sun Microsystems公司于1995年5月推出的Java程序设计语言和Java平台（即JavaSE, JavaEE, JavaME）的总称。Java 技术具有卓越的通用性、高效性、平台移植性和安全性，广泛应用于个人PC、数据中心、游戏控制台、科学超级计算机、移动电话和互联网，同时拥有全球最大的开发者专业社群。在全球云计算和移动互联网的产业环境下，Java更具备了显著优势和广阔前景。
+Java的优势，与传统程序不同，Sun 公司在推出 Java 之际就将其作为一种开放的技术。全球数以万计的 Java 开发公司被要求所设计的 Java软件必须相互兼容。“Java 语言靠群体的力量而非公司的力量”是Sun公司的口号之一，并获得了广大软件开发商的认同。这与微软公司所倡导的注重精英和封闭式的模式完全不同。Sun 公司对 Java 编程语言的解释是：Java 编程语言是个简单、面向对象、分布式、解释性、健壮、安全与系统无关、可移植、高性能、多线程和动态的语言。</code></pre><h3 id="5-php语言"><a href="#5-php语言" class="headerlink" title="5.php语言"></a>5.php语言</h3><pre><code>PHP（PHP: Hypertext Preprocessor的缩写，中文名：“PHP：超文本预处理器”）是一种通用开源脚本语言。语法吸收了C语言、Java和Perl的特点，入门门槛较低，易于学习，使用广泛，主要适用于Web开发领域。
+ 特性：PHP 独特的语法混合了 C、Java、Perl 以及 PHP 自创新的语法；PHP可以比CGI或者Perl更快速的执行动态网页——动态页面方面，与其他的编程语言相比，PHP是将程序嵌入到HTML文档中去执行，执行效率比完全生成htmL标记的CGI要高许多，PHP具有非常强大的功能，所有的CGI的功能PHP都能实现； PHP支持几乎所有流行的数据库以及操作系统；最重要的是PHP可以用C、C++进行程序的扩展。</code></pre><h3 id="6-python语言"><a href="#6-python语言" class="headerlink" title="6.python语言"></a>6.python语言</h3><pre><code>python是一种面向对象、直译式计算机程序设计语言，Python语法简洁而清晰，具有丰富和强大的类库。它常被昵称为胶水语言，它能够很轻松的把用其他语言制作的各种模块（尤其是C/C++）轻松地联结在一起。常见的一种应用情形是，使用python快速生成程序的原型（有时甚至是程序的最终界面），然后对其中有特别要求的部分，用更合适的语言改写。
+Python是完全面向对象的语言。函数、模块、数字、字符串都是对象。并且完全支持继承、重载、派生、多继承，有益于增强源代码的复用性。Python支持重载运算符和动态类型。相对于Lisp这种传统的函数式编程语言，Python对函数式设计只提供了有限的支持。有两个标准库(functools, itertools)提供了Haskell和Standard ML中久经考验的函数式程序设计工具。Python本身被设计为可扩充的。并非所有的特性和功能都集成到语言核心。Python提供了丰富的API和工具，以便程序员能够轻松地使用C语言、C++、Cython来编写扩充模块。Python编译器本身也可以被集成到其它需要脚本语言的程序内。因此，很多人还把Python作为一种“胶水语言”（glue language）使用。使用Python将其他语言编写的程序进行集成和封装。</code></pre><hr>
+<h1 id="编译型语言和解释型语言"><a href="#编译型语言和解释型语言" class="headerlink" title="编译型语言和解释型语言"></a>编译型语言和解释型语言</h1><ul>
+<li><p>编译性语言(需要编译器,相当于翻译)</p>
 <ul>
-<li><p>滑动窗口的顾名思义就是可以滑动的数据结构,遍历整个字符串,当滑动窗口里没有该字符时,就将该字符加进滑动窗口</p>
-</li>
-<li><p>当遇到有重复字符时,要将滑动窗口该字符前面的的字符(包括该字符)全部去除,然后在将该字符加进滑动窗口</p>
-</li>
-</ul>
-<p>代码如下:</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">lengthOfLongestSubstring</span><span class="params">(self, s: str)</span> -&gt; int:</span></span><br><span class="line">        <span class="comment"># 集合可以保证唯一性</span></span><br><span class="line">        silde_win = set()</span><br><span class="line">        <span class="comment"># 设置滑动窗口的值</span></span><br><span class="line">        left = <span class="number">0</span></span><br><span class="line">        <span class="comment"># 记录最长子串的长度</span></span><br><span class="line">        max_len = <span class="number">0</span></span><br><span class="line">        <span class="comment"># 记录当前的子串长度</span></span><br><span class="line">        cur_len = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(len(s)):</span><br><span class="line">            cur_len += <span class="number">1</span></span><br><span class="line">            <span class="comment"># 设置滑动窗口的值</span></span><br><span class="line">            <span class="keyword">while</span> s[i] <span class="keyword">in</span> silde_win:</span><br><span class="line">                silde_win.remove(s[left]) </span><br><span class="line">                left += <span class="number">1</span></span><br><span class="line">                cur_len -= <span class="number">1</span></span><br><span class="line">            silde_win.add(s[i])</span><br><span class="line">            max_len = max(max_len, cur_len)</span><br><span class="line">        <span class="keyword">return</span> max_len</span><br></pre></td></tr></table></figure>
-
-<h2 id="2-1-复杂度分析"><a href="#2-1-复杂度分析" class="headerlink" title="2.1 复杂度分析"></a>2.1 复杂度分析</h2><p><strong>时间复杂度:</strong>遍历了一次数组,时间复杂度为$$0(N)$$, 但是每次滑动窗口的都有重复字符,如字符串为’aaaaaaaaaaaaaaaaaaa’,会浪费没必要的时间,但是均摊时间复杂度依然为$$O(N)$$</p>
-<p><strong>空间复杂度:</strong>用了集合,所以空间复杂度为$$O(N)$$</p>
-<p><img src="https://i.loli.net/2020/02/29/TjZEK2krRgbVWpn.png" alt="无重复最大子序_滑动1_.png"></p>
-<h2 id="滑动窗口的优化"><a href="#滑动窗口的优化" class="headerlink" title="滑动窗口的优化"></a>滑动窗口的优化</h2><p>可以看到提交的成绩不是很理想,所以我一直在想着怎么优化,想到了几个优化方法</p>
-<ul>
-<li>如果字符串有相邻的子串,直接忽视<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">lengthOfLongestSubstring</span><span class="params">(self, s: str)</span> -&gt; int:</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> s :<span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">        silde_win = set()</span><br><span class="line">        left = <span class="number">0</span></span><br><span class="line">        max_len = <span class="number">0</span></span><br><span class="line">        cur_len = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(len(s)):</span><br><span class="line">            <span class="comment"># 如果字符串有相邻的子串,直接忽视</span></span><br><span class="line">            <span class="keyword">if</span> i &gt; <span class="number">0</span> <span class="keyword">and</span> s[i<span class="number">-1</span>] == s[i]:</span><br><span class="line">                silde_win = set()</span><br><span class="line">                silde_win.add(s[i])</span><br><span class="line">                left = i</span><br><span class="line">                cur_len = <span class="number">1</span></span><br><span class="line">                <span class="keyword">continue</span></span><br><span class="line">            cur_len += <span class="number">1</span></span><br><span class="line">            <span class="comment"># 设置滑动窗口的值</span></span><br><span class="line">            <span class="keyword">while</span> s[i] <span class="keyword">in</span> silde_win:</span><br><span class="line">                silde_win.remove(s[left]) </span><br><span class="line">                left += <span class="number">1</span></span><br><span class="line">                cur_len -= <span class="number">1</span></span><br><span class="line">            silde_win.add(s[i])</span><br><span class="line">            max_len = max(max_len, cur_len)</span><br><span class="line">        <span class="keyword">return</span> max_len</span><br></pre></td></tr></table></figure>
-
+<li>只须编译一次就可以把源代码编译成机器语言，后面的执行无须重新编译，直接使用之前的编译结果就可  以；因此其执行的效率比较高；</li>
+<li>编译性语言代表：C、C++、Pascal/Object Pascal（Delphi）；</li>
+<li>程序执行效率比较高，但比较依赖编译器，调试麻烦, 因此跨平台性差一些；<blockquote>
+<p>不同平台对编译器影响较大。<br>如：<br>（1）16位系统下int是2个字节（16位），而32位系统下int占4个字节（32位）；<br>（2）32位系统下long类型占4字节，而64位系统下long类型占8个字节；</p>
+</blockquote>
 </li>
 </ul>
-<p><img src="https://s2.ax1x.com/2020/02/29/3y1Zs1.png" alt="3y1Zs1.png"></p>
-<p>可以发现成绩有了提升,但不是很明显</p>
+</li>
+<li><p>解释型语言（需要解释器，相当于同声传译）</p>
 <ul>
-<li>然后在看看我么你写的代码,silde_win这个数据结构其实是有很多操作的,话费了很多时间,换个思路想一想,我们能又能用更好地数据结构来代替这个集合呢,其实这个滑动窗口只是一个辅助的数据结构,只是用来暂时存储字符串的字串的,那为什么不直接用分片呢</li>
+<li>源代码不能直接翻译成机器语言，而是先翻译成中间代码，再由解释器对中间代码进行解释运行；</li>
+<li>程序不需要编译，程序在运行时才翻译成机器语言，每执行一次都要翻译一次；</li>
+<li>解释型跨平台好，一份代码，到处使用</li>
+<li>解释性语言代表：Python、JavaScript、Shell、Ruby、MATLAB等；</li>
+<li>运行效率一般相对比较低，依赖解释器，跨平台性好；</li>
 </ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">lengthOfLongestSubstring</span><span class="params">(self, s: str)</span> -&gt; int:</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> s :<span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">        <span class="comment"># 设置滑动窗口的值</span></span><br><span class="line">        left = <span class="number">0</span></span><br><span class="line">        <span class="comment"># 记录最长子串的长度</span></span><br><span class="line">        max_len = <span class="number">0</span></span><br><span class="line">        <span class="comment"># 记录当前的子串长度</span></span><br><span class="line">        cur_len = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(len(s)):</span><br><span class="line">            <span class="keyword">if</span> i &gt; <span class="number">0</span> <span class="keyword">and</span> s[i<span class="number">-1</span>] == s[i]:</span><br><span class="line">                left = i</span><br><span class="line">                cur_len = <span class="number">1</span></span><br><span class="line">                <span class="keyword">continue</span></span><br><span class="line">            cur_len += <span class="number">1</span></span><br><span class="line">            <span class="comment"># 设置滑动窗口的值</span></span><br><span class="line">            <span class="keyword">while</span> s[i] <span class="keyword">in</span> s[left:i]: </span><br><span class="line">                left += <span class="number">1</span></span><br><span class="line">                cur_len -= <span class="number">1</span></span><br><span class="line">            max_len = max(max_len, cur_len)</span><br><span class="line">        <span class="keyword">return</span> max_len</span><br></pre></td></tr></table></figure>
-
-<p><a href="https://imgchr.com/i/3yJm1e" target="_blank" rel="noopener"><img src="https://s2.ax1x.com/2020/02/29/3yJm1e.png" alt="3yJm1e.png"></a></p>
-<p>只能优化到这种程度了,再去看看别人的题解拓展一下</p>
+</li>
+</ul>
+<p><img src="https://i.loli.net/2020/03/04/WsBjtcEQZlTM9SP.gif" alt="1-1912311J415L7.gif"></p>
+<hr>
+<h1 id="python解释器的种类和特点"><a href="#python解释器的种类和特点" class="headerlink" title="python解释器的种类和特点"></a>python解释器的种类和特点</h1><h2 id="CPython"><a href="#CPython" class="headerlink" title="CPython"></a>CPython</h2><p>CPython是使用最广且被的Python解释器。本教程以CPython为准。当我们从Python官方网站下载并安装好Python 2.7后，我们就直接获得了一个官方版本的解释器：CPython。这个解释器是用C语言开发的，所以叫CPython。在命令行下运行python就是启动CPython解释器。</p>
+<h2 id="IPython"><a href="#IPython" class="headerlink" title="IPython"></a>IPython</h2><p>IPython是基于CPython之上的一个交互式解释器，也就是说，IPython只是在交互方式上有所增强，但是执行Python代码的功能和CPython是完全一样的。好比很多国产浏览器虽然外观不同，但内核其实都是调用了IE。CPython用&gt;&gt;&gt;作为提示符，而IPython用In [序号]:作为提示符。</p>
+<h2 id="PyPy"><a href="#PyPy" class="headerlink" title="PyPy"></a>PyPy</h2><p>PyPy是另一个Python解释器，它的目标是执行速度。PyPy采用JIT技术，对Python代码进行动态编译（注意不是解释），所以可以显著提高Python代码的执行速度。</p>
+<p>绝大部分Python代码都可以在PyPy下运行，但是PyPy和CPython有一些是不同的，这就导致相同的Python代码在两种解释器下执行可能会有不同的结果。如果你的代码要放到PyPy下执行，就需要了解PyPy和CPython的不同点。</p>
+<h2 id="Jython"><a href="#Jython" class="headerlink" title="Jython"></a>Jython</h2><p>Jython是运行在Java平台上的Python解释器，可以直接把Python代码编译成Java字节码执行。</p>
+<h2 id="IronPython"><a href="#IronPython" class="headerlink" title="IronPython"></a>IronPython</h2><p>IronPython和Jython类似，只不过IronPython是运行在微软.Net平台上的Python解释器，可以直接把Python代码编译成.Net的字节码。</p>
 
     </article>
     <!-- license  -->
     
         <div class="license-wrapper">
             <p>Author：<a href="https://liangweijiang.github.io">liangweijiang</a>
-            <p>原文链接：<a href="https://liangweijiang.github.io/2020/02/29/algorithm-3/">https://liangweijiang.github.io/2020/02/29/algorithm-3/</a>
-            <p>发表日期：<a href="https://liangweijiang.github.io/2020/02/29/algorithm-3/">February 29th 2020, 4:59:16 pm</a>
-            <p>更新日期：<a href="https://liangweijiang.github.io/2020/02/29/algorithm-3/">February 29th 2020, 5:00:09 pm</a>
+            <p>原文链接：<a href="https://liangweijiang.github.io/2020/03/04/python-01/">https://liangweijiang.github.io/2020/03/04/python-01/</a>
+            <p>发表日期：<a href="https://liangweijiang.github.io/2020/03/04/python-01/">March 4th 2020, 1:12:40 pm</a>
+            <p>更新日期：<a href="https://liangweijiang.github.io/2020/03/04/python-01/">March 4th 2020, 1:15:01 pm</a>
             <p>版权声明：本文采用<a rel="license noopener" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
         </div>
     
@@ -448,17 +456,12 @@ height:50vh;
     <ul class="post-paginator">
         <li class="next">
             
-                <div class="nextSlogan">Next Post</div>
-                <a href= "/2020/03/02/algorithm-stock/" title= "每日一道算法之--股票问题总结">
-                    <div class="nextTitle">每日一道算法之--股票问题总结</div>
-                </a>
-            
         </li>
         <li class="previous">
             
                 <div class="prevSlogan">Previous Post</div>
-                <a href= "/2020/02/29/algorithm-121/" title= "每日一道算法之--买卖股票的最佳时机">
-                    <div class="prevTitle">每日一道算法之--买卖股票的最佳时机</div>
+                <a href= "/2020/03/04/python-GC/" title= "python的垃圾回收机制">
+                    <div class="prevTitle">python的垃圾回收机制</div>
                 </a>
             
         </li>
@@ -572,7 +575,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#无重复的最长的子字符串"><span class="toc-number">1.</span> <span class="toc-text">无重复的最长的子字符串</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-暴力解决"><span class="toc-number">1.1.</span> <span class="toc-text">1 暴力解决</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-滑动窗口"><span class="toc-number">1.2.</span> <span class="toc-text">2 滑动窗口</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-复杂度分析"><span class="toc-number">1.3.</span> <span class="toc-text">2.1 复杂度分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#滑动窗口的优化"><span class="toc-number">1.4.</span> <span class="toc-text">滑动窗口的优化</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#python与其他语言的对比"><span class="toc-number">1.</span> <span class="toc-text">python与其他语言的对比</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-C语言"><span class="toc-number">1.0.1.</span> <span class="toc-text">1.C语言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-c-语言"><span class="toc-number">1.0.2.</span> <span class="toc-text">2.c++语言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-C-语言"><span class="toc-number">1.0.3.</span> <span class="toc-text">3. C#语言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-Java语言"><span class="toc-number">1.0.4.</span> <span class="toc-text">4. Java语言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-php语言"><span class="toc-number">1.0.5.</span> <span class="toc-text">5.php语言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-python语言"><span class="toc-number">1.0.6.</span> <span class="toc-text">6.python语言</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#编译型语言和解释型语言"><span class="toc-number">2.</span> <span class="toc-text">编译型语言和解释型语言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#python解释器的种类和特点"><span class="toc-number">3.</span> <span class="toc-text">python解释器的种类和特点</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#CPython"><span class="toc-number">3.1.</span> <span class="toc-text">CPython</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#IPython"><span class="toc-number">3.2.</span> <span class="toc-text">IPython</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#PyPy"><span class="toc-number">3.3.</span> <span class="toc-text">PyPy</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Jython"><span class="toc-number">3.4.</span> <span class="toc-text">Jython</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#IronPython"><span class="toc-number">3.5.</span> <span class="toc-text">IronPython</span></a></li></ol></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
