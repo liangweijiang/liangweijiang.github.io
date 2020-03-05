@@ -346,6 +346,37 @@
     
     
     <article class="index-post">
+        <a class="abstract-title" href = "/2020/02/26/DRF-06/" >
+            
+                <span>DRF源码解析6--权限组件的封装和初始化</span>
+        </a>
+        <div class="abstract-content">
+            1.权限组件的初始化在前面的版本控制和认证组件里提到的initia初始化函数, 同时也对权限组件进行了初始化
+1234567def initial(self, request, *args, **kwargs):       # 认证组件       self.perform_authentication(request)       # 权限组件       self.check_permissions(request)       # 频率       self.check_throttles(request)
+1.1 check_permissions可以看到,check_perm...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/02/26</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "DRF">DRF</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href = "/2020/02/26/algorithm-152/" >
             
                 <span>每日一道算法之--乘积最大子序和</span>
@@ -851,9 +882,22 @@ routersDef...
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 17
+        Total : 18
         </div>
         <!-- search  -->
         
@@ -1042,6 +1086,20 @@ routersDef...
             <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href= "/2020/03/04/python-02/" >python单例模式的实现</a>
         </li>
     
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> 2020 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/05</span><a class="archive-post-title" href= "/2020/03/05/algorithm-39/" >每日一道算法之--组合总和</a>
+        </li>
+    
     </div>
   </div>
         <div class="sidebar-panel-tags">
@@ -1078,6 +1136,8 @@ routersDef...
         <span class="sidebar-tag-name" data-tags="垃圾回收"><span class="iconfont-archer">&#xe606;</span>垃圾回收</span>
     
         <span class="sidebar-tag-name" data-tags="设计模式"><span class="iconfont-archer">&#xe606;</span>设计模式</span>
+    
+        <span class="sidebar-tag-name" data-tags="回溯思想"><span class="iconfont-archer">&#xe606;</span>回溯思想</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
