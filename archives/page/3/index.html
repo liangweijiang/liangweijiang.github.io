@@ -346,30 +346,23 @@
     
     
     <article class="index-post">
-        <a class="abstract-title" href = "/2020/03/09/LoadBalancing/" >
+        <a class="abstract-title" href = "/2020/02/19/DRF-01/" >
             
-                <span>负载均衡笔记</span>
+                <span>DRF源码解析1--APIView对request的重新封装</span>
         </a>
         <div class="abstract-content">
-            负载均衡1 什么是负载均衡?百度百科是这样说的:
-
-负载均衡建立在现有网络结构之上，它提供了一种廉价有效透明的方法扩展网络设备和服务器的带宽、增加吞吐量、加强网络数据处理能力、提高网络的灵活性和可用性。负载均衡（Load Balance）其意思就是分摊到多个操作单元上进行执行，例如Web服务器、FTP服务器、企业关键应用服务器和其它关键任务服务器等，从而共同完成工作任务。
-
-
-互联网早期，业务流量比较小并且业务逻辑比较简单，单台服务器便可以满足基本的需求；但随着互联网的发展，业务流量越来越大并且业务逻辑也越来越复杂，单台机器的性能问题以及单点问题凸显了出来，因此需要多台机器来进行性能的水...
+            截取APIView12345678910111213141516171819202122232425262728293031323334353637383940414243444546@classmethodclass APIView(View):	def as_view(cls, **initkwargs):		if isinstance(getattr(cls, 'queryset', None), models.query.QuerySet):		def force_evaluation():		raise RuntimeError(		'Do not evaluate the `...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
             <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/03/09</span>
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/02/19</span>
             </div>
             <!-- tags  -->
             
             <div class= abstract-tags >
     
-        <a class="post-tag" href="javascript:void(0);" data-tags = "负载均衡">负载均衡</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "网络">网络</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags = "DRF">DRF</a>
     
 </div>
             
@@ -377,6 +370,10 @@
     </article>
     
     <!-- paginator  -->
+    
+    <nav class="page-nav">
+        <a class="extend prev" rel="prev" href="/archives/page/2/">&lt; PREV</a><a class="page-number" href="/archives/">1</a><a class="page-number" href="/archives/page/2/">2</a><span class="page-number current">3</span>
+    </nav>
     
 </main>
             <!-- profile -->
@@ -690,9 +687,22 @@
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 20
+        Total : 21
         </div>
         <!-- search  -->
         
@@ -914,6 +924,20 @@
             <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href= "/2020/03/09/algorithm-Interview-03/" >每日一道算法之--数组中的重复数字</a>
         </li>
     
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> Invalid date </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href= "/2020/03/10/NetworkProtocol-01/" >《趣谈网络协议》学习笔记(一)-- 通信协议综述</a>
+        </li>
+    
     </div>
   </div>
         <div class="sidebar-panel-tags">
@@ -955,7 +979,9 @@
     
         <span class="sidebar-tag-name" data-tags="负载均衡"><span class="iconfont-archer">&#xe606;</span>负载均衡</span>
     
-        <span class="sidebar-tag-name" data-tags="网络"><span class="iconfont-archer">&#xe606;</span>网络</span>
+        <span class="sidebar-tag-name" data-tags="网络协议"><span class="iconfont-archer">&#xe606;</span>网络协议</span>
+    
+        <span class="sidebar-tag-name" data-tags="云计算"><span class="iconfont-archer">&#xe606;</span>云计算</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
@@ -996,7 +1022,7 @@ jsonContent:
     
         <span class="sidebar-category-name" data-categories="python"><span class="iconfont-archer">&#xe60a;</span>python</span>
     
-        <span class="sidebar-category-name" data-categories="网络编程"><span class="iconfont-archer">&#xe60a;</span>网络编程</span>
+        <span class="sidebar-category-name" data-categories="计算机网络"><span class="iconfont-archer">&#xe60a;</span>计算机网络</span>
     
     </div>
     <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>
