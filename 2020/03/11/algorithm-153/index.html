@@ -22,7 +22,7 @@
     <meta name="description" content="">
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-    <title>Jiang&#39;s Blog</title>
+    <title>每日一道算法之--寻找旋转排序数组中的最小值 · Jiang&#39;s Blog</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -203,12 +203,23 @@
 <meta name="generator" content="Hexo 4.2.0"></head>
 
     
+        <body class="post-body">
+    
     
 <header class="header">
 
     <div class="read-progress"></div>
     <div class="header-sidebar-menu">&#xe775;</div>
     <!-- post页的toggle banner  -->
+    
+    <div class="banner">
+            <div class="blog-title">
+                <a href="/" >Jiang&#39;s blog</a>
+            </div>
+            <div class="post-title">
+                <a href="#" class="post-name">每日一道算法之--寻找旋转排序数组中的最小值</a>
+            </div>
+    </div>
     
     <a class="home-link" href=/>Jiang's blog</a>
 </header>
@@ -220,24 +231,76 @@
 
 
 
+
+height:50vh;
 ">
     
     <!-- 主页  -->
+    
+    
+    <!-- 404页  -->
             
     <div class="site-intro-placeholder"></div>
-    <div class="site-intro-img" style="background-image: url(/)"></div>
+    <div class="site-intro-img" style="background-image: url(/intro/911.jpg)"></div>
     <div class="site-intro-meta">
         <!-- 标题  -->
         <h1 class="intro-title">
             <!-- 主页  -->
+            
+            每日一道算法之--寻找旋转排序数组中的最小值
+            <!-- 404 -->
             
         </h1>
         <!-- 副标题 -->
         <p class="intro-subtitle">
             <!-- 主页副标题  -->
             
+            
+            <!-- 404 -->
+            
         </p>
         <!-- 文章页meta -->
+        
+            <div class="post-intros">
+                <!-- 文章页标签  -->
+                
+                    <div class= post-intro-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "数组">数组</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "二分查找">二分查找</a>
+    
+</div>
+                
+                
+                    <div class="post-intro-read">
+                        <span>Word count: <span class="post-count word-count">590</span>Reading time: <span class="post-count reading-time">2 min</span></span>
+                    </div>
+                
+                <div class="post-intro-meta">
+                    <span class="post-intro-calander iconfont-archer">&#xe676;</span>
+                    <span class="post-intro-time">2020/03/11</span>
+                    
+                    <span id="busuanzi_container_page_pv" class="busuanzi-pv">
+                        <span class="iconfont-archer">&#xe602;</span>
+                        <span id="busuanzi_value_page_pv"></span>
+                    </span>
+                    
+                    <span class="shareWrapper">
+                        <span class="iconfont-archer shareIcon">&#xe71d;</span>
+                        <span class="shareText">Share</span>
+                        <ul class="shareList">
+                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
+                                <div class="share-qrcode"></div>
+                            </li>
+                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
+                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
+                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
+                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
         
     </div>
 </div>
@@ -338,49 +401,75 @@
 </script>        
         <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
         <div class="container container-unloaded">
-            <main class="main index-page">
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2020/03/02/algorithm-206/" >
-            
-                <span>每日一道算法之--链表反转</span>
-        </a>
-        <div class="abstract-content">
-            反转链表力扣第206题:https://leetcode-cn.com/problems/reverse-linked-list/submissions/
-反转一个单链表。
-示例:
+            <main class="main post-page">
+    <article class="article-entry">
+        <h1 id="寻找旋转排序数组中的最小值"><a href="#寻找旋转排序数组中的最小值" class="headerlink" title="寻找旋转排序数组中的最小值"></a>寻找旋转排序数组中的最小值</h1><p>力扣第153题:<a href="https://leetcode-cn.com/problems/find-minimum-in-rotated-sorted-array/" target="_blank" rel="noopener">https://leetcode-cn.com/problems/find-minimum-in-rotated-sorted-array/</a></p>
+<p>假设按照升序排序的数组在预先未知的某个点上进行了旋转。</p>
+<p>( 例如，数组 [0,1,2,4,5,6,7] 可能变为 [4,5,6,7,0,1,2] )。</p>
+<p>请找出其中最小的元素。</p>
+<p>你可以假设数组中不存在重复元素。</p>
+<p>示例 1:</p>
+<blockquote>
+<p>输入: [3,4,5,1,2]<br>输出: 1</p>
+</blockquote>
+<p>示例 2:</p>
+<blockquote>
+<p>输入: [4,5,6,7,0,1,2]<br>输出: 0</p>
+</blockquote>
+<p>这道题是剑指的原题的简单版,这里可以假设假设数组中不存在重复元素。找出其中最小的元素,直接遍历数组找到最小的元素不就好了吗,时间复杂度也为O(n),但是这样就和旋转数组没什么关系了,所以就算做出来了,面试也没什么效果。</p>
+<h2 id="二分查找思想"><a href="#二分查找思想" class="headerlink" title="二分查找思想"></a>二分查找思想</h2><p>我们知道在一个有序数组中，用二分法查找一个数，时间复杂度为O（logn），效率非常高。那么这道题也是有序数组的变形，应该也能用二分法。</p>
+<ul>
+<li>可以看到，旋转数组分为了两部分，左右两部分也都是有序的</li>
+<li>而且旋转数组的分界点，正是最小的元素</li>
+<li>所以我们可以利用双指针，开始时分别指向数组的最前（左部分）和最后（右部分），然后去中间点，如果中间点的值比最前的点大，那么证明中间点在左部分，且最小元素在右部分，所以可以将左部分的指针指向中间点，这就是实现二分的思想。</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">findMin</span><span class="params">(self, nums: List[int])</span> -&gt; int:</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> nums: <span class="keyword">return</span> <span class="number">-1</span></span><br><span class="line">        <span class="keyword">if</span> len(nums) == <span class="number">1</span>: <span class="keyword">return</span> nums[<span class="number">0</span>]</span><br><span class="line">        left, right = <span class="number">0</span>, len(nums) - <span class="number">1</span></span><br><span class="line">        mid = left</span><br><span class="line">        <span class="comment"># 左边的元素比右边的大</span></span><br><span class="line">        <span class="keyword">while</span> nums[left] &gt;= nums[right]:</span><br><span class="line">            <span class="comment"># 最小元素作为边界,即为右边区间的第一个元素</span></span><br><span class="line">            <span class="keyword">if</span> right - left == <span class="number">1</span>:</span><br><span class="line">                mid = right</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">            mid = left + (right - left) //<span class="number">2</span></span><br><span class="line">            <span class="keyword">if</span> nums[mid] &gt;= nums[left]:</span><br><span class="line">                left = mid</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                right = mid</span><br><span class="line">        <span class="keyword">return</span> nums[mid]</span><br></pre></td></tr></table></figure>
 
-输入: 1-&gt;2-&gt;3-&gt;4-&gt;5-&gt;NULL输出: 5-&gt;4-&gt;3-&gt;2-&gt;1-&gt;NULL
+<h3 id="复杂度分析"><a href="#复杂度分析" class="headerlink" title="复杂度分析"></a>复杂度分析</h3><p><strong>时间复杂度:</strong>二分法的时间复杂度为O(logn)<br><strong>空间复杂度:</strong>O(1), 没有用到额外的数据结构</p>
+<h3 id="相似题目"><a href="#相似题目" class="headerlink" title="相似题目"></a>相似题目</h3><p><a href="https://leetcode-cn.com/problems/search-in-rotated-sorted-array/" target="_blank" rel="noopener">33. 搜索旋转排序数组</a></p>
+<p><a href="https://leetcode-cn.com/problems/find-minimum-in-rotated-sorted-array-ii/" target="_blank" rel="noopener">154. 寻找旋转排序数组中的最小值 II</a></p>
 
-进阶:你可以迭代或递归地反转链表。你能否用两种方法解决这道题？
-1.递归解决1.1 创建新的节点一开始的时候我的想法是,既然是反转链表,那就可以创建一个新的节点来重新存储,然后直接递归到最后的节点,在不断地回溯中将新节点指向回溯的节点.
-12345678...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/03/02</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "链表">链表</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "递归">递归</a>
-    
-</div>
-            
-        </div>
     </article>
+    <!-- license  -->
+    
+        <div class="license-wrapper">
+            <p>Author：<a href="https://liangweijiang.github.io">liangweijiang</a>
+            <p>原文链接：<a href="https://liangweijiang.github.io/2020/03/11/algorithm-153/">https://liangweijiang.github.io/2020/03/11/algorithm-153/</a>
+            <p>发表日期：<a href="https://liangweijiang.github.io/2020/03/11/algorithm-153/">March 11th 2020, 9:02:26 pm</a>
+            <p>更新日期：<a href="https://liangweijiang.github.io/2020/03/11/algorithm-153/">March 11th 2020, 9:03:39 pm</a>
+            <p>版权声明：本文采用<a rel="license noopener" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
+        </div>
     
     <!-- paginator  -->
+    <ul class="post-paginator">
+        <li class="next">
+            
+        </li>
+        <li class="previous">
+            
+                <div class="prevSlogan">Previous Post</div>
+                <a href= "/2020/03/10/NetworkProtocol-01/" title= "《趣谈网络协议》学习笔记(一)-- 通信协议综述">
+                    <div class="prevTitle">《趣谈网络协议》学习笔记(一)-- 通信协议综述</div>
+                </a>
+            
+        </li>
+    </ul>
+    <!-- 评论插件 -->
+    <!-- 来必力City版安装代码 -->
+
+<!-- City版安装代码已完成 -->
     
+    
+    <!-- gitalk评论 -->
+
+    <!-- partial('_partial/comment/changyan') -->
+    <!--PC版-->
+
+
+    
+    
+
+    <!-- 评论 -->
 </main>
             <!-- profile -->
             
@@ -458,6 +547,24 @@
 </footer>
     </div>
     <!-- toc -->
+    
+    <div class="toc-wrapper" style=
+    
+
+
+
+
+
+
+
+top:50vh;
+
+    >
+        <div class="toc-catalog">
+            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+        </div>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#寻找旋转排序数组中的最小值"><span class="toc-number">1.</span> <span class="toc-text">寻找旋转排序数组中的最小值</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#二分查找思想"><span class="toc-number">1.1.</span> <span class="toc-text">二分查找思想</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#复杂度分析"><span class="toc-number">1.1.1.</span> <span class="toc-text">复杂度分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#相似题目"><span class="toc-number">1.1.2.</span> <span class="toc-text">相似题目</span></a></li></ol></li></ol></li></ol>
+    </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
     <div class="sidebar sidebar-hide">
@@ -1091,6 +1198,8 @@ jsonContent:
     
     </div>
     <!-- async load share.js -->
+    
+        <script src="/scripts/share.js" async></script>    
      
     </body>
 </html>
