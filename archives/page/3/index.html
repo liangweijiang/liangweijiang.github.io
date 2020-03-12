@@ -346,6 +346,38 @@
     
     
     <article class="index-post">
+        <a class="abstract-title" href = "/2020/02/20/DRF-03/" >
+            
+                <span>DRF源码解析3--routers对路由的封装</span>
+        </a>
+        <div class="abstract-content">
+            当我们想最方便的使用drf的路由的时候,只需要用DefaultRoute实例化一个路由实例,然后注册,再讲注册后的组件加入urlpatterns即可
+123456from rest_framework.routers import DefaultRouterrouter = DefaultRouter()# 其中BookModelView继承了viewsets.ModelViewSetrouter.register(r'^book', views.BookModelView)urlpatterns += router.urls
+到底routers底层是怎么样实现的呢
+routersDef...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/02/20</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "DRF">DRF</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href = "/2020/02/19/DRF-02/" >
             
                 <span>DRF源码解析2--viewsets.ModelViewSet对视图的封装</span>
@@ -743,9 +775,22 @@
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 22
+        Total : 23
         </div>
         <!-- search  -->
         
@@ -995,6 +1040,20 @@
             <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href= "/2020/03/11/algorithm-153/" >每日一道算法之--寻找旋转排序数组中的最小值</a>
         </li>
     
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> Invalid date </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href= "/2020/03/12/algorithm-interview-14/" >每日一道算法之--剪绳子</a>
+        </li>
+    
     </div>
   </div>
         <div class="sidebar-panel-tags">
@@ -1041,6 +1100,10 @@
         <span class="sidebar-tag-name" data-tags="云计算"><span class="iconfont-archer">&#xe606;</span>云计算</span>
     
         <span class="sidebar-tag-name" data-tags="二分查找"><span class="iconfont-archer">&#xe606;</span>二分查找</span>
+    
+        <span class="sidebar-tag-name" data-tags="数学"><span class="iconfont-archer">&#xe606;</span>数学</span>
+    
+        <span class="sidebar-tag-name" data-tags="贪心算法"><span class="iconfont-archer">&#xe606;</span>贪心算法</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
