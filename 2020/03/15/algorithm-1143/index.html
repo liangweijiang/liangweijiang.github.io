@@ -22,7 +22,7 @@
     <meta name="description" content="">
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-    <title>Jiang&#39;s Blog</title>
+    <title>每日一道算法之--最长公共子序列 · Jiang&#39;s Blog</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -77,6 +77,8 @@
 
     <link rel="preload" href= "/css/style.css?v=20180824" as="style" onload="this.onload=null;this.rel='stylesheet'" />
     <link rel="stylesheet" href= "/css/mobile.css?v=20180824" media="(max-width: 980px)">
+    
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
     
     <!-- /*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
 /* This file is meant as a standalone workflow for
@@ -201,14 +203,23 @@
 <meta name="generator" content="Hexo 4.2.0"></head>
 
     
-        <body class="home-body">
+        <body class="post-body">
     
     
-<header class="header index-header">
+<header class="header">
 
     <div class="read-progress"></div>
     <div class="header-sidebar-menu">&#xe775;</div>
     <!-- post页的toggle banner  -->
+    
+    <div class="banner">
+            <div class="blog-title">
+                <a href="/" >Jiang&#39;s blog</a>
+            </div>
+            <div class="post-title">
+                <a href="#" class="post-name">每日一道算法之--最长公共子序列</a>
+            </div>
+    </div>
     
     <a class="home-link" href=/>Jiang's blog</a>
 </header>
@@ -227,17 +238,17 @@ height:50vh;
     <!-- 主页  -->
     
     
-    <!-- 文章页  -->
+    <!-- 404页  -->
             
     <div class="site-intro-placeholder"></div>
-    <div class="site-intro-img" style="background-image: url(/intro/918.jpg)"></div>
+    <div class="site-intro-img" style="background-image: url(/intro/911.jpg)"></div>
     <div class="site-intro-meta">
         <!-- 标题  -->
         <h1 class="intro-title">
             <!-- 主页  -->
             
-            Jiang's blog
-            <!-- 文章页  -->
+            每日一道算法之--最长公共子序列
+            <!-- 404 -->
             
         </h1>
         <!-- 副标题 -->
@@ -245,12 +256,49 @@ height:50vh;
             <!-- 主页副标题  -->
             
             
-                Jiang 的个人博客
-            
-            <!-- 文章页  -->
+            <!-- 404 -->
             
         </p>
         <!-- 文章页meta -->
+        
+            <div class="post-intros">
+                <!-- 文章页标签  -->
+                
+                    <div class= post-intro-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "动态规划">动态规划</a>
+    
+</div>
+                
+                
+                    <div class="post-intro-read">
+                        <span>Word count: <span class="post-count word-count">850</span>Reading time: <span class="post-count reading-time">3 min</span></span>
+                    </div>
+                
+                <div class="post-intro-meta">
+                    <span class="post-intro-calander iconfont-archer">&#xe676;</span>
+                    <span class="post-intro-time">2020/03/15</span>
+                    
+                    <span id="busuanzi_container_page_pv" class="busuanzi-pv">
+                        <span class="iconfont-archer">&#xe602;</span>
+                        <span id="busuanzi_value_page_pv"></span>
+                    </span>
+                    
+                    <span class="shareWrapper">
+                        <span class="iconfont-archer shareIcon">&#xe71d;</span>
+                        <span class="shareText">Share</span>
+                        <ul class="shareList">
+                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
+                                <div class="share-qrcode"></div>
+                            </li>
+                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
+                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
+                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
+                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
         
     </div>
 </div>
@@ -351,441 +399,82 @@ height:50vh;
 </script>        
         <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
         <div class="container container-unloaded">
-            <main class="main index-page">
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2020/02/29/algorithm-3/" >
-            
-                <span>每日一道算法之--无重复的最长的子字符串</span>
-        </a>
-        <div class="abstract-content">
-            无重复的最长的子字符串力扣第3题:https://leetcode-cn.com/problems/longest-substring-without-repeating-characters/
+            <main class="main post-page">
+    <article class="article-entry">
+        <h1 id="最长公共子序列"><a href="#最长公共子序列" class="headerlink" title="最长公共子序列"></a>最长公共子序列</h1><p>力扣第1143题:<a href="https://leetcode-cn.com/problems/longest-common-subsequence/" target="_blank" rel="noopener">https://leetcode-cn.com/problems/longest-common-subsequence/</a></p>
+<p>给定两个字符串 text1 和 text2，返回这两个字符串的最长公共子序列。</p>
+<p>一个字符串的 子序列 是指这样一个新的字符串：它是由原字符串在不改变字符的相对顺序的情况下删除某些字符（也可以不删除任何字符）后组成的新字符串。<br>例如，”ace” 是 “abcde” 的子序列，但 “aec” 不是 “abcde” 的子序列。两个字符串的「公共子序列」是这两个字符串所共同拥有的子序列。</p>
+<p>若这两个字符串没有公共子序列，则返回 0。</p>
+<p>示例 1:</p>
+<blockquote>
+<p>输入：text1 = “abcde”, text2 = “ace”<br>输出：3<br>解释：最长公共子序列是 “ace”，它的长度为 3。</p>
+</blockquote>
+<p>示例 2:</p>
+<blockquote>
+<p>输入：text1 = “abc”, text2 = “abc”<br>输出：3<br>解释：最长公共子序列是 “abc”，它的长度为 3。</p>
+</blockquote>
+<p>示例 3:</p>
+<blockquote>
+<p>输入：text1 = “abc”, text2 = “def”<br>输出：0<br>解释：两个字符串没有公共子序列，返回 0。</p>
+</blockquote>
+<h2 id="动态规划"><a href="#动态规划" class="headerlink" title="动态规划"></a>动态规划</h2><p>哈哈,又看到了最字,这次要多分析题目了,看看动态规划是不是合适.看看是否符合动态规划的三大特征<strong>最优子结构、无后效性和重复子问题。</strong></p>
+<ul>
+<li>首先看这道题,每当遍历到一个位置时,当前的最长公共字符串和子字符串的最长公共子序列有关,所以符合最优子结构。</li>
+<li>我们只关心前面子串最长公共子序列的长度，不关心这个状态是怎么一步一步推导出来的。所以符合无后性<br>所以动态规划来做这道题应该还是可以的</li>
+</ul>
+<p>下面来分析一下这道题目：</p>
+<ul>
+<li>这道题有两个字符串，很明显我们可以构造一个二维数组，来存储每种情况对应的状态值</li>
+<li>我们循环遍历这两个字符串，当两个字符串的字符是一样的，就证明找到了一个公共子序列的元素，在子问题的基础上加一；如果不相等，则看两个字符串当前谁的公共子序列最长。</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">longestCommonSubsequence</span><span class="params">(self, text1: str, text2: str)</span> -&gt; int:</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> text1 <span class="keyword">or</span> <span class="keyword">not</span> text2: <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">        len1, len2 = len(text1), len(text2)</span><br><span class="line">        dp = [[<span class="number">0</span>] * (len2 + <span class="number">1</span>) <span class="keyword">for</span> _ <span class="keyword">in</span> range(len1 + <span class="number">1</span>)]</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, len1 + <span class="number">1</span>):</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">1</span>, len2 + <span class="number">1</span>):</span><br><span class="line">                <span class="keyword">if</span> text1[i<span class="number">-1</span>] == text2[j<span class="number">-1</span>]:</span><br><span class="line">                    dp[i][j] = dp[i - <span class="number">1</span>][j - <span class="number">1</span>] + <span class="number">1</span></span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    dp[i][j] = max(dp[i - <span class="number">1</span>][j], dp[i][j - <span class="number">1</span>])</span><br><span class="line">        <span class="keyword">return</span> dp[<span class="number">-1</span>][<span class="number">-1</span>]</span><br></pre></td></tr></table></figure>
+<h2 id="优化动态规划"><a href="#优化动态规划" class="headerlink" title="优化动态规划"></a>优化动态规划</h2><p>可以看到上面的这一段代码,运用了二维数组这种比较复杂的数据结构,把所有的状态都记录了下来,但是可以发现,其实只有最后一行的数据才是有效的,因为其他数据会失效,所以我们可以用一维数组,只存储最后一行的数据。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">longestCommonSubsequence</span><span class="params">(self, text1: str, text2: str)</span> -&gt; int:</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> text1 <span class="keyword">or</span> <span class="keyword">not</span> text2: <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">        len1, len2 = len(text1), len(text2)</span><br><span class="line">        dp = [<span class="number">0</span> <span class="keyword">for</span> _ <span class="keyword">in</span> range(len2 + <span class="number">1</span>)]</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, len1 + <span class="number">1</span>):</span><br><span class="line">            tmp = <span class="number">0</span></span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">1</span>, len2 + <span class="number">1</span>):</span><br><span class="line">                <span class="comment"># 拿到上一次的最大子序列</span></span><br><span class="line">                prev = tmp</span><br><span class="line">                <span class="comment"># 获取上一个循环的在这个字符位置的最大子序列</span></span><br><span class="line">                tmp = dp[j]</span><br><span class="line">                <span class="keyword">if</span> text1[i<span class="number">-1</span>] == text2[j<span class="number">-1</span>]:</span><br><span class="line">                    dp[j] = prev + <span class="number">1</span></span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    dp[j] = max(dp[j <span class="number">-1</span>], dp[j])</span><br><span class="line">        <span class="keyword">return</span> dp[<span class="number">-1</span>]</span><br></pre></td></tr></table></figure>
 
-1 暴力解决暴力方法就是将所有的肯恩列举出来,在会超过时间限制,这里就不列举了
-2 滑动窗口这道题是我第一道碰到的滑动窗口的题目,当时想了很久都想不出来,后来去看一一下别人的题解恍然大悟,滑动窗口确实是解决字符串问题的一非常好的方法
 
-滑动窗口的顾名思义就是可以滑动的数据结构,遍历整个字符串,当滑动窗口里没有该字符时,就将该字符加进滑动窗口
-
-当遇到有重复字符时,要将滑动窗口该字符前面的的字符...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/02/29</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "滑动窗口">滑动窗口</a>
-    
-</div>
-            
-        </div>
     </article>
+    <!-- license  -->
     
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2020/02/29/algorithm-121/" >
-            
-                <span>每日一道算法之--买卖股票的最佳时机</span>
-        </a>
-        <div class="abstract-content">
-            买卖股票的最佳时机力扣第121题：https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock/给定一个数组，它的第 i 个元素是一支给定股票第 i 天的价格。
-如果你最多只允许完成一笔交易（即买入和卖出一支股票），设计一个算法来计算你所能获取的最大利润。
-注意你不能在买入股票前卖出股票。
-示例 1:
-
-输入: [7,1,5,3,6,4]输出: 5解释: 在第 2 天（股票价格 = 1）的时候买入，在第 5 天（股票价格 = 6）的时候卖出，最大利润 = 6-1 = 5 。     注意利润不能是 7-1 = 6, 因为...
+        <div class="license-wrapper">
+            <p>Author：<a href="https://liangweijiang.github.io">liangweijiang</a>
+            <p>原文链接：<a href="https://liangweijiang.github.io/2020/03/15/algorithm-1143/">https://liangweijiang.github.io/2020/03/15/algorithm-1143/</a>
+            <p>发表日期：<a href="https://liangweijiang.github.io/2020/03/15/algorithm-1143/">March 15th 2020, 8:19:20 pm</a>
+            <p>更新日期：<a href="https://liangweijiang.github.io/2020/03/15/algorithm-1143/">March 15th 2020, 8:20:02 pm</a>
+            <p>版权声明：本文采用<a rel="license noopener" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
         </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/02/29</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "动态规划">动态规划</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2020/02/26/DRF-06/" >
-            
-                <span>DRF源码解析6--权限组件的封装和初始化</span>
-        </a>
-        <div class="abstract-content">
-            1.权限组件的初始化在前面的版本控制和认证组件里提到的initia初始化函数, 同时也对权限组件进行了初始化
-1234567def initial(self, request, *args, **kwargs):       # 认证组件       self.perform_authentication(request)       # 权限组件       self.check_permissions(request)       # 频率       self.check_throttles(request)
-1.1 check_permissions可以看到,check_perm...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/02/26</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "DRF">DRF</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2020/02/26/algorithm-152/" >
-            
-                <span>每日一道算法之--乘积最大子序和</span>
-        </a>
-        <div class="abstract-content">
-            乘积最大子序和力扣第152题:https://leetcode-cn.com/problems/maximum-product-subarray/给定一个整数数组 nums ，找出一个序列中乘积最大的连续子序列（该序列至少包含一个数）。
-示例 1:
-
-输入: [2,3,-2,4]输出: 6解释: 子数组 [2,3] 有最大乘积 6。
-
-示例 2:
-
-输入: [-2,0,-1]输出: 0解释: 结果不能为 2, 因为 [-2,-1] 不是子数组。
-
-1. 类似指针的解法参考力扣第53题最大子序和的其中一种双指针解法,这道题同样可以用类似指针的解法  
-
-首先定义一个res记录最大的子序和,...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/02/26</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "动态规划">动态规划</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "指针">指针</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2020/02/24/DRF-05/" >
-            
-                <span>DRF源码解析5--认证组件的封装和初始化</span>
-        </a>
-        <div class="abstract-content">
-            1.认证组件的初始化在对DRF的版本认证里说到,initial()不仅对版本认证组件进行了初始化,同时还初始化了认证组件,现在来分析一下DRF是怎么样初始化认证方法的
-12def perform_authentication(self, request):    request.user
-可以看到,perform_authentication()方法返回了request(相当于封装的Request),进入request中找到uesr方法
-1.1 截取Request部分代码如下:123456789101112131415161718192021222324252627class Reque...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/02/24</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "DRF">DRF</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2020/02/24/algorithm-15/" >
-            
-                <span>每日一道算法之--三数之和</span>
-        </a>
-        <div class="abstract-content">
-            三数之和力扣第15题：https://leetcode-cn.com/problems/3sum/给定一个包含 n 个整数的数组 nums，判断 nums 中是否存在三个元素 a，b，c ，使得 a + b + c = 0 ？找出所有满足条件且不重复的三元组。
-注意：答案中不可以包含重复的三元组。
-示例：
-
-给定数组 nums = [-1, 0, 1, 2, -1, -4]，满足要求的三元组集合为：[  [-1, 0, 1],  [-1, -1, 2]]
-
-1. 排序 + 双指针解法题目中的要求是不能含有相同的三元组，所以在算法中我们需要去重，排序是一个很好的方法，因为排序可以让相同的数...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/02/24</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "双指针">双指针</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "哈希表">哈希表</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "排序">排序</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2020/02/22/DRF-04/" >
-            
-                <span>DRF源码解析4--版本控制组件的封装</span>
-        </a>
-        <div class="abstract-content">
-            一.DRF中APIView的initial()方法初始化版本信息在讲到DRF对ruquest的封装时,返回新封装的Request后,DRF执行了initial()方法对组件的初始化
-12345678910111213def initial(self, request, *args, **kwargs):	# 版本控制组件       version, scheme = self.determine_version(request, *args, **kwargs)	# 将版本空值信息写入request中       request.version, request.versioning_...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/02/22</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "DRF">DRF</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2020/02/20/DRF-03/" >
-            
-                <span>DRF源码解析3--routers对路由的封装</span>
-        </a>
-        <div class="abstract-content">
-            当我们想最方便的使用drf的路由的时候,只需要用DefaultRoute实例化一个路由实例,然后注册,再讲注册后的组件加入urlpatterns即可
-123456from rest_framework.routers import DefaultRouterrouter = DefaultRouter()# 其中BookModelView继承了viewsets.ModelViewSetrouter.register(r'^book', views.BookModelView)urlpatterns += router.urls
-到底routers底层是怎么样实现的呢
-routersDef...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/02/20</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "DRF">DRF</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2020/02/19/DRF-02/" >
-            
-                <span>DRF源码解析2--viewsets.ModelViewSet对视图的封装</span>
-        </a>
-        <div class="abstract-content">
-            viewsetsdrf中  viewsets  对  view  进行了更加深层的封装,在CBV编程中减少代码的冗余,截取viewsets源码如下
-12345678class ModelViewSet(mixins.CreateModelMixin,                   mixins.RetrieveModelMixin,                   mixins.UpdateModelMixin,                   mixins.DestroyModelMixin,                   mixins.ListModelMixin...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/02/19</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "DRF">DRF</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2020/02/19/DRF-01/" >
-            
-                <span>DRF源码解析1--APIView对request的重新封装</span>
-        </a>
-        <div class="abstract-content">
-            截取APIView12345678910111213141516171819202122232425262728293031323334353637383940414243444546@classmethodclass APIView(View):	def as_view(cls, **initkwargs):		if isinstance(getattr(cls, 'queryset', None), models.query.QuerySet):		def force_evaluation():		raise RuntimeError(		'Do not evaluate the `...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/02/19</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "DRF">DRF</a>
-    
-</div>
-            
-        </div>
-    </article>
     
     <!-- paginator  -->
-    
-    <nav class="page-nav">
-        <a class="extend prev" rel="prev" href="/page/2/">&lt; PREV</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span>
-    </nav>
-    
-</main>
-            <!-- profile -->
+    <ul class="post-paginator">
+        <li class="next">
             
-            <div class="profile">
-    <img class="profile-avatar" alt="avatar" src= /avatar/911mydream.jpg >
-    <div class="profile-name">Jiang</div>
-    
-    <div class="profile-signature">
-        witness me
-    </div>
-    
-    
-    <div class="profile-social">
-        
-    
-        
+        </li>
+        <li class="previous">
             
-                <a href="mailto:1210457866@qq.com" class="iconfont-archer email" title=email ></a>
+                <div class="prevSlogan">Previous Post</div>
+                <a href= "/2020/03/15/algorithm-695/" title= "每日一道算法之--岛屿的最大面积">
+                    <div class="prevTitle">每日一道算法之--岛屿的最大面积</div>
+                </a>
             
-        
+        </li>
+    </ul>
+    <!-- 评论插件 -->
+    <!-- 来必力City版安装代码 -->
+
+<!-- City版安装代码已完成 -->
     
-        
-            
-                <a href="https://github.com/liangweijiang" class="iconfont-archer github" target="_blank" title=github></a>
-            
-        
     
-        
+    <!-- gitalk评论 -->
+
+    <!-- partial('_partial/comment/changyan') -->
+    <!--PC版-->
+
+
     
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
     
 
-    </div>
-    
-    
-        <div class="friends">
-            <div>FRIENDS</div>
-            
-                
-                    <span>
-                        <a href= //www.baidu.com target="_black">friendA</a>
-                    </span>
-                
-            
-                
-                    <span>
-                        <a href= //www.google.com target="_black">friendB</a>
-                    </span>
-                
-            
-                
-            
-        </div>
-    
-    
-        <div class="about-me">
-            <a href = "/about" >ABOUT ME</a>
-        </div>
-    
-</div>
+    <!-- 评论 -->
+</main>
+            <!-- profile -->
             
         </div>
         <footer class="footer footer-unloaded">
@@ -861,6 +550,24 @@ routersDef...
 </footer>
     </div>
     <!-- toc -->
+    
+    <div class="toc-wrapper" style=
+    
+
+
+
+
+
+
+
+top:50vh;
+
+    >
+        <div class="toc-catalog">
+            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+        </div>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#最长公共子序列"><span class="toc-number">1.</span> <span class="toc-text">最长公共子序列</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#动态规划"><span class="toc-number">1.1.</span> <span class="toc-text">动态规划</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#优化动态规划"><span class="toc-number">1.2.</span> <span class="toc-text">优化动态规划</span></a></li></ol></li></ol>
+    </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
     <div class="sidebar sidebar-hide">
@@ -1689,6 +1396,8 @@ jsonContent:
     
     </div>
     <!-- async load share.js -->
+    
+        <script src="/scripts/share.js" async></script>    
      
     </body>
 </html>
