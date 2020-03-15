@@ -22,7 +22,7 @@
     <meta name="description" content="">
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-    <title>每日一道算法之--无重复的最长的子字符串 · Jiang&#39;s Blog</title>
+    <title>写给自己的一些话 · Jiang&#39;s Blog</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -217,7 +217,7 @@
                 <a href="/" >Jiang&#39;s blog</a>
             </div>
             <div class="post-title">
-                <a href="#" class="post-name">每日一道算法之--无重复的最长的子字符串</a>
+                <a href="#" class="post-name">写给自己的一些话</a>
             </div>
     </div>
     
@@ -247,7 +247,7 @@ height:50vh;
         <h1 class="intro-title">
             <!-- 主页  -->
             
-            每日一道算法之--无重复的最长的子字符串
+            写给自己的一些话
             <!-- 404 -->
             
         </h1>
@@ -264,20 +264,14 @@ height:50vh;
             <div class="post-intros">
                 <!-- 文章页标签  -->
                 
-                    <div class= post-intro-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "滑动窗口">滑动窗口</a>
-    
-</div>
-                
                 
                     <div class="post-intro-read">
-                        <span>Word count: <span class="post-count word-count">830</span>Reading time: <span class="post-count reading-time">3 min</span></span>
+                        <span>Word count: <span class="post-count word-count">1.7k</span>Reading time: <span class="post-count reading-time">5 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
                     <span class="post-intro-calander iconfont-archer">&#xe676;</span>
-                    <span class="post-intro-time">2020/02/29</span>
+                    <span class="post-intro-time">2020/03/16</span>
                     
                     <span id="busuanzi_container_page_pv" class="busuanzi-pv">
                         <span class="iconfont-archer">&#xe602;</span>
@@ -401,48 +395,40 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
     <article class="article-entry">
-        <h1 id="无重复的最长的子字符串"><a href="#无重复的最长的子字符串" class="headerlink" title="无重复的最长的子字符串"></a>无重复的最长的子字符串</h1><p>力扣第3题:<a href="https://leetcode-cn.com/problems/longest-substring-without-repeating-characters/" target="_blank" rel="noopener">https://leetcode-cn.com/problems/longest-substring-without-repeating-characters/</a></p>
-<p><img src="https://s2.ax1x.com/2020/02/29/3ykYNt.png" alt="3ykYNt.png"></p>
-<h2 id="1-暴力解决"><a href="#1-暴力解决" class="headerlink" title="1 暴力解决"></a>1 暴力解决</h2><p>暴力方法就是将所有的肯恩列举出来,在会超过时间限制,这里就不列举了</p>
-<h2 id="2-滑动窗口"><a href="#2-滑动窗口" class="headerlink" title="2 滑动窗口"></a>2 滑动窗口</h2><p>这道题是我第一道碰到的滑动窗口的题目,当时想了很久都想不出来,后来去看一一下别人的题解恍然大悟,<strong>滑动窗口</strong>确实是解决字符串问题的一非常好的方法</p>
-<ul>
-<li><p>滑动窗口的顾名思义就是可以滑动的数据结构,遍历整个字符串,当滑动窗口里没有该字符时,就将该字符加进滑动窗口</p>
-</li>
-<li><p>当遇到有重复字符时,要将滑动窗口该字符前面的的字符(包括该字符)全部去除,然后在将该字符加进滑动窗口</p>
-</li>
-</ul>
-<p>代码如下:</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">lengthOfLongestSubstring</span><span class="params">(self, s: str)</span> -&gt; int:</span></span><br><span class="line">        <span class="comment"># 集合可以保证唯一性</span></span><br><span class="line">        silde_win = set()</span><br><span class="line">        <span class="comment"># 设置滑动窗口的值</span></span><br><span class="line">        left = <span class="number">0</span></span><br><span class="line">        <span class="comment"># 记录最长子串的长度</span></span><br><span class="line">        max_len = <span class="number">0</span></span><br><span class="line">        <span class="comment"># 记录当前的子串长度</span></span><br><span class="line">        cur_len = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(len(s)):</span><br><span class="line">            cur_len += <span class="number">1</span></span><br><span class="line">            <span class="comment"># 设置滑动窗口的值</span></span><br><span class="line">            <span class="keyword">while</span> s[i] <span class="keyword">in</span> silde_win:</span><br><span class="line">                silde_win.remove(s[left]) </span><br><span class="line">                left += <span class="number">1</span></span><br><span class="line">                cur_len -= <span class="number">1</span></span><br><span class="line">            silde_win.add(s[i])</span><br><span class="line">            max_len = max(max_len, cur_len)</span><br><span class="line">        <span class="keyword">return</span> max_len</span><br></pre></td></tr></table></figure>
-
-<h2 id="2-1-复杂度分析"><a href="#2-1-复杂度分析" class="headerlink" title="2.1 复杂度分析"></a>2.1 复杂度分析</h2><p><strong>时间复杂度:</strong>遍历了一次数组,时间复杂度为$$0(N)$$, 但是每次滑动窗口的都有重复字符,如字符串为’aaaaaaaaaaaaaaaaaaa’,会浪费没必要的时间,但是均摊时间复杂度依然为$$O(N)$$</p>
-<p><strong>空间复杂度:</strong>用了集合,所以空间复杂度为$$O(N)$$</p>
-<p><img src="https://i.loli.net/2020/02/29/TjZEK2krRgbVWpn.png" alt="无重复最大子序_滑动1_.png"></p>
-<h2 id="滑动窗口的优化"><a href="#滑动窗口的优化" class="headerlink" title="滑动窗口的优化"></a>滑动窗口的优化</h2><p>可以看到提交的成绩不是很理想,所以我一直在想着怎么优化,想到了几个优化方法</p>
-<ul>
-<li>如果字符串有相邻的子串,直接忽视<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">lengthOfLongestSubstring</span><span class="params">(self, s: str)</span> -&gt; int:</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> s :<span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">        silde_win = set()</span><br><span class="line">        left = <span class="number">0</span></span><br><span class="line">        max_len = <span class="number">0</span></span><br><span class="line">        cur_len = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(len(s)):</span><br><span class="line">            <span class="comment"># 如果字符串有相邻的子串,直接忽视</span></span><br><span class="line">            <span class="keyword">if</span> i &gt; <span class="number">0</span> <span class="keyword">and</span> s[i<span class="number">-1</span>] == s[i]:</span><br><span class="line">                silde_win = set()</span><br><span class="line">                silde_win.add(s[i])</span><br><span class="line">                left = i</span><br><span class="line">                cur_len = <span class="number">1</span></span><br><span class="line">                <span class="keyword">continue</span></span><br><span class="line">            cur_len += <span class="number">1</span></span><br><span class="line">            <span class="comment"># 设置滑动窗口的值</span></span><br><span class="line">            <span class="keyword">while</span> s[i] <span class="keyword">in</span> silde_win:</span><br><span class="line">                silde_win.remove(s[left]) </span><br><span class="line">                left += <span class="number">1</span></span><br><span class="line">                cur_len -= <span class="number">1</span></span><br><span class="line">            silde_win.add(s[i])</span><br><span class="line">            max_len = max(max_len, cur_len)</span><br><span class="line">        <span class="keyword">return</span> max_len</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<p><img src="https://s2.ax1x.com/2020/02/29/3y1Zs1.png" alt="3y1Zs1.png"></p>
-<p>可以发现成绩有了提升,但不是很明显</p>
-<ul>
-<li>然后在看看我么你写的代码,silde_win这个数据结构其实是有很多操作的,话费了很多时间,换个思路想一想,我们能又能用更好地数据结构来代替这个集合呢,其实这个滑动窗口只是一个辅助的数据结构,只是用来暂时存储字符串的字串的,那为什么不直接用分片呢</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">lengthOfLongestSubstring</span><span class="params">(self, s: str)</span> -&gt; int:</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> s :<span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">        <span class="comment"># 设置滑动窗口的值</span></span><br><span class="line">        left = <span class="number">0</span></span><br><span class="line">        <span class="comment"># 记录最长子串的长度</span></span><br><span class="line">        max_len = <span class="number">0</span></span><br><span class="line">        <span class="comment"># 记录当前的子串长度</span></span><br><span class="line">        cur_len = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(len(s)):</span><br><span class="line">            <span class="keyword">if</span> i &gt; <span class="number">0</span> <span class="keyword">and</span> s[i<span class="number">-1</span>] == s[i]:</span><br><span class="line">                left = i</span><br><span class="line">                cur_len = <span class="number">1</span></span><br><span class="line">                <span class="keyword">continue</span></span><br><span class="line">            cur_len += <span class="number">1</span></span><br><span class="line">            <span class="comment"># 设置滑动窗口的值</span></span><br><span class="line">            <span class="keyword">while</span> s[i] <span class="keyword">in</span> s[left:i]: </span><br><span class="line">                left += <span class="number">1</span></span><br><span class="line">                cur_len -= <span class="number">1</span></span><br><span class="line">            max_len = max(max_len, cur_len)</span><br><span class="line">        <span class="keyword">return</span> max_len</span><br></pre></td></tr></table></figure>
-
-<p><a href="https://imgchr.com/i/3yJm1e" target="_blank" rel="noopener"><img src="https://s2.ax1x.com/2020/02/29/3yJm1e.png" alt="3yJm1e.png"></a></p>
-<h3 id="相似题目"><a href="#相似题目" class="headerlink" title="相似题目"></a>相似题目</h3><p><a href="https://leetcode-cn.com/problems/minimum-window-substring/" target="_blank" rel="noopener">76.最小覆盖子串</a></p>
-<p><a href="https://leetcode-cn.com/problems/longest-substring-with-at-most-two-distinct-characters/" target="_blank" rel="noopener">159. 至多包含两个不同字符的最长子串</a></p>
-<p><a href="https://leetcode-cn.com/problems/longest-substring-with-at-most-k-distinct-characters/" target="_blank" rel="noopener">340. 至多包含 K 个不同字符的最长子串</a></p>
+        <h1 id="写给自己的一些话"><a href="#写给自己的一些话" class="headerlink" title="写给自己的一些话"></a>写给自己的一些话</h1><p>昨晚收到了人生的第一份面试邀请，头条的邀请，心情真的很激动，但是更多的也是紧张。倒也不是说自己的技术不行吧，而是，在几个月前，对于腾讯头条阿里这种像是珠穆朗玛峰那种我想都不敢想的大厂，我竟然能收到面试。</p>
+<h3 id="高中，-那个自傲的自己"><a href="#高中，-那个自傲的自己" class="headerlink" title="高中， 那个自傲的自己"></a>高中， 那个自傲的自己</h3><p>高中生活三年，当时在学校成绩一直还算可以，起初是蹦着中科大和复旦去的，最差也得有个华工吧哈哈，当时成绩确实还可以，但是有点飘了哈。当我高考成绩出来后，我懵了，真的当时就整个人飘忽忽的，看着这个成绩单，我知道自己再也不是那个当初自傲的自己了。大伯劝我复读，说什么算过我的命今天考试不行，明年清华都能上（当时高考前大伯就叮嘱我要我复读了），但是我不信命，我这辈子都没想过我要复读。我不后悔，换句话说，后悔也没用。</p>
+<h3 id="大一，那个懵懂的自己"><a href="#大一，那个懵懂的自己" class="headerlink" title="大一，那个懵懂的自己"></a>大一，那个懵懂的自己</h3><p>于是来到了广工，大一这一年，真的是对专业一窍不通，开始的时候连C的课设都难办，下学期的时候，有几位同学进了工作室，而我真的一点基础都没有，笔试一面混一混，到了二面，人就傻了，操作系统是啥？正则匹配是什么？完全不懂啊。哎，大一真的是跟个无头苍蝇一样，根本不知道自己的目标是什么，甚至连自己的专业都不知道是什么，更不用说去看什么书去充实自己。</p>
+<h3 id="大二，那个颓废的自己"><a href="#大二，那个颓废的自己" class="headerlink" title="大二，那个颓废的自己"></a>大二，那个颓废的自己</h3><p>大二，逐渐变成了老司机，开始疯狂逃课了，一周五天睡四天，那个时候的心情我现在都还记得，哎，工作室进不去了，还有啥用，看着在工作室的同学天天有着自己的事做，心里其实很难受，但是又不知道从何下手，只能通过打游戏来麻痹自己，成绩一落千丈，从全级第六掉到了全班倒数，那时候就处在每天的颓废和罪恶感中，很是难受。知道下学期，因为性格很开朗，认识了很多朋友，也包括工作室的伙伴，我开始向他们询问学习方法和学习书籍，同时接触到了Python这一门语言，渐渐地爱上了这一门语言，虽然对比于c++和java来说，它有许多不足，但是它有着自己的魅力去吸引我。大二下学期快放假的时候，我逐渐开始学习起来，虽然效率不高，因为看的是视频，学的时间不多，但是那时候我开始，真的想学习了。</p>
+<h3 id="大三，开始去改变自己"><a href="#大三，开始去改变自己" class="headerlink" title="大三，开始去改变自己"></a>大三，开始去改变自己</h3><p>大三我知道自己不能再这样下去了，于是我决定彻彻底底的改变自己。起步的时候很辛苦，这种辛苦是要入门计算机，看视频效率真的太慢了，但是看书看不下去，我就讲视频1.5倍速，看了15天，当时记得看到了socket编程，刚好碰到了计网的课设，我就自己写了一人ftp文件传输系统，参加了答辩，那是我人生中第一次答辩，我第一个感受到了作为一个技术人员给我带来的成就感，逐渐地，我爱上了编程。<br>后来碰上了老师叫上一届的师兄回来分享经验，谈到了春招，当时距离春招就三个多月了，我又开始了恐慌，真的每天都在愁。然后我得到了我一个朋友的帮助，这里我真的非常感谢我这个朋友，是他给了我很大的信心和建议，让我去复习底层的知识。<br>当时刚好碰上了考试，我又浪费了半个月的时间。考完试后，我开始了痛苦但是又快乐的基础知识学习，真的太爽了学习基础。<br>计算机网络，操所系统，数据结构与算法，我开始尝试着去看书，去看极客专栏，一步一步脚踏实地地去学习，这段时间的收获真的太多了，不仅仅是知识，更多的是心态上的成熟。</p>
+<h2 id="梦想是我学习的动力"><a href="#梦想是我学习的动力" class="headerlink" title="梦想是我学习的动力"></a>梦想是我学习的动力</h2><p>从小到大我的梦想都没有改变过，虽然我颓废过，堕落过，但是他真的是我生活上一个很大的支撑点。<br>最近我在一个视频上看到这样一段话：</p>
+<p><img src="https://s1.ax1x.com/2020/03/16/88vAl8.jpg" alt="88vAl8.jpg"></p>
+<p><img src="https://s1.ax1x.com/2020/03/16/88vE6S.jpg" alt="88vE6S.jpg"></p>
+<p><img src="https://s1.ax1x.com/2020/03/16/88vVOg.jpg" alt="88vVOg.jpg"></p>
+<p>我当时真的眼泪直接绷不住了，这真的是我一直以来藏在心里的话。对于一个的大学生来说，除了梦想，他还能有什么呢，但这就是我一直没有放弃的原因，因为我知道，这是驱动我努力前行的动力。</p>
+<h2 id="感谢我身边的所有人"><a href="#感谢我身边的所有人" class="headerlink" title="感谢我身边的所有人"></a>感谢我身边的所有人</h2><p>在我大学期间，真的受到了无数人的帮助，真的感谢每一位爱我的人和我爱的人，人生真的就是需要这样一群人，才能构建你一生的轨迹。</p>
+<p><img src="https://s1.ax1x.com/2020/03/16/88v3lT.png" alt="88v3lT.png"></p>
+<p><img src="https://s1.ax1x.com/2020/03/16/88vGXF.png" alt="88vGXF.png"></p>
+<p>感谢我这个编程很牛逼的好朋友，在自己也要复习，完全没有必要帮助我的情况下，给我推荐技术线，学习资料，一直鼓励我叫我不要放弃，一直帮我修改简历，真的这段时间一直陪着我。</p>
+<p><img src="https://s1.ax1x.com/2020/03/16/88vfht.png" alt="88vfht.png"></p>
+<p>感谢我大学的好哥们，一直安慰我，鼓励我，给我信心，帮我找岗位，一直默默地支持我</p>
+<p><img src="https://s1.ax1x.com/2020/03/16/88x9uF.png" alt="88x9uF.png"></p>
+<p>感谢我的叔叔，给我分享自己的人生经验，无时无刻都在支持我</p>
+<p><img src="https://s1.ax1x.com/2020/03/16/88xCB4.png" alt="88xCB4.png"></p>
+<p>感谢这位阿里的师兄，本来互不相识，却给我很多宝贵的学习经验和方法，同时也一直鼓励我</p>
+<p><img src="https://s1.ax1x.com/2020/03/16/88xFE9.png" alt="88xFE9.png"></p>
+<p>感谢我的女朋友，在我这段时间里，学习没怎么陪她，但是她很体谅我，还天天过来安慰鼓励我</p>
+<p>我要感谢的人真的太多太多了，父母亲人就更不用多说了，他们总是默默地为我付出着，我一定会带着他们的祝福，坚定地走下去</p>
+<h2 id="学习目标"><a href="#学习目标" class="headerlink" title="学习目标"></a>学习目标</h2><p>最后附上自己的学习目标：坚持学习算法，知道完全掌握；对网络协议达到精通的程度；熟悉自己领域的技术栈，做到踏踏实实的学习。希望4年之后，自己能达到自己理想的水准。<br>最后附上自己的日学习计划，一定要长期坚持下来</p>
+<p><img src="https://s1.ax1x.com/2020/03/16/88x726.jpg" alt="88x726.jpg"></p>
 
     </article>
     <!-- license  -->
     
         <div class="license-wrapper">
             <p>Author：<a href="https://liangweijiang.github.io">liangweijiang</a>
-            <p>原文链接：<a href="https://liangweijiang.github.io/2020/02/29/algorithm-3/">https://liangweijiang.github.io/2020/02/29/algorithm-3/</a>
-            <p>发表日期：<a href="https://liangweijiang.github.io/2020/02/29/algorithm-3/">February 29th 2020, 4:59:16 pm</a>
-            <p>更新日期：<a href="https://liangweijiang.github.io/2020/02/29/algorithm-3/">March 11th 2020, 8:30:29 pm</a>
+            <p>原文链接：<a href="https://liangweijiang.github.io/2020/03/16/dream/">https://liangweijiang.github.io/2020/03/16/dream/</a>
+            <p>发表日期：<a href="https://liangweijiang.github.io/2020/03/16/dream/">March 16th 2020, 2:36:58 am</a>
+            <p>更新日期：<a href="https://liangweijiang.github.io/2020/03/16/dream/">March 16th 2020, 2:37:53 am</a>
             <p>版权声明：本文采用<a rel="license noopener" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
         </div>
     
@@ -450,17 +436,12 @@ height:50vh;
     <ul class="post-paginator">
         <li class="next">
             
-                <div class="nextSlogan">Next Post</div>
-                <a href= "/2020/03/02/algorithm-stock/" title= "每日一道算法之--股票问题总结">
-                    <div class="nextTitle">每日一道算法之--股票问题总结</div>
-                </a>
-            
         </li>
         <li class="previous">
             
                 <div class="prevSlogan">Previous Post</div>
-                <a href= "/2020/02/29/algorithm-121/" title= "每日一道算法之--买卖股票的最佳时机">
-                    <div class="prevTitle">每日一道算法之--买卖股票的最佳时机</div>
+                <a href= "/2020/03/16/NetworkProtocol-03/" title= "《趣谈网络协议》学习笔记之--从二层到三层（下）">
+                    <div class="prevTitle">《趣谈网络协议》学习笔记之--从二层到三层（下）</div>
                 </a>
             
         </li>
@@ -574,7 +555,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#无重复的最长的子字符串"><span class="toc-number">1.</span> <span class="toc-text">无重复的最长的子字符串</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-暴力解决"><span class="toc-number">1.1.</span> <span class="toc-text">1 暴力解决</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-滑动窗口"><span class="toc-number">1.2.</span> <span class="toc-text">2 滑动窗口</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-复杂度分析"><span class="toc-number">1.3.</span> <span class="toc-text">2.1 复杂度分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#滑动窗口的优化"><span class="toc-number">1.4.</span> <span class="toc-text">滑动窗口的优化</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#相似题目"><span class="toc-number">1.4.1.</span> <span class="toc-text">相似题目</span></a></li></ol></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#写给自己的一些话"><span class="toc-number">1.</span> <span class="toc-text">写给自己的一些话</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#高中，-那个自傲的自己"><span class="toc-number">1.0.1.</span> <span class="toc-text">高中， 那个自傲的自己</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#大一，那个懵懂的自己"><span class="toc-number">1.0.2.</span> <span class="toc-text">大一，那个懵懂的自己</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#大二，那个颓废的自己"><span class="toc-number">1.0.3.</span> <span class="toc-text">大二，那个颓废的自己</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#大三，开始去改变自己"><span class="toc-number">1.0.4.</span> <span class="toc-text">大三，开始去改变自己</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#梦想是我学习的动力"><span class="toc-number">1.1.</span> <span class="toc-text">梦想是我学习的动力</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#感谢我身边的所有人"><span class="toc-number">1.2.</span> <span class="toc-text">感谢我身边的所有人</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#学习目标"><span class="toc-number">1.3.</span> <span class="toc-text">学习目标</span></a></li></ol></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
