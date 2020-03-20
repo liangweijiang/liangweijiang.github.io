@@ -22,7 +22,7 @@
     <meta name="description" content="">
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-    <title>Jiang&#39;s Blog</title>
+    <title>每日一道算法之--合并K个排序链表 · Jiang&#39;s Blog</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -77,6 +77,8 @@
 
     <link rel="preload" href= "/css/style.css?v=20180824" as="style" onload="this.onload=null;this.rel='stylesheet'" />
     <link rel="stylesheet" href= "/css/mobile.css?v=20180824" media="(max-width: 980px)">
+    
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
     
     <!-- /*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
 /* This file is meant as a standalone workflow for
@@ -201,14 +203,23 @@
 <meta name="generator" content="Hexo 4.2.0"></head>
 
     
-        <body class="home-body">
+        <body class="post-body">
     
     
-<header class="header index-header">
+<header class="header">
 
     <div class="read-progress"></div>
     <div class="header-sidebar-menu">&#xe775;</div>
     <!-- post页的toggle banner  -->
+    
+    <div class="banner">
+            <div class="blog-title">
+                <a href="/" >Jiang&#39;s blog</a>
+            </div>
+            <div class="post-title">
+                <a href="#" class="post-name">每日一道算法之--合并K个排序链表</a>
+            </div>
+    </div>
     
     <a class="home-link" href=/>Jiang's blog</a>
 </header>
@@ -227,17 +238,17 @@ height:50vh;
     <!-- 主页  -->
     
     
-    <!-- 文章页  -->
+    <!-- 404页  -->
             
     <div class="site-intro-placeholder"></div>
-    <div class="site-intro-img" style="background-image: url(/intro/918.jpg)"></div>
+    <div class="site-intro-img" style="background-image: url(/intro/911.jpg)"></div>
     <div class="site-intro-meta">
         <!-- 标题  -->
         <h1 class="intro-title">
             <!-- 主页  -->
             
-            Jiang's blog
-            <!-- 文章页  -->
+            每日一道算法之--合并K个排序链表
+            <!-- 404 -->
             
         </h1>
         <!-- 副标题 -->
@@ -245,12 +256,53 @@ height:50vh;
             <!-- 主页副标题  -->
             
             
-                Jiang 的个人博客
-            
-            <!-- 文章页  -->
+            <!-- 404 -->
             
         </p>
         <!-- 文章页meta -->
+        
+            <div class="post-intros">
+                <!-- 文章页标签  -->
+                
+                    <div class= post-intro-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "分治">分治</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "优先队列">优先队列</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "堆">堆</a>
+    
+</div>
+                
+                
+                    <div class="post-intro-read">
+                        <span>Word count: <span class="post-count word-count">763</span>Reading time: <span class="post-count reading-time">3 min</span></span>
+                    </div>
+                
+                <div class="post-intro-meta">
+                    <span class="post-intro-calander iconfont-archer">&#xe676;</span>
+                    <span class="post-intro-time">2020/03/20</span>
+                    
+                    <span id="busuanzi_container_page_pv" class="busuanzi-pv">
+                        <span class="iconfont-archer">&#xe602;</span>
+                        <span id="busuanzi_value_page_pv"></span>
+                    </span>
+                    
+                    <span class="shareWrapper">
+                        <span class="iconfont-archer shareIcon">&#xe71d;</span>
+                        <span class="shareText">Share</span>
+                        <ul class="shareList">
+                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
+                                <div class="share-qrcode"></div>
+                            </li>
+                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
+                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
+                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
+                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
         
     </div>
 </div>
@@ -351,472 +403,80 @@ height:50vh;
 </script>        
         <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
         <div class="container container-unloaded">
-            <main class="main index-page">
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2020/03/13/stack-heap/" >
-            
-                <span>学习笔记之---堆和栈的区别</span>
-        </a>
-        <div class="abstract-content">
-            浅谈堆和栈的区别1. 数据结构中的堆栈相信每一个程序员对数据结构中的堆和栈都不陌生,他们在我们计算机的数据结构中承担着不可或缺的角色。其实堆和栈都是一种数据项按序排列的数据结构。
-1.1 栈就像一摞叠在一起的盘子我们平时放盘子的时候，都是从下往上一个一个放；取的时候，我们也是从上往下一个一个地依次取，不能从中间任意抽出。后进者先出，先进者后出，这就是典型的“栈”结构。从栈的操作特性上来看，栈是一种“操作受限”的线性表，只允许在一端插入和删除数据。
-1.2 堆就像一颗倒过来的数堆是一种经过排序的树形数据结构，每个结点都有一个值。通常我们所说的堆的数据结构，是指二叉堆。堆是一种特殊的树。只要...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/03/13</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "堆栈">堆栈</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "内存分配">内存分配</a>
-    
-</div>
-            
-        </div>
+            <main class="main post-page">
+    <article class="article-entry">
+        <h1 id="合并K个排序链表"><a href="#合并K个排序链表" class="headerlink" title="合并K个排序链表"></a>合并K个排序链表</h1><p>力扣第23题:<a href="https://leetcode-cn.com/problems/merge-k-sorted-lists/" target="_blank" rel="noopener">https://leetcode-cn.com/problems/merge-k-sorted-lists/</a></p>
+<p>合并 k 个排序链表，返回合并后的排序链表。请分析和描述算法的复杂度。</p>
+<p>示例:</p>
+<blockquote>
+<p>输入:<br>[<br>  1-&gt;4-&gt;5,<br>  1-&gt;3-&gt;4,<br>  2-&gt;6<br>]<br>输出: 1-&gt;1-&gt;2-&gt;3-&gt;4-&gt;4-&gt;5-&gt;6</p>
+</blockquote>
+<h2 id="暴力算法"><a href="#暴力算法" class="headerlink" title="暴力算法"></a>暴力算法</h2><p>把N个数放到一个数组里，再一起排序，O(NlogN)。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">mergeKLists</span><span class="params">(self, lists)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        :type lists: List[ListNode]</span></span><br><span class="line"><span class="string">        :rtype: ListNode</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        self.nodes = []</span><br><span class="line">        head = point = ListNode(<span class="number">0</span>)</span><br><span class="line">        <span class="keyword">for</span> l <span class="keyword">in</span> lists:</span><br><span class="line">            <span class="keyword">while</span> l:</span><br><span class="line">                self.nodes.append(l.val)</span><br><span class="line">                l = l.next</span><br><span class="line">        <span class="keyword">for</span> x <span class="keyword">in</span> sorted(self.nodes):</span><br><span class="line">            point.next = ListNode(x)</span><br><span class="line">            point = point.next</span><br><span class="line">        <span class="keyword">return</span> head.next</span><br></pre></td></tr></table></figure>
+
+<h2 id="分治算法"><a href="#分治算法" class="headerlink" title="分治算法"></a>分治算法</h2><p>这道题其实和归并排序基本是完全一样的,利用分治思想,将k个链表分成多个两组链表再合并,和归并排序基本一致.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"># class ListNode:</span></span><br><span class="line"><span class="comment">#     def __init__(self, x):</span></span><br><span class="line"><span class="comment">#         self.val = x</span></span><br><span class="line"><span class="comment">#         self.next = None</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">mergeKLists</span><span class="params">(self, lists: List[ListNode])</span> -&gt; ListNode:</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> lists: <span class="keyword">return</span> </span><br><span class="line">        n = len(lists)</span><br><span class="line">        <span class="keyword">if</span> n &lt; <span class="number">2</span>: <span class="keyword">return</span> lists[n - <span class="number">1</span>]</span><br><span class="line">        mid = n // <span class="number">2</span></span><br><span class="line">        left = lists[<span class="number">0</span>:mid]</span><br><span class="line">        right= lists[mid:]</span><br><span class="line">        <span class="keyword">return</span> self.merge(self.mergeKLists(left), self.mergeKLists(right))</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">merge</span><span class="params">(self, l, r)</span>:</span></span><br><span class="line">        new_node = ListNode(<span class="number">0</span>)</span><br><span class="line">        n = new_node</span><br><span class="line">        <span class="keyword">while</span> l <span class="keyword">and</span> r:</span><br><span class="line">            <span class="keyword">if</span> l.val &lt;= r.val:</span><br><span class="line">                n.next, l = l, l.next</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                n.next, r = r, r.next</span><br><span class="line">            n = n.next</span><br><span class="line">        <span class="keyword">if</span> l:</span><br><span class="line">            n.next = l</span><br><span class="line">        <span class="keyword">if</span> r:</span><br><span class="line">            n.next = r</span><br><span class="line">        <span class="keyword">return</span> new_node.next</span><br></pre></td></tr></table></figure>
+
+<h3 id="复杂度分析"><a href="#复杂度分析" class="headerlink" title="复杂度分析"></a>复杂度分析</h3><p><strong>时间复杂度:</strong>我们可以在 O(n)的时间内合并两个有序链表，其中 n 是两个链表中的总节点数。将所有的合并进程加起来，我们可以得到时间复杂度为 O(Nlogk),其中 k 是链表的数目。</p>
+<p><strong>空间复杂度:</strong>没有用到额外的数据结构,可以用O(1)的空间复杂度合并两个链表,所以空间复杂度为O(1)</p>
+<hr>
+<h2 id="利用堆-优先队列-实现"><a href="#利用堆-优先队列-实现" class="headerlink" title="利用堆(优先队列)实现"></a>利用堆(优先队列)实现</h2><p>由于k个链表是有序的，我们实际上只需要维护k个指针从k个链表的头向尾滑动，每次选取k个链表的表头里的最小加入新的有序链表里。这就可以维护一个最小堆(优先队列)。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">mergeKLists</span><span class="params">(self, lists: List[ListNode])</span> -&gt; ListNode:</span></span><br><span class="line">        <span class="keyword">import</span> heapq</span><br><span class="line">        que = [] <span class="comment"># curs存K个链表滑动的头指针</span></span><br><span class="line">        <span class="keyword">for</span> index, node <span class="keyword">in</span> enumerate(lists):</span><br><span class="line">                <span class="keyword">if</span> node!=<span class="literal">None</span>:</span><br><span class="line">                    heapq.heappush(que ,(node.val, index))</span><br><span class="line"></span><br><span class="line">        dummy_node = ListNode(<span class="number">-1</span>)</span><br><span class="line">        cur = dummy_node</span><br><span class="line">        <span class="keyword">while</span> que:</span><br><span class="line">            val, index =  heapq.heappop(que)</span><br><span class="line">            cur.next = lists[index]</span><br><span class="line">            cur = cur.next</span><br><span class="line">            lists[index] = lists[index].next</span><br><span class="line">            <span class="keyword">if</span> lists[index] <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">                heapq.heappush(que, (lists[index].val, index))</span><br><span class="line">        <span class="keyword">return</span> dummy_node.next</span><br></pre></td></tr></table></figure>
+
+<h3 id="复杂度分析-1"><a href="#复杂度分析-1" class="headerlink" title="复杂度分析"></a>复杂度分析</h3><p><strong>时间复杂度:</strong></p>
+<ul>
+<li>因为是维护的堆,当我们弹出一个元素是,重新堆化的时间复杂度为 O(logk),其中k为链表的数目,同时找到最小元素的时间复杂度为O(1), </li>
+<li>链表总共有N个节点,所以时间复杂度为 O(Nlogk)。</li>
+</ul>
+<p><strong>空间复杂度：</strong></p>
+<ul>
+<li>O(n) 。创造一个新的链表需要 O(n) 的开销。</li>
+<li>O(k) 。以上代码采用了重复利用原有节点，所以只要 O(1) 的空间。同时优先队列（通常用堆实现）需要 O(k) 的空间（远比大多数情况的 N 要小）。</li>
+</ul>
+
     </article>
+    <!-- license  -->
     
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2020/03/12/algorithm-interview-14/" >
-            
-                <span>每日一道算法之--剪绳子</span>
-        </a>
-        <div class="abstract-content">
-            剪绳子力扣 面试题14- I :https://leetcode-cn.com/problems/jian-sheng-zi-lcof/相同题目:343. 整数拆分
-给你一根长度为 n 的绳子，请把绳子剪成整数长度的 m 段（m、n都是整数，n&gt;1并且m&gt;1），每段绳子的长度记为 k[0],k[1]…k[m] 。请问 k[0]k[1]…*k[m] 可能的最大乘积是多少？例如，当绳子的长度是8时，我们把它剪成长度分别为2、3、3的三段，此时得到的最大乘积是18。
-示例 1：
-
-输入: 2输出: 1解释: 2 = 1 + 1, 1 × 1 = 1
-
-示例 2:
-
-输入: 10输出...
+        <div class="license-wrapper">
+            <p>Author：<a href="https://liangweijiang.github.io">liangweijiang</a>
+            <p>原文链接：<a href="https://liangweijiang.github.io/2020/03/20/algorithm-23/">https://liangweijiang.github.io/2020/03/20/algorithm-23/</a>
+            <p>发表日期：<a href="https://liangweijiang.github.io/2020/03/20/algorithm-23/">March 20th 2020, 3:59:05 pm</a>
+            <p>更新日期：<a href="https://liangweijiang.github.io/2020/03/20/algorithm-23/">March 20th 2020, 4:00:24 pm</a>
+            <p>版权声明：本文采用<a rel="license noopener" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
         </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/03/12</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "动态规划">动态规划</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "数学">数学</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "贪心算法">贪心算法</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2020/03/11/algorithm-153/" >
-            
-                <span>每日一道算法之--寻找旋转排序数组中的最小值</span>
-        </a>
-        <div class="abstract-content">
-            寻找旋转排序数组中的最小值力扣第153题:https://leetcode-cn.com/problems/find-minimum-in-rotated-sorted-array/
-假设按照升序排序的数组在预先未知的某个点上进行了旋转。
-( 例如，数组 [0,1,2,4,5,6,7] 可能变为 [4,5,6,7,0,1,2] )。
-请找出其中最小的元素。
-你可以假设数组中不存在重复元素。
-示例 1:
-
-输入: [3,4,5,1,2]输出: 1
-
-示例 2:
-
-输入: [4,5,6,7,0,1,2]输出: 0
-
-这道题是剑指的原题的简单版,这里可以假设假设数组中不存在重复元素。找出其中最...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/03/11</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "数组">数组</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "二分查找">二分查找</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2020/03/10/NetworkProtocol-01/" >
-            
-                <span>《趣谈网络协议》学习笔记之--通信协议综述</span>
-        </a>
-        <div class="abstract-content">
-            
-学习自极客时间《趣谈网络协议》 作者：刘超
-
-通信协议的综述1. 为什么要学习网络协议?1.1 协议的三要素计算机语言作为程序员控制一台计算机工作的协议，具备了协议的三要素。
-
-语法，就是这一段内容要符合一定的规则和格式。例如，括号要成对，结束要使用分号等。
-语义，就是这一段内容要代表某种意义。例如数字减去数字是有意义的，数字减去文本一般来说就没有意义。
-顺序，就是先干啥，后干啥。例如，可以先加上某个数值，然后再减去某个数值。会了计算机语言，你就能够教给一台计算机完成你的工作了。但是，要想打造互联网世界的通天塔，只教给一台机器做什么是不够的，你需要学会教给一大片机器做什么。这就需要网络...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/03/10</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "网络协议">网络协议</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2020/03/09/algorithm-Interview-03/" >
-            
-                <span>每日一道算法之--数组中的重复数字</span>
-        </a>
-        <div class="abstract-content">
-            数组中重复的数字力扣面试题03 : https://leetcode-cn.com/problems/shu-zu-zhong-zhong-fu-de-shu-zi-lcof/
-找出数组中重复的数字。
-在一个长度为 n 的数组 nums 里的所有数字都在 0～n-1 的范围内。数组中某些数字是重复的，但不知道有几个数字重复了，也不知道每个数字重复了几次。请找出数组中任意一个重复的数字。
-示例 1：
-
-输入：[2, 3, 1, 0, 2, 5, 3]输出：2 或 3
-
-限制：
-2 &lt;= n &lt;= 100000
-这是剑指offer里面的原题,也是比较简单的一道题,但是,一开始我能...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/03/09</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "数组">数组</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2020/03/09/LoadBalancing/" >
-            
-                <span>学习笔记之---负载均衡</span>
-        </a>
-        <div class="abstract-content">
-            负载均衡1 什么是负载均衡?百度百科是这样说的:
-
-负载均衡建立在现有网络结构之上，它提供了一种廉价有效透明的方法扩展网络设备和服务器的带宽、增加吞吐量、加强网络数据处理能力、提高网络的灵活性和可用性。负载均衡（Load Balance）其意思就是分摊到多个操作单元上进行执行，例如Web服务器、FTP服务器、企业关键应用服务器和其它关键任务服务器等，从而共同完成工作任务。
-
-
-互联网早期，业务流量比较小并且业务逻辑比较简单，单台服务器便可以满足基本的需求；但随着互联网的发展，业务流量越来越大并且业务逻辑也越来越复杂，单台机器的性能问题以及单点问题凸显了出来，因此需要多台机器来进行性能的水...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/03/09</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "负载均衡">负载均衡</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "计算机网络">计算机网络</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2020/03/05/algorithm-39/" >
-            
-                <span>每日一道算法之--组合总和</span>
-        </a>
-        <div class="abstract-content">
-            组合总和力扣第39题:https://leetcode-cn.com/problems/combination-sum/参考文章回溯算法 + 剪枝
-极客时间-数据结构与算法之美
-给定一个无重复元素的数组 candidates 和一个目标数 target ，找出 candidates 中所有可以使数字和为 target 的组合。
-candidates 中的数字可以无限制重复被选取。
-说明：
-
-所有数字（包括 target）都是正整数。
-解集不能包含重复的组合。示例 1:
-输入: candidates = [2,3,6,7], target = 7,所求解集为:[[7],[2,2,3]]
-
-...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/03/05</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "数组">数组</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "回溯思想">回溯思想</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2020/03/04/python-02/" >
-            
-                <span>python单例模式的实现</span>
-        </a>
-        <div class="abstract-content">
-            单例模式什么是单例模式
-单例模式（Singleton Pattern）是一种常用的软件设计模式，该模式的主要目的是确保某一个类只有一个实例存在。当你希望在整个系统中，某个类只能出现一个实例时，单例对象就能派上用场。
-
-
-比如，某个服务器程序的配置信息存放在一个文件中，客户端通过一个 AppConfig 的类来读取配置文件的信息。如果在程序运行期间，有很多地方都需要使用配置文件的内容，也就是说，很多地方都需要创建 AppConfig 对象的实例，这就导致系统中存在多个 AppConfig 的实例对象，而这样会严重浪费内存资源，尤其是在配置文件内容很多的情况下。事实上，类似 AppConfi...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/03/04</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "python">python</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "设计模式">设计模式</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2020/03/04/python-01/" >
-            
-                <span>python与其他语言的对比</span>
-        </a>
-        <div class="abstract-content">
-            python与其他语言的对比1.C语言
-它既有高级语言的特点，又具有汇编语言的特点，它是结构式语言。C语言应用指针：可以直接进行靠近硬件的操作，但是C的指针操作不做保护，也给它带来了很多不安全的因素。C++在这方面做了改进，在保留了指针操作的同时又增强了安全性，受到了一些用户的支持，但是，由于这些改进增加语言的复杂度，也为另一部分所诟病。Java则吸取了C++的教训，取消了指针操作，也取消了C++改进中一些备受争议的地方，在安全性和适合性方面均取得良好的效果，但其本身解释在虚拟机中运行，运行效率低于C++/C。一般而言，C，C++，java被视为同一系的语言，它们长期占据着程序使用榜的前...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/03/04</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "python">python</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2020/03/04/python-GC/" >
-            
-                <span>python的垃圾回收机制</span>
-        </a>
-        <div class="abstract-content">
-            python的垃圾回收机制
-垃圾回收机制是自动帮助我们管理内存，清理垃圾的一种工具1）、引用计数当一个对象的引用被创建或者复制时，对象的引用计数加1；当一个对象的引用被销毁时，对象的引用计数减1；当对象的引用计数减少为0时，就意味着对象已经没有被任何人使用了，可以将其所占用的内存释放了。2）、标记-清除标记-清除不改动真实的引用计数，而是将集合中对象的引用计数复制一份副本，改动该对象引用的副本。对于副本做任何的改动，都不会影响到对象生命走起的维护。3）、分代回收将系统中的所有内存块根据其存活时间划分为不同的集合，每一个集合就成为一个“代”，垃圾收集的频率随着“代”的存活时间的增大而减小。...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/03/04</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "python">python</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "垃圾回收">垃圾回收</a>
-    
-</div>
-            
-        </div>
-    </article>
     
     <!-- paginator  -->
-    
-    <nav class="page-nav">
-        <a class="extend prev" rel="prev" href="/">&lt; PREV</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/3/">NEXT &gt;</a>
-    </nav>
-    
-</main>
-            <!-- profile -->
+    <ul class="post-paginator">
+        <li class="next">
             
-            <div class="profile">
-    <img class="profile-avatar" alt="avatar" src= /avatar/911mydream.jpg >
-    <div class="profile-name">Jiang</div>
-    
-    <div class="profile-signature">
-        witness me
-    </div>
-    
-    
-    <div class="profile-social">
-        
-    
-        
+        </li>
+        <li class="previous">
             
-                <a href="mailto:1210457866@qq.com" class="iconfont-archer email" title=email ></a>
+                <div class="prevSlogan">Previous Post</div>
+                <a href= "/2020/03/18/algorithm-300/" title= "每日一道算法之--最长上升子序列">
+                    <div class="prevTitle">每日一道算法之--最长上升子序列</div>
+                </a>
             
-        
+        </li>
+    </ul>
+    <!-- 评论插件 -->
+    <!-- 来必力City版安装代码 -->
+
+<!-- City版安装代码已完成 -->
     
-        
-            
-                <a href="https://github.com/liangweijiang" class="iconfont-archer github" target="_blank" title=github></a>
-            
-        
     
-        
+    <!-- gitalk评论 -->
+
+    <!-- partial('_partial/comment/changyan') -->
+    <!--PC版-->
+
+
     
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
     
 
-    </div>
-    
-    
-        <div class="friends">
-            <div>FRIENDS</div>
-            
-                
-                    <span>
-                        <a href= //www.baidu.com target="_black">friendA</a>
-                    </span>
-                
-            
-                
-                    <span>
-                        <a href= //www.google.com target="_black">friendB</a>
-                    </span>
-                
-            
-                
-            
-        </div>
-    
-    
-        <div class="about-me">
-            <a href = "/about" >ABOUT ME</a>
-        </div>
-    
-</div>
+    <!-- 评论 -->
+</main>
+            <!-- profile -->
             
         </div>
         <footer class="footer footer-unloaded">
@@ -892,6 +552,24 @@ candidates 中的数字可以无限制重复被选取。
 </footer>
     </div>
     <!-- toc -->
+    
+    <div class="toc-wrapper" style=
+    
+
+
+
+
+
+
+
+top:50vh;
+
+    >
+        <div class="toc-catalog">
+            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+        </div>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#合并K个排序链表"><span class="toc-number">1.</span> <span class="toc-text">合并K个排序链表</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#暴力算法"><span class="toc-number">1.1.</span> <span class="toc-text">暴力算法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#分治算法"><span class="toc-number">1.2.</span> <span class="toc-text">分治算法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#复杂度分析"><span class="toc-number">1.2.1.</span> <span class="toc-text">复杂度分析</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#利用堆-优先队列-实现"><span class="toc-number">1.3.</span> <span class="toc-text">利用堆(优先队列)实现</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#复杂度分析-1"><span class="toc-number">1.3.1.</span> <span class="toc-text">复杂度分析</span></a></li></ol></li></ol></li></ol>
+    </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
     <div class="sidebar sidebar-hide">
@@ -1824,6 +1502,8 @@ jsonContent:
     
     </div>
     <!-- async load share.js -->
+    
+        <script src="/scripts/share.js" async></script>    
      
     </body>
 </html>
