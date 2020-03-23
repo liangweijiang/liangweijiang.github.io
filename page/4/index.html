@@ -359,6 +359,37 @@ height:50vh;
     
     
     <article class="index-post">
+        <a class="abstract-title" href = "/2020/02/26/DRF-06/" >
+            
+                <span>DRF源码解析6--权限组件的封装和初始化</span>
+        </a>
+        <div class="abstract-content">
+            1.权限组件的初始化在前面的版本控制和认证组件里提到的initia初始化函数, 同时也对权限组件进行了初始化
+1234567def initial(self, request, *args, **kwargs):       # 认证组件       self.perform_authentication(request)       # 权限组件       self.check_permissions(request)       # 频率       self.check_throttles(request)
+1.1 check_permissions可以看到,check_perm...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/02/26</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "DRF">DRF</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href = "/2020/02/26/algorithm-152/" >
             
                 <span>每日一道算法之--乘积最大子序和</span>
@@ -1242,9 +1273,26 @@ routersDef...
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 37
+        Total : 38
         </div>
         <!-- search  -->
         
@@ -1361,6 +1409,11 @@ routersDef...
     
     <div class="archive-year"> 2020 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/23</span><a class="archive-post-title" href= "/2020/03/23/Interview-experience/" >头条一面凉经</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -1732,6 +1785,8 @@ jsonContent:
         <span class="sidebar-category-name" data-categories="python"><span class="iconfont-archer">&#xe60a;</span>python</span>
     
         <span class="sidebar-category-name" data-categories="随笔"><span class="iconfont-archer">&#xe60a;</span>随笔</span>
+    
+        <span class="sidebar-category-name" data-categories="面经"><span class="iconfont-archer">&#xe60a;</span>面经</span>
     
     </div>
     <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>
