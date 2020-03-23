@@ -22,7 +22,7 @@
     <meta name="description" content="">
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-    <title>每日一道算法之--最小栈 · Jiang&#39;s Blog</title>
+    <title>《趣谈网络协议》学习笔记之--最重要的传输层(下) · Jiang&#39;s Blog</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -217,7 +217,7 @@
                 <a href="/" >Jiang&#39;s blog</a>
             </div>
             <div class="post-title">
-                <a href="#" class="post-name">每日一道算法之--最小栈</a>
+                <a href="#" class="post-name">《趣谈网络协议》学习笔记之--最重要的传输层(下)</a>
             </div>
     </div>
     
@@ -247,7 +247,7 @@ height:50vh;
         <h1 class="intro-title">
             <!-- 主页  -->
             
-            每日一道算法之--最小栈
+            《趣谈网络协议》学习笔记之--最重要的传输层(下)
             <!-- 404 -->
             
         </h1>
@@ -266,18 +266,18 @@ height:50vh;
                 
                     <div class= post-intro-tags >
     
-        <a class="post-tag" href="javascript:void(0);" data-tags = "栈">栈</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags = "网络协议">网络协议</a>
     
 </div>
                 
                 
                     <div class="post-intro-read">
-                        <span>Word count: <span class="post-count word-count">980</span>Reading time: <span class="post-count reading-time">4 min</span></span>
+                        <span>Word count: <span class="post-count word-count">2.5k</span>Reading time: <span class="post-count reading-time">8 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
                     <span class="post-intro-calander iconfont-archer">&#xe676;</span>
-                    <span class="post-intro-time">2020/03/14</span>
+                    <span class="post-intro-time">2020/03/23</span>
                     
                     <span id="busuanzi_container_page_pv" class="busuanzi-pv">
                         <span class="iconfont-archer">&#xe602;</span>
@@ -401,44 +401,79 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
     <article class="article-entry">
-        <h1 id="最小栈"><a href="#最小栈" class="headerlink" title="最小栈"></a>最小栈</h1><p>力扣第155题 : <a href="https://leetcode-cn.com/problems/min-stack/" target="_blank" rel="noopener">https://leetcode-cn.com/problems/min-stack/</a></p>
-<p>设计一个支持 push，pop，top 操作，并能在常数时间内检索到最小元素的栈。</p>
-<p>push(x) – 将元素 x 推入栈中。<br>pop() – 删除栈顶的元素。<br>top() – 获取栈顶元素。<br>getMin() – 检索栈中的最小元素。<br>示例:</p>
-<blockquote>
-<p>MinStack minStack = new MinStack();<br>minStack.push(-2);<br>minStack.push(0);<br>minStack.push(-3);<br>minStack.getMin();   –&gt; 返回 -3.<br>minStack.pop();<br>minStack.top();      –&gt; 返回 0.<br>minStack.getMin();   –&gt; 返回 -2.</p>
+        <blockquote>
+<p>学习自极客时间《趣谈网络协议》 作者：刘超</p>
 </blockquote>
-<h2 id="最开始的思路"><a href="#最开始的思路" class="headerlink" title="最开始的思路"></a>最开始的思路</h2><p>当我看到这道题的时候,因为是求最小的元素,所以我只用了一个变量,想要动态的更新最小值。但是有一个问题就出现了，当我把最小值pop出来后，当前的最小值就又会发生变化了，所以用变量保存最小值不是一个理想的解法。我又想到了再用一个数组来保存最小的的变化信息，当pop的时候在更新最小值。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MinStack</span>:</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.stack = []</span><br><span class="line">        self.min_ele = float(<span class="string">'inf'</span>)</span><br><span class="line">        self.min_list = []</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">push</span><span class="params">(self, x: int)</span> -&gt; <span class="keyword">None</span>:</span></span><br><span class="line">        self.stack.append(x)</span><br><span class="line">        self.min_ele = min(self.min_ele, x)</span><br><span class="line">        <span class="keyword">if</span> self.min_ele <span class="keyword">not</span> <span class="keyword">in</span> self.min_list:</span><br><span class="line">            self.min_list.append(self.min_ele)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">pop</span><span class="params">(self)</span> -&gt; <span class="keyword">None</span>:</span></span><br><span class="line">        pop_ele = self.stack.pop()</span><br><span class="line">        <span class="keyword">if</span> self.min_ele == pop_ele <span class="keyword">and</span> pop_ele <span class="keyword">not</span> <span class="keyword">in</span> self.stack:</span><br><span class="line">            self.min_list.pop()</span><br><span class="line">        <span class="keyword">if</span> self.min_list:</span><br><span class="line">            self.min_ele = self.min_list[<span class="number">-1</span>]</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">top</span><span class="params">(self)</span> -&gt; int:</span></span><br><span class="line">        <span class="keyword">if</span> self.stack:</span><br><span class="line">            <span class="keyword">return</span> self.stack[<span class="number">-1</span>]</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">getMin</span><span class="params">(self)</span> -&gt; int:</span></span><br><span class="line">        <span class="keyword">return</span> self.min_ele</span><br></pre></td></tr></table></figure>
-<p>虽然没通过,但是辅助栈的雏形已经出来了</p>
-<h2 id="1-同步的辅助栈"><a href="#1-同步的辅助栈" class="headerlink" title="1. 同步的辅助栈"></a>1. 同步的辅助栈</h2><ul>
-<li>上面的代码其实存储最小值的变量是没必要的,因为最小值已经存储在辅助栈里面了</li>
-<li>当我们在push入栈的时候,同时将该数和辅助栈的栈顶元素比较大小,如果小于栈顶元素,则最小值为该元素,将该元素push入辅助栈中;如果大于栈顶元素,则证明最小值仍为栈顶元素</li>
-<li>从而实现了主栈和辅助栈永远是同步的,即长度一样,级主栈中每一个元素对应的栈中最小值是正确的.</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MinStack</span>:</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        initialize your data structure here.</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        self.stack = []</span><br><span class="line">        self.min_stack = []</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">push</span><span class="params">(self, x: int)</span> -&gt; <span class="keyword">None</span>:</span></span><br><span class="line">        self.stack.append(x)</span><br><span class="line">        <span class="comment"># 主要逻辑就是在这里</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> self.min_stack <span class="keyword">or</span> self.min_stack[<span class="number">-1</span>] &gt; x:</span><br><span class="line">            self.min_stack.append(x)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            self.min_stack.append(self.min_stack[<span class="number">-1</span>])</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">pop</span><span class="params">(self)</span> -&gt; <span class="keyword">None</span>:</span></span><br><span class="line">        <span class="keyword">if</span> self.stack:</span><br><span class="line">            self.stack.pop()</span><br><span class="line">            self.min_stack.pop()</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">top</span><span class="params">(self)</span> -&gt; int:</span></span><br><span class="line">        <span class="keyword">if</span> self.stack:</span><br><span class="line">            <span class="keyword">return</span> self.stack[<span class="number">-1</span>]</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">getMin</span><span class="params">(self)</span> -&gt; int:</span></span><br><span class="line">        <span class="keyword">if</span> self.min_stack:</span><br><span class="line">            <span class="keyword">return</span> self.min_stack[<span class="number">-1</span>]</span><br></pre></td></tr></table></figure>
-
-<h3 id="1-1-复杂度分析"><a href="#1-1-复杂度分析" class="headerlink" title="1.1 复杂度分析"></a>1.1 复杂度分析</h3><p><strong>时间复杂度：</strong>，“出栈”、“入栈”、“查看栈顶元素”的操作不论数据规模多大，都只是有限个步骤，因此时间复杂度是：O(1)。</p>
-<p><strong>空间复杂度：</strong>O(N)，这里 N 是读出的数据的个数。</p>
-<h2 id="2-不同步的辅助栈"><a href="#2-不同步的辅助栈" class="headerlink" title="2. 不同步的辅助栈"></a>2. 不同步的辅助栈</h2><p>同步辅助栈虽然很好理解,但是有一个问题就是它为了保持长度跟主栈一样,从而造成了没必要的浪费,所以这里讲一下不同步的辅助栈。</p>
+<h1 id="最重要的传输层-下"><a href="#最重要的传输层-下" class="headerlink" title="最重要的传输层(下)"></a>最重要的传输层(下)</h1><h2 id="socket套接字"><a href="#socket套接字" class="headerlink" title="socket套接字"></a>socket套接字</h2><h3 id="一-什么是socket"><a href="#一-什么是socket" class="headerlink" title="一. 什么是socket?"></a>一. 什么是socket?</h3><p>在计算机通信领域，socket 被翻译为“套接字”，它是计算机之间进行通信的一种约定或一种方式。通过 socket 这种约定，一台计算机可以接收其他计算机的数据，也可以向其他计算机发送数据。<br>套接字（socket）是一个抽象层，应用程序可以通过它发送或接收数据，可对其进行像对文件一样的打开、读写和关闭等操作。套接字允许应用程序将I/O插入到网络中，并与网络中的其他应用程序进行通信。网络套接字是IP地址与端口的组合。</p>
+<h3 id="二-socket的通讯方式"><a href="#二-socket的通讯方式" class="headerlink" title="二. socket的通讯方式"></a>二. socket的通讯方式</h3><p>在网络层，Socket 函数需要指定到底是 IPv4 还是 IPv6，分别对应设置为 AF_INET 和 AF_INET6。另外，还要指定到底是 TCP 还是 UDP。TCP 协议是基于数据流的，所以设置为 SOCK_STREAM，而 UDP 是基于数据报的，因而设置为 SOCK_DGRAM。</p>
+<p><img src="https://s1.ax1x.com/2020/03/23/87Pc3d.png" alt="87Pc3d.png"></p>
+<h3 id="三-基于-TCP-协议的-Socket-程序函数调用过程"><a href="#三-基于-TCP-协议的-Socket-程序函数调用过程" class="headerlink" title="三. 基于 TCP 协议的 Socket 程序函数调用过程"></a>三. 基于 TCP 协议的 Socket 程序函数调用过程</h3><ol>
+<li><p><strong>TCP 的服务端要先监听一个端口，一般是先调用 bind 函数，给这个 Socket 赋予一个 IP 地址和端口。</strong>内核要通过 TCP 头里面的这个端口，来找到你这个应用程序，把包给你。有时候，一台机器会有多个网卡，也就会有多个 IP 地址，你可以选择监听所有的网卡，也可以选择监听一个网卡，这样，只有发给这个网卡的包，才会给你。</p>
+</li>
+<li><p>当服务端有了 IP 和端口号，就可以调用 listen 函数进行监听。在 TCP 的状态图里面，有一个 listen 状态，当调用这个函数之后，服务端就进入了这个状态，这个时候客户端就可以发起连接了。</p>
+</li>
+<li><p>在内核中，为每个 Socket 维护两个队列。<strong>一个是已经建立了连接的队列，这时候连接三次握手已经完毕，处于 established 状态；一个是还没有完全建立连接的队列，这个时候三次握手还没完成，处于 syn_rcvd 的状态。</strong></p>
+</li>
+<li><p>接下来，服务端调用 accept 函数，拿出一个已经完成的连接进行处理。如果还没有完成，就要等着。</p>
+</li>
+<li><p>在服务端等待的时候，客户端可以通过 connect 函数发起连接。<strong>先在参数中指明要连接的 IP 地址和端口号，然后开始发起三次握手。</strong>内核会给客户端分配一个临时的端口。一旦握手成功，服务端的 accept 就会返回另一个 Socket（<strong>监听的 Socket 和真正用来传数据的 Socket 是两个，一个叫作监听 Socket，一个叫作已连接 Socket。</strong>）</p>
+</li>
+</ol>
+<p>连接建立成功之后，双方开始通过 read 和 write 函数来读写数据，就像往一个文件流里面写东西一样。</p>
+<p><img src="https://s1.ax1x.com/2020/03/23/87PzUU.png" alt="87PzUU.png"></p>
+<p><strong>Socket 在 Linux 中就是以文件的形式存在的。除此之外，还存在文件描述符。写入和读出，也是通过文件描述符。</strong></p>
+<blockquote>
 <ul>
-<li>不同步辅助栈就是只有在push时该数小于或等于辅助栈的栈顶元素是才push入辅助栈</li>
-<li>在pop元素之，如果该元素等于辅助栈的栈顶元素，则将辅助栈的栈顶元素pop出来</li>
+<li>在内核中，Socket 是一个文件，那对应就有文件描述符。每一个进程都有一个数据结构 task_struct，里面指向一个文件描述符数组，来列出这个进程打开的所有文件的文件描述符。文件描述符是一个整数，是这个数组的下标。</li>
 </ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MinStack</span>:</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        initialize your data structure here.</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        self.stack = []</span><br><span class="line">        self.min_stack = []</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">push</span><span class="params">(self, x: int)</span> -&gt; <span class="keyword">None</span>:</span></span><br><span class="line">        self.stack.append(x)</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> self.min_stack <span class="keyword">or</span> self.min_stack[<span class="number">-1</span>] &gt;= x:</span><br><span class="line">            self.min_stack.append(x)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">pop</span><span class="params">(self)</span> -&gt; <span class="keyword">None</span>:</span></span><br><span class="line">        <span class="keyword">if</span> self.stack:</span><br><span class="line">            top = self.stack.pop()</span><br><span class="line">            <span class="keyword">if</span> self.min_stack <span class="keyword">and</span> top == self.min_stack[<span class="number">-1</span>]:</span><br><span class="line">                self.min_stack.pop()</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">top</span><span class="params">(self)</span> -&gt; int:</span></span><br><span class="line">        <span class="keyword">if</span> self.stack:</span><br><span class="line">            <span class="keyword">return</span> self.stack[<span class="number">-1</span>]</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">getMin</span><span class="params">(self)</span> -&gt; int:</span></span><br><span class="line">        <span class="keyword">if</span> self.min_stack:</span><br><span class="line">            <span class="keyword">return</span> self.min_stack[<span class="number">-1</span>]</span><br></pre></td></tr></table></figure>
-
-<h3 id="2-1-复杂度分析"><a href="#2-1-复杂度分析" class="headerlink" title="2.1 复杂度分析"></a>2.1 复杂度分析</h3><p><strong>时间复杂度：</strong>，“出栈”、“入栈”、“查看栈顶元素”的操作不论数据规模多大，都只是有限个步骤，因此时间复杂度是：O(1)。</p>
-<p><strong>空间复杂度：</strong>O(N)，这里 N 是读出的数据的个数</p>
-<h3 id="相似题目"><a href="#相似题目" class="headerlink" title="相似题目"></a>相似题目</h3><p><a href="https://leetcode-cn.com/problems/max-stack/" target="_blank" rel="noopener">最大栈</a></p>
-<p><a href="https://leetcode-cn.com/problems/sliding-window-maximum/" target="_blank" rel="noopener">滑动窗口最大值</a></p>
+</blockquote>
+<ul>
+<li>这个数组中的内容是一个指针，指向内核中所有打开的文件的列表。既然是一个文件，就会有一个 inode，只不过 Socket 对应的 inode 不像真正的文件系统一样，保存在硬盘上的，而是在内存中的。在这个 inode 中，指向了 Socket 在内核中的 Socket 结构。</li>
+<li>在这个结构里面，主要的是两个队列，一个是发送队列，一个是接收队列。在这两个队列里面保存的是一个缓存 sk_buff。这个缓存里面能够看到完整的包的结构。</li>
+</ul>
+<p><img src="https://s1.ax1x.com/2020/03/23/8797dS.png" alt="8797dS.png"></p>
+<h3 id="四-基于-UDP-协议的-Socket-程序函数调用过程"><a href="#四-基于-UDP-协议的-Socket-程序函数调用过程" class="headerlink" title="四. 基于 UDP 协议的 Socket 程序函数调用过程"></a>四. 基于 UDP 协议的 Socket 程序函数调用过程</h3><p>UDP 是没有连接的，所以不需要三次握手，也就不需要调用 listen 和 connect，但是，UDP 的的交互仍然需要 IP 和端口号，因而也需要 bind。UDP 是没有维护连接状态的，因而不需要每对连接建立一组 Socket，而是只要有一个 Socket，就能够和多个客户端通信。也正是因为没有连接状态，每次通信的时候，都调用 sendto 和 recvfrom，都可以传入 IP 地址和端口。</p>
+<p><img src="https://s1.ax1x.com/2020/03/23/87CKoD.png" alt="87CKoD.png"></p>
+<h3 id="五-服务器如何连接更多的请求"><a href="#五-服务器如何连接更多的请求" class="headerlink" title="五. 服务器如何连接更多的请求"></a>五. 服务器如何连接更多的请求</h3><p><strong>方式一：多进程方式</strong></p>
+<p><img src="https://s1.ax1x.com/2020/03/23/87iHIO.jpg" alt="87iHIO.jpg"></p>
+<p>因为复制了文件描述符列表，而文件描述符都是指向整个内核统一的打开文件列表的，因而父进程刚才因为 accept 创建的已连接 Socket 也是一个文件描述符，同样也会被子进程获得。<br>接下来，子进程就可以通过这个已连接 Socket 和客户端进行互通了，当通信完毕之后，就可以退出进程，那父进程如何知道子进程干完了项目，要退出呢？这个整数就是子进程的 ID，父进程可以通过这个 ID 查看子进程是否完成项目，是否需要退出。</p>
+<p><strong>方式二:多线程方式</strong></p>
+<p><img src="https://s1.ax1x.com/2020/03/23/87FjtU.jpg" alt="87FjtU.jpg"></p>
+<p><strong>方式三:IO多路复用(重点)</strong></p>
+<ul>
+<li><p>select监听<br>由于 Socket 是文件描述符，因而某个线程盯的所有的 Socket，都放在一个文件描述符集合 fd_set 中，这就是项目进度墙，然后调用 select 函数来监听文件描述符集合是否有变化。一旦有变化，就会依次查看每个文件描述符。那些发生变化的文件描述符在 fd_set 对应的位都设为 1，表示 Socket 可读或者可写，从而可以进行读写操作，然后再调用 select，接着盯着下一轮的变化。</p>
+</li>
+<li><p>epoll函数<br>上面 select 函数还是有问题的，因为每次 Socket 所在的文件描述符集合中有 Socket 发生变化的时候，都需要通过轮询的方式。<br>而epoll函数，它在内核中的实现不是通过轮询的方式，而是通过注册 callback 函数的方式，当某个文件描述符发送变化的时候，就会主动通知。</p>
+</li>
+</ul>
+<h3 id="问题思考"><a href="#问题思考" class="headerlink" title="问题思考"></a>问题思考</h3><ol>
+<li><p>epoll 是 Linux 上的函数，那你知道 Windows 上对应的机制是什么吗？如果想实现一个跨平台的程序，你知道应该怎么办吗？<br>Windows 上对应的机制是IOCP。<br>通常的办法是，线程池中的工作线程的数量与CPU内核数量相同，以此来最小化线程切换代价。一个IOCP对象，在操作系统中可关联着多个Socket和（或）文件控制端。 IOCP对象内部有一个先进先出（FIFO）队列，用于存放IOCP所关联的输入输出端的服务请求完成消息。请求输入输出服务的进程不接收IO服务完成通知，而是检查IOCP的消息队列以确定IO请求的状态。 （线程池中的）多个线程负责从IOCP消息队列中取走完成通知并执行数据处理；如果队列中没有消息，那么线程阻塞挂起在该队列。这些线程从而实现了负载均衡。</p>
+</li>
+<li><p>select, poll 和 epoll 的区别</p>
+<ul>
+<li><p>select的第一个参数nfds为fdset集合中最大描述符值加1，fdset是一个位数组，其大小限制为__FD_SETSIZE（1024），位数组的每一位代表其对应的描述符是否需要被检查。第二三四参数表示需要关注读、写、错误事件的文件描述符位数组，这些参数既是输入参数也是输出参数，可能会被内核修改用于标示哪些描述符上发生了关注的事件，所以每次调用select前都需要重新初始化fdset。timeout参数为超时时间，该结构会被内核修改，其值为超时剩余的时间。</p>
+</li>
+<li><p>poll与select不同，通过一个pollfd数组向内核传递需要关注的事件，故没有描述符个数的限制，pollfd中的events字段和revents分别用于标示关注的事件和发生的事件，故pollfd数组只需要被初始化一次。<br>poll的实现机制与select类似，其对应内核中的sys_poll，只不过poll向内核传递pollfd数组，然后对pollfd中的每个描述符进行poll，相比处理fdset来说，poll效率更高。poll返回后，需要对pollfd中的每个元素检查其revents值，来得指事件是否发生。</p>
+</li>
+</ul>
+</li>
+</ol>
+<ul>
+<li><p>select，poll实现需要自己不断轮询所有fd集合，直到设备就绪，期间可能要睡眠和唤醒多次交替。而epoll其实也需要调用 epoll_wait不断轮询就绪链表，期间也可能多次睡眠和唤醒交替，但是它是设备就绪时，调用回调函数，把就绪fd放入就绪链表中，并唤醒在 epoll_wait中进入睡眠的进程。虽然都要睡眠和交替，但是select和poll在“醒着”的时候要遍历整个fd集合，而epoll在“醒着”的 时候只要判断一下就绪链表是否为空就行了，这节省了大量的CPU时间，这就是回调机制带来的性能提升。</p>
+</li>
+<li><p>select，poll每次调用都要把fd集合从用户态往内核态拷贝一次，并且要把current往设备等待队列中挂一次，而epoll只要 一次拷贝，而且把current往等待队列上挂也只挂一次（在epoll_wait的开始，注意这里的等待队列并不是设备等待队列，只是一个epoll内 部定义的等待队列），这也能节省不少的开销。</p>
+</li>
+</ul>
+<p>参考来自:<a href="https://www.cnblogs.com/xiaoyuanqujing/protected/articles/11715744.html" target="_blank" rel="noopener">https://www.cnblogs.com/xiaoyuanqujing/protected/articles/11715744.html</a></p>
 
     </article>
     <!-- license  -->
     
         <div class="license-wrapper">
             <p>Author：<a href="https://liangweijiang.github.io">liangweijiang</a>
-            <p>原文链接：<a href="https://liangweijiang.github.io/2020/03/14/algorithm-155/">https://liangweijiang.github.io/2020/03/14/algorithm-155/</a>
-            <p>发表日期：<a href="https://liangweijiang.github.io/2020/03/14/algorithm-155/">March 14th 2020, 12:36:34 pm</a>
-            <p>更新日期：<a href="https://liangweijiang.github.io/2020/03/14/algorithm-155/">March 14th 2020, 12:37:37 pm</a>
+            <p>原文链接：<a href="https://liangweijiang.github.io/2020/03/23/NetworkProtocol-05/">https://liangweijiang.github.io/2020/03/23/NetworkProtocol-05/</a>
+            <p>发表日期：<a href="https://liangweijiang.github.io/2020/03/23/NetworkProtocol-05/">March 23rd 2020, 3:36:59 pm</a>
+            <p>更新日期：<a href="https://liangweijiang.github.io/2020/03/23/NetworkProtocol-05/">March 23rd 2020, 3:37:43 pm</a>
             <p>版权声明：本文采用<a rel="license noopener" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
         </div>
     
@@ -446,17 +481,12 @@ height:50vh;
     <ul class="post-paginator">
         <li class="next">
             
-                <div class="nextSlogan">Next Post</div>
-                <a href= "/2020/03/14/osi--tcp/" title= "学习笔记之---七层网络协议和四层网络协议的区别">
-                    <div class="nextTitle">学习笔记之---七层网络协议和四层网络协议的区别</div>
-                </a>
-            
         </li>
         <li class="previous">
             
                 <div class="prevSlogan">Previous Post</div>
-                <a href= "/2020/03/13/stack-heap/" title= "学习笔记之---堆和栈的区别">
-                    <div class="prevTitle">学习笔记之---堆和栈的区别</div>
+                <a href= "/2020/03/22/NetworkProtocol-04/" title= "《趣谈网络协议》学习笔记之--最重要的传输层(上)">
+                    <div class="prevTitle">《趣谈网络协议》学习笔记之--最重要的传输层(上)</div>
                 </a>
             
         </li>
@@ -570,7 +600,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#最小栈"><span class="toc-number">1.</span> <span class="toc-text">最小栈</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#最开始的思路"><span class="toc-number">1.1.</span> <span class="toc-text">最开始的思路</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-同步的辅助栈"><span class="toc-number">1.2.</span> <span class="toc-text">1. 同步的辅助栈</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-复杂度分析"><span class="toc-number">1.2.1.</span> <span class="toc-text">1.1 复杂度分析</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-不同步的辅助栈"><span class="toc-number">1.3.</span> <span class="toc-text">2. 不同步的辅助栈</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-复杂度分析"><span class="toc-number">1.3.1.</span> <span class="toc-text">2.1 复杂度分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#相似题目"><span class="toc-number">1.3.2.</span> <span class="toc-text">相似题目</span></a></li></ol></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#最重要的传输层-下"><span class="toc-number">1.</span> <span class="toc-text">最重要的传输层(下)</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#socket套接字"><span class="toc-number">1.1.</span> <span class="toc-text">socket套接字</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#一-什么是socket"><span class="toc-number">1.1.1.</span> <span class="toc-text">一. 什么是socket?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#二-socket的通讯方式"><span class="toc-number">1.1.2.</span> <span class="toc-text">二. socket的通讯方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#三-基于-TCP-协议的-Socket-程序函数调用过程"><span class="toc-number">1.1.3.</span> <span class="toc-text">三. 基于 TCP 协议的 Socket 程序函数调用过程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#四-基于-UDP-协议的-Socket-程序函数调用过程"><span class="toc-number">1.1.4.</span> <span class="toc-text">四. 基于 UDP 协议的 Socket 程序函数调用过程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#五-服务器如何连接更多的请求"><span class="toc-number">1.1.5.</span> <span class="toc-text">五. 服务器如何连接更多的请求</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#问题思考"><span class="toc-number">1.1.6.</span> <span class="toc-text">问题思考</span></a></li></ol></li></ol></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>

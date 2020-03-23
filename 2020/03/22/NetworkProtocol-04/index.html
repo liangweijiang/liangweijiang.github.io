@@ -272,7 +272,7 @@ height:50vh;
                 
                 
                     <div class="post-intro-read">
-                        <span>Word count: <span class="post-count word-count">5.7k</span>Reading time: <span class="post-count reading-time">19 min</span></span>
+                        <span>Word count: <span class="post-count word-count">5.9k</span>Reading time: <span class="post-count reading-time">20 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
@@ -479,10 +479,18 @@ height:50vh;
 </ol>
 <p><img src="https://s1.ax1x.com/2020/03/22/8Iz25R.png" alt="8Iz25R.png"></p>
 <h3 id="四-TCP-状态机"><a href="#四-TCP-状态机" class="headerlink" title="四. TCP 状态机"></a>四. TCP 状态机</h3><p><a href="https://imgchr.com/i/8oSiIs" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2020/03/22/8oSiIs.jpg" alt="8oSiIs.jpg"></a></p>
-<h3 id="问题思考-1"><a href="#问题思考-1" class="headerlink" title="问题思考"></a>问题思考</h3><p>TCP 的连接有这么多的状态，如何在系统中查看某个连接的状态?</p>
+<h3 id="问题思考-1"><a href="#问题思考-1" class="headerlink" title="问题思考"></a>问题思考</h3><ol>
+<li>TCP 的连接有这么多的状态，如何在系统中查看某个连接的状态?</li>
+</ol>
 <ul>
 <li>netstat可以在系统中查看某个连接的状态。</li>
 </ul>
+<p>2.如何避免TCP的TIME_WAIT状态（高并发）?<br>首先服务器可以设置SO_REUSEADDR套接字选项来通知内核，如果端口忙，但TCP连接位于TIME_WAIT状态时可以重用端口。在一个非常有用的场景就是，如果你的服务器程序停止后想立即重启，而新的套接字依旧希望使用同一端口，此时SO_REUSEADDR选项就可以避免TIME_WAIT状态。<br><a href="http://www.cdhand.com/article/57" target="_blank" rel="noopener">如何避免TCP的TIME_WAIT状态（高并发)</a></p>
+<ol start="3">
+<li>服务器遭到SYN攻击怎么办？如何防御SYN攻击？</li>
+</ol>
+<p><a href="https://www.cnblogs.com/sunsky303/p/11811097.html" target="_blank" rel="noopener">TCP SYN flood洪水攻击原理和防御破解</a></p>
+<p><a href="https://www.cnblogs.com/zlgxzswjy/p/5292382.html" target="_blank" rel="noopener">针对SYN洪水攻击的防御措施</a></p>
 <hr>
 <h2 id="TCP-协议（下）"><a href="#TCP-协议（下）" class="headerlink" title="TCP 协议（下）"></a>TCP 协议（下）</h2><h3 id="一-如何实现一个靠谱的协议？"><a href="#一-如何实现一个靠谱的协议？" class="headerlink" title="一. 如何实现一个靠谱的协议？"></a>一. 如何实现一个靠谱的协议？</h3><p>为了保证顺序性，每一个包都有一个 ID。在建立连接的时候，会商定起始的 ID 是什么，然后按照 ID 一个个发送。为了保证不丢包，对于发送的包都要进行应答，但是这个应答也不是一个一个来的，而是会应答某个之前的 ID，表示都收到了，<strong>这种模式称为累计确认或者累计应答（cumulative acknowledgment）。</strong></p>
 <p>为了记录所有发送的包和接收的包，TCP 也需要发送端和接收端分别都有缓存来保存这些记录。发送端的缓存里是按照包的 ID 一个个排列，根据处理的情况分成四个部分。</p>
@@ -550,13 +558,18 @@ height:50vh;
             <p>Author：<a href="https://liangweijiang.github.io">liangweijiang</a>
             <p>原文链接：<a href="https://liangweijiang.github.io/2020/03/22/NetworkProtocol-04/">https://liangweijiang.github.io/2020/03/22/NetworkProtocol-04/</a>
             <p>发表日期：<a href="https://liangweijiang.github.io/2020/03/22/NetworkProtocol-04/">March 22nd 2020, 11:43:31 pm</a>
-            <p>更新日期：<a href="https://liangweijiang.github.io/2020/03/22/NetworkProtocol-04/">March 22nd 2020, 11:44:53 pm</a>
+            <p>更新日期：<a href="https://liangweijiang.github.io/2020/03/22/NetworkProtocol-04/">March 23rd 2020, 2:50:24 pm</a>
             <p>版权声明：本文采用<a rel="license noopener" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
         </div>
     
     <!-- paginator  -->
     <ul class="post-paginator">
         <li class="next">
+            
+                <div class="nextSlogan">Next Post</div>
+                <a href= "/2020/03/23/NetworkProtocol-05/" title= "《趣谈网络协议》学习笔记之--最重要的传输层(下)">
+                    <div class="nextTitle">《趣谈网络协议》学习笔记之--最重要的传输层(下)</div>
+                </a>
             
         </li>
         <li class="previous">
@@ -1129,9 +1142,24 @@ top:50vh;
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 35
+        Total : 36
         </div>
         <!-- search  -->
         
@@ -1489,6 +1517,20 @@ top:50vh;
     
         <li class="archive-post-item">
             <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href= "/2020/03/16/dream/" >写给自己的一些话</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> Invalid date </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href= "/2020/03/23/NetworkProtocol-05/" >《趣谈网络协议》学习笔记之--最重要的传输层(下)</a>
         </li>
     
     </div>
