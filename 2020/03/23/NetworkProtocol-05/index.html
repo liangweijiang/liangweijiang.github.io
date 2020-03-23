@@ -450,15 +450,13 @@ height:50vh;
 <li><p>epoll 是 Linux 上的函数，那你知道 Windows 上对应的机制是什么吗？如果想实现一个跨平台的程序，你知道应该怎么办吗？<br>Windows 上对应的机制是IOCP。<br>通常的办法是，线程池中的工作线程的数量与CPU内核数量相同，以此来最小化线程切换代价。一个IOCP对象，在操作系统中可关联着多个Socket和（或）文件控制端。 IOCP对象内部有一个先进先出（FIFO）队列，用于存放IOCP所关联的输入输出端的服务请求完成消息。请求输入输出服务的进程不接收IO服务完成通知，而是检查IOCP的消息队列以确定IO请求的状态。 （线程池中的）多个线程负责从IOCP消息队列中取走完成通知并执行数据处理；如果队列中没有消息，那么线程阻塞挂起在该队列。这些线程从而实现了负载均衡。</p>
 </li>
 <li><p>select, poll 和 epoll 的区别</p>
+</li>
+</ol>
 <ul>
 <li><p>select的第一个参数nfds为fdset集合中最大描述符值加1，fdset是一个位数组，其大小限制为__FD_SETSIZE（1024），位数组的每一位代表其对应的描述符是否需要被检查。第二三四参数表示需要关注读、写、错误事件的文件描述符位数组，这些参数既是输入参数也是输出参数，可能会被内核修改用于标示哪些描述符上发生了关注的事件，所以每次调用select前都需要重新初始化fdset。timeout参数为超时时间，该结构会被内核修改，其值为超时剩余的时间。</p>
 </li>
 <li><p>poll与select不同，通过一个pollfd数组向内核传递需要关注的事件，故没有描述符个数的限制，pollfd中的events字段和revents分别用于标示关注的事件和发生的事件，故pollfd数组只需要被初始化一次。<br>poll的实现机制与select类似，其对应内核中的sys_poll，只不过poll向内核传递pollfd数组，然后对pollfd中的每个描述符进行poll，相比处理fdset来说，poll效率更高。poll返回后，需要对pollfd中的每个元素检查其revents值，来得指事件是否发生。</p>
 </li>
-</ul>
-</li>
-</ol>
-<ul>
 <li><p>select，poll实现需要自己不断轮询所有fd集合，直到设备就绪，期间可能要睡眠和唤醒多次交替。而epoll其实也需要调用 epoll_wait不断轮询就绪链表，期间也可能多次睡眠和唤醒交替，但是它是设备就绪时，调用回调函数，把就绪fd放入就绪链表中，并唤醒在 epoll_wait中进入睡眠的进程。虽然都要睡眠和交替，但是select和poll在“醒着”的时候要遍历整个fd集合，而epoll在“醒着”的 时候只要判断一下就绪链表是否为空就行了，这节省了大量的CPU时间，这就是回调机制带来的性能提升。</p>
 </li>
 <li><p>select，poll每次调用都要把fd集合从用户态往内核态拷贝一次，并且要把current往设备等待队列中挂一次，而epoll只要 一次拷贝，而且把current往等待队列上挂也只挂一次（在epoll_wait的开始，注意这里的等待队列并不是设备等待队列，只是一个epoll内 部定义的等待队列），这也能节省不少的开销。</p>
@@ -473,7 +471,7 @@ height:50vh;
             <p>Author：<a href="https://liangweijiang.github.io">liangweijiang</a>
             <p>原文链接：<a href="https://liangweijiang.github.io/2020/03/23/NetworkProtocol-05/">https://liangweijiang.github.io/2020/03/23/NetworkProtocol-05/</a>
             <p>发表日期：<a href="https://liangweijiang.github.io/2020/03/23/NetworkProtocol-05/">March 23rd 2020, 3:36:59 pm</a>
-            <p>更新日期：<a href="https://liangweijiang.github.io/2020/03/23/NetworkProtocol-05/">March 23rd 2020, 3:37:43 pm</a>
+            <p>更新日期：<a href="https://liangweijiang.github.io/2020/03/23/NetworkProtocol-05/">March 23rd 2020, 3:46:15 pm</a>
             <p>版权声明：本文采用<a rel="license noopener" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
         </div>
     
