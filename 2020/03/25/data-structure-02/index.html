@@ -22,7 +22,7 @@
     <meta name="description" content="">
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-    <title>Jiang&#39;s Blog</title>
+    <title>数据结构学习笔记---链表 · Jiang&#39;s Blog</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -203,12 +203,23 @@
 <meta name="generator" content="Hexo 4.2.0"></head>
 
     
+        <body class="post-body">
+    
     
 <header class="header">
 
     <div class="read-progress"></div>
     <div class="header-sidebar-menu">&#xe775;</div>
     <!-- post页的toggle banner  -->
+    
+    <div class="banner">
+            <div class="blog-title">
+                <a href="/" >Jiang&#39;s blog</a>
+            </div>
+            <div class="post-title">
+                <a href="#" class="post-name">数据结构学习笔记---链表</a>
+            </div>
+    </div>
     
     <a class="home-link" href=/>Jiang's blog</a>
 </header>
@@ -220,24 +231,74 @@
 
 
 
+
+height:50vh;
 ">
     
     <!-- 主页  -->
+    
+    
+    <!-- 404页  -->
             
     <div class="site-intro-placeholder"></div>
-    <div class="site-intro-img" style="background-image: url(/)"></div>
+    <div class="site-intro-img" style="background-image: url(/intro/911.jpg)"></div>
     <div class="site-intro-meta">
         <!-- 标题  -->
         <h1 class="intro-title">
             <!-- 主页  -->
+            
+            数据结构学习笔记---链表
+            <!-- 404 -->
             
         </h1>
         <!-- 副标题 -->
         <p class="intro-subtitle">
             <!-- 主页副标题  -->
             
+            
+            <!-- 404 -->
+            
         </p>
         <!-- 文章页meta -->
+        
+            <div class="post-intros">
+                <!-- 文章页标签  -->
+                
+                    <div class= post-intro-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "链表">链表</a>
+    
+</div>
+                
+                
+                    <div class="post-intro-read">
+                        <span>Word count: <span class="post-count word-count">1.4k</span>Reading time: <span class="post-count reading-time">4 min</span></span>
+                    </div>
+                
+                <div class="post-intro-meta">
+                    <span class="post-intro-calander iconfont-archer">&#xe676;</span>
+                    <span class="post-intro-time">2020/03/25</span>
+                    
+                    <span id="busuanzi_container_page_pv" class="busuanzi-pv">
+                        <span class="iconfont-archer">&#xe602;</span>
+                        <span id="busuanzi_value_page_pv"></span>
+                    </span>
+                    
+                    <span class="shareWrapper">
+                        <span class="iconfont-archer shareIcon">&#xe71d;</span>
+                        <span class="shareText">Share</span>
+                        <ul class="shareList">
+                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
+                                <div class="share-qrcode"></div>
+                            </li>
+                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
+                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
+                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
+                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
         
     </div>
 </div>
@@ -338,378 +399,101 @@
 </script>        
         <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
         <div class="container container-unloaded">
-            <main class="main index-page">
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2020/03/25/data-structure-02/" >
-            
-                <span>数据结构学习笔记---链表</span>
-        </a>
-        <div class="abstract-content">
-            
-学习自极客时间的《数据结构与算法之美》 作者：王争
+            <main class="main post-page">
+    <article class="article-entry">
+        <blockquote>
+<p>学习自极客时间的《数据结构与算法之美》 作者：王争</p>
+</blockquote>
+<h1 id="链表"><a href="#链表" class="headerlink" title="链表"></a>链表</h1><h2 id="一-链表和数组的区别"><a href="#一-链表和数组的区别" class="headerlink" title="一. 链表和数组的区别"></a>一. 链表和数组的区别</h2><ul>
+<li><p>数组需要一块连续的内存空间来存储，对内存的要求比较高。如果我们申请一个 100MB 大小的数组，当内存中没有连续的、足够大的存储空间时，即便内存的剩余总可用空间大于 100MB，仍然会申请失败。</p>
+</li>
+<li><p>而链表恰恰相反，它并不需要一块连续的内存空间，它通过“指针”将一组零散的内存块串联起来使用，所以如果我们申请的是 100MB 大小的链表，根本不会有问题。其中，我们把内存块称为链表的“结点”。</p>
+</li>
+</ul>
+<h2 id="二-链表的插入和删除"><a href="#二-链表的插入和删除" class="headerlink" title="二. 链表的插入和删除"></a>二. 链表的插入和删除</h2><ul>
+<li>在进行数组的插入、删除操作时，为了保持内存数据的连续性，需要做大量的数据搬移，所以时间复杂度是 O(n)。</li>
+<li>而在链表中插入或者删除一个数据，我们并不需要为了保持内存的连续性而搬移结点，因为链表的存储空间本身就不是连续的。所以，在链表中插入和删除一个数据是非常快速的。</li>
+</ul>
+<p><img src="https://s1.ax1x.com/2020/03/25/8jeGdS.jpg" alt="8jeGdS.jpg"></p>
+<h2 id="三-链表的分类"><a href="#三-链表的分类" class="headerlink" title="三. 链表的分类"></a>三. 链表的分类</h2><p>链表有很多种,如常见的<strong>单链表,双向链表和循环链表等。</strong></p>
+<p>** 1. 单链表**<br>为了将所有的结点串起来，每个链表的结点除了存储数据之外，还需要记录链上的下一个结点的地址。我们把这个记录下个结点地址的指针叫作后继指针 next。</p>
+<p><img src="https://s1.ax1x.com/2020/03/25/8jV6mT.jpg" alt="8jV6mT.jpg"></p>
+<p>我们习惯性地把第一个结点叫作<strong>头结点，把最后一个结点叫作尾结点。</strong>其中，头结点用来记录链表的基地址。有了它，我们就可以遍历得到整条链表。而尾结点特殊的地方是：指针不是指向下一个结点，而是指向一个空地址 NULL，表示这是链表上最后一个结点。</p>
+<p>** 2. 循环链表**<br>单链表的尾指针是指向空地址的,而循环链表的尾指针是指向头指针的。<br>循环链表的优点是从链尾到链头比较方便。当要处理的数据具有环型结构特点时，就特别适合采用循环链表。比如著名的约瑟夫问题。尽管用单链表也可以实现，但是用循环链表实现的话，代码就会简洁很多。</p>
+<p><img src="https://i.loli.net/2020/03/25/hG12cSNUebzXYmu.jpg" alt="循环链表.jpg"></p>
+<p>** 3. 双向链表**</p>
+<p>单向链表只有一个方向，结点只有一个后继指针 next 指向后面的结点。而双向链表，顾名思义，它支持两个方向，每个结点不止有一个后继指针 next 指向后面的结点，还有一个前驱指针 prev 指向前面的结点。</p>
+<p><img src="https://s1.ax1x.com/2020/03/25/8jQnJS.jpg" alt="8jQnJS.jpg"></p>
+<h3 id="双向链表的高效体现在哪里"><a href="#双向链表的高效体现在哪里" class="headerlink" title="双向链表的高效体现在哪里"></a>双向链表的高效体现在哪里</h3><p><strong>删除操作</strong><br>在实际的软件开发中，从链表中删除一个数据无外乎这两种情况：</p>
+<ul>
+<li>删除结点中“值等于某个给定值”的结点；</li>
+<li>删除给定指针指向的结点。</li>
+</ul>
+<p>对于单链表来说:</p>
+<ul>
+<li>第一种情况,虽然删除的时间复杂度为O(1), 但是我们需要遍历节点并一一和给定的值对比,直到找到值等于给定值的结点,所以<strong>删除值等于给定值的结点对应的链表操作的总时间复杂度为 O(n)。</strong></li>
+<li>对于第二种情况，我们已经找到了要删除的结点，但是删除某个结点 q 需要知道其前驱结点，而单链表并不支持直接获取前驱结点，所以，为了找到前驱结点，我们还是要从头结点开始遍历链表，直到 p-&gt;next=q，说明 p 是 q 的前驱结点。</li>
+</ul>
+<p>插入操作也是类似的。<strong>除了插入、删除操作有优势之外，对于一个有序链表，双向链表的按值查询的效率也要比单链表高一些。因为，我们可以记录上次查找的位置 p，每次查询时，根据要查找的值与 p 的大小关系，决定是往前还是往后查找，所以平均只需要查找一半的数据。</strong></p>
+<h2 id="问题思考"><a href="#问题思考" class="headerlink" title="问题思考"></a>问题思考</h2><p>如果字符串是通过单链表来存储的，那该如何来判断是一个回文串呢？<br><strong>使用快慢两个指针找到链表中点，慢指针每次前进一步，快指针每次前进两步。在慢指针前进的过程中，同时修改其 next 指针，使得链表前半部分反序。最后比较中点两侧的链表是否相等。</strong></p>
+<p><a href="https://github.com/wangzheng0822/algo/blob/master/python/06_linkedlist/palindrome.py" target="_blank" rel="noopener">https://github.com/wangzheng0822/algo/blob/master/python/06_linkedlist/palindrome.py</a></p>
+<h2 id="关于链表的题目"><a href="#关于链表的题目" class="headerlink" title="关于链表的题目"></a>关于链表的题目</h2><ul>
+<li><p>单链表反转<br>力扣第206题:<a href="https://leetcode-cn.com/problems/reverse-linked-list/" target="_blank" rel="noopener">https://leetcode-cn.com/problems/reverse-linked-list/</a></p>
+</li>
+<li><p>链表中环的检测<br>力扣第141题:<a href="https://leetcode-cn.com/problems/linked-list-cycle/" target="_blank" rel="noopener">https://leetcode-cn.com/problems/linked-list-cycle/</a></p>
+</li>
+<li><p>两个有序的链表合并<br>力扣第21题:<a href="https://leetcode-cn.com/problems/merge-two-sorted-lists/" target="_blank" rel="noopener">https://leetcode-cn.com/problems/merge-two-sorted-lists/</a></p>
+</li>
+<li><p>k个有序的链表合并<br>力扣第23题:<a href="https://leetcode-cn.com/problems/merge-k-sorted-lists/" target="_blank" rel="noopener">https://leetcode-cn.com/problems/merge-k-sorted-lists/</a></p>
+</li>
+<li><p>删除链表倒数第 n 个结点<br>力扣第19题:<a href="https://leetcode-cn.com/problems/remove-nth-node-from-end-of-list/" target="_blank" rel="noopener">https://leetcode-cn.com/problems/remove-nth-node-from-end-of-list/</a></p>
+</li>
+<li><p>求链表的中间结点<br>力扣第876题:<a href="https://leetcode-cn.com/problems/middle-of-the-linked-list/" target="_blank" rel="noopener">https://leetcode-cn.com/problems/middle-of-the-linked-list/</a></p>
+</li>
+</ul>
+<p>我做完这几道题后,总结了一个道理,链表经常使用<strong>快慢指针</strong>来解决问题。</p>
 
-链表一. 链表和数组的区别
-数组需要一块连续的内存空间来存储，对内存的要求比较高。如果我们申请一个 100MB 大小的数组，当内存中没有连续的、足够大的存储空间时，即便内存的剩余总可用空间大于 100MB，仍然会申请失败。
-
-而链表恰恰相反，它并不需要一块连续的内存空间，它通过“指针”将一组零散的内存块串联起来使用，所以如果我们申请的是 100MB 大小的链表，根本不会有问题。其中，我们把内存块称为链表的“结点”。
-
-
-二. 链表的插入和删除
-在进行数组的插入、删除操作时，为了保持内存数据的连续性，需要做大量的数据搬移，所以时间复杂...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/03/25</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "链表">链表</a>
-    
-</div>
-            
-        </div>
     </article>
+    <!-- license  -->
     
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2020/03/25/algorithm-17/" >
-            
-                <span>每日一道算法之--电话号码的字母组合</span>
-        </a>
-        <div class="abstract-content">
-            电话号码的字母组合力扣第17题:https://leetcode-cn.com/problems/letter-combinations-of-a-phone-number/
-给定一个仅包含数字 2-9 的字符串，返回所有它能表示的字母组合。给出数字到字母的映射如下（与电话按键相同）。注意 1 不对应任何字母。
-
-示例:
-
-输入：”23”输出：[“ad”, “ae”, “af”, “bd”, “be”, “bf”, “cd”, “ce”, “cf”].说明:尽管上面的答案是按字典序排列的，但是你可以任意选择答案输出的顺序。
-
-1. 回溯
-首先看一看数字对应的可能是3个字母或是4个字母。所...
+        <div class="license-wrapper">
+            <p>Author：<a href="https://liangweijiang.github.io">liangweijiang</a>
+            <p>原文链接：<a href="https://liangweijiang.github.io/2020/03/25/data-structure-02/">https://liangweijiang.github.io/2020/03/25/data-structure-02/</a>
+            <p>发表日期：<a href="https://liangweijiang.github.io/2020/03/25/data-structure-02/">March 25th 2020, 3:40:44 pm</a>
+            <p>更新日期：<a href="https://liangweijiang.github.io/2020/03/25/data-structure-02/">March 25th 2020, 3:41:37 pm</a>
+            <p>版权声明：本文采用<a rel="license noopener" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
         </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/03/25</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "回溯">回溯</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "队列">队列</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2020/03/23/Interview-experience/" >
-            
-                <span>头条一面凉经</span>
-        </a>
-        <div class="abstract-content">
-            头条一面总结昨天头条的一面结束了,总体感觉就是有一点出乎一点的感觉,哈哈哈,和平时网上看到的面经完全不一样呀,主要还是自己的积累不够,所以做一个总结来警示自己还要多加努力啊,大厂从来都不会这么容易就能进去的。
-一. 实现队列的方法首先第一道题问了队列的实现，我首先有想到了是三种实现方法。基于栈的实现方法；基于链表的实现方法；基于数组的实现方法
-
-首先基于站的实现方法我回答出来了，就是是想用辅助栈实现
-
-基于链表的实现也挺简单，插入直接插到最后，取的时候去头元素，然后在更新头元素
-
-基于数组的方法，妈的一开始没想到双指针我真是服了自己了，做了这么多的双指针的题，竟然没想到，这个真的是自己疏...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/03/23</span>
-            </div>
-            <!-- tags  -->
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2020/03/23/data-structure-01/" >
-            
-                <span>数据结构学习笔记---数组</span>
-        </a>
-        <div class="abstract-content">
-            
-学习自极客时间的《数据结构与算法之美》 作者：王争
-
-数组一. 什么是数组数组（Array）是一种线性表数据结构。它用一组连续的内存空间，来存储一组具有相同类型的数据。
-
-什么是线性表（Linear List）。顾名思义，线性表就是数据排成像一条线一样的结构。每个线性表上的数据最多只有前和后两个方向。其实除了数组，链表、队列、栈等也是线性表结构。而非线性表的代表则有树,图,堆等。之所以叫非线性，是因为，在非线性表中，数据之间并不是简单的前后关系。
-连续的内存空间和相同类型的数据，使得数组支持随机访问，但是带来的麻烦就是删除和插入操作时变得不高效。
-
-数组是如何实现根据下标随机访问数组元...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/03/23</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "数组">数组</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2020/03/23/NetworkProtocol-05/" >
-            
-                <span>《趣谈网络协议》学习笔记之--最重要的传输层(下)</span>
-        </a>
-        <div class="abstract-content">
-            
-学习自极客时间《趣谈网络协议》 作者：刘超
-
-最重要的传输层(下)socket套接字一. 什么是socket?在计算机通信领域，socket 被翻译为“套接字”，它是计算机之间进行通信的一种约定或一种方式。通过 socket 这种约定，一台计算机可以接收其他计算机的数据，也可以向其他计算机发送数据。套接字（socket）是一个抽象层，应用程序可以通过它发送或接收数据，可对其进行像对文件一样的打开、读写和关闭等操作。套接字允许应用程序将I/O插入到网络中，并与网络中的其他应用程序进行通信。网络套接字是IP地址与端口的组合。
-二. socket的通讯方式在网络层，Socket 函数需要指定...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/03/23</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "网络协议">网络协议</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2020/03/22/NetworkProtocol-04/" >
-            
-                <span>《趣谈网络协议》学习笔记之--最重要的传输层(上)</span>
-        </a>
-        <div class="abstract-content">
-            
-学习自极客时间《趣谈网络协议》 作者：刘超
-
-最重要的传输层(上)1. UDP协议一. TCP 和 UDP的区别
-TCP 是面向连接的，UDP 是面向无连接的。
-
-所谓的建立连接，是为了在客户端和服务端维护连接，而建立一定的数据结构来维护双方交互的状态，用这样的数据结构来保证所谓的面向连接的特性。
-
-TCP提供可靠交付,通过 TCP 连接传输的数据，无差错、不丢失、不重复、并且按序到达。UDP 继承了 IP 包的特性，不保证不丢失，不保证按顺序到达。
-
-TCP是面向字节流的,而 UDP 继承了 IP 的特性，基于数据报的，一个一个地发，一个一个地收。
-
-TCP 是可以有拥塞控制的。它意...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/03/22</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "网络协议">网络协议</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2020/03/20/algorithm-23/" >
-            
-                <span>每日一道算法之--合并K个排序链表</span>
-        </a>
-        <div class="abstract-content">
-            合并K个排序链表力扣第23题:https://leetcode-cn.com/problems/merge-k-sorted-lists/
-合并 k 个排序链表，返回合并后的排序链表。请分析和描述算法的复杂度。
-示例:
-
-输入:[  1-&gt;4-&gt;5,  1-&gt;3-&gt;4,  2-&gt;6]输出: 1-&gt;1-&gt;2-&gt;3-&gt;4-&gt;4-&gt;5-&gt;6
-
-暴力算法把N个数放到一个数组里，再一起排序，O(NlogN)。
-12345678910111213141516class Solution(object):    def merge...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/03/20</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "分治">分治</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "优先队列">优先队列</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "堆">堆</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2020/03/18/algorithm-300/" >
-            
-                <span>每日一道算法之--最长上升子序列</span>
-        </a>
-        <div class="abstract-content">
-            最长上升子序列力扣第300题:https://leetcode-cn.com/problems/longest-increasing-subsequence/
-给定一个无序的整数数组，找到其中最长上升子序列的长度。
-示例:
-
-输入: [10,9,2,5,3,7,101,18]输出: 4解释: 最长的上升子序列是 [2,3,7,101]，它的长度是 4。说明:
-
-可能会有多种最长上升子序列的组合，你只需要输出对应的长度即可。你算法的时间复杂度应该为 O(n2) 。进阶: 你能将算法的时间复杂度降低到 O(n log n) 吗?
-1. 动态规划一看到最字,首先想到的是动态规划和贪心算法。这道...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/03/18</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "动态规划">动态规划</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "二分查找">二分查找</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "贪心">贪心</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2020/03/16/dream/" >
-            
-                <span class="stick-top iconfont-archer">&#xe63d;</span>
-                
-                <span>写给自己的一些话</span>
-        </a>
-        <div class="abstract-content">
-            写给自己的一些话昨晚收到了人生的第一份面试邀请，头条的邀请，心情真的很激动，但是更多的也是紧张。倒也不是说自己的技术不行吧，而是，在几个月前，对于腾讯头条阿里这种像是珠穆朗玛峰那种我想都不敢想的大厂，我竟然能收到面试。
-高中， 那个自傲的自己高中生活三年，当时在学校成绩一直还算可以，起初是蹦着中科大和复旦去的，最差也得有个华工吧哈哈，当时成绩确实还可以，但是有点飘了哈。当我高考成绩出来后，我懵了，真的当时就整个人飘忽忽的，看着这个成绩单，我知道自己再也不是那个当初自傲的自己了。大伯劝我复读，说什么算过我的命今天考试不行，明年清华都能上（当时高考前大伯就叮嘱我要我复读了），但是我不信命，我...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/03/16</span>
-            </div>
-            <!-- tags  -->
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2020/03/16/NetworkProtocol-03/" >
-            
-                <span>《趣谈网络协议》学习笔记之--从二层到三层（下）</span>
-        </a>
-        <div class="abstract-content">
-            
-学习自极客时间《趣谈网络协议》 作者：刘超
-
-从二层到三层（下）4. 网关的实现一. 怎么样在宿舍上网有两种方式:
-
-有一台电脑需要两张网卡,一张网卡的线插到交换机上，另一张网卡的线插到校园网的网口。而且，这张新的网卡的 IP 地址要按照学校网管部门分配的配置，不然上不了网。这种情况下，如果你们宿舍的人要上网，就需要一直开着那台电脑。
-
-买个家庭路由器,家庭路由器会有内网网口和外网网口。把外网网口的线插到校园网的网口上，将这个外网网口配置成和网管部的一样。内网网口连上所有的电脑。这种情况下，如果你有人要上网，就需要一直开着路由器。
-
-
-其实家庭路由器和电脑的功能一样,只不过是嵌入式系统...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/03/16</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "网络协议">网络协议</a>
-    
-</div>
-            
-        </div>
-    </article>
     
     <!-- paginator  -->
+    <ul class="post-paginator">
+        <li class="next">
+            
+        </li>
+        <li class="previous">
+            
+                <div class="prevSlogan">Previous Post</div>
+                <a href= "/2020/03/25/algorithm-17/" title= "每日一道算法之--电话号码的字母组合">
+                    <div class="prevTitle">每日一道算法之--电话号码的字母组合</div>
+                </a>
+            
+        </li>
+    </ul>
+    <!-- 评论插件 -->
+    <!-- 来必力City版安装代码 -->
+
+<!-- City版安装代码已完成 -->
     
-    <nav class="page-nav">
-        <span class="page-number current">1</span><a class="page-number" href="/archives/2020/page/2/">2</a><a class="page-number" href="/archives/2020/page/3/">3</a><a class="page-number" href="/archives/2020/page/4/">4</a><a class="extend next" rel="next" href="/archives/2020/page/2/">NEXT &gt;</a>
-    </nav>
     
+    <!-- gitalk评论 -->
+
+    <!-- partial('_partial/comment/changyan') -->
+    <!--PC版-->
+
+
+    
+    
+
+    <!-- 评论 -->
 </main>
             <!-- profile -->
             
@@ -787,6 +571,24 @@ TCP 是可以有拥塞控制的。它意...
 </footer>
     </div>
     <!-- toc -->
+    
+    <div class="toc-wrapper" style=
+    
+
+
+
+
+
+
+
+top:50vh;
+
+    >
+        <div class="toc-catalog">
+            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+        </div>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#链表"><span class="toc-number">1.</span> <span class="toc-text">链表</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#一-链表和数组的区别"><span class="toc-number">1.1.</span> <span class="toc-text">一. 链表和数组的区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二-链表的插入和删除"><span class="toc-number">1.2.</span> <span class="toc-text">二. 链表的插入和删除</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#三-链表的分类"><span class="toc-number">1.3.</span> <span class="toc-text">三. 链表的分类</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#双向链表的高效体现在哪里"><span class="toc-number">1.3.1.</span> <span class="toc-text">双向链表的高效体现在哪里</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#问题思考"><span class="toc-number">1.4.</span> <span class="toc-text">问题思考</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#关于链表的题目"><span class="toc-number">1.5.</span> <span class="toc-text">关于链表的题目</span></a></li></ol></li></ol>
+    </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
     <div class="sidebar sidebar-hide">
@@ -1869,6 +1671,8 @@ jsonContent:
     
     </div>
     <!-- async load share.js -->
+    
+        <script src="/scripts/share.js" async></script>    
      
     </body>
 </html>
