@@ -22,7 +22,7 @@
     <meta name="description" content="">
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-    <title>《趣谈网络协议》学习笔记之--通信协议综述 · Jiang&#39;s Blog</title>
+    <title>每日一道算法之--电话号码的字母组合 · Jiang&#39;s Blog</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -217,7 +217,7 @@
                 <a href="/" >Jiang&#39;s blog</a>
             </div>
             <div class="post-title">
-                <a href="#" class="post-name">《趣谈网络协议》学习笔记之--通信协议综述</a>
+                <a href="#" class="post-name">每日一道算法之--电话号码的字母组合</a>
             </div>
     </div>
     
@@ -247,7 +247,7 @@ height:50vh;
         <h1 class="intro-title">
             <!-- 主页  -->
             
-            《趣谈网络协议》学习笔记之--通信协议综述
+            每日一道算法之--电话号码的字母组合
             <!-- 404 -->
             
         </h1>
@@ -266,18 +266,20 @@ height:50vh;
                 
                     <div class= post-intro-tags >
     
-        <a class="post-tag" href="javascript:void(0);" data-tags = "网络协议">网络协议</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags = "回溯">回溯</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "队列">队列</a>
     
 </div>
                 
                 
                     <div class="post-intro-read">
-                        <span>Word count: <span class="post-count word-count">3.8k</span>Reading time: <span class="post-count reading-time">13 min</span></span>
+                        <span>Word count: <span class="post-count word-count">617</span>Reading time: <span class="post-count reading-time">2 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
                     <span class="post-intro-calander iconfont-archer">&#xe676;</span>
-                    <span class="post-intro-time">2020/03/10</span>
+                    <span class="post-intro-time">2020/03/25</span>
                     
                     <span id="busuanzi_container_page_pv" class="busuanzi-pv">
                         <span class="iconfont-archer">&#xe602;</span>
@@ -401,114 +403,40 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
     <article class="article-entry">
-        <blockquote>
-<p>学习自极客时间《趣谈网络协议》 作者：刘超</p>
+        <h1 id="电话号码的字母组合"><a href="#电话号码的字母组合" class="headerlink" title="电话号码的字母组合"></a>电话号码的字母组合</h1><p>力扣第17题:<a href="https://leetcode-cn.com/problems/letter-combinations-of-a-phone-number/" target="_blank" rel="noopener">https://leetcode-cn.com/problems/letter-combinations-of-a-phone-number/</a></p>
+<p>给定一个仅包含数字 2-9 的字符串，返回所有它能表示的字母组合。<br>给出数字到字母的映射如下（与电话按键相同）。注意 1 不对应任何字母。</p>
+<p><a href="https://imgchr.com/i/8XzG9S" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2020/03/25/8XzG9S.th.png" alt="8XzG9S.th.png"></a></p>
+<p>示例:</p>
+<blockquote>
+<p>输入：”23”<br>输出：[“ad”, “ae”, “af”, “bd”, “be”, “bf”, “cd”, “ce”, “cf”].<br>说明:<br>尽管上面的答案是按字典序排列的，但是你可以任意选择答案输出的顺序。</p>
 </blockquote>
-<h1 id="通信协议的综述"><a href="#通信协议的综述" class="headerlink" title="通信协议的综述"></a>通信协议的综述</h1><h2 id="1-为什么要学习网络协议"><a href="#1-为什么要学习网络协议" class="headerlink" title="1. 为什么要学习网络协议?"></a>1. 为什么要学习网络协议?</h2><h3 id="1-1-协议的三要素"><a href="#1-1-协议的三要素" class="headerlink" title="1.1 协议的三要素"></a>1.1 协议的三要素</h3><p>计算机语言作为程序员控制一台计算机工作的协议，具备了协议的三要素。</p>
-<ul>
-<li>语法，就是这一段内容要符合一定的规则和格式。例如，括号要成对，结束要使用分号等。</li>
-<li>语义，就是这一段内容要代表某种意义。例如数字减去数字是有意义的，数字减去文本一般来说就没有意义。</li>
-<li>顺序，就是先干啥，后干啥。例如，可以先加上某个数值，然后再减去某个数值。<br>会了计算机语言，你就能够教给一台计算机完成你的工作了。<br>但是，要想打造互联网世界的通天塔，只教给一台机器做什么是不够的，你需要学会教给一大片机器做什么。这就需要网络协议。只有通过网络协议，才能使一大片机器互相协作、共同完成一件事。</li>
+<h2 id="1-回溯"><a href="#1-回溯" class="headerlink" title="1. 回溯"></a>1. 回溯</h2><ul>
+<li>首先看一看数字对应的可能是3个字母或是4个字母。所以可以构建列表或者哈希表，因为列表的话索引值需要转化，所以适合构建哈希表。</li>
+<li>给出如下回溯函数 backtrack(combination, next_digits) ，它将一个目前已经产生的组合 combination 和接下来准备要输入的数字 next_digits 作为参数。</li>
+<li>一个数字下面有三或4中可能，所以每一种可能都要穷举出来，每递归一层输入的字符串就减小一个长度</li>
 </ul>
-<h3 id="1-2-HTTP协议的格式"><a href="#1-2-HTTP协议的格式" class="headerlink" title="1.2 HTTP协议的格式"></a>1.2 HTTP协议的格式</h3><blockquote>
-<p>HTTP/1.1 200 OK<br>Date: Tue, 27 Mar 2018 16:50:26 GMT<br>Content-Type: text/html;charset=UTF-8<br>Content-Language: zh-CN</p>
-</blockquote>
-<p>首先，符合语法，也就是说，只有按照上面那个格式来，浏览器才认。</p>
-<ul>
-<li>例如，上来是状态，然后是首部，然后是内容。第二，符合语义，就是要按照约定的意思来。</li>
-<li>例如，状态 200，表述的意思是网页成功返回。如果不成功，就是我们常见的“404”。</li>
-<li>第三，符合顺序，你一点浏览器，就是发送出一个 HTTP 请求，然后才有上面那一串 HTTP 返回的东西。浏览器显然按照协议商定好的做了，最后一个五彩缤纷的页面就出现在你面前了</li>
-</ul>
-<h2 id="1-3-网络协议的种类"><a href="#1-3-网络协议的种类" class="headerlink" title="1.3 网络协议的种类"></a>1.3 网络协议的种类</h2><p><img src="https://s2.ax1x.com/2020/03/10/8PXZFS.jpg" alt="8PXZFS.jpg"></p>
-<hr>
-<h2 id="2-网络分层的真实含义是什么？"><a href="#2-网络分层的真实含义是什么？" class="headerlink" title="2. 网络分层的真实含义是什么？"></a>2. 网络分层的真实含义是什么？</h2><h3 id="2-1-网络为什么要分层？"><a href="#2-1-网络为什么要分层？" class="headerlink" title="2.1 网络为什么要分层？"></a>2.1 网络为什么要分层？</h3><blockquote>
-<p>对于软件世界来说,在计算机领域，任何问题到了某个复杂的阶段，如果当前方法不能解决问题，必定可以通过加多一层来解决，如果加多一层都解决不了问题，那肯定是这个问题模型的层次已经到极限了。</p>
-</blockquote>
-<p><strong>1）各层之间相互独立：</strong>高层是不需要知道底层的功能是采取硬件技术来实现的，它只需要知道通过与底层的接口就可以获得所需要的服务；<br><strong>2）灵活性好：</strong>各层都可以采用最适当的技术来实现，例如某一层的实现技术发生了变化，用硬件代替了软件，只要这一层的功能与接口保持不变，实现技术的变化都并不会对其他各层以及整个系统的工作产生影响； </p>
-<p><strong>3）易于实现和标准化：</strong>由于采取了规范的层次结构去组织网络功能与协议，因此可以将计算机网络复杂的通信过程，划分为有序的连续动作与有序的交互过程，有利于将网络复杂的通信工作过程化解为一系列可以控制和实现的功能模块，使得复杂的计算机网络系统变得易于设计，实现和标准化</p>
-<p><strong>在网络协议中的分层。不仅仅是根据负责的功能来简单的划分层次，而且层与层之间会有不可缺少的的封装与传递。对于网络模型各层的封装是根据整个网络模型从上到下的工作流程来划分的。但是，每层之间会有一定的联系，不是独立工作的。</strong></p>
-<h3 id="2-3-程序是如何工作的？"><a href="#2-3-程序是如何工作的？" class="headerlink" title="2.3 程序是如何工作的？"></a>2.3 程序是如何工作的？</h3><p><img src="https://s2.ax1x.com/2020/03/10/8PXSRH.jpg" alt="8PXSRH.jpg"></p>
-<h3 id="2-3-层与层之间联系"><a href="#2-3-层与层之间联系" class="headerlink" title="2.3 层与层之间联系"></a>2.3 层与层之间联系</h3><ul>
-<li>只要是在网络上跑的包，都是完整的。<strong>可以有下层没上层，绝对不可能有上层没下层。</strong></li>
-<li>所以，对 TCP 协议来说，三次握手也好，重试也好，只要想发出去包，就要有 IP 层和 MAC 层，不然是发不出去的。</li>
-</ul>
-<hr>
-<h2 id="3-ifconfig：最熟悉又陌生的命令行"><a href="#3-ifconfig：最熟悉又陌生的命令行" class="headerlink" title="3. ifconfig：最熟悉又陌生的命令行"></a>3. ifconfig：最熟悉又陌生的命令行</h2><blockquote>
-<p>linux上查看ip地址的命令有<strong>ifconfig</strong>和<strong>ip addr</strong>两种</p>
-</blockquote>
-<h3 id="3-1-ifconfig-和-ip-addr-的区别"><a href="#3-1-ifconfig-和-ip-addr-的区别" class="headerlink" title="3.1 ifconfig 和 ip addr 的区别"></a>3.1 ifconfig 和 ip addr 的区别</h3><p>这是一个有关 net-tools 和 iproute2 的“历史”故事，net-tools起源于BSD的TCP/IP工具箱，后来成为老版本Linux内核中配置网络功能的工具，但自2001年起，Linux社区已经对其停止维护。同时，一些Linux发行版比如Arch Linux和CentOS/RHEL 7则已经完全抛弃了net-tools，只支持iproute2。</p>
-<p>作为网络配置工具的一份子，iproute2是linux下管理控制TCP/IP网络和流量控制的新一代工具包，旨在替代老派的工具链net-tools，即大家比较熟悉的ifconfig，arp，route，netstat等命令。</p>
-<p><strong>net-tools通过procfs(/proc)和ioctl系统调用去访问和改变内核网络配置，而iproute2则通过netlink套接字接口与内核通讯。</strong></p>
-<p>抛开性能而言，net-tools的用法给人的感觉是比较乱，而iproute2的用户接口相对net-tools来说相对来说，更加直观。比如，各种网络资源（如link、IP地址、路由和隧道等）均使用合适的对象抽象去定义，使得用户可使用一致的语法去管理不同的对象，更重要的是，到目前为止，iproute2仍处在持续开发中，所以，net-tools和iproute2都需要去学习掌握了。</p>
-<p> 如果你仍在使用net-tools，而且尤其需要跟上新版Linux内核中的最新最重要的网络特性的话，那么是时候转到iproute2的阵营了。原因就在于使用iproute2可以做很多net-tools无法做到的事情。</p>
-<h3 id="3-2-ip地址的分类"><a href="#3-2-ip地址的分类" class="headerlink" title="3.2 ip地址的分类"></a>3.2 ip地址的分类</h3><p>linux下输入ip addr</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">root@test:~<span class="meta"># ip addr</span></span><br><span class="line"><span class="number">1</span>: lo: &lt;LOOPBACK,UP,LOWER_UP&gt; mtu <span class="number">65536</span> qdisc noqueue state UNKNOWN group <span class="keyword">default</span> </span><br><span class="line">    link/loopback <span class="number">00</span>:<span class="number">00</span>:<span class="number">00</span>:<span class="number">00</span>:<span class="number">00</span>:<span class="number">00</span> brd <span class="number">00</span>:<span class="number">00</span>:<span class="number">00</span>:<span class="number">00</span>:<span class="number">00</span>:<span class="number">00</span></span><br><span class="line">    inet <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>/<span class="number">8</span> scope host lo</span><br><span class="line">       valid_lft forever preferred_lft forever</span><br><span class="line">    inet6 ::<span class="number">1</span>/<span class="number">128</span> scope host </span><br><span class="line">       valid_lft forever preferred_lft forever</span><br><span class="line"><span class="number">2</span>: eth0: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu <span class="number">1500</span> qdisc pfifo_fast state UP group <span class="keyword">default</span> qlen <span class="number">1000</span></span><br><span class="line">    link/ether fa:<span class="number">16</span>:<span class="number">3</span>e:c7:<span class="number">79</span>:<span class="number">75</span> brd ff:ff:ff:ff:ff:ff</span><br><span class="line">    inet <span class="number">10.100</span><span class="number">.122</span><span class="number">.2</span>/<span class="number">24</span> brd <span class="number">10.100</span><span class="number">.122</span><span class="number">.255</span> scope global eth0</span><br><span class="line">       valid_lft forever preferred_lft forever</span><br><span class="line">    inet6 fe80::f816:<span class="number">3</span>eff:fec7:<span class="number">7975</span>/<span class="number">64</span> scope link </span><br><span class="line">       valid_lft forever preferred_lft forever</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">letterCombinations</span><span class="params">(self, digits: str)</span> -&gt; List[str]:</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> digits: <span class="keyword">return</span> []</span><br><span class="line">        phone = &#123;</span><br><span class="line">            <span class="string">'2'</span>: <span class="string">'abc'</span>,</span><br><span class="line">            <span class="string">'3'</span>: <span class="string">'def'</span>,</span><br><span class="line">            <span class="string">'4'</span>: <span class="string">'ghi'</span>,</span><br><span class="line">            <span class="string">'5'</span>: <span class="string">'jkl'</span>,</span><br><span class="line">            <span class="string">'6'</span>: <span class="string">'mno'</span>,</span><br><span class="line">            <span class="string">'7'</span>: <span class="string">'pqrs'</span>,</span><br><span class="line">            <span class="string">'8'</span>: <span class="string">'tuv'</span>,</span><br><span class="line">            <span class="string">'9'</span>: <span class="string">'wxyz'</span>,</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">def</span> <span class="title">backtrack</span><span class="params">(combination, next_digits)</span>:</span></span><br><span class="line">            <span class="keyword">if</span> len(next_digits) == <span class="number">0</span>:</span><br><span class="line">                output.append(combination)</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                <span class="keyword">for</span> letter <span class="keyword">in</span> phone[next_digits[<span class="number">0</span>]]:</span><br><span class="line">                    backtrack(combination + letter, next_digits[<span class="number">1</span>:])</span><br><span class="line"></span><br><span class="line">        output = []</span><br><span class="line">        <span class="keyword">if</span> digits:</span><br><span class="line">            backtrack(<span class="string">""</span>, digits)</span><br><span class="line">        <span class="keyword">return</span> output</span><br></pre></td></tr></table></figure>
 
-<p>在 IP 地址的后面有个 scope，<strong>对于 eth0 这张网卡来讲，是 global，说明这张网卡是可以对外的，可以接收来自各个地方的包。对于 lo 来讲，是 host，说明这张网卡仅仅可以供本机相互通信。lo 全称是 loopback，又称环回接口，往往会被分配到 127.0.0.1 这个地址</strong>。这个地址用于本机通信，经过内核处理后直接返回，不会在任何网络中出现。</p>
-<p>这个命令显示了这台机器上所有的网卡。大部分的网卡都会有一个 IP 地址，当然，这不是必须的。<br><strong>IP 地址是一个网卡在网络世界的通讯地址，相当于我们现实世界的门牌号码</strong></p>
-<p>以前人们根本想不到会有这么多的计算机,所以ip地址总共就32位,也就是我们所说的ipv4,可是ipv4很快就别分配完了,于是就出现了ipv6。</p>
-<p>iPv4被分成了5类</p>
-<p><img src="https://s2.ax1x.com/2020/03/10/8PjYHP.jpg" alt="8PjYHP.jpg"></p>
-<p><img src="https://s2.ax1x.com/2020/03/10/8Pjsun.jpg" alt="8Pjsun.jpg"></p>
-<p>这里面有个尴尬的事情，就是 C 类地址能包含的最大主机数量实在太少了，只有 254 个。当时设计的时候恐怕没想到，现在估计一个网吧都不够用吧。而 B 类地址能包含的最大主机数量又太多了。6 万多台机器放在一个网络下面，一般的企业基本达不到这个规模，闲着的地址就是浪费。</p>
-<h3 id="3-3-无类型域间选路（CIDR）"><a href="#3-3-无类型域间选路（CIDR）" class="headerlink" title="3.3 无类型域间选路（CIDR）"></a>3.3 无类型域间选路（CIDR）</h3><blockquote>
-<p>无类型域间选路(CIDR)基本思想是取消地址的分类结构，取而代之的是允许以可变长分界的方式分配网络数。它支持路由聚合，可限制Internet主干路由器中必要路由信息的增长。“无类型”的意思是选路决策是基于整个32位IP地址的掩码操作。而不管其IP地址是A类、B类或是C类。这样能够将路由表中的许多表项归并(summarization)成更少的数目。</p>
-</blockquote>
-<ul>
-<li>伴随着 CIDR 存在的，一个是广播地址，10.100.122.255。如果发送这个地址，所有 10.100.122 网络里面的机器都可以收到。</li>
-<li>另一个是子网掩码，255.255.255.0。将子网掩码和 IP 地址进行 AND 计算。前面三个 255，转成二进制都是 1。1 和任何数值取 AND，都是原来数值，因而前三个数不变，为 10.100.122。后面一个 0，转换成二进制是 0，0 和任何数值取 AND，都是 0，因而最后一个数变为 0，合起来就是 10.100.122.0。这就是网络号。<strong>将子网掩码和 IP 地址按位计算 AND，就可得到网络号。</strong></li>
-</ul>
-<h3 id="3-4-公有-IP-地址和私有-IP-地址"><a href="#3-4-公有-IP-地址和私有-IP-地址" class="headerlink" title="3.4 公有 IP 地址和私有 IP 地址"></a>3.4 公有 IP 地址和私有 IP 地址</h3><p>上图中可以看到私有地址的范围,私有地址就是平时我们看到的数据中心里，办公室、家里或学校的 IP 地址，一般都是私有 IP 地址段。因为这些地址允许组织内部的 IT 人员自己管理、自己分配，而且可以重复。因此，你学校的某个私有 IP 地址段和我学校的可以是一样的。<br>就像你的小区有402号房间,我的小区也可以有402号房间,但是一旦出了小区,直接说402房间别人就找不到了。</p>
-<p>公有 IP 地址有个组织统一分配，你需要去买。如果你搭建一个网站，给你学校的人使用，让你们学校的 IT 人员给你一个 IP 地址就行。但是假如你要做一个类似网易 163 这样的网站，就需要有公有 IP 地址，这样全世界的人才能访问。</p>
-<h3 id="3-5-MAC地址"><a href="#3-5-MAC地址" class="headerlink" title="3.5 MAC地址"></a>3.5 MAC地址</h3><ul>
-<li>MAC 地址更像是身份证，是一个唯一的标识。它的唯一性设计是为了组网的时候，不同的网卡放在一个网络里面的时候，可以不用担心冲突。从硬件角度，保证不同的网卡有不同的标识。但是光有mac地址是不够的的，就像光知道你的身份证是很难找得到你的人的，还需要你现在的居住地址（相当于ip地址）</li>
-<li>MAC地址只有很小范围的定位功能，就像大家在一个房间里，这时候大喊这个人的身份证，就会有对应的人回复你。</li>
-<li>mac地址是唯一的，为什么可以修改?想想身份证，身份证号是唯一的，不能改变的，但是可以造价。mac地址全球唯一，它是固化在网卡里的。网卡毕竟是个硬件，需要软件支持，既操作系统识别。重点来了，操作系统识别出来的mac地址是可以更改的，它只不过是一个字符串。我们常说的修改mac指的是修改电脑中记录的既注册表中的记录。</li>
-<li>有了mac地址为什么还要有ip地址。举个例子，身份证号是你的唯一标识，不会重复，一落户就有（网卡一出厂就有mac）。现在我要和你通信（写信给你），地址用你的姓名+身份证，信能送到你手上吗?明显不能！身份证号前六位能定位你出生的县。mac地址前几位也可以定位生产厂家。但是你出生后会离开这个县（哪怕在这个县，也不能具体找到你）。所以一般写个人信息就要有出生地和现居地址了</li>
-</ul>
+<h3 id="复杂度分析"><a href="#复杂度分析" class="headerlink" title="复杂度分析"></a>复杂度分析</h3><p><strong>时间复杂度:</strong> O((3^N)*(4^M)),其中N为对应3个字母的数字,M为对应4个字母的数字。</p>
+<p><strong>空间复杂度：</strong>O((3^N)*(4^M))，每一个结果都需要保存。</p>
 <hr>
-<h2 id="4-DHCP与PXE：IP是怎么来的，又是怎么没的？"><a href="#4-DHCP与PXE：IP是怎么来的，又是怎么没的？" class="headerlink" title="4. DHCP与PXE：IP是怎么来的，又是怎么没的？"></a>4. DHCP与PXE：IP是怎么来的，又是怎么没的？</h2><h3 id="4-1-配置ip地址"><a href="#4-1-配置ip地址" class="headerlink" title="4.1 配置ip地址"></a>4.1 配置ip地址</h3><p><strong>使用 net-tools：</strong></p>
-<blockquote>
-<p>$ sudo ifconfig eth1 10.0.0.1/24<br>$ sudo ifconfig eth1 up</p>
+<h2 id="队列"><a href="#队列" class="headerlink" title="队列"></a>队列</h2><blockquote>
+<p>作者：z1m<br>链接：<a href="https://leetcode-cn.com/problems/letter-combinations-of-a-phone-number/solution/hui-su-dui-lie-tu-jie-by-ml-zimingmeng/" target="_blank" rel="noopener">https://leetcode-cn.com/problems/letter-combinations-of-a-phone-number/solution/hui-su-dui-lie-tu-jie-by-ml-zimingmeng/</a></p>
 </blockquote>
-<p><strong>使用 iproute2：</strong></p>
-<blockquote>
-<p>$ sudo ip addr add 10.0.0.1/24 dev eth1<br>$ sudo ip link set up eth1</p>
-</blockquote>
-<p>但是在手动配置ip地址时,不是自由的去配置的,要考虑很多因素,如两台电脑需要通信时,源IP 地址 16.158.23.6，目标 IP 地址 192.168.1.6,因为不是同一个网卡的话,<strong>Linux 默认的逻辑是，如果这是一个跨网段的调用，它便不会直接将包发送到网络上，而是企图将包发送到网关。</strong>需要经过多次网关才能达到,如果两台电脑是相邻的,如果直接配置成同一个网段的,直接发送ARP请求,节省很多资源.</p>
-<h3 id="4-2-动态主机配置协议（DHCP）"><a href="#4-2-动态主机配置协议（DHCP）" class="headerlink" title="4.2 动态主机配置协议（DHCP）"></a>4.2 动态主机配置协议（DHCP）</h3><blockquote>
-<p>概要<br>动态主机配置协议 (DHCP) 是由 RFC 1541（已被 RFC 2131 取代）定义的标准协议，允许服务器将 IP 地址和配置信息动态分发给客户端。正常情况下，DHCP 服务器至少会为客户端提供以下基本信息：</p>
-</blockquote>
-<ul>
-<li>IP 地址</li>
-<li>子网掩码</li>
-<li>默认网关</li>
-</ul>
-<p><strong>4.2.1 DHCP 的工作方式:</strong></p>
-<p><img src="https://s2.ax1x.com/2020/03/10/8iigEj.png" alt="8iigEj.png"></p>
-<p><img src="https://s2.ax1x.com/2020/03/10/8iiqa9.png" alt="8iiqa9.png"></p>
-<p><strong>这里第二步,如果有多个DHCP服务器,新的客户端会收到多个ip地址,一般选择第一个到来的,客户端仍然使用 0.0.0.0 为源 IP 地址、255.255.255.255 为目标地址进行广播。在 BOOTP 里面，接受某个 DHCP Server 的分配的 IP。</strong></p>
-<p><strong>4.2.2 IP 地址的收回和续</strong><br>客户机会在租期过去 50% 的时候，直接向为其提供 IP 地址的 DHCP Server 发送 DHCP request 消息包。客户机接收到该服务器回应的 DHCP ACK 消息包，会根据包中所提供的新的租期以及其他已经更新的 TCP/IP 参数，更新自己的配置。这样，IP 租用更新就完成了。</p>
-<h3 id="4-3-PXE-的工作过程"><a href="#4-3-PXE-的工作过程" class="headerlink" title="4.3 PXE 的工作过程"></a>4.3 PXE 的工作过程</h3><p>网络管理员不仅能自动分配 IP 地址，还能帮你自动安装操作系统！<br>我们安装操作系统的过程，只能插在 BIOS 启动之后了。因为没安装系统之前，连启动扇区都没有。因而这个过程叫做<strong>预启动执行环境（Pre-boot Execution Environment），简称 PXE。</strong>PXE 协议分为客户端和服务器端，由于还没有操作系统，只能先把客户端放在 BIOS 里面。当计算机启动时，BIOS 把 PXE 客户端调入内存里面，就可以连接到服务端做一些操作了。</p>
-<p><img src="https://s2.ax1x.com/2020/03/10/8ikq91.jpg" alt="8ikq91.jpg"></p>
-<h3 id="4-2-4-DCHP总结"><a href="#4-2-4-DCHP总结" class="headerlink" title="4.2.4 DCHP总结"></a>4.2.4 DCHP总结</h3><ol>
-<li><p>DHCP 协议主要是用来给客户租用 IP 地址，和房产中介很像，要商谈、签约、续租，广播还不能“抢单”</p>
-</li>
-<li><p>DHCP 协议能给客户推荐“装修队”PXE，能够安装操作系统，这个在云计算领域大有用处</p>
-</li>
-</ol>
-<h2 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h2><p><a href="https://www.cnblogs.com/hengzhezou/p/11073760.html" target="_blank" rel="noopener">动态主机配置协议DHCP</a></p>
-<p><a href="https://www.jianshu.com/p/6fff29bd42b3" target="_blank" rel="noopener">关于ifconfig与ip addr</a></p>
-<p>学习自极客时间 《趣谈网络协议》</p>
+<p>使用队列，先将输入的 digits 中第一个数字对应的每一个字母入队，然后将出队的元素与第二个数字对应的每一个字母组合后入队…直到遍历到 digits 的结尾。最后队列中的元素就是所求结果。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">letterCombinations</span><span class="params">(self, digits: str)</span> -&gt; List[str]:</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> digits: <span class="keyword">return</span> []</span><br><span class="line">        phone = &#123;</span><br><span class="line">            <span class="string">'2'</span>: <span class="string">'abc'</span>,</span><br><span class="line">            <span class="string">'3'</span>: <span class="string">'def'</span>,</span><br><span class="line">            <span class="string">'4'</span>: <span class="string">'ghi'</span>,</span><br><span class="line">            <span class="string">'5'</span>: <span class="string">'jkl'</span>,</span><br><span class="line">            <span class="string">'6'</span>: <span class="string">'mno'</span>,</span><br><span class="line">            <span class="string">'7'</span>: <span class="string">'pqrs'</span>,</span><br><span class="line">            <span class="string">'8'</span>: <span class="string">'tuv'</span>,</span><br><span class="line">            <span class="string">'9'</span>: <span class="string">'wxyz'</span>,</span><br><span class="line">            &#125;</span><br><span class="line">        queue = [<span class="string">''</span>]</span><br><span class="line">        <span class="keyword">for</span> digit <span class="keyword">in</span> digits:</span><br><span class="line">            <span class="keyword">for</span> _ <span class="keyword">in</span> range(len(queue)):</span><br><span class="line">                tmp = queue.pop(<span class="number">0</span>)</span><br><span class="line">                <span class="keyword">for</span> char <span class="keyword">in</span> phone[digit]:</span><br><span class="line">                    queue.append(tmp + char)</span><br><span class="line">        <span class="keyword">return</span> queue</span><br></pre></td></tr></table></figure>
+
+<h3 id="复杂度分析-1"><a href="#复杂度分析-1" class="headerlink" title="复杂度分析"></a>复杂度分析</h3><p><strong>时间复杂度:</strong> O((3^N)*(4^M)),其中N为对应3个字母的数字,M为对应4个字母的数字。</p>
+<p><strong>空间复杂度：</strong>O((3^N)*(4^M))，每一个结果都需要保存。</p>
 
     </article>
     <!-- license  -->
     
         <div class="license-wrapper">
             <p>Author：<a href="https://liangweijiang.github.io">liangweijiang</a>
-            <p>原文链接：<a href="https://liangweijiang.github.io/2020/03/10/NetworkProtocol-01/">https://liangweijiang.github.io/2020/03/10/NetworkProtocol-01/</a>
-            <p>发表日期：<a href="https://liangweijiang.github.io/2020/03/10/NetworkProtocol-01/">March 10th 2020, 4:56:43 pm</a>
-            <p>更新日期：<a href="https://liangweijiang.github.io/2020/03/10/NetworkProtocol-01/">March 20th 2020, 3:59:32 pm</a>
+            <p>原文链接：<a href="https://liangweijiang.github.io/2020/03/25/algorithm-17/">https://liangweijiang.github.io/2020/03/25/algorithm-17/</a>
+            <p>发表日期：<a href="https://liangweijiang.github.io/2020/03/25/algorithm-17/">March 25th 2020, 2:32:46 pm</a>
+            <p>更新日期：<a href="https://liangweijiang.github.io/2020/03/25/algorithm-17/">March 25th 2020, 2:33:35 pm</a>
             <p>版权声明：本文采用<a rel="license noopener" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
         </div>
     
@@ -516,17 +444,12 @@ height:50vh;
     <ul class="post-paginator">
         <li class="next">
             
-                <div class="nextSlogan">Next Post</div>
-                <a href= "/2020/03/11/algorithm-153/" title= "每日一道算法之--寻找旋转排序数组中的最小值">
-                    <div class="nextTitle">每日一道算法之--寻找旋转排序数组中的最小值</div>
-                </a>
-            
         </li>
         <li class="previous">
             
                 <div class="prevSlogan">Previous Post</div>
-                <a href= "/2020/03/09/algorithm-Interview-03/" title= "每日一道算法之--数组中的重复数字">
-                    <div class="prevTitle">每日一道算法之--数组中的重复数字</div>
+                <a href= "/2020/03/23/Interview-experience/" title= "头条一面凉经">
+                    <div class="prevTitle">头条一面凉经</div>
                 </a>
             
         </li>
@@ -640,7 +563,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#通信协议的综述"><span class="toc-number">1.</span> <span class="toc-text">通信协议的综述</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-为什么要学习网络协议"><span class="toc-number">1.1.</span> <span class="toc-text">1. 为什么要学习网络协议?</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-协议的三要素"><span class="toc-number">1.1.1.</span> <span class="toc-text">1.1 协议的三要素</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-HTTP协议的格式"><span class="toc-number">1.1.2.</span> <span class="toc-text">1.2 HTTP协议的格式</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-3-网络协议的种类"><span class="toc-number">1.2.</span> <span class="toc-text">1.3 网络协议的种类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-网络分层的真实含义是什么？"><span class="toc-number">1.3.</span> <span class="toc-text">2. 网络分层的真实含义是什么？</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-网络为什么要分层？"><span class="toc-number">1.3.1.</span> <span class="toc-text">2.1 网络为什么要分层？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-程序是如何工作的？"><span class="toc-number">1.3.2.</span> <span class="toc-text">2.3 程序是如何工作的？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-层与层之间联系"><span class="toc-number">1.3.3.</span> <span class="toc-text">2.3 层与层之间联系</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-ifconfig：最熟悉又陌生的命令行"><span class="toc-number">1.4.</span> <span class="toc-text">3. ifconfig：最熟悉又陌生的命令行</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-ifconfig-和-ip-addr-的区别"><span class="toc-number">1.4.1.</span> <span class="toc-text">3.1 ifconfig 和 ip addr 的区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-ip地址的分类"><span class="toc-number">1.4.2.</span> <span class="toc-text">3.2 ip地址的分类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-无类型域间选路（CIDR）"><span class="toc-number">1.4.3.</span> <span class="toc-text">3.3 无类型域间选路（CIDR）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-4-公有-IP-地址和私有-IP-地址"><span class="toc-number">1.4.4.</span> <span class="toc-text">3.4 公有 IP 地址和私有 IP 地址</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-5-MAC地址"><span class="toc-number">1.4.5.</span> <span class="toc-text">3.5 MAC地址</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-DHCP与PXE：IP是怎么来的，又是怎么没的？"><span class="toc-number">1.5.</span> <span class="toc-text">4. DHCP与PXE：IP是怎么来的，又是怎么没的？</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-配置ip地址"><span class="toc-number">1.5.1.</span> <span class="toc-text">4.1 配置ip地址</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-动态主机配置协议（DHCP）"><span class="toc-number">1.5.2.</span> <span class="toc-text">4.2 动态主机配置协议（DHCP）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-PXE-的工作过程"><span class="toc-number">1.5.3.</span> <span class="toc-text">4.3 PXE 的工作过程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-4-DCHP总结"><span class="toc-number">1.5.4.</span> <span class="toc-text">4.2.4 DCHP总结</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考文章"><span class="toc-number">1.6.</span> <span class="toc-text">参考文章</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#电话号码的字母组合"><span class="toc-number">1.</span> <span class="toc-text">电话号码的字母组合</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-回溯"><span class="toc-number">1.1.</span> <span class="toc-text">1. 回溯</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#复杂度分析"><span class="toc-number">1.1.1.</span> <span class="toc-text">复杂度分析</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#队列"><span class="toc-number">1.2.</span> <span class="toc-text">队列</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#复杂度分析-1"><span class="toc-number">1.2.1.</span> <span class="toc-text">复杂度分析</span></a></li></ol></li></ol></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
