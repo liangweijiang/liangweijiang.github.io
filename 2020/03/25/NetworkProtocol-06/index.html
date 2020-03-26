@@ -272,7 +272,7 @@ height:50vh;
                 
                 
                     <div class="post-intro-read">
-                        <span>Word count: <span class="post-count word-count">3.7k</span>Reading time: <span class="post-count reading-time">12 min</span></span>
+                        <span>Word count: <span class="post-count word-count">6.4k</span>Reading time: <span class="post-count reading-time">22 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
@@ -404,7 +404,7 @@ height:50vh;
         <blockquote>
 <p>学习自极客时间《趣谈网络协议》 作者：刘超</p>
 </blockquote>
-<h1 id="最常用的运用层-上"><a href="#最常用的运用层-上" class="headerlink" title="最常用的运用层(上)"></a>最常用的运用层(上)</h1><h2 id="HTTP协议"><a href="#HTTP协议" class="headerlink" title="HTTP协议"></a>HTTP协议</h2><h3 id="一-HTTP-请求的准备"><a href="#一-HTTP-请求的准备" class="headerlink" title="一. HTTP 请求的准备"></a>一. HTTP 请求的准备</h3><p>我们在浏览器上输入的网址,比如<a href="https://www.baidu.com/" target="_blank" rel="noopener">https://www.baidu.com/</a>, 就是一个URL,也叫做统一资源定位符。之所以叫统一，是因为它是有格式的。HTTP 称为协议，<a href="http://www.baidu.com" target="_blank" rel="noopener">www.baidu.com</a> 是一个域名，表示互联网上的一个位置。<strong>正是因为这个东西是统一的，所以当你把这样一个字符串输入到浏览器的框里的时候，浏览器才知道如何进行统一处理。</strong></p>
+<h1 id="最常用的运用层-上"><a href="#最常用的运用层-上" class="headerlink" title="最常用的运用层(上)"></a>最常用的运用层(上)</h1><h2 id="1-HTTP协议"><a href="#1-HTTP协议" class="headerlink" title="1. HTTP协议"></a>1. HTTP协议</h2><h3 id="一-HTTP-请求的准备"><a href="#一-HTTP-请求的准备" class="headerlink" title="一. HTTP 请求的准备"></a>一. HTTP 请求的准备</h3><p>我们在浏览器上输入的网址,比如<a href="https://www.baidu.com/" target="_blank" rel="noopener">https://www.baidu.com/</a>, 就是一个URL,也叫做统一资源定位符。之所以叫统一，是因为它是有格式的。HTTP 称为协议，<a href="http://www.baidu.com" target="_blank" rel="noopener">www.baidu.com</a> 是一个域名，表示互联网上的一个位置。<strong>正是因为这个东西是统一的，所以当你把这样一个字符串输入到浏览器的框里的时候，浏览器才知道如何进行统一处理。</strong></p>
 <p>浏览器将域名发送给DNS服务器,然后DNS将域名解析为IP地址,HTTP 是基于 TCP 协议的，先建立 TCP 连接,<strong>目前使用的 HTTP 协议大部分都是 1.1。在 1.1 的协议里面，默认是开启了 Keep-Alive 的，这样建立的 TCP 连接，就可以在多次请求中复用。</strong></p>
 <h3 id="二-HTTP-请求的构建"><a href="#二-HTTP-请求的构建" class="headerlink" title="二. HTTP 请求的构建"></a>二. HTTP 请求的构建</h3><p>建立了连接后,就可以发送http请求。<br>请求的格式如下：</p>
 <p><img src="https://s1.ax1x.com/2020/03/25/8vApqO.png" alt="8vApqO.png"></p>
@@ -499,6 +499,58 @@ height:50vh;
 <p><strong>QUIC 的 ACK 是基于 offset 的，每个 offset 的包来了，进了缓存，就可以应答，应答后就不会重发，中间的空挡会等待到来或者重发即可，</strong>而窗口的起始位置为当前收到的最大 offset，从这个 offset 到当前的 stream 所能容纳的最大缓存，是真正的窗口大小。显然，这样更加准确。</p>
 <p><img src="https://s1.ax1x.com/2020/03/25/8v45pq.png" alt="8v45pq.png"></p>
 <p>详细的可以上网或者看看文档啥的。。。</p>
+<hr>
+<h2 id="4-HTTPS-协议"><a href="#4-HTTPS-协议" class="headerlink" title="4. HTTPS 协议"></a>4. HTTPS 协议</h2><h3 id="一-什么是-HTTPS"><a href="#一-什么是-HTTPS" class="headerlink" title="一. 什么是 HTTPS?"></a>一. 什么是 HTTPS?</h3><p>HTTPS协议 = HTTP协议 + SSL/TLS协议，在HTTPS数据传输的过程中，需要用SSL/TLS对数据进行加密和解密，需要用HTTP对加密后的数据进行传输，由此可以看出HTTPS是由HTTP和SSL/TLS一起合作完成的。</p>
+<p><img src="https://s1.ax1x.com/2020/03/26/GpbGxe.png" alt="GpbGxe.png"></p>
+<ul>
+<li><strong>SSL的全称是Secure Sockets Layer，即安全套接层协议，</strong>是为网络通信提供安全及数据完整性的一种安全协议。SSL协议在1994年被Netscape发明，后来各个浏览器均支持SSL，其最新的版本是3.0</li>
+<li><strong>TLS的全称是Transport Layer Security，即安全传输层协议，</strong>最新版本的TLS（Transport Layer Security，传输层安全协议）是IETF（Internet Engineering Task Force，Internet工程任务组）制定的一种新的协议，它建立在SSL 3.0协议规范之上，是SSL 3.0的后续版本。在TLS与SSL3.0之间存在着显著的差别，主要是它们所支持的加密算法不同，所以TLS与SSL3.0不能互操作。</li>
+</ul>
+<h3 id="二-加密算法"><a href="#二-加密算法" class="headerlink" title="二. 加密算法"></a>二. 加密算法</h3><p>** 1、 对称加密**</p>
+<ul>
+<li>对称加密又叫做私钥加密，即信息的发送方和接收方使用<strong>同一个密钥去加密和解密数据。</strong>对称加密的特点是算法公开、加密和解密速度快，适合于对大数据量进行加密，常见的对称加密算法有DES、3DES、TDEA、Blowfish、RC5和IDEA。</li>
+<li>对称加密中用到的密钥叫做私钥，私钥表示个人私有的密钥，即该密钥不能被泄露。所以该密钥不能直接在网络上传输。</li>
+</ul>
+<p>** 2、 非对称加密**</p>
+<ul>
+<li>对称加密的通信双方使用相同的密钥，如果一方的密钥遭泄露，那么整个通信就会被破解。而非对称加密使用一对密钥，即公钥和私钥，且二者成对出现。私钥被自己保存，不能对外泄露。公钥指的是公共的密钥，任何人都可以获得该密钥。用公钥或私钥中的任何一个进行加密，用另一个进行</li>
+<li>由于加密和解密使用了两个不同的密钥，这就是非对称加密“非对称”的原因。非对称加密的缺点是加密和解密花费时间长、速度慢，只适合对少量数据进行加密。</li>
+</ul>
+<h3 id="三-数字证书"><a href="#三-数字证书" class="headerlink" title="三. 数字证书"></a>三. 数字证书</h3><p>不对称加密也会有同样的问题，如何将不对称加密的公钥给对方呢？一种是放在一个公网的地址上，让对方下载；另一种就是在建立连接的时候，传给对方。</p>
+<p>怎么鉴别别人给你的公钥是对的。会不会有人冒充网站，发给你一个它的公钥。接下来，你和它所有的互通，看起来都是没有任何问题的。毕竟每个人都可以创建自己的公钥和私钥。这时候就需要权威的机构来保证公钥的真实性了，也就是权威机构颁发证书<strong>。这个权威机构称为CA（ Certificate Authority）</strong>。</p>
+<p><strong>1、 数字签名算法</strong><br>我们现实生活中比如派出所给你开一个证明的时候，也会给你盖上一个章或者签名，从而保证证明的真实性。数字证书也一样，要保证证书的真实性，就要有权威机构的签名，称为<strong>数字签名</strong>。数字签名的算法就叫做<strong>签名算法</strong>。</p>
+<blockquote>
+<p><strong>数字签名</strong>是使用数字证书与信息加密技术、用于鉴别电子数据信息的技术，可通俗理解为加盖在电子文件上的“数字指纹”。<br><strong>数字证书</strong>是由权威公证的第三方认证机构（即CA，Certificate Authority）负责签发和管理的、个人或企业的网络数字身份证明。</p>
+</blockquote>
+<p>要怎么签名才能保证是真的权威机构签名的呢？当然只有用只掌握在权威机构手里的东西签名了才行，这就是 CA 的私钥。</p>
+<p><strong>签名算法大概是这样工作的：一般是对信息做一个 Hash 计算，得到一个 Hash 值，这个过程是不可逆的，也就是说无法通过 Hash 值得出原来的信息内容。在把信息发送出去时，把这个 Hash 值加密后，作为一个签名和信息一起发出去。</strong></p>
+<p>要想验证证书，需要 CA 的公钥，问题是，你怎么确定 CA 的公钥就是对的呢？<br>所以，CA 的公钥也需要更牛的 CA 给它签名，然后形成 CA 的证书。要想知道某个 CA 的证书是否可靠，要看 CA 的上级证书的公钥，能不能解开这个 CA 的签名。就像你不相信区公安局，可以打电话问市公安局，让市公安局确认区公安局的合法性。这样层层上去，直到全球皆知的几个著名大 CA，称为 <strong>root CA，</strong>做最后的背书。通过这种层层授信背书的方式，从而保证了非对称加密模式的正常运转。除此之外，<strong>还有一种证书，称为 Self-Signed Certificate，就是自己给自己签名。这个给人一种“我就是我，你爱信不信”的感觉。</strong></p>
+<h3 id="四-HTTPS-的工作模式"><a href="#四-HTTPS-的工作模式" class="headerlink" title="四. HTTPS 的工作模式"></a>四. HTTPS 的工作模式</h3><p>HTTPS单向认证（客户端认证服务端）流程(<strong>一共产生了三个随机数</strong>)：</p>
+<ol>
+<li>c-&gt;s,客户端发起加密通信请求，这个请求通常叫做 ClientHello请求，告知自己支持的协议版本号，加密算法，压缩算法，以及一个用于生成后续通信密钥的随机数；</li>
+<li>s-&gt;c,服务端响应，也叫作 ServerHello，确认加密通信协议，加密算法，以及一个用于生成后续通信密钥的随机数，还有网站证书；</li>
+<li>c-&gt;s,客户端在收到上一步服务端的响应之后，首先会检查证书的颁发者是否可信任，是否过期，域名是否一致，并且从操作系统的证书链中找出该证书的上一级证书（寻找授信的CA的过程是不断往上追溯的），并拿出服务端证书的公钥，然后验证签名和hash，如果验证失败，就会显示警告，我们经常在Chrome里面看到，“此网站有风险，是否继续什么的”。如果验证通过，客户端会向服务端发送一个称作 “pre-master-key” 的随机数，该随机数使用证书的公钥加密，以及编码改变通知（以后就用协商的密钥堆成加密通信了），客户端完成握手。</li>
+<li>服务端在收到上一步客户端请求之后，也会确认我以后发给你的信息是加密的，并且完成握手。</li>
+</ol>
+<p><strong>此时，客户端有第一步自己生成的随机数，第二步收到服务端的随机数，第三步的 pre-master-key，服务端也是如此，他们就可以用这三个随机数使用约定的算法生成同一个会话密钥(session key )来加密以后的通信数据了。</strong></p>
+<p>上面的过程只包含了 HTTPS 的单向认证，也即客户端验证服务端的证书，是大部分的场景，也可以在更加严格安全要求的情况下，启用双向认证，双方互相验证证书。</p>
+<p><img src="https://s1.ax1x.com/2020/03/26/GpvrR0.jpg" alt="GpvrR0.jpg"></p>
+<blockquote>
+<p>SSL协议在握手阶段使用的是非对称加密，在传输阶段使用的是对称加密，也就是说在SSL上传送的数据是使用对称密钥加密的。<br>因为非对称加密的速度缓慢，耗费资源。其实当客户端和主机使用非对称加密方式建立连接后，客户端和主机已经决定好了在传输过程使用的对称加密算法和关键的对称加密密钥，由于这个过程本身是安全可靠的，也即对称加密密钥是不可能被窃取盗用的，<strong>因此，保证了在传输过程中对数据进行对称加密也是安全可靠的，因为除了客户端和主机之外，不可能有第三方窃取并解密出对称加密密钥！如果有人窃听通信，他可以知道双方选择的加密方法，以及三个随机数中的两个。整个通话的安全，只取决于第三个随机数（pre-master secret）能不能被破解。</strong></p>
+</blockquote>
+<blockquote>
+<p><strong>HTTPS的单向认证和双向认证</strong><br>单向认证：<br>(1). 客户端保存着服务器端的证书并信任该证书即可<br>(2). HTTPS一般是单向认证，这样可以让绝大部分人都访问你的站点<br>双向认证：<br>(1). 先决条件是有两个或两个以上的证书，一个是服务器端证书，另一个或多个是客户端证书<br>(2). 服务器端保存着客户端的证书并信任该证书，客户端保存着服务器端的证书并信任该证书。这样，成功的情况下即可完成请求响应<br>(3). 双向认证一般企业应用对接</p>
+</blockquote>
+<h3 id="五-重放与篡改"><a href="#五-重放与篡改" class="headerlink" title="五. 重放与篡改"></a>五. 重放与篡改</h3><p>有了加密和解密，黑客截获了包也打不开了，但是它可以发送 N 次。这个往往<strong>通过 Timestamp 和 Nonce 随机数联合起来，然后做一个不可逆的签名来保证。</strong></p>
+<p>Nonce 随机数保证唯一，或者 Timestamp 和 Nonce 合起来保证唯一，同样的，请求只接受一次，于是服务器多次受到相同的 Timestamp 和 Nonce，则视为无效即可。<br>如果有人想篡改 Timestamp 和 Nonce，还有签名保证不可篡改性，如果改了用签名算法解出来，就对不上了，可以丢弃了。</p>
+<h3 id="问题思考"><a href="#问题思考" class="headerlink" title="问题思考"></a>问题思考</h3><p>HTTPS 协议比较复杂，沟通过程太繁复，这样会导致效率问题，有哪些优化方法？</p>
+<ul>
+<li><strong>CDN接入</strong><br>HTTPS增加的延时主要是传输延时RTT，RTT的特点是节点越近延时越少，CDN天然离用户最近，因此选择CDN作为HTTPS的接入口，能极大减少延时。</li>
+<li><strong>会话缓存</strong><br>利用会话缓存从而复用连接，基于会话缓存建立的HTTPS连接不需要服务器使用私钥解密获取Pre-master信息，可以省掉CPU的消耗。</li>
+<li><strong>硬件加速</strong><br>为接入服务器安装专用的SSL硬件加速卡。</li>
+<li><strong>远程解密</strong><br>本地接入消耗过多的CPU资源，考虑将最消耗CPU资源的RSA解密计算任务转移到其他服务器。</li>
+<li><strong>SPDY/HTTP2</strong><br>这个是通过修改协议本身，利用TLS/SSL带来的优势，来提升HTTPS的性能。</li>
+</ul>
 
     </article>
     <!-- license  -->
@@ -507,7 +559,7 @@ height:50vh;
             <p>Author：<a href="https://liangweijiang.github.io">liangweijiang</a>
             <p>原文链接：<a href="https://liangweijiang.github.io/2020/03/25/NetworkProtocol-06/">https://liangweijiang.github.io/2020/03/25/NetworkProtocol-06/</a>
             <p>发表日期：<a href="https://liangweijiang.github.io/2020/03/25/NetworkProtocol-06/">March 25th 2020, 8:15:04 pm</a>
-            <p>更新日期：<a href="https://liangweijiang.github.io/2020/03/25/NetworkProtocol-06/">March 26th 2020, 9:13:19 pm</a>
+            <p>更新日期：<a href="https://liangweijiang.github.io/2020/03/25/NetworkProtocol-06/">March 26th 2020, 9:18:52 pm</a>
             <p>版权声明：本文采用<a rel="license noopener" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
         </div>
     
@@ -639,7 +691,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#最常用的运用层-上"><span class="toc-number">1.</span> <span class="toc-text">最常用的运用层(上)</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#HTTP协议"><span class="toc-number">1.1.</span> <span class="toc-text">HTTP协议</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#一-HTTP-请求的准备"><span class="toc-number">1.1.1.</span> <span class="toc-text">一. HTTP 请求的准备</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#二-HTTP-请求的构建"><span class="toc-number">1.1.2.</span> <span class="toc-text">二. HTTP 请求的构建</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#三-HTTP-请求的发送"><span class="toc-number">1.1.3.</span> <span class="toc-text">三. HTTP 请求的发送</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#四-HTTP-返回的构建"><span class="toc-number">1.1.4.</span> <span class="toc-text">四. HTTP 返回的构建</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-HTTP-2-0"><span class="toc-number">1.2.</span> <span class="toc-text">2. HTTP 2.0</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-QUIC-协议"><span class="toc-number">1.3.</span> <span class="toc-text">3. QUIC 协议</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#机制一-自定义连接机制"><span class="toc-number">1.3.1.</span> <span class="toc-text">机制一. 自定义连接机制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#机制二-自定义重传机制"><span class="toc-number">1.3.2.</span> <span class="toc-text">机制二. 自定义重传机制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#机制三-无阻塞的多路复用"><span class="toc-number">1.3.3.</span> <span class="toc-text">机制三. 无阻塞的多路复用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#机制四-自定义流量控制"><span class="toc-number">1.3.4.</span> <span class="toc-text">机制四. 自定义流量控制</span></a></li></ol></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#最常用的运用层-上"><span class="toc-number">1.</span> <span class="toc-text">最常用的运用层(上)</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-HTTP协议"><span class="toc-number">1.1.</span> <span class="toc-text">1. HTTP协议</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#一-HTTP-请求的准备"><span class="toc-number">1.1.1.</span> <span class="toc-text">一. HTTP 请求的准备</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#二-HTTP-请求的构建"><span class="toc-number">1.1.2.</span> <span class="toc-text">二. HTTP 请求的构建</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#三-HTTP-请求的发送"><span class="toc-number">1.1.3.</span> <span class="toc-text">三. HTTP 请求的发送</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#四-HTTP-返回的构建"><span class="toc-number">1.1.4.</span> <span class="toc-text">四. HTTP 返回的构建</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-HTTP-2-0"><span class="toc-number">1.2.</span> <span class="toc-text">2. HTTP 2.0</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-QUIC-协议"><span class="toc-number">1.3.</span> <span class="toc-text">3. QUIC 协议</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#机制一-自定义连接机制"><span class="toc-number">1.3.1.</span> <span class="toc-text">机制一. 自定义连接机制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#机制二-自定义重传机制"><span class="toc-number">1.3.2.</span> <span class="toc-text">机制二. 自定义重传机制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#机制三-无阻塞的多路复用"><span class="toc-number">1.3.3.</span> <span class="toc-text">机制三. 无阻塞的多路复用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#机制四-自定义流量控制"><span class="toc-number">1.3.4.</span> <span class="toc-text">机制四. 自定义流量控制</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-HTTPS-协议"><span class="toc-number">1.4.</span> <span class="toc-text">4. HTTPS 协议</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#一-什么是-HTTPS"><span class="toc-number">1.4.1.</span> <span class="toc-text">一. 什么是 HTTPS?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#二-加密算法"><span class="toc-number">1.4.2.</span> <span class="toc-text">二. 加密算法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#三-数字证书"><span class="toc-number">1.4.3.</span> <span class="toc-text">三. 数字证书</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#四-HTTPS-的工作模式"><span class="toc-number">1.4.4.</span> <span class="toc-text">四. HTTPS 的工作模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#五-重放与篡改"><span class="toc-number">1.4.5.</span> <span class="toc-text">五. 重放与篡改</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#问题思考"><span class="toc-number">1.4.6.</span> <span class="toc-text">问题思考</span></a></li></ol></li></ol></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
@@ -1690,7 +1742,7 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href= "/2020/03/26/NetworkProtocol-07/" >《趣谈网络协议》学习笔记之--最常用的运用层(中)</a>
+            <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href= "/2020/03/26/NetworkProtocol-07/" >NetworkProtocol-07</a>
         </li>
     
     </div>
