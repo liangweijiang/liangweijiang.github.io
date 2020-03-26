@@ -272,7 +272,7 @@ height:50vh;
                 
                 
                     <div class="post-intro-read">
-                        <span>Word count: <span class="post-count word-count">3.7k</span>Reading time: <span class="post-count reading-time">13 min</span></span>
+                        <span>Word count: <span class="post-count word-count">3.7k</span>Reading time: <span class="post-count reading-time">12 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
@@ -404,7 +404,7 @@ height:50vh;
         <blockquote>
 <p>学习自极客时间《趣谈网络协议》 作者：刘超</p>
 </blockquote>
-<h1 id="最常用的运用层"><a href="#最常用的运用层" class="headerlink" title="最常用的运用层"></a>最常用的运用层</h1><h2 id="1-HTTP协议"><a href="#1-HTTP协议" class="headerlink" title="1.  HTTP协议"></a>1.  HTTP协议</h2><h3 id="一-HTTP-请求的准备"><a href="#一-HTTP-请求的准备" class="headerlink" title="一. HTTP 请求的准备"></a>一. HTTP 请求的准备</h3><p>我们在浏览器上输入的网址,比如<a href="https://www.baidu.com/" target="_blank" rel="noopener">https://www.baidu.com/</a>, 就是一个URL,也叫做统一资源定位符。之所以叫统一，是因为它是有格式的。HTTP 称为协议，<a href="http://www.baidu.com" target="_blank" rel="noopener">www.baidu.com</a> 是一个域名，表示互联网上的一个位置。<strong>正是因为这个东西是统一的，所以当你把这样一个字符串输入到浏览器的框里的时候，浏览器才知道如何进行统一处理。</strong></p>
+<h1 id="最常用的运用层-上"><a href="#最常用的运用层-上" class="headerlink" title="最常用的运用层(上)"></a>最常用的运用层(上)</h1><h2 id="HTTP协议"><a href="#HTTP协议" class="headerlink" title="HTTP协议"></a>HTTP协议</h2><h3 id="一-HTTP-请求的准备"><a href="#一-HTTP-请求的准备" class="headerlink" title="一. HTTP 请求的准备"></a>一. HTTP 请求的准备</h3><p>我们在浏览器上输入的网址,比如<a href="https://www.baidu.com/" target="_blank" rel="noopener">https://www.baidu.com/</a>, 就是一个URL,也叫做统一资源定位符。之所以叫统一，是因为它是有格式的。HTTP 称为协议，<a href="http://www.baidu.com" target="_blank" rel="noopener">www.baidu.com</a> 是一个域名，表示互联网上的一个位置。<strong>正是因为这个东西是统一的，所以当你把这样一个字符串输入到浏览器的框里的时候，浏览器才知道如何进行统一处理。</strong></p>
 <p>浏览器将域名发送给DNS服务器,然后DNS将域名解析为IP地址,HTTP 是基于 TCP 协议的，先建立 TCP 连接,<strong>目前使用的 HTTP 协议大部分都是 1.1。在 1.1 的协议里面，默认是开启了 Keep-Alive 的，这样建立的 TCP 连接，就可以在多次请求中复用。</strong></p>
 <h3 id="二-HTTP-请求的构建"><a href="#二-HTTP-请求的构建" class="headerlink" title="二. HTTP 请求的构建"></a>二. HTTP 请求的构建</h3><p>建立了连接后,就可以发送http请求。<br>请求的格式如下：</p>
 <p><img src="https://s1.ax1x.com/2020/03/25/8vApqO.png" alt="8vApqO.png"></p>
@@ -435,7 +435,7 @@ height:50vh;
 <li><strong>减少相应延迟：</strong>因为请求从缓存服务器（离客户端更近）而不是源服务器被相应，这个过程耗时更少，让web服务器看上去相应更快；</li>
 <li><strong>减少网络带宽消耗：</strong>当副本被重用时会减低客户端的带宽消耗；客户可以节省带宽费用，控制带宽的需求的增长并更易于管理。</li>
 </ul>
-<p>对于这种高并发场景下的系统，在真正的业务逻辑之前，都需要有个接入层，将这些静态资源的请求拦在最外面</p>
+<p>对于这种高并发场景下的系统，在真正的业务逻辑之前，都需要有个接入层，将这些静态资源的请求拦在最外面。</p>
 <p><img src="https://s1.ax1x.com/2020/03/25/8vmzQA.png" alt="8vmzQA.png"></p>
 <p>参考文献: <a href="https://zhuanlan.zhihu.com/p/90507417" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/90507417</a></p>
 <h3 id="三-HTTP-请求的发送"><a href="#三-HTTP-请求的发送" class="headerlink" title="三. HTTP 请求的发送"></a>三. HTTP 请求的发送</h3><p><strong>HTTP 协议是基于 TCP 协议的，所以它使用面向连接的方式发送请求，通过 stream 二进制流的方式传给对方。当然，到了 TCP 层，它会把二进制流变成一个个报文段发送给服务器。</strong></p>
@@ -449,12 +449,10 @@ height:50vh;
 <p><img src="https://s1.ax1x.com/2020/03/25/8vMKeI.png" alt="8vMKeI.png"></p>
 <p><strong>(1) 状态行</strong></p>
 <ul>
-<li><p>版本: HTTP协议的版本号</p>
-</li>
-<li><p>状态码:</p>
-<p><img src="https://s1.ax1x.com/2020/03/25/8vQhuj.png" alt="8vQhuj.png"></p>
-</li>
+<li>版本: HTTP协议的版本号</li>
+<li>状态码:</li>
 </ul>
+<p><img src="https://s1.ax1x.com/2020/03/26/G9CYMq.png" alt="G9CYMq.png"></p>
 <p><strong>（2）首部</strong></p>
 <ul>
 <li><strong>Retry-After：</strong> 告诉客户端应该在多长时间以后再次尝试一下。“503 错误”是说“服务暂时不再和这个值配合使用”。</li>
@@ -509,7 +507,7 @@ height:50vh;
             <p>Author：<a href="https://liangweijiang.github.io">liangweijiang</a>
             <p>原文链接：<a href="https://liangweijiang.github.io/2020/03/25/NetworkProtocol-06/">https://liangweijiang.github.io/2020/03/25/NetworkProtocol-06/</a>
             <p>发表日期：<a href="https://liangweijiang.github.io/2020/03/25/NetworkProtocol-06/">March 25th 2020, 8:15:04 pm</a>
-            <p>更新日期：<a href="https://liangweijiang.github.io/2020/03/25/NetworkProtocol-06/">March 25th 2020, 9:35:31 pm</a>
+            <p>更新日期：<a href="https://liangweijiang.github.io/2020/03/25/NetworkProtocol-06/">March 26th 2020, 9:13:19 pm</a>
             <p>版权声明：本文采用<a rel="license noopener" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
         </div>
     
@@ -641,7 +639,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#最常用的运用层"><span class="toc-number">1.</span> <span class="toc-text">最常用的运用层</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-HTTP协议"><span class="toc-number">1.1.</span> <span class="toc-text">1.  HTTP协议</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#一-HTTP-请求的准备"><span class="toc-number">1.1.1.</span> <span class="toc-text">一. HTTP 请求的准备</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#二-HTTP-请求的构建"><span class="toc-number">1.1.2.</span> <span class="toc-text">二. HTTP 请求的构建</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#三-HTTP-请求的发送"><span class="toc-number">1.1.3.</span> <span class="toc-text">三. HTTP 请求的发送</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#四-HTTP-返回的构建"><span class="toc-number">1.1.4.</span> <span class="toc-text">四. HTTP 返回的构建</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-HTTP-2-0"><span class="toc-number">1.2.</span> <span class="toc-text">2. HTTP 2.0</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-QUIC-协议"><span class="toc-number">1.3.</span> <span class="toc-text">3. QUIC 协议</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#机制一-自定义连接机制"><span class="toc-number">1.3.1.</span> <span class="toc-text">机制一. 自定义连接机制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#机制二-自定义重传机制"><span class="toc-number">1.3.2.</span> <span class="toc-text">机制二. 自定义重传机制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#机制三-无阻塞的多路复用"><span class="toc-number">1.3.3.</span> <span class="toc-text">机制三. 无阻塞的多路复用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#机制四-自定义流量控制"><span class="toc-number">1.3.4.</span> <span class="toc-text">机制四. 自定义流量控制</span></a></li></ol></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#最常用的运用层-上"><span class="toc-number">1.</span> <span class="toc-text">最常用的运用层(上)</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#HTTP协议"><span class="toc-number">1.1.</span> <span class="toc-text">HTTP协议</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#一-HTTP-请求的准备"><span class="toc-number">1.1.1.</span> <span class="toc-text">一. HTTP 请求的准备</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#二-HTTP-请求的构建"><span class="toc-number">1.1.2.</span> <span class="toc-text">二. HTTP 请求的构建</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#三-HTTP-请求的发送"><span class="toc-number">1.1.3.</span> <span class="toc-text">三. HTTP 请求的发送</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#四-HTTP-返回的构建"><span class="toc-number">1.1.4.</span> <span class="toc-text">四. HTTP 返回的构建</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-HTTP-2-0"><span class="toc-number">1.2.</span> <span class="toc-text">2. HTTP 2.0</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-QUIC-协议"><span class="toc-number">1.3.</span> <span class="toc-text">3. QUIC 协议</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#机制一-自定义连接机制"><span class="toc-number">1.3.1.</span> <span class="toc-text">机制一. 自定义连接机制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#机制二-自定义重传机制"><span class="toc-number">1.3.2.</span> <span class="toc-text">机制二. 自定义重传机制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#机制三-无阻塞的多路复用"><span class="toc-number">1.3.3.</span> <span class="toc-text">机制三. 无阻塞的多路复用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#机制四-自定义流量控制"><span class="toc-number">1.3.4.</span> <span class="toc-text">机制四. 自定义流量控制</span></a></li></ol></li></ol></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
@@ -1219,9 +1217,24 @@ top:50vh;
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 43
+        Total : 44
         </div>
         <!-- search  -->
         
@@ -1664,6 +1677,20 @@ top:50vh;
     
         <li class="archive-post-item">
             <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href= "/2020/03/26/data-structure-03/" >数据结构学习笔记---栈</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> Invalid date </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href= "/2020/03/26/NetworkProtocol-07/" >《趣谈网络协议》学习笔记之--最常用的运用层(中)</a>
         </li>
     
     </div>
