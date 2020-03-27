@@ -404,7 +404,7 @@ height:50vh;
         <blockquote>
 <p>学习自极客时间《趣谈网络协议》 作者：刘超</p>
 </blockquote>
-<h1 id="从二层到三层（下）"><a href="#从二层到三层（下）" class="headerlink" title="从二层到三层（下）"></a>从二层到三层（下）</h1><h2 id="4-网关的实现"><a href="#4-网关的实现" class="headerlink" title="4. 网关的实现"></a>4. 网关的实现</h2><p><strong>一. 怎么样在宿舍上网</strong><br>有两种方式:</p>
+<h1 id="4-网关的实现"><a href="#4-网关的实现" class="headerlink" title="4. 网关的实现"></a>4. 网关的实现</h1><h2 id="4-1-怎么样在宿舍上网"><a href="#4-1-怎么样在宿舍上网" class="headerlink" title="4.1 怎么样在宿舍上网"></a>4.1 怎么样在宿舍上网</h2><p>有两种方式:</p>
 <ul>
 <li><p>有一台电脑需要两张网卡,一张网卡的线插到交换机上，另一张网卡的线插到校园网的网口。而且，这张新的网卡的 IP 地址要按照学校网管部门分配的配置，不然上不了网。<strong>这种情况下，如果你们宿舍的人要上网，就需要一直开着那台电脑。</strong></p>
 </li>
@@ -413,8 +413,7 @@ height:50vh;
 </ul>
 <p>其实家庭路由器和电脑的功能一样,只不过是嵌入式系统而已。</p>
 <p>其他电脑要上网还需要配置网卡。当然 <strong>DHCP 是可以默认配置的。在进行网卡配置的时候，除了 IP 地址，还需要配置一个Gateway 的东西，这个就是网关。</strong></p>
-<p><strong>二. MAC 头和 IP 头的细节</strong></p>
-<p><img src="https://s1.ax1x.com/2020/03/15/885poF.jpg" alt="885poF.jpg"></p>
+<h2 id="4-2-MAC-头和-IP-头的细节"><a href="#4-2-MAC-头和-IP-头的细节" class="headerlink" title="4.2 MAC 头和 IP 头的细节"></a>4.2 MAC 头和 IP 头的细节</h2><p><img src="https://s1.ax1x.com/2020/03/15/885poF.jpg" alt="885poF.jpg"></p>
 <ul>
 <li>在 MAC 头里面，先是目标 MAC 地址，然后是源 MAC 地址，然后有一个协议类型，用来说明里面是 IP 协议。</li>
 <li>IP 头里面的版本号，目前主流的还是 IPv4，数据包是按照服务类型（Type of Service，TOS）被分配到三个波段（band）里面的。TOS 是 IP 头里面的一个字段，代表了当前的包是高优先级的，还是低优先级的。TTL 指生存时间,与ICMP有关。</li>
@@ -422,27 +421,27 @@ height:50vh;
 </ul>
 <p><strong>如果是同一个网段，则直接通过ARP获取Mac地址，如果不同网段，就需要经过网关了。获取网关的Mac地址也是在局域网中吼，流程是一样的。</strong></p>
 <p>网关往往是一个路由器，是一个三层转发的设备。啥叫三层设备？就是把 MAC 头和 IP 头都取下来，然后根据里面的内容，看看接下来把包往哪里转发的设备。<strong>路由器是一台设备，它有多个网口或者网卡，分别连着多个局域网。每个网卡的 IP 地址都和局域网的 IP 地址相同的网段，就是那个局域网的网关。</strong></p>
-<p><strong>三. 静态路由</strong><br>路由器可以分为静态路由和动态路由。<br><strong>静态路由，其实就是在路由器上，配置一条一条规则。</strong>这些规则包括：想访问 BBS 站（它肯定有个网段），从 2 号口出去，下一跳是 IP2；想访问教学视频站（它也有个自己的网段），从 3 号口出去，下一跳是 IP3，然后保存在路由器里。<br>每当要选择从哪只手抛出去的时候，就一条一条的匹配规则，找到符合的规则，就按规则中设置的那样，从某个口抛出去，找下一跳 IPX。</p>
-<p><strong>四。 IP 头和 MAC 头哪些变、哪些不变？</strong><br>MAC 地址是一个局域网内才有效的地址。因而，MAC 地址只要过网关，就必定会改变，因为已经换了局域网。两者主要的区别在于 IP 地址是否改变。<strong>不改变 IP 地址的网关，我们称为转发网关；改变 IP 地址的网关，我们称为NAT 网关。</strong></p>
+<h2 id="4-3-静态路由"><a href="#4-3-静态路由" class="headerlink" title="4.3 静态路由"></a>4.3 静态路由</h2><p>路由器可以分为静态路由和动态路由。<br><strong>静态路由，其实就是在路由器上，配置一条一条规则。</strong>这些规则包括：想访问 BBS 站（它肯定有个网段），从 2 号口出去，下一跳是 IP2；想访问教学视频站（它也有个自己的网段），从 3 号口出去，下一跳是 IP3，然后保存在路由器里。<br>每当要选择从哪只手抛出去的时候，就一条一条的匹配规则，找到符合的规则，就按规则中设置的那样，从某个口抛出去，找下一跳 IPX。</p>
+<h2 id="4-4-IP-头和-MAC-头哪些变、哪些不变？"><a href="#4-4-IP-头和-MAC-头哪些变、哪些不变？" class="headerlink" title="4.4 IP 头和 MAC 头哪些变、哪些不变？"></a>4.4 IP 头和 MAC 头哪些变、哪些不变？</h2><p>MAC 地址是一个局域网内才有效的地址。因而，MAC 地址只要过网关，就必定会改变，因为已经换了局域网。两者主要的区别在于 IP 地址是否改变。<strong>不改变 IP 地址的网关，我们称为转发网关；改变 IP 地址的网关，我们称为NAT 网关。</strong></p>
 <ul>
 <li><p>当各个局域网间网段有商量，即IP段没有冲突的时候，不同网段间用户的通讯，经过网关的时候，IP地址不会改变，改变的是Mac地址。</p>
 </li>
 <li><p>当局域网之间没有商量过，各定各的网段，因而 IP 段冲突了。不同网段间用户的通讯，经过网关的时候，需要将当前局域网内的IP地址转换成国际通用的IP地址，当到了最后一跳时，NAT网关再将国际IP地址转换成私网的IP地址，最终达到接收方。这里Mac地址也在不断变化的。从这个过程可以看出，IP 地址也会变。这个过程用英文说就是 Network Address Translation，简称 NAT。</p>
 </li>
 </ul>
-<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><ol>
+<h2 id="4-5-总结"><a href="#4-5-总结" class="headerlink" title="4.5 总结"></a>4.5 总结</h2><ol>
 <li>如果离开本局域网，就需要经过网关，网关是路由器的一个网口；</li>
 <li>路由器是一个三层设备，里面有如何寻找下一跳的规则；</li>
 </ol>
 <p><strong>当在你家里要访问 163 网站的时候，你的包需要 NAT 成为公网 IP，返回的包又要 NAT 成你的私有 IP，返回包怎么知道这是你的请求呢？它怎么就这么智能的 NAT 成了你的 IP 而非别人的 IP 呢？</strong></p>
 <p>NAT在进行地址替换时不仅仅包含IP地址，还有端口号。具体说来就是，我们在进行连接外网服务器请求的数据包中，除了源、目的IP地址外，还有源、目的端口号。其中目的端口号是固定的，比如21或80等等。但源端口号是随机生成的。当数据包到达进行NAT的设备时，除了私有IP地址会被替换成公网IP地址外，端口号也会被替换成NAT随机生成的端口号。NAT的端口号和局域网中的主机一一对应，同时NAT设备维护一张端口号和主机对应的表。当外网服务器返回数据到NAT设备时，NAT设备通过返回数据包中的端口号找到局域网中的主机并将数据转发。</p>
-<h2 id="5-路由协议"><a href="#5-路由协议" class="headerlink" title="5. 路由协议"></a>5. 路由协议</h2><p>一张路由表中会有多条路由规则。每一条规则至少包含这三项信息。</p>
+<h1 id="5-路由协议"><a href="#5-路由协议" class="headerlink" title="5. 路由协议"></a>5. 路由协议</h1><p>一张路由表中会有多条路由规则。每一条规则至少包含这三项信息。</p>
 <ul>
 <li>目的网络：这个包想去哪儿？</li>
 <li>出口设备：将包从哪个口扔出去？</li>
 <li>下一跳网关：下一个路由器的地址。</li>
 </ul>
-<p><strong>一. 动态路由算法</strong><br>复杂的网络拓扑结构中,路由的路径就转化成为如何在途中找到最短路径的问题。<br>求最短路径常用的有两种方法，<strong>一种是 Bellman-Ford 算法，一种是 Dijkstra 算法。在计算机网络中基本也是用这两种方法计算的。</strong></p>
+<h2 id="5-1-动态路由算法"><a href="#5-1-动态路由算法" class="headerlink" title="5.1 动态路由算法"></a>5.1 动态路由算法</h2><p>复杂的网络拓扑结构中,路由的路径就转化成为如何在途中找到最短路径的问题。<br>求最短路径常用的有两种方法，<strong>一种是 Bellman-Ford 算法，一种是 Dijkstra 算法。在计算机网络中基本也是用这两种方法计算的。</strong></p>
 <ol>
 <li><strong>距离矢量路由算法</strong><ul>
 <li>第一大类的算法称为距离矢量路由（distance vector routing）。它是基于 Bellman-Ford 算法的。</li>
@@ -468,8 +467,7 @@ height:50vh;
 </li>
 </ol>
 <p>不像距离距离矢量路由协议那样，更新时发送整个路由表。链路状态路由协议只广播更新的或改变的网络拓扑，这使得更新信息更小，节省了带宽和 CPU 利用率。而且一旦一个路由器挂了，它的邻居都会广播这个消息，可以使得坏消息迅速收敛。</p>
-<p><strong>二. 动态路由协议</strong></p>
-<ol>
+<h2 id="5-2-动态路由协议"><a href="#5-2-动态路由协议" class="headerlink" title="5.2 动态路由协议"></a>5.2 动态路由协议</h2><ol>
 <li><strong>基于链路状态路由算法的 OSPF</strong></li>
 </ol>
 <ul>
@@ -503,7 +501,7 @@ height:50vh;
 <li>路由信息协议是在一个AS系统中使用地内部路由选择协议，是个非常简单的基于距离向量路由选择的协议。　它路由器生产商之间使用的第一个开放标准，是最广泛的路由协议，在所有IP路由平台上都可以得到。当使用RIP时，一台Cisco路由器可以与其他厂商的路由器连接。</li>
 <li>路由信息协议是内部网关协议IGP中最先得到使用的协议。RIP是一种分布式的基于距离矢量的路由选择协议，是因特网的标准协议，其最大优点就是实现简单，开销较小。</li>
 </ul>
-<h2 id="问题拓展"><a href="#问题拓展" class="headerlink" title="问题拓展"></a>问题拓展</h2><p>路由器之间信息的交换使用什么协议呢？</p>
+<h2 id="5-3-问题拓展"><a href="#5-3-问题拓展" class="headerlink" title="5.3 问题拓展"></a>5.3 问题拓展</h2><p>路由器之间信息的交换使用什么协议呢？</p>
 <ol>
 <li>OSPF基于IP协议，端口号为89<br>原因：ospf自身提供主从协商机制，可以保证可靠的传输，另外全网路由器保持着同样的一个lsdb，当拓扑发生变化时，需要携带的变更信息较少，通过IP协议即可完成</li>
 <li>RIP协议采用UDP是因为，rip每周期需全网组播路由信息，路由信息数目较大，故使用UDP协议可提高效率</li>
@@ -517,7 +515,7 @@ height:50vh;
             <p>Author：<a href="https://liangweijiang.github.io">liangweijiang</a>
             <p>原文链接：<a href="https://liangweijiang.github.io/2020/03/16/NetworkProtocol-03/">https://liangweijiang.github.io/2020/03/16/NetworkProtocol-03/</a>
             <p>发表日期：<a href="https://liangweijiang.github.io/2020/03/16/NetworkProtocol-03/">March 16th 2020, 12:50:10 am</a>
-            <p>更新日期：<a href="https://liangweijiang.github.io/2020/03/16/NetworkProtocol-03/">March 16th 2020, 12:51:21 am</a>
+            <p>更新日期：<a href="https://liangweijiang.github.io/2020/03/16/NetworkProtocol-03/">March 27th 2020, 4:41:16 pm</a>
             <p>版权声明：本文采用<a rel="license noopener" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
         </div>
     
@@ -649,7 +647,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#从二层到三层（下）"><span class="toc-number">1.</span> <span class="toc-text">从二层到三层（下）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#4-网关的实现"><span class="toc-number">1.1.</span> <span class="toc-text">4. 网关的实现</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#总结"><span class="toc-number">1.1.1.</span> <span class="toc-text">总结</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-路由协议"><span class="toc-number">1.2.</span> <span class="toc-text">5. 路由协议</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#问题拓展"><span class="toc-number">1.3.</span> <span class="toc-text">问题拓展</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#4-网关的实现"><span class="toc-number">1.</span> <span class="toc-text">4. 网关的实现</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#4-1-怎么样在宿舍上网"><span class="toc-number">1.1.</span> <span class="toc-text">4.1 怎么样在宿舍上网</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-2-MAC-头和-IP-头的细节"><span class="toc-number">1.2.</span> <span class="toc-text">4.2 MAC 头和 IP 头的细节</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-3-静态路由"><span class="toc-number">1.3.</span> <span class="toc-text">4.3 静态路由</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-4-IP-头和-MAC-头哪些变、哪些不变？"><span class="toc-number">1.4.</span> <span class="toc-text">4.4 IP 头和 MAC 头哪些变、哪些不变？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-5-总结"><span class="toc-number">1.5.</span> <span class="toc-text">4.5 总结</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5-路由协议"><span class="toc-number">2.</span> <span class="toc-text">5. 路由协议</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#5-1-动态路由算法"><span class="toc-number">2.1.</span> <span class="toc-text">5.1 动态路由算法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-2-动态路由协议"><span class="toc-number">2.2.</span> <span class="toc-text">5.2 动态路由协议</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-3-问题拓展"><span class="toc-number">2.3.</span> <span class="toc-text">5.3 问题拓展</span></a></li></ol></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
@@ -1700,7 +1698,7 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href= "/2020/03/26/NetworkProtocol-07/" >NetworkProtocol-07</a>
+            <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href= "/2020/03/26/NetworkProtocol-07/" >《趣谈网络协议》学习笔记之--最常用的运用层(下)</a>
         </li>
     
     </div>

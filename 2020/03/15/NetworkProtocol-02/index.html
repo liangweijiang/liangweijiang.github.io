@@ -404,9 +404,8 @@ height:50vh;
         <blockquote>
 <p>学习自极客时间《趣谈网络协议》 作者：刘超</p>
 </blockquote>
-<h1 id="从二层到三层（上）"><a href="#从二层到三层（上）" class="headerlink" title="从二层到三层（上）"></a>从二层到三层（上）</h1><h2 id="1-从物理层到MAC层"><a href="#1-从物理层到MAC层" class="headerlink" title="1. 从物理层到MAC层"></a>1. 从物理层到MAC层</h2><h3 id="一-、-物理层"><a href="#一-、-物理层" class="headerlink" title="一 、 物理层"></a>一 、 物理层</h3><p>主要定义物理设备标准，如网线的接口类型、光纤的接口类型、各种传输介质的传输速率等。它的主要作用是传输比特流（就是由1、0转化为电流强弱来进行传输,到达目的地后在转化为1、0，也就是我们常说的数模转换与模数转换），这一层的数据叫做比特，单位是bit比特。<br><strong>集线器(hub):</strong>和交换机不同，集线器没有大脑，它完全在物理层工作。它会将自己收到的每一个字节，都复制到其他端口上去。这是第一层物理层联通的方案。</p>
-<h3 id="二-、数据链路层"><a href="#二-、数据链路层" class="headerlink" title="二 、数据链路层"></a>二 、数据链路层</h3><p>** 1 解决三个问题**</p>
-<p>Hub 采取的是广播的模式，如果每一台电脑发出的包，局域网的每个电脑都能收到，这就需要解决几个问题：</p>
+<h1 id="1-从物理层到MAC层"><a href="#1-从物理层到MAC层" class="headerlink" title="1. 从物理层到MAC层"></a>1. 从物理层到MAC层</h1><h2 id="1-1-物理层"><a href="#1-1-物理层" class="headerlink" title="1.1  物理层"></a>1.1  物理层</h2><p>主要定义物理设备标准，如网线的接口类型、光纤的接口类型、各种传输介质的传输速率等。它的主要作用是传输比特流（就是由1、0转化为电流强弱来进行传输,到达目的地后在转化为1、0，也就是我们常说的数模转换与模数转换），这一层的数据叫做比特，单位是bit比特。<br><strong>集线器(hub):</strong>和交换机不同，集线器没有大脑，它完全在物理层工作。它会将自己收到的每一个字节，都复制到其他端口上去。这是第一层物理层联通的方案。</p>
+<h2 id="1-2-数据链路层"><a href="#1-2-数据链路层" class="headerlink" title="1.2 数据链路层"></a>1.2 数据链路层</h2><h3 id="1-2-1-解决三个问题"><a href="#1-2-1-解决三个问题" class="headerlink" title="1.2.1 解决三个问题"></a>1.2.1 解决三个问题</h3><p>Hub 采取的是广播的模式，如果每一台电脑发出的包，局域网的每个电脑都能收到，这就需要解决几个问题：</p>
 <ul>
 <li>这个包是发给谁的？谁应该接收？</li>
 <li>大家都在发，会不会产生混乱？有没有谁先发、谁后发的规则？</li>
@@ -418,11 +417,9 @@ height:50vh;
 <p>类型中多部分是IP数据包,ip又包含了运输层和应用层的信息,层层封装。</p>
 <p>有了目标mac地址，数据包就可以在链路上广播，当有网卡发现mac地址正好是它的，就把这个数据包收起来，然后在打开IP,发现IP地址也是自己的，再打开TCP，端口也是自己的，就交给应用层去处理。应用层处理好后，又层层封装返回，这时候之前的源mac地址就变成了目标mac地址。</p>
 <p>对于以太网，第二层的最后面是 CRC，也就是循环冗余检测。通过 XOR 异或的算法，来计算整个包是否在发送的过程中出现了错误，<strong>主要解决第三个问题。</strong></p>
-<p>** 2 如何获取目标mac地址?**</p>
-<p>一个广播的网络里面接入了 N 台机器，我怎么知道每个 MAC 地址是谁呢？这就是 <strong>ARP 协议，</strong>也就是已知 IP 地址，求 MAC 地址的协议。</p>
-<p>ARP协议的报文格式如下:</p>
-<p><img src="https://s1.ax1x.com/2020/03/14/81ShI1.png" alt="81ShI1.png"></p>
-<p>ARP协议的流程大致如下:<br>当 A 想要与B通信时,A是知道B的IP地址的,但是不知道mac地址</p>
+<h3 id="1-2-2-如何获取目标mac地址"><a href="#1-2-2-如何获取目标mac地址" class="headerlink" title="1.2.2 如何获取目标mac地址?"></a>1.2.2 如何获取目标mac地址?</h3><p>一个广播的网络里面接入了 N 台机器，我怎么知道每个 MAC 地址是谁呢？这就是 <strong>ARP 协议，</strong>也就是已知 IP 地址，求 MAC 地址的协议。</p>
+<h3 id="1-2-3-ARP协议的报文格式如下"><a href="#1-2-3-ARP协议的报文格式如下" class="headerlink" title="1.2.3 ARP协议的报文格式如下:"></a>1.2.3 ARP协议的报文格式如下:</h3><p><img src="https://s1.ax1x.com/2020/03/14/81ShI1.png" alt="81ShI1.png"></p>
+<h3 id="1-2-4-ARP协议的流程大致如下"><a href="#1-2-4-ARP协议的流程大致如下" class="headerlink" title="1.2.4 ARP协议的流程大致如下:"></a>1.2.4 ARP协议的流程大致如下:</h3><p>当 A 想要与B通信时,A是知道B的IP地址的,但是不知道mac地址</p>
 <ol>
 <li><p>A主机先是在自己的本地ARP缓存中检查主机B的匹配MAC地址。</p>
 </li>
@@ -438,16 +435,14 @@ height:50vh;
 <li><p>当主机A收到从主机B发来的ARP回复消息时，会用主机B的IP和MAC地址映射更新ARP缓存。本机缓存是有生存期的，生存期结束后，将再次重复上面的过程。主机B的MAC地址一旦确定，主机A就能向主机B发送IP通信了。</p>
 </li>
 </ol>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>第一，MAC 层是用来解决多路访问的堵车问题的；<br>第二，ARP 是通过吼的方式来寻找目标 MAC 地址的，吼完之后记住一段时间，这个叫作缓存；<br>第三，交换机是有 MAC 地址学习能力的，学完了它就知道谁在哪儿了，不用广播了。</p>
+<h2 id="1-3-总结"><a href="#1-3-总结" class="headerlink" title="1.3 总结"></a>1.3 总结</h2><p>第一，MAC 层是用来解决多路访问的堵车问题的；<br>第二，ARP 是通过吼的方式来寻找目标 MAC 地址的，吼完之后记住一段时间，这个叫作缓存；<br>第三，交换机是有 MAC 地址学习能力的，学完了它就知道谁在哪儿了，不用广播了。</p>
 <hr>
-<h2 id="2-交换机与VLAN"><a href="#2-交换机与VLAN" class="headerlink" title="2. 交换机与VLAN"></a>2. 交换机与VLAN</h2><p><strong>一. 网络拓补结构的形成</strong></p>
-<p><img src="https://s1.ax1x.com/2020/03/15/81gYU1.png" alt="81gYU1.png"></p>
+<h1 id="2-交换机与VLAN"><a href="#2-交换机与VLAN" class="headerlink" title="2. 交换机与VLAN"></a>2. 交换机与VLAN</h1><h2 id="2-1-网络拓补结构的形成"><a href="#2-1-网络拓补结构的形成" class="headerlink" title="2.1 网络拓补结构的形成"></a>2.1 网络拓补结构的形成</h2><p><img src="https://s1.ax1x.com/2020/03/15/81gYU1.png" alt="81gYU1.png"></p>
 <p>两台交换机将网络划分成了三个局域网,一开始大家都不知道对方的任何信息,然后靠广播将信息群发到所以的机器中,然后找到对应的MAC地址,交换机有学习功能,他就知道了该机器所在的局域网,下次广播就不会发送到其他的局域网,就这样慢慢形成了拓补结构。</p>
-<p><strong>二. 拓补结构中的环路问题</strong></p>
-<p><img src="https://s1.ax1x.com/2020/03/15/81gH5q.png" alt="81gH5q.png"></p>
+<h2 id="2-2-拓补结构中的环路问题"><a href="#2-2-拓补结构中的环路问题" class="headerlink" title="2.2 拓补结构中的环路问题"></a>2.2 拓补结构中的环路问题</h2><p><img src="https://s1.ax1x.com/2020/03/15/81gH5q.png" alt="81gH5q.png"></p>
 <p>机器 1 的广播包到达交换机 A 和交换机 B 的时候，本来两个交换机都学会了机器 1 是在局域网一的，但是当交换机 A 将包广播到局域网二之后，交换机 B 右边的网口收到了来自交换机 A 的广播包。根据学习机制，这彻底损坏了交换机 B 的三观，刚才机器 1 还在左边的网口呢，怎么又出现在右边的网口呢？哦，那肯定是机器 1 换位置了，于是就误会了，交换机 B 就学会了，机器 1 是从右边这个网口来的，把刚才学习的那一条清理掉。同理，交换机 A 右边的网口，也能收到交换机 B 转发过来的广播包，同样也误会了，于是也学会了，机器 1 从右边的网口来，不是从左边的网口来。<br>然而当广播包从左边的局域网一广播的时候，两个交换机再次刷新三观，原来机器 1 是在左边的，过一会儿，又发现不对，是在右边的，过一会，又发现不对，是在左边的。</p>
 <p><strong>STP（最小生成树）协议</strong> 将图的环破坏变成树，解决环路问题。</p>
-<p><strong>三. 如何解决广播问题和安全问题？</strong><br>如果机器多了，交换机也多了，就算交换机比 Hub 智能一些，但是还是难免有广播的问题，一大波机器，相关的部门、不相关的部门，广播一大堆，性能就下来了。而且每一个部门所接触的信息不一样，有的部门信息可能比较敏感，不希望别的部门接收到这个包。</p>
+<h2 id="2-3-如何解决广播问题和安全问题？"><a href="#2-3-如何解决广播问题和安全问题？" class="headerlink" title="2.3 如何解决广播问题和安全问题？"></a>2.3 如何解决广播问题和安全问题？</h2><p>如果机器多了，交换机也多了，就算交换机比 Hub 智能一些，但是还是难免有广播的问题，一大波机器，相关的部门、不相关的部门，广播一大堆，性能就下来了。而且每一个部门所接触的信息不一样，有的部门信息可能比较敏感，不希望别的部门接收到这个包。</p>
 <p>两个隔离的方法：</p>
 <ol>
 <li><p>一个是物理隔离。每个部门设一个单独的会议室，对应到网络方面，就是每个部门有单独的交换机，配置单独的子网，这样部门之间的沟通就需要路由器了。<strong>这样的问题在于，有的部门人多，有的部门人少。人少的部门慢慢人会变多，人多的部门也可能人越变越少。如果每个部门有单独的交换机，口多了浪费，少了又不够用。</strong></p>
@@ -459,12 +454,12 @@ height:50vh;
 <p>我们只需要在原来的二层的头上加一个 TAG，里面有一个 VLAN ID，一共 12 位。12 位可以划分 4096 个 VLAN。</p>
 <p>如果我们买的交换机是支持 VLAN 的，当这个交换机把二层的头取下来的时候，就能够识别这个 VLAN ID。这样只有相同 VLAN 的包，才会互相转发，不同 VLAN 的包，是看不到的。这样广播问题和安全问题就都能够解决了。</p>
 <p>将两个交换机连接起来的口应该设置成什么 VLAN 呢？<strong>对于支持 VLAN 的交换机，有一种口叫作 Trunk 口。它可以转发属于任何 VLAN 的口。交换机之间可以通过这种口相互连接。</strong></p>
-<h2 id="总结-1"><a href="#总结-1" class="headerlink" title="总结"></a>总结</h2><ul>
+<h2 id="2-4-总结"><a href="#2-4-总结" class="headerlink" title="2.4 总结"></a>2.4 总结</h2><ul>
 <li>当交换机的数目越来越多的时候，会遭遇环路问题，让网络包迷路，这就需要使用 STP 协议，将有环路的图变成没有环路的树，从而解决环路问题。但是STP 对于跨地域甚至跨国组织的网络支持，就很难做了，计算量太大。</li>
 <li>交换机数目多会面临隔离问题，可以通过 VLAN 形成虚拟局域网，从而解决广播问题和安全问题。</li>
 </ul>
 <hr>
-<h2 id="3-ICMP与ping"><a href="#3-ICMP与ping" class="headerlink" title="3. ICMP与ping"></a>3. ICMP与ping</h2><p><strong>一. ICMP 协议的格式</strong><br>ping 是基于 ICMP 协议工作的。ICMP 全称 Internet Control Message Protocol，就是互联网控制报文协议。<strong>这里面的关键词是“控制”，那具体是怎么控制的呢？</strong></p>
+<h1 id="3-ICMP与ping"><a href="#3-ICMP与ping" class="headerlink" title="3. ICMP与ping"></a>3. ICMP与ping</h1><h2 id="3-1-ICMP-协议的格式"><a href="#3-1-ICMP-协议的格式" class="headerlink" title="3.1 ICMP 协议的格式"></a>3.1 ICMP 协议的格式</h2><p>ping 是基于 ICMP 协议工作的。ICMP 全称 Internet Control Message Protocol，就是互联网控制报文协议。<strong>这里面的关键词是“控制”，那具体是怎么控制的呢？</strong></p>
 <ul>
 <li><p>网络包在异常复杂的网络环境中传输时，常常会遇到各种各样的问题。当遇到问题的时候，总不能“不明不白”，要传出消息来，报告情况，这样才可以调整传输策略。ICMP就是相当于这个侦察兵。</p>
 </li>
@@ -483,8 +478,7 @@ height:50vh;
 <li>第四种是路由重定向，也就是让下次发给另一个路由器。</li>
 </ul>
 <p>差错报文的结构相对复杂一些。除了前面还是 IP，ICMP 的前 8 字节不变，后面则跟上出错的那个 IP 包的 IP 头和 IP 正文的前 8 个字节。</p>
-<p><strong>二. ping：查询报文类型的使用</strong></p>
-<p><img src="https://s1.ax1x.com/2020/03/15/81hOu8.png" alt="81hOu8.png"></p>
+<h2 id="3-2-ping：查询报文类型的使用"><a href="#3-2-ping：查询报文类型的使用" class="headerlink" title="3.2 ping：查询报文类型的使用"></a>3.2 ping：查询报文类型的使用</h2><p><img src="https://s1.ax1x.com/2020/03/15/81hOu8.png" alt="81hOu8.png"></p>
 <ol>
 <li><p>ping 命令执行的时候，源主机首先会构建一个 ICMP 请求数据包，ICMP 数据包内包含多个字段。最重要的是两个，第一个是类型字段，对于请求数据包而言该字段为 8；另外一个是顺序号，主要用于区分连续 ping 的时候发出的多个数据包。每发出一个请求数据包，顺序号会自动加 1。为了能够计算往返时间 RTT，它会在报文的数据部分插入发送时间。</p>
 </li>
@@ -500,11 +494,11 @@ height:50vh;
 <p>在规定的时候间内，源主机如果没有接到 ICMP 的应答包，则说明目标主机不可达；如果接收到了 ICMP 应答包，则说明目标主机可达。此时，源主机会检查，用当前时刻减去该数据包最初从源主机上发出的时刻，就是 ICMP 数据包的时间延迟。</p>
 <p>如果跨网段的话，还会涉及网关的转发、路由器的转发等等。但是对于 ICMP 的头来讲，是没什么影响的。会影响的是根据目标 IP 地址，选择路由的下一跳，还有每经过一个路由器到达一个新的局域网，需要换 MAC 头里面的 MAC 地址。</p>
 <p><strong>经常会遇到一个问题，如果不在我们的控制范围内，很多中间设备都是禁止 ping 的，但是 ping 不通不代表网络不通。这个时候就要使用 telnet，通过其他协议来测试网络是否通。</strong></p>
-<p><strong>三. Traceroute：差错报文类型的使用</strong><br>Traceroute，会使用 ICMP 的规则，故意制造一些能够产生错误的场景。</p>
-<p><strong>1。 Traceroute 的第一个作用就是故意设置特殊的 TTL，来追踪去往目的地时沿途经过的路由器。</strong><br>Traceroute 的参数指向某个目的 IP 地址，它会发送一个 UDP 的数据包。将 TTL 设置成 1，也就是说一旦遇到一个路由器或者一个关卡。<br>如果他“牺牲”了，就返回一个 ICMP 包，也就是网络差错包，类型是时间超时。这时候就知道达到目标IP的路径不值隔了一个路由，然后把TTL 设置成 2，如此反复，直到到达目的主机。<strong>这样，Traceroute 就拿到了所有的路由器 IP。当然，有的路由器压根不会回这个 ICMP。这也是 Traceroute 一个公网的地址，看不到中间路由的原因。</strong></p>
+<h2 id="3-3-Traceroute：差错报文类型的使用"><a href="#3-3-Traceroute：差错报文类型的使用" class="headerlink" title="3.3 Traceroute：差错报文类型的使用"></a>3.3 Traceroute：差错报文类型的使用</h2><p>Traceroute，会使用 ICMP 的规则，故意制造一些能够产生错误的场景。</p>
+<p><strong>1. Traceroute 的第一个作用就是故意设置特殊的 TTL，来追踪去往目的地时沿途经过的路由器。</strong><br>Traceroute 的参数指向某个目的 IP 地址，它会发送一个 UDP 的数据包。将 TTL 设置成 1，也就是说一旦遇到一个路由器或者一个关卡。<br>如果他“牺牲”了，就返回一个 ICMP 包，也就是网络差错包，类型是时间超时。这时候就知道达到目标IP的路径不值隔了一个路由，然后把TTL 设置成 2，如此反复，直到到达目的主机。<strong>这样，Traceroute 就拿到了所有的路由器 IP。当然，有的路由器压根不会回这个 ICMP。这也是 Traceroute 一个公网的地址，看不到中间路由的原因。</strong></p>
 <p>怎么知道 UDP 有没有到达目的主机呢？Traceroute 程序会发送一份 UDP 数据报给目的主机，但它会选择一个不可能的值作为 UDP 端口号（大于 30000）。当该数据报到达时，将使目的主机的 UDP 模块产生一份“端口不可达”错误 ICMP 报文。如果数据报没有到达，则可能是超时。</p>
 <p><strong>2. Traceroute 还有一个作用是故意设置不分片，从而确定路径的 MTU。</strong><br>要做的工作首先是发送分组，并设置“不分片”标志。发送的第一个分组的长度正好与出口 MTU 相等。如果中间遇到窄的关口会被卡住，会发送 ICMP 网络差错包，类型为“需要进行分片但设置了不分片位”。其实，这是人家故意的好吧，每次收到 ICMP“不能分片”差错时就减小分组的长度，直到到达目标主机。</p>
-<h2 id="总结-2"><a href="#总结-2" class="headerlink" title="总结"></a>总结</h2><ul>
+<h2 id="3-4-总结"><a href="#3-4-总结" class="headerlink" title="3.4 总结"></a>3.4 总结</h2><ul>
 <li>ICMP 相当于网络世界的侦察兵。</li>
 <li>两种类型的 ICMP 报文，一种是主动探查的查询报文，一种异常报告的差错报文；</li>
 <li>ping 使用查询报文，Traceroute 使用差错报文。</li>
@@ -525,7 +519,7 @@ height:50vh;
             <p>Author：<a href="https://liangweijiang.github.io">liangweijiang</a>
             <p>原文链接：<a href="https://liangweijiang.github.io/2020/03/15/NetworkProtocol-02/">https://liangweijiang.github.io/2020/03/15/NetworkProtocol-02/</a>
             <p>发表日期：<a href="https://liangweijiang.github.io/2020/03/15/NetworkProtocol-02/">March 15th 2020, 11:47:29 am</a>
-            <p>更新日期：<a href="https://liangweijiang.github.io/2020/03/15/NetworkProtocol-02/">March 15th 2020, 11:53:08 am</a>
+            <p>更新日期：<a href="https://liangweijiang.github.io/2020/03/15/NetworkProtocol-02/">March 27th 2020, 4:40:15 pm</a>
             <p>版权声明：本文采用<a rel="license noopener" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
         </div>
     
@@ -657,7 +651,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#从二层到三层（上）"><span class="toc-number">1.</span> <span class="toc-text">从二层到三层（上）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-从物理层到MAC层"><span class="toc-number">1.1.</span> <span class="toc-text">1. 从物理层到MAC层</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#一-、-物理层"><span class="toc-number">1.1.1.</span> <span class="toc-text">一 、 物理层</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#二-、数据链路层"><span class="toc-number">1.1.2.</span> <span class="toc-text">二 、数据链路层</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#总结"><span class="toc-number">1.2.</span> <span class="toc-text">总结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-交换机与VLAN"><span class="toc-number">1.3.</span> <span class="toc-text">2. 交换机与VLAN</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#总结-1"><span class="toc-number">1.4.</span> <span class="toc-text">总结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-ICMP与ping"><span class="toc-number">1.5.</span> <span class="toc-text">3. ICMP与ping</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#总结-2"><span class="toc-number">1.6.</span> <span class="toc-text">总结</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-从物理层到MAC层"><span class="toc-number">1.</span> <span class="toc-text">1. 从物理层到MAC层</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1-物理层"><span class="toc-number">1.1.</span> <span class="toc-text">1.1  物理层</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2-数据链路层"><span class="toc-number">1.2.</span> <span class="toc-text">1.2 数据链路层</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-1-解决三个问题"><span class="toc-number">1.2.1.</span> <span class="toc-text">1.2.1 解决三个问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-2-如何获取目标mac地址"><span class="toc-number">1.2.2.</span> <span class="toc-text">1.2.2 如何获取目标mac地址?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-3-ARP协议的报文格式如下"><span class="toc-number">1.2.3.</span> <span class="toc-text">1.2.3 ARP协议的报文格式如下:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-4-ARP协议的流程大致如下"><span class="toc-number">1.2.4.</span> <span class="toc-text">1.2.4 ARP协议的流程大致如下:</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-3-总结"><span class="toc-number">1.3.</span> <span class="toc-text">1.3 总结</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-交换机与VLAN"><span class="toc-number">2.</span> <span class="toc-text">2. 交换机与VLAN</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-网络拓补结构的形成"><span class="toc-number">2.1.</span> <span class="toc-text">2.1 网络拓补结构的形成</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2-拓补结构中的环路问题"><span class="toc-number">2.2.</span> <span class="toc-text">2.2 拓补结构中的环路问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-3-如何解决广播问题和安全问题？"><span class="toc-number">2.3.</span> <span class="toc-text">2.3 如何解决广播问题和安全问题？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-4-总结"><span class="toc-number">2.4.</span> <span class="toc-text">2.4 总结</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-ICMP与ping"><span class="toc-number">3.</span> <span class="toc-text">3. ICMP与ping</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#3-1-ICMP-协议的格式"><span class="toc-number">3.1.</span> <span class="toc-text">3.1 ICMP 协议的格式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-2-ping：查询报文类型的使用"><span class="toc-number">3.2.</span> <span class="toc-text">3.2 ping：查询报文类型的使用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-3-Traceroute：差错报文类型的使用"><span class="toc-number">3.3.</span> <span class="toc-text">3.3 Traceroute：差错报文类型的使用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-4-总结"><span class="toc-number">3.4.</span> <span class="toc-text">3.4 总结</span></a></li></ol></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
@@ -1708,7 +1702,7 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href= "/2020/03/26/NetworkProtocol-07/" >NetworkProtocol-07</a>
+            <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href= "/2020/03/26/NetworkProtocol-07/" >《趣谈网络协议》学习笔记之--最常用的运用层(下)</a>
         </li>
     
     </div>

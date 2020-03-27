@@ -22,7 +22,7 @@
     <meta name="description" content="">
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-    <title>NetworkProtocol-07 · Jiang&#39;s Blog</title>
+    <title>《趣谈网络协议》学习笔记之--最常用的运用层(下) · Jiang&#39;s Blog</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -217,7 +217,7 @@
                 <a href="/" >Jiang&#39;s blog</a>
             </div>
             <div class="post-title">
-                <a href="#" class="post-name">NetworkProtocol-07</a>
+                <a href="#" class="post-name">《趣谈网络协议》学习笔记之--最常用的运用层(下)</a>
             </div>
     </div>
     
@@ -247,7 +247,7 @@ height:50vh;
         <h1 class="intro-title">
             <!-- 主页  -->
             
-            NetworkProtocol-07
+            《趣谈网络协议》学习笔记之--最常用的运用层(下)
             <!-- 404 -->
             
         </h1>
@@ -264,9 +264,15 @@ height:50vh;
             <div class="post-intros">
                 <!-- 文章页标签  -->
                 
+                    <div class= post-intro-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "网络协议">网络协议</a>
+    
+</div>
+                
                 
                     <div class="post-intro-read">
-                        <span>Word count: <span class="post-count word-count">0</span>Reading time: <span class="post-count reading-time">1 min</span></span>
+                        <span>Word count: <span class="post-count word-count">3.5k</span>Reading time: <span class="post-count reading-time">12 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
@@ -395,7 +401,124 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
     <article class="article-entry">
-        
+        <blockquote>
+<p>学习自极客时间《趣谈网络协议》 作者：刘超</p>
+</blockquote>
+<h1 id="5-流媒体协议"><a href="#5-流媒体协议" class="headerlink" title="5. 流媒体协议"></a>5. 流媒体协议</h1><h2 id="5-1-什么是流媒体"><a href="#5-1-什么是流媒体" class="headerlink" title="5.1 什么是流媒体?"></a>5.1 什么是流媒体?</h2><blockquote>
+<p>流媒体（Streaming media）是指将一连串的媒体数据压缩后，经过网络分段发送数据，在网络上即时传输影音以供观赏的一种技术与过程，此技术使得数据包得以像流水一样发送；如果不使用此技术，就必须在使用前下载整个媒体文件。<br>流媒体文件一般定义在bit层次结构，因此流数据包并不一定必须按照字节对齐，虽然通常的媒体文件都是按照这种字节对齐的方式打包的。流媒体的三大操作平台是微软公司、RealNetworks、苹果公司提供的。</p>
+</blockquote>
+<h2 id="5-2-有哪些多媒体常用协议"><a href="#5-2-有哪些多媒体常用协议" class="headerlink" title="5.2 有哪些多媒体常用协议"></a>5.2 有哪些多媒体常用协议</h2><ul>
+<li>TTP/TCP/UDP</li>
+<li>涵盖传统的私有协议，以及基于HTTP的流式传输协议。</li>
+<li>RTP/RTSP/RTCP/SRTP &amp; SRTCP/RTMP</li>
+<li>HLS</li>
+<li>MMS （Microsoft Media Server Protocol）</li>
+<li>DASH</li>
+</ul>
+<blockquote>
+<ul>
+<li>RTMP 是一个古老的协议。RMTP 最初由 Macromedia 开发，后被 Adobe 收购，至今仍被使用。<br>由于 RTMP 播放视频需要依赖 Flash 插件。而 Flash 插件多年来一直受安全问题困扰，正在被迅速淘汰。因此，<strong>目前 RTMP 主要用于提取 stream。也就是，当设置解编码器将视频发送到托管平台时，视频将使用 RTMP 协议发送到 CDN，随后使用另一种协议（通常是HLS）传递给播放器。</strong>何时使用 RTMP<br>RTMP 协议延迟非常低，但由于需要 Flash 插件，不建议使用该协议，但流提取是例外。在流提取方便，RTMP 非常强大，且几乎得到了普遍支持。</li>
+</ul>
+</blockquote>
+<ul>
+<li>相对于常见的流媒体直播协议，例如RTMP协议、RTSP协议、MMS协议等，<strong>HLS直播最大的不同在于，直播客户端获取到的，并不是一个完整的数据流。</strong>HLS协议在服务器端将直播数据流存储为连续的、很短时长的媒体文件（MPEG-TS格式），而客户端则不断的下载并播放这些小文件，因为服务器端总是会将最新的直播数据生成新的小文件，这样客户端只要不停的按顺序播放从服务器获取到的文件，就实现了直播。由此可见，基本上可以认为，HLS是以点播的技术方式来实现直播。由于数据通过HTTP协议传输，所以完全不用考虑防火墙或者代理的问题，而且分段文件的时长很短，客户端可以很快的选择和切换码率，以适应不同带宽条件下的播放。不过HLS的这种技术特点，决定了它的延迟一般总是会高于普通的流媒体直播协议。但 Apple 在 WWDC 2019 发布了新的解决方案，可以将延迟从8秒降低到1至2秒。具体可以查看Introducing Low-Latency HLS。</li>
+</ul>
+<h2 id="5-3-什么是视频"><a href="#5-3-什么是视频" class="headerlink" title="5.3 什么是视频 ?"></a>5.3 什么是视频 ?</h2><p><strong>视频其实就是快速播放一连串连续的图片。每一张图片，我们称为一帧。</strong>只要每秒钟帧的数据足够多，也即播放得足够快。比如每秒 30 帧，以人的眼睛的敏感程度，是看不出这是一张张独立的图片的，这就是我们常说的帧率（FPS）。</p>
+<p>由于图片是由像素组成的,所以视频的数据量非常大,需要压缩。<strong>编码就是一种压缩的过程。</strong></p>
+<h2 id="5-4-视频和图片的压缩过程的特点"><a href="#5-4-视频和图片的压缩过程的特点" class="headerlink" title="5.4 视频和图片的压缩过程的特点"></a>5.4 视频和图片的压缩过程的特点</h2><ul>
+<li><p><strong>空间冗余：</strong>图像的相邻像素之间有较强的相关性，一张图片相邻像素往往是渐变的，不是突变的，没必要每个像素都完整地保存，可以隔几个保存一个，中间的用算法计算出来。</p>
+</li>
+<li><p><strong>时间冗余：</strong>视频序列的相邻图像之间内容相似。一个视频中连续出现的图片也不是突变的，可以根据已有的图片进行预测和推断。</p>
+</li>
+<li><p><strong>时间冗余：</strong>视频序列的相邻图像之间内容相似。一个视频中连续出现的图片也不是突变的，可以根据已有的图片进行预测和推断。</p>
+</li>
+<li><p><strong>编码冗余：</strong>不同像素值出现的概率不同，概率高的用的字节少，概率低的用的字节多，类似霍夫曼编码（Huffman Coding）的思路。</p>
+</li>
+</ul>
+<p>编码的过程如下:</p>
+<p><img src="https://s1.ax1x.com/2020/03/27/GPKqv6.png" alt="GPKqv6.png"></p>
+<h2 id="5-5-视频编码的两大流派"><a href="#5-5-视频编码的两大流派" class="headerlink" title="5.5 视频编码的两大流派"></a>5.5 视频编码的两大流派</h2><ul>
+<li><p>流派一：ITU（International Telecommunications Union）的 VCEG（Video Coding Experts Group），这个称为国际电联下的 VCEG。既然是电信，可想而知，他们最初做视频编码，主要侧重传输。名词系列二，就是这个组织制定的标准。</p>
+</li>
+<li><p>流派二：ISO（International Standards Organization）的 MPEG（Moving Picture Experts Group），这个是 ISO 旗下的 MPEG，本来是做视频存储的。例如，编码后保存在 VCD 和 DVD 中。当然后来也慢慢侧重视频传输了。名词系列三，就是这个组织制定的标准。</p>
+</li>
+</ul>
+<p>后来，ITU-T（国际电信联盟电信标准化部门，ITU Telecommunication Standardization Sector）与 MPEG 联合制定了 H.264/MPEG-4 AVC。</p>
+<h2 id="5-6-看直播时到底发生了什么"><a href="#5-6-看直播时到底发生了什么" class="headerlink" title="5.6 看直播时到底发生了什么"></a>5.6 看直播时到底发生了什么</h2><ol>
+<li><p>网络协议将编码好的视频流，从主播端推送到服务器，在服务器上有个运行了同样协议的服务端来接收这些网络包，从而得到里面的视频流，这个过程称为<strong>接流</strong>。</p>
+</li>
+<li><p>服务端接到视频流之后，可以对视频流进行一定的处理，例如转码，也即从一个编码格式，转成另一种格式。因为观众使用的客户端千差万别，要保证他们都能看到直播。</p>
+</li>
+<li><p>流处理完毕之后，就可以等待观众的客户端来请求这些视频流。观众的客户端请求的过程称为拉流。<br>如果有非常多的观众，同时看一个视频直播，那都从一个服务器上拉流，压力太大了，因而需要一个视频的分发网络，将视频预先加载到就近的边缘节点，这样大部分观众看的视频，是从边缘节点拉取的，就能降低服务器的压力。</p>
+</li>
+<li><p>当观众的客户端将视频流拉下来之后，就需要进行解码，也即通过上述过程的逆过程，将一串串看不懂的二进制，再转变成一帧帧生动的图片，在客户端播放出来。</p>
+</li>
+</ol>
+<p><img src="https://s1.ax1x.com/2020/03/27/GP1jSA.png" alt="GP1jSA.png"></p>
+<h3 id="5-6-1-编码的实现"><a href="#5-6-1-编码的实现" class="headerlink" title="5.6.1 编码的实现"></a>5.6.1 编码的实现</h3><p><strong>(1) 帧的分类</strong><br>虽然我们说视频是一张张图片的序列，但是如果每张图片都完整，就太大了，因而会将视频序列分成三种帧。</p>
+<ul>
+<li><strong>I 帧</strong>，也称关键帧。里面是完整的图片，只需要本帧数据，就可以完成解码。</li>
+<li><strong>P 帧</strong>，前向预测编码帧。P 帧表示的是这一帧跟之前的一个关键帧（或 P 帧）的差别，解码时需要用之前缓存的画面，叠加上和本帧定义的差别，生成最终画面。</li>
+<li><strong>B 帧</strong>，双向预测内插编码帧。B 帧记录的是本帧与前后帧的差别。要解码 B 帧，不仅要取得之前的缓存画面，还要解码之后的画面，通过前后画面的数据与本帧数据的叠加，取得最终的画面。</li>
+</ul>
+<p>I 帧最完整，B 帧压缩率最高，而压缩后帧的序列，应该是在 IBBP 的间隔出现的。这就是通过时序进行编码。</p>
+<blockquote>
+<p>在一帧中，分成多个片，每个片中分成多个宏块，每个宏块分成多个子块，这样将一张大的图分解成一个个小块，可以方便进行空间上的编码。</p>
+</blockquote>
+<p><img src="https://s1.ax1x.com/2020/03/27/GPG2FS.png" alt="GPG2FS.png"></p>
+<p><strong>(2) 网络提取层单元（NALU)</strong><br>尽管时空非常立体的组成了一个序列，但是总归还是要压缩成一个二进制流。<strong>这个流是有结构的，是一个个的网络提取层单元（NALU，Network Abstraction Layer Unit）。</strong>变成这种格式就是为了传输，因为网络上的传输，默认的是一个个的包，因而这里也就分成了一个个的单元。</p>
+<p><img src="https://s1.ax1x.com/2020/03/27/GPJnmt.png" alt="GPJnmt.png"></p>
+<ol>
+<li>每一个 NALU 首先是一个起始标识符，用于标识 NALU 之间的间隔；然后是 NALU 的头，里面主要配置了 NALU 的类型；最终 Payload 里面是 NALU 承载的数据。</li>
+<li>在 NALU 头里面，主要的内容是类型 NAL Type。<ul>
+<li>0x07 表示 SPS，是序列参数集， 包括一个图像序列的所有信息，如图像尺寸、视频格式等。</li>
+<li>0x08 表示 PPS，是图像参数集，包括一个图像的所有分片的所有相关信息，包括图像类型、序列号等。</li>
+</ul>
+</li>
+</ol>
+<p><strong>在传输视频流之前，必须要传输这两类参数，不然无法解码。为了保证容错性，每一个 I 帧前面，都会传一遍这两个参数集合</strong></p>
+<p>如果 NALU Header 里面的表示类型是 SPS 或者 PPS，则 Payload 中就是真正的参数集的内容。如果类型是帧，则 Payload 中才是正的视频数据，当然也是一帧一帧存放的，前面说了，一帧的内容还是挺多的，因而每一个 NALU 里面保存的是一片。</p>
+<blockquote>
+<p>一个视频，可以拆分成一系列的帧，每一帧拆分成一系列的片，每一片都放在一个 NALU 里面，NALU 之间都是通过特殊的起始标识符分隔，在每一个 I 帧的第一片前面，要插入单独保存 SPS 和 PPS 的 NALU，最终形成一个长长的 NALU 序列。</p>
+</blockquote>
+<h3 id="5-6-2-推流"><a href="#5-6-2-推流" class="headerlink" title="5.6.2 推流"></a>5.6.2 推流</h3><p>显然上面所说的二进制流是不能直接在网上传输的,还需要将其打包成网络包进行发送,用到了 <strong>RTMP 协议</strong>。</p>
+<blockquote>
+<p>RTMP 是基于 TCP 的，因而肯定需要双方建立一个 TCP 的连接。<strong>在有 TCP 的连接的基础上，还需要建立一个 RTMP 的连接</strong>，也即在程序里面，你需要调用 RTMP 类库的 Connect 函数，显示创建一个连接。</p>
+</blockquote>
+<p><strong>为什么RTMP要建立单独连接?</strong><br>主要就是协商两个事情:</p>
+<ul>
+<li>一个是版本号，如果客户端、服务器的版本号不一致，则不能工作。</li>
+<li>另一个就是时间戳，视频播放中，时间是很重要的，后面的数据流互通的时候，经常要带上时间戳的差值，因而一开始双方就要知道对方的时间戳。</li>
+</ul>
+<p><strong>RTMP建立连接的过程如图</strong></p>
+<p><img src="https://s1.ax1x.com/2020/03/27/GPUhqA.png" alt="GPUhqA.png"></p>
+<ol>
+<li>首先，客户端发送 C0 表示自己的版本号，不必等对方的回复，然后发送 C1 表示自己的时间戳。</li>
+<li>服务器只有在收到 C0 的时候，才能返回 S0，表明自己的版本号，如果版本不匹配，可以断开连接。</li>
+<li>服务器发送完 S0 后，也不用等什么，就直接发送自己的时间戳 S1。客户端收到 S1 的时候，发一个知道了对方时间戳的 ACK C2。同理服务器收到 C1 的时候，发一个知道了对方时间戳的 ACK S2。于是，握手完成。</li>
+</ol>
+<p>握手之后，双方需要互相传递一些控制信息，例如 Chunk 块的大小、窗口大小等。</p>
+<p><strong>传输数据</strong><br>真正传输数据的时候，还是需要创建一个流 Stream，然后通过这个 Stream 来推流 publish。<strong>推流的过程，就是将 NALU 放在 Message 里面发送，这个也称为 RTMP Packet 包。</strong></p>
+<p>Message 的格式就像这样。</p>
+<p><img src="https://s1.ax1x.com/2020/03/27/GPdZ6g.png" alt="GPdZ6g.png"></p>
+<ul>
+<li><p>发送的时候，去掉 NALU 的起始标识符。因为这部分对于 RTMP 协议来讲没有用。接下来，将 SPS 和 PPS 参数集封装成一个 RTMP 包发送，然后发送一个个片的 NALU。</p>
+</li>
+<li><p>RTMP 在收发数据的时候并不是以 Message 为单位的，而是把 Message 拆分成 Chunk 发送，而且必须在一个 Chunk 发送完成之后，才能开始发送下一个 Chunk。每个 Chunk 中都带有 Message ID，表示属于哪个 Message，接收端也会按照这个 ID 将 Chunk 组装成 Message。可以设置 Chunk 块大小,将大的消息变为小的块再发送，可以在低带宽的情况下，减少网络拥塞。</p>
+<p><strong>整个推流过程如下:</strong></p>
+</li>
+</ul>
+<p><img src="https://s1.ax1x.com/2020/03/27/GPdXEn.png" alt="GPdXEn.png"></p>
+<p>这个时候，大量观看直播的观众就可以通过 RTMP 协议从流媒体服务器上拉取,如果用户量巨大并且都在同一个服务器拉取,服务器的压力就很大,而且用户分布在全国甚至全球，如果都去统一的一个地方下载，也会时延比较长，需要有分发网络。</p>
+<blockquote>
+<p>分发网络分为中心和边缘两层。边缘层服务器部署在全国各地及横跨各大运营商里，和用户距离很近。中心层是流媒体服务集群，负责内容的转发。智能负载均衡系统，根据用户的地理位置信息，就近选择边缘服务器，为用户提供推 / 拉流服务。中心层也负责转码服务，例如，把 RTMP 协议的码流转换为 HLS 码流。</p>
+</blockquote>
+<p><img src="https://s1.ax1x.com/2020/03/27/GP0QzT.png" alt="GP0QzT.png"></p>
+<h3 id="5-6-3-拉流"><a href="#5-6-3-拉流" class="headerlink" title="5.6.3 拉流"></a>5.6.3 拉流</h3><p>用户先读到的是 H.264 的解码参数，例如 SPS 和 PPS，然后对收到的 NALU 组成的一个个帧，进行解码，交给播发器播放，一个绚丽多彩的视频画面就出来了。</p>
+<p><img src="https://s1.ax1x.com/2020/03/27/GP0LYq.png" alt="GP0LYq.png"></p>
+<h2 id="5-7-参考文章"><a href="#5-7-参考文章" class="headerlink" title="5.7 参考文章"></a>5.7 参考文章</h2><p>五种常见流媒体协议 : <a href="https://www.jianshu.com/p/d71ceef679de" target="_blank" rel="noopener">https://www.jianshu.com/p/d71ceef679de</a></p>
+<p>流媒体协议介绍 : <a href="https://blog.csdn.net/u013008311/article/details/80405241" target="_blank" rel="noopener">https://blog.csdn.net/u013008311/article/details/80405241</a></p>
+
     </article>
     <!-- license  -->
     
@@ -403,7 +526,7 @@ height:50vh;
             <p>Author：<a href="https://liangweijiang.github.io">liangweijiang</a>
             <p>原文链接：<a href="https://liangweijiang.github.io/2020/03/26/NetworkProtocol-07/">https://liangweijiang.github.io/2020/03/26/NetworkProtocol-07/</a>
             <p>发表日期：<a href="https://liangweijiang.github.io/2020/03/26/NetworkProtocol-07/">March 26th 2020, 9:10:49 pm</a>
-            <p>更新日期：<a href="https://liangweijiang.github.io/2020/03/26/NetworkProtocol-07/">March 26th 2020, 9:19:26 pm</a>
+            <p>更新日期：<a href="https://liangweijiang.github.io/2020/03/26/NetworkProtocol-07/">March 27th 2020, 4:48:49 pm</a>
             <p>版权声明：本文采用<a rel="license noopener" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
         </div>
     
@@ -530,7 +653,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#5-流媒体协议"><span class="toc-number">1.</span> <span class="toc-text">5. 流媒体协议</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#5-1-什么是流媒体"><span class="toc-number">1.1.</span> <span class="toc-text">5.1 什么是流媒体?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-2-有哪些多媒体常用协议"><span class="toc-number">1.2.</span> <span class="toc-text">5.2 有哪些多媒体常用协议</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-3-什么是视频"><span class="toc-number">1.3.</span> <span class="toc-text">5.3 什么是视频 ?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-4-视频和图片的压缩过程的特点"><span class="toc-number">1.4.</span> <span class="toc-text">5.4 视频和图片的压缩过程的特点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-5-视频编码的两大流派"><span class="toc-number">1.5.</span> <span class="toc-text">5.5 视频编码的两大流派</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-6-看直播时到底发生了什么"><span class="toc-number">1.6.</span> <span class="toc-text">5.6 看直播时到底发生了什么</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#5-6-1-编码的实现"><span class="toc-number">1.6.1.</span> <span class="toc-text">5.6.1 编码的实现</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-6-2-推流"><span class="toc-number">1.6.2.</span> <span class="toc-text">5.6.2 推流</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-6-3-拉流"><span class="toc-number">1.6.3.</span> <span class="toc-text">5.6.3 拉流</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-7-参考文章"><span class="toc-number">1.7.</span> <span class="toc-text">5.7 参考文章</span></a></li></ol></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
@@ -1581,7 +1704,7 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href= "/2020/03/26/NetworkProtocol-07/" >NetworkProtocol-07</a>
+            <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href= "/2020/03/26/NetworkProtocol-07/" >《趣谈网络协议》学习笔记之--最常用的运用层(下)</a>
         </li>
     
     </div>
