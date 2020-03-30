@@ -272,7 +272,7 @@ height:50vh;
                 
                 
                     <div class="post-intro-read">
-                        <span>Word count: <span class="post-count word-count">3.8k</span>Reading time: <span class="post-count reading-time">13 min</span></span>
+                        <span>Word count: <span class="post-count word-count">5.7k</span>Reading time: <span class="post-count reading-time">20 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
@@ -420,10 +420,22 @@ height:50vh;
 <li>第三，符合顺序，你一点浏览器，就是发送出一个 HTTP 请求，然后才有上面那一串 HTTP 返回的东西。浏览器显然按照协议商定好的做了，最后一个五彩缤纷的页面就出现在你面前了</li>
 </ul>
 <h2 id="1-3-网络协议的种类"><a href="#1-3-网络协议的种类" class="headerlink" title="1.3 网络协议的种类"></a>1.3 网络协议的种类</h2><p><img src="https://s2.ax1x.com/2020/03/10/8PXZFS.jpg" alt="8PXZFS.jpg"></p>
+<h2 id="1-4-问题思考"><a href="#1-4-问题思考" class="headerlink" title="1.4 问题思考"></a>1.4 问题思考</h2><p>(1) 当网络包到达一个网关的时候，可以通过路由表得到下一个网关的 IP 地址，直接通过 IP 地址找就可以了，为什么还要通过本地的 MAC 地址呢？</p>
+<p>报文端到端的传输过程中，目的地址和源地址是不变的，但是每通过一个网关，源mac和目的mac一直在变。两个局域网之间的网关要通过mac互相传递报文。</p>
+<p>(2) 1.MAC 地址可以修改吗？<br><strong>MAC（Media Access Control，介质访问控制）地址，也叫硬件地址</strong>，长度是 48 比特（6 字节），由 16 进制的数字组成，分为前 24 位和后 24 位。</p>
+<ul>
+<li>前 24 位叫作组织唯一标志符（Organizationally Unique Identifier，OUI），是由 IEEE 的注册管理机构给不同厂家分配的代码，用于区分不同的厂家。</li>
+<li>后 24 位是厂家自己分配的，称为扩展标识符。同一个厂家生产的网卡中 MAC 地址后 24 位是不同的。也就是说，MAC 本来设计为唯一性的，但是后来设备越来越多，而且还有虚拟化的设备和网卡，有很多工具可以修改，就很难保证不冲突了。但是至少应该保持一个局域网内是唯一的。</li>
+<li>MAC 的设计，使得即便不能保证绝对唯一，但是能保证一个局域网内出现冲突的概率很小。这样，一台机器启动的时候，就能够在没有 IP 地址的情况下，先用 MAC 地址进行通信，获得 IP 地址。</li>
+<li>MAC 地址是工作在一个局域网中的，因而即便出现了冲突，网络工程师也能够在自己的范围内很快定位并解决这个问题。这就像我们生成 UUID 或者哈希值，大部分情况下是不会冲突的，但是如果碰巧出现冲突了，采取一定的机制解决冲突就好。</li>
+</ul>
 <hr>
 <h1 id="2-网络分层的真实含义是什么？"><a href="#2-网络分层的真实含义是什么？" class="headerlink" title="2. 网络分层的真实含义是什么？"></a>2. 网络分层的真实含义是什么？</h1><h2 id="2-1-网络为什么要分层？"><a href="#2-1-网络为什么要分层？" class="headerlink" title="2.1 网络为什么要分层？"></a>2.1 网络为什么要分层？</h2><blockquote>
-<p>对于软件世界来说,在计算机领域，任何问题到了某个复杂的阶段，如果当前方法不能解决问题，必定可以通过加多一层来解决，如果加多一层都解决不了问题，那肯定是这个问题模型的层次已经到极限了。</p>
+<p>-对于软件世界来说,在计算机领域，任何问题到了某个复杂的阶段，如果当前方法不能解决问题，必定可以通过加多一层来解决，如果加多一层都解决不了问题，那肯定是这个问题模型的层次已经到极限了。</p>
 </blockquote>
+<ul>
+<li>对于网络协议。有的想基于 TCP，自己不操心就能够保证到达；有的想自己实现可靠通信，不基于 TCP，而使用 UDP。一旦分了层就好办了，定制化后要依赖于下一层的接口，只要实现自己的逻辑就可以了。如果 TCP 的实现将所有的逻辑耦合在了整个七层，不用 TCP 的可靠传输机制都没有办法。</li>
+</ul>
 <p><strong>1）各层之间相互独立：</strong>高层是不需要知道底层的功能是采取硬件技术来实现的，它只需要知道通过与底层的接口就可以获得所需要的服务；<br><strong>2）灵活性好：</strong>各层都可以采用最适当的技术来实现，例如某一层的实现技术发生了变化，用硬件代替了软件，只要这一层的功能与接口保持不变，实现技术的变化都并不会对其他各层以及整个系统的工作产生影响； </p>
 <p><strong>3）易于实现和标准化：</strong>由于采取了规范的层次结构去组织网络功能与协议，因此可以将计算机网络复杂的通信过程，划分为有序的连续动作与有序的交互过程，有利于将网络复杂的通信工作过程化解为一系列可以控制和实现的功能模块，使得复杂的计算机网络系统变得易于设计，实现和标准化</p>
 <p><strong>在网络协议中的分层。不仅仅是根据负责的功能来简单的划分层次，而且层与层之间会有不可缺少的的封装与传递。对于网络模型各层的封装是根据整个网络模型从上到下的工作流程来划分的。但是，每层之间会有一定的联系，不是独立工作的。</strong></p>
@@ -466,6 +478,13 @@ height:50vh;
 <li>mac地址是唯一的，为什么可以修改?想想身份证，身份证号是唯一的，不能改变的，但是可以造价。mac地址全球唯一，它是固化在网卡里的。网卡毕竟是个硬件，需要软件支持，既操作系统识别。重点来了，操作系统识别出来的mac地址是可以更改的，它只不过是一个字符串。我们常说的修改mac指的是修改电脑中记录的既注册表中的记录。</li>
 <li>有了mac地址为什么还要有ip地址。举个例子，身份证号是你的唯一标识，不会重复，一落户就有（网卡一出厂就有mac）。现在我要和你通信（写信给你），地址用你的姓名+身份证，信能送到你手上吗?明显不能！身份证号前六位能定位你出生的县。mac地址前几位也可以定位生产厂家。但是你出生后会离开这个县（哪怕在这个县，也不能具体找到你）。所以一般写个人信息就要有出生地和现居地址了</li>
 </ul>
+<h2 id="3-6-问题思考"><a href="#3-6-问题思考" class="headerlink" title="3.6 问题思考"></a>3.6 问题思考</h2><p>（1） 组播和广播的意义和原理是什么？</p>
+<ul>
+<li>广播和组播分为两个层面，其中 MAC 层有广播和组播对应的地址，IP 层也有自己的广播地址和组播地址。</li>
+<li>广播相对比较简单，MAC 层的广播为 ff:ff:ff:ff:ff:ff，IP 层指向子网的广播地址为主机号为全 1 且有特定子网号的地址。</li>
+<li>组播复杂一些，MAC 层中，当地址中最高字节的最低位设置为 1 时，表示该地址是一个组播地址，用十六进制可表示为 01:00:00:00:00:00。IP 层中，组播地址为 D 类 IP 地址，当 IP 地址为组播地址的时候，有一个算法可以计算出对应的 MAC 层地址。</li>
+<li>多播进程将目的 IP 地址指明为多播地址，设备驱动程序将它转换为相应的以太网地址，然后把数据发送出去。这些接收进程必须通知它们的 IP 层，它们想接收的发给定多播地址的数据报，并且设备驱动程序必须能够接收这些多播帧。这个过程就是“加入一个多播组”。<strong>当多播跨越路由器的时候，需要通过 IGMP 协议告诉多播路由器，多播数据包应该如何转发。</strong></li>
+</ul>
 <hr>
 <h1 id="4-DHCP与PXE：IP是怎么来的，又是怎么没的？"><a href="#4-DHCP与PXE：IP是怎么来的，又是怎么没的？" class="headerlink" title="4. DHCP与PXE：IP是怎么来的，又是怎么没的？"></a>4. DHCP与PXE：IP是怎么来的，又是怎么没的？</h1><h2 id="4-1-配置ip地址"><a href="#4-1-配置ip地址" class="headerlink" title="4.1 配置ip地址"></a>4.1 配置ip地址</h2><p><strong>使用 net-tools：</strong></p>
 <blockquote>
@@ -496,6 +515,30 @@ height:50vh;
 <li><p>DHCP 协议能给客户推荐“装修队”PXE，能够安装操作系统，这个在云计算领域大有用处</p>
 </li>
 </ol>
+<h2 id="4-3-问题思考"><a href="#4-3-问题思考" class="headerlink" title="4.3 问题思考"></a>4.3 问题思考</h2><p>（1）PXE 协议可以用来安装操作系统，但是如果每次重启都安装操作系统，就会很麻烦。你知道如何使得第一次安装操作系统，后面就正常启动吗？</p>
+<ul>
+<li>现在一般电脑的网卡几乎都支持PXE启动， PXE client 就在网卡的 ROM 中，当计算机引导时，BIOS 把 PXE client 调入内存执行。<br>安装完成后，将提示重新引导计算机。这个时候，在重新引导的过程中将BIOS修改回从硬盘启动就可以了。</li>
+<li>服务器一般都提供 IPMI 接口，可以通过这个接口启动、重启、设置启动模式等等远程访问，这样就可以批量管理一大批机器。</li>
+</ul>
+<p>（2）在 DHCP 网络里面，手动配置 IP 地址会冲突吗?</p>
+<ul>
+<li>在一个 DHCP 网络里面，如果某一台机器手动配置了一个 IP 地址，并且在 DHCP 管理的网段里的话，DHCP 服务器是会将这个地址分配给其他机器的。一旦分配了，ARP 的时候，就会收到两个应答，IP 地址就冲突了</li>
+<li>当发生这种情况的时候，应该怎么办呢？DHCP 的过程虽然没有明确如何处理，但是 DHCP 的客户端和服务器都可以添加相应的机制来检测冲突。<ul>
+<li>如果由客户端来检测冲突，一般情况是，客户端在接受分配的 IP 之前，先发送一个 ARP，看是否有应答，有就说明冲突了，于是发送一个 DHCPDECLINE，放弃这个 IP 地址。</li>
+<li>如果由服务器来检测冲突，DHCP 服务器会发送 ping，来看某个 IP 是否已经被使用。如果被使用了，它就不再将这个 IP 分配给其他的客户端了。</li>
+</ul>
+</li>
+</ul>
+<p>（3）DHCP 的 Offer 和 ACK 应该是单播还是广播呢？<br>正常情况下，一旦有了 IP 地址，DHCP Server 还是希望通过单播的方式发送 OFFER 和 ACK。但是不幸的是，有的客户端协议栈的实现，如果还没有配置 IP 地址，就使用单播。协议栈是不接收这个包的，因为 OFFER 和 ACK 的时候，IP 地址还没有配置到网卡上。所以，一切取决于客户端的协议栈的能力。</p>
+<ul>
+<li>如果没配置好 IP，就不能接收单播的包，那就将 BROADCAST 设为 1，以广播的形式进行交互。</li>
+<li>如果客户端的协议栈实现很厉害，即便是没有配置好 IP，仍然能够接受单播的包，那就将 BROADCAST 位设置为 0，就以单播的形式交互。</li>
+</ul>
+<p>（4）DHCP 如何解决内网安全问题?<br>其实 DHCP 协议的设计是基于内网互信的基础来设计的，而且是<strong>基于 UDP 协议</strong>。但是这里面的确是有风险的。例如一个普通用户无意地或者恶意地安装一台 DHCP 服务器，发放一些错误或者冲突的配置；再如，有恶意的用户发出很多的 DHCP 请求，让 DHCP 服务器给他分配大量的 IP。</p>
+<ul>
+<li>对于第一种情况，DHCP 服务器和二层网络都是由网管管理的，可以在交换机配置只有来自某个 DHCP 服务器的包才是可信的，其他全部丢弃。如果有 SDN，或者在云中，非法的 DHCP 包根本就拦截到虚拟机或者物理机的出口。</li>
+<li>对于第二种情况，一方面进行监控，对 DHCP 报文进行限速，并且异常的端口可以关闭，一方面还是 SDN 或者在云中，除了被 SDN 管控端登记过的 IP 和 MAC 地址，其他的地址是不允许出现在虚拟机和物理机出口的，也就无法模拟大量的客户端。</li>
+</ul>
 <h2 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h2><p><a href="https://www.cnblogs.com/hengzhezou/p/11073760.html" target="_blank" rel="noopener">动态主机配置协议DHCP</a></p>
 <p><a href="https://www.jianshu.com/p/6fff29bd42b3" target="_blank" rel="noopener">关于ifconfig与ip addr</a></p>
 <p>学习自极客时间 《趣谈网络协议》</p>
@@ -507,7 +550,7 @@ height:50vh;
             <p>Author：<a href="https://liangweijiang.github.io">liangweijiang</a>
             <p>原文链接：<a href="https://liangweijiang.github.io/2020/03/10/NetworkProtocol-01/">https://liangweijiang.github.io/2020/03/10/NetworkProtocol-01/</a>
             <p>发表日期：<a href="https://liangweijiang.github.io/2020/03/10/NetworkProtocol-01/">March 10th 2020, 4:56:43 pm</a>
-            <p>更新日期：<a href="https://liangweijiang.github.io/2020/03/10/NetworkProtocol-01/">March 27th 2020, 4:36:07 pm</a>
+            <p>更新日期：<a href="https://liangweijiang.github.io/2020/03/10/NetworkProtocol-01/">March 30th 2020, 3:59:29 pm</a>
             <p>版权声明：本文采用<a rel="license noopener" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
         </div>
     
@@ -639,7 +682,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-为什么要学习网络协议"><span class="toc-number">1.</span> <span class="toc-text">1. 为什么要学习网络协议?</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1-协议的三要素"><span class="toc-number">1.1.</span> <span class="toc-text">1.1 协议的三要素</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2-HTTP协议的格式"><span class="toc-number">1.2.</span> <span class="toc-text">1.2 HTTP协议的格式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-3-网络协议的种类"><span class="toc-number">1.3.</span> <span class="toc-text">1.3 网络协议的种类</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-网络分层的真实含义是什么？"><span class="toc-number">2.</span> <span class="toc-text">2. 网络分层的真实含义是什么？</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-网络为什么要分层？"><span class="toc-number">2.1.</span> <span class="toc-text">2.1 网络为什么要分层？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2-程序是如何工作的？"><span class="toc-number">2.2.</span> <span class="toc-text">2.2 程序是如何工作的？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-3-层与层之间联系"><span class="toc-number">2.3.</span> <span class="toc-text">2.3 层与层之间联系</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-ifconfig：最熟悉又陌生的命令行"><span class="toc-number">3.</span> <span class="toc-text">3. ifconfig：最熟悉又陌生的命令行</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#3-1-ifconfig-和-ip-addr-的区别"><span class="toc-number">3.1.</span> <span class="toc-text">3.1 ifconfig 和 ip addr 的区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-2-ip地址的分类"><span class="toc-number">3.2.</span> <span class="toc-text">3.2 ip地址的分类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-3-无类型域间选路（CIDR）"><span class="toc-number">3.3.</span> <span class="toc-text">3.3 无类型域间选路（CIDR）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-4-公有-IP-地址和私有-IP-地址"><span class="toc-number">3.4.</span> <span class="toc-text">3.4 公有 IP 地址和私有 IP 地址</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-5-MAC地址"><span class="toc-number">3.5.</span> <span class="toc-text">3.5 MAC地址</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-DHCP与PXE：IP是怎么来的，又是怎么没的？"><span class="toc-number">4.</span> <span class="toc-text">4. DHCP与PXE：IP是怎么来的，又是怎么没的？</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#4-1-配置ip地址"><span class="toc-number">4.1.</span> <span class="toc-text">4.1 配置ip地址</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-2-动态主机配置协议（DHCP）"><span class="toc-number">4.2.</span> <span class="toc-text">4.2 动态主机配置协议（DHCP）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-1-DHCP-的工作方式"><span class="toc-number">4.2.1.</span> <span class="toc-text">4.2.1 DHCP 的工作方式:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-2-IP-地址的收回和续"><span class="toc-number">4.2.2.</span> <span class="toc-text">4.2.2 IP 地址的收回和续</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-3-PXE-的工作过程"><span class="toc-number">4.2.3.</span> <span class="toc-text">4.2.3 PXE 的工作过程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-4-DCHP总结"><span class="toc-number">4.2.4.</span> <span class="toc-text">4.2.4 DCHP总结</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考文章"><span class="toc-number">4.3.</span> <span class="toc-text">参考文章</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-为什么要学习网络协议"><span class="toc-number">1.</span> <span class="toc-text">1. 为什么要学习网络协议?</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1-协议的三要素"><span class="toc-number">1.1.</span> <span class="toc-text">1.1 协议的三要素</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2-HTTP协议的格式"><span class="toc-number">1.2.</span> <span class="toc-text">1.2 HTTP协议的格式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-3-网络协议的种类"><span class="toc-number">1.3.</span> <span class="toc-text">1.3 网络协议的种类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-4-问题思考"><span class="toc-number">1.4.</span> <span class="toc-text">1.4 问题思考</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-网络分层的真实含义是什么？"><span class="toc-number">2.</span> <span class="toc-text">2. 网络分层的真实含义是什么？</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-网络为什么要分层？"><span class="toc-number">2.1.</span> <span class="toc-text">2.1 网络为什么要分层？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2-程序是如何工作的？"><span class="toc-number">2.2.</span> <span class="toc-text">2.2 程序是如何工作的？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-3-层与层之间联系"><span class="toc-number">2.3.</span> <span class="toc-text">2.3 层与层之间联系</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-ifconfig：最熟悉又陌生的命令行"><span class="toc-number">3.</span> <span class="toc-text">3. ifconfig：最熟悉又陌生的命令行</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#3-1-ifconfig-和-ip-addr-的区别"><span class="toc-number">3.1.</span> <span class="toc-text">3.1 ifconfig 和 ip addr 的区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-2-ip地址的分类"><span class="toc-number">3.2.</span> <span class="toc-text">3.2 ip地址的分类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-3-无类型域间选路（CIDR）"><span class="toc-number">3.3.</span> <span class="toc-text">3.3 无类型域间选路（CIDR）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-4-公有-IP-地址和私有-IP-地址"><span class="toc-number">3.4.</span> <span class="toc-text">3.4 公有 IP 地址和私有 IP 地址</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-5-MAC地址"><span class="toc-number">3.5.</span> <span class="toc-text">3.5 MAC地址</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-6-问题思考"><span class="toc-number">3.6.</span> <span class="toc-text">3.6 问题思考</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-DHCP与PXE：IP是怎么来的，又是怎么没的？"><span class="toc-number">4.</span> <span class="toc-text">4. DHCP与PXE：IP是怎么来的，又是怎么没的？</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#4-1-配置ip地址"><span class="toc-number">4.1.</span> <span class="toc-text">4.1 配置ip地址</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-2-动态主机配置协议（DHCP）"><span class="toc-number">4.2.</span> <span class="toc-text">4.2 动态主机配置协议（DHCP）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-1-DHCP-的工作方式"><span class="toc-number">4.2.1.</span> <span class="toc-text">4.2.1 DHCP 的工作方式:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-2-IP-地址的收回和续"><span class="toc-number">4.2.2.</span> <span class="toc-text">4.2.2 IP 地址的收回和续</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-3-PXE-的工作过程"><span class="toc-number">4.2.3.</span> <span class="toc-text">4.2.3 PXE 的工作过程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-4-DCHP总结"><span class="toc-number">4.2.4.</span> <span class="toc-text">4.2.4 DCHP总结</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-3-问题思考"><span class="toc-number">4.3.</span> <span class="toc-text">4.3 问题思考</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考文章"><span class="toc-number">4.4.</span> <span class="toc-text">参考文章</span></a></li></ol></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
