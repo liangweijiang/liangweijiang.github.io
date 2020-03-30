@@ -22,7 +22,7 @@
     <meta name="description" content="">
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-    <title>头条一面凉经 · Jiang&#39;s Blog</title>
+    <title>数据结构学习笔记---线性排序 · Jiang&#39;s Blog</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -217,7 +217,7 @@
                 <a href="/" >Jiang&#39;s blog</a>
             </div>
             <div class="post-title">
-                <a href="#" class="post-name">头条一面凉经</a>
+                <a href="#" class="post-name">数据结构学习笔记---线性排序</a>
             </div>
     </div>
     
@@ -247,7 +247,7 @@ height:50vh;
         <h1 class="intro-title">
             <!-- 主页  -->
             
-            头条一面凉经
+            数据结构学习笔记---线性排序
             <!-- 404 -->
             
         </h1>
@@ -264,14 +264,20 @@ height:50vh;
             <div class="post-intros">
                 <!-- 文章页标签  -->
                 
+                    <div class= post-intro-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "排序">排序</a>
+    
+</div>
+                
                 
                     <div class="post-intro-read">
-                        <span>Word count: <span class="post-count word-count">1.1k</span>Reading time: <span class="post-count reading-time">4 min</span></span>
+                        <span>Word count: <span class="post-count word-count">1.6k</span>Reading time: <span class="post-count reading-time">6 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
                     <span class="post-intro-calander iconfont-archer">&#xe676;</span>
-                    <span class="post-intro-time">2020/03/23</span>
+                    <span class="post-intro-time">2020/03/30</span>
                     
                     <span id="busuanzi_container_page_pv" class="busuanzi-pv">
                         <span class="iconfont-archer">&#xe602;</span>
@@ -395,35 +401,55 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
     <article class="article-entry">
-        <h1 id="头条一面总结"><a href="#头条一面总结" class="headerlink" title="头条一面总结"></a>头条一面总结</h1><p>昨天头条的一面结束了,总体感觉就是有一点出乎一点的感觉,哈哈哈,和平时网上看到的面经完全不一样呀,主要还是自己的积累不够,所以做一个总结来警示自己还要多加努力啊,大厂从来都不会这么容易就能进去的。</p>
-<h3 id="一-实现队列的方法"><a href="#一-实现队列的方法" class="headerlink" title="一. 实现队列的方法"></a>一. 实现队列的方法</h3><p>首先第一道题问了队列的实现，我首先有想到了是三种实现方法。<strong>基于栈的实现方法；基于链表的实现方法；基于数组的实现方法</strong></p>
-<ul>
-<li><p>首先基于站的实现方法我回答出来了，就是是想用辅助栈实现</p>
-</li>
-<li><p>基于链表的实现也挺简单，插入直接插到最后，取的时候去头元素，然后在更新头元素</p>
-</li>
-<li><p>基于数组的方法，妈的一开始没想到双指针我真是服了自己了，做了这么多的双指针的题，竟然没想到，这个真的是自己疏忽了，该打。。</p>
-</li>
-</ul>
-<h3 id="二-输入一个网址到页面显示出来-发生了生么事"><a href="#二-输入一个网址到页面显示出来-发生了生么事" class="headerlink" title="二. 输入一个网址到页面显示出来,发生了生么事"></a>二. 输入一个网址到页面显示出来,发生了生么事</h3><p>我回答首先域名解析将域名解析成IP地址,然后经过负载均衡分配服务器,服务器从数据库拿取数据,渲染到页面最终返回。</p>
-<h3 id="三-负载均衡求最小平均响应时间-有点没理解面试官的问题-现在都没怎么理解-的实现"><a href="#三-负载均衡求最小平均响应时间-有点没理解面试官的问题-现在都没怎么理解-的实现" class="headerlink" title="三.负载均衡求最小平均响应时间(有点没理解面试官的问题,现在都没怎么理解)的实现"></a>三.负载均衡求最小平均响应时间(有点没理解面试官的问题,现在都没怎么理解)的实现</h3><p>这道题可能大致的意思就是已知客户端的IP,当前时间和响应时间,现在要将它分配给过去一分钟之内平均响应时间最短的服务器。</p>
-<p>这里我的思路就是维护一个哈希表，记录服务器IP地址和响应次数，每当时间超过</p>
-<h3 id="四-优先级队列的实现-以及为什么堆的时间复杂度"><a href="#四-优先级队列的实现-以及为什么堆的时间复杂度" class="headerlink" title="四. 优先级队列的实现,以及为什么堆的时间复杂度?"></a>四. 优先级队列的实现,以及为什么堆的时间复杂度?</h3><p>这里听错了，回答成了堆化的时间复杂度O（n）</p>
-<h3 id="五-单链表实现快排"><a href="#五-单链表实现快排" class="headerlink" title="五. 单链表实现快排"></a>五. 单链表实现快排</h3><p>我一开始的思路就是和数组的快拍差不多,也是找基准点,然后通过分治的方法,递归实现,不同的地方就是基准点 要遍历,因为他是链表,不支持连续访问,但是我记得我处理基准点那里有一个参数写错了,操蛋,我太紧张吧high传成了mid…….</p>
-<p>这里看一下别人的实现</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br></pre></td><td class="code"><pre><span class="line">// 链表结点类</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Node</span><span class="params">()</span>:</span>  </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, item=None)</span>:</span></span><br><span class="line">        self.item = item  // 数据域</span><br><span class="line">        self.next = <span class="literal">None</span>  // 指针域</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">// 链表类，生成链表以及定义相关方法</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">LinkList</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.head = <span class="literal">None</span></span><br><span class="line"></span><br><span class="line">    // 生成链表，这里使用list来生成</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">create</span><span class="params">(self, item)</span>:</span></span><br><span class="line">        self.head = Node(item[<span class="number">0</span>])</span><br><span class="line">        p = self.head</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> item[<span class="number">1</span>:]:</span><br><span class="line">            p.next = Node(i)</span><br><span class="line">            p = p.next</span><br><span class="line"></span><br><span class="line">    // 遍历显示</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">print</span><span class="params">(self)</span>:</span></span><br><span class="line">        p = self.head</span><br><span class="line">        <span class="keyword">while</span> p != <span class="literal">None</span>:</span><br><span class="line">            print(p.item, end=<span class="string">' '</span>)</span><br><span class="line">            p = p.next</span><br><span class="line">        print()</span><br><span class="line"></span><br><span class="line">    // 根据索引取值</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">getItem</span><span class="params">(self, index)</span>:</span></span><br><span class="line">        p = self.head</span><br><span class="line">        count = <span class="number">0</span></span><br><span class="line">        <span class="keyword">while</span> count != index:</span><br><span class="line">            p = p.next</span><br><span class="line">            count += <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> p.item</span><br><span class="line"></span><br><span class="line">    // 根据索引设值</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">setItem</span><span class="params">(self, index, item)</span>:</span></span><br><span class="line">        p = self.head</span><br><span class="line">        count = <span class="number">-1</span></span><br><span class="line">        <span class="keyword">while</span> count &lt; index<span class="number">-1</span>:</span><br><span class="line">            p = p.next</span><br><span class="line">            count += <span class="number">1</span></span><br><span class="line">        p.item = item</span><br><span class="line"></span><br><span class="line">    // 互换</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">swapItem</span><span class="params">(self, i, j)</span>:</span></span><br><span class="line">        t = self.getItem(j)</span><br><span class="line">        self.setItem(j, self.getItem(i))</span><br><span class="line">        self.setItem(i, t)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">quicksortofloop</span><span class="params">(self, left, right)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> left &lt; right:</span><br><span class="line">            // 初始化</span><br><span class="line">            i = left</span><br><span class="line">            j = i+<span class="number">1</span></span><br><span class="line">            start = self.getItem(i)</span><br><span class="line"></span><br><span class="line">            // 大循环条件，j不能超过链表长度</span><br><span class="line">            <span class="keyword">while</span> (j &lt;= right):</span><br><span class="line">                // 如果 j 指向的值大于等于基准数字，直接跳过</span><br><span class="line">                <span class="keyword">while</span> (j &lt;= right <span class="keyword">and</span> self.getItem(j) &gt;= start):</span><br><span class="line">                    j += <span class="number">1</span></span><br><span class="line">                // 否则，j 指向的值小于基准，则交换</span><br><span class="line">                <span class="keyword">if</span> (j &lt;= right):</span><br><span class="line">                    i += <span class="number">1</span></span><br><span class="line">                    self.swapItem(i, j)</span><br><span class="line">                    self.print()</span><br><span class="line">                    j += <span class="number">1</span></span><br><span class="line">            self.swapItem(left, i)</span><br><span class="line">            self.quicksortofloop(left, i<span class="number">-1</span>)</span><br><span class="line">            self.quicksortofloop(i+<span class="number">1</span>, right)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:</span><br><span class="line">    L = LinkList()</span><br><span class="line">    L.create([<span class="number">4</span>, <span class="number">2</span>, <span class="number">5</span>, <span class="number">3</span>, <span class="number">7</span>, <span class="number">9</span>, <span class="number">0</span>, <span class="number">1</span>])</span><br><span class="line">    L.quicksortofloop(<span class="number">0</span>, <span class="number">7</span>)</span><br><span class="line">    L.print()</span><br></pre></td></tr></table></figure>
+        <h1 id="1-桶排序（Bucket-sort）"><a href="#1-桶排序（Bucket-sort）" class="headerlink" title="1. 桶排序（Bucket sort）"></a>1. 桶排序（Bucket sort）</h1><p>桶排序，顾名思义，会用到“桶”，核心思想是将要排序的数据分到几个有序的桶里，每个桶里的数据再单独进行排序。桶内排完序之后，再把每个桶里的数据按照顺序依次取出，组成的序列就是有序的了。</p>
+<p><img src="https://s1.ax1x.com/2020/03/30/GnYWW9.png" alt="GnYWW9.png"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">bucketSort</span><span class="params">(nums)</span>:</span></span><br><span class="line">  <span class="comment"># 选择一个最大的数</span></span><br><span class="line">  max_num = max(nums)</span><br><span class="line">  <span class="comment"># 创建一个元素全是0的列表, 当做桶</span></span><br><span class="line">  bucket = [<span class="number">0</span>]*(max_num+<span class="number">1</span>)</span><br><span class="line">  <span class="comment"># 把所有元素放入桶中, 即把对应元素个数加一</span></span><br><span class="line">  <span class="keyword">for</span> i <span class="keyword">in</span> nums:</span><br><span class="line">    bucket[i] += <span class="number">1</span></span><br><span class="line">  <span class="comment"># 存储排序好的元素</span></span><br><span class="line">  sort_nums = []</span><br><span class="line">  <span class="comment"># 取出桶中的元素</span></span><br><span class="line">  <span class="keyword">for</span> j <span class="keyword">in</span> range(len(bucket)):</span><br><span class="line">    <span class="keyword">if</span> bucket[j] != <span class="number">0</span>:</span><br><span class="line">      <span class="keyword">for</span> y <span class="keyword">in</span> range(bucket[j]):</span><br><span class="line">        sort_nums.append(j)</span><br><span class="line">  <span class="keyword">return</span> sort_nums</span><br></pre></td></tr></table></figure>
 
-<p>原文链接：<a href="https://blog.csdn.net/a66273039/article/details/84565065" target="_blank" rel="noopener">https://blog.csdn.net/a66273039/article/details/84565065</a><br>后来面试官看了一下,八成凉了,直接就说面试就到这里了,问我有啥想问的不,我当时挺灰心的,就啥也没问</p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>想字节跳动这种大厂,一定要平时多积累,就练习,多思考,踏踏实实地,想单纯的靠抱佛脚是真的不怎么可能能进的,在今后的日子里要多思考和练习了,下次再战,其实真的挺爽的哈哈,第一次面试大厂,挺刺激,也算是没啥遗憾了,还是自己的实力不够,加油吧。</p>
+<h2 id="桶排序的时间复杂度"><a href="#桶排序的时间复杂度" class="headerlink" title="桶排序的时间复杂度"></a>桶排序的时间复杂度</h2><p>如果要排序的数据有 n 个，我们把它们均匀地划分到 m 个桶内，每个桶里就有 k=n/m 个元素。每个桶内部使用快速排序，时间复杂度为 O(k * logk)。m 个桶排序的时间复杂度就是 O(m * k * logk)，因为 k=n/m，所以整个桶排序的时间复杂度就是 O(n*log(n/m))。当桶的个数 m 接近数据个数 n 时，log(n/m) 就是一个非常小的常量，这个时候桶排序的时间复杂度接近 O(n)。</p>
+<h2 id="桶排序的缺点"><a href="#桶排序的缺点" class="headerlink" title="桶排序的缺点"></a>桶排序的缺点</h2><p>桶排序对要排序数据的要求是非常苛刻的。</p>
+<ul>
+<li>首先，要排序的数据需要很容易就能划分成 m 个桶，并且，桶与桶之间有着天然的大小顺序。这样每个桶内的数据都排序完之后，桶与桶之间的数据不需要再进行排序。</li>
+<li>其次，数据在各个桶之间的分布是比较均匀的。如果数据经过桶的划分之后，有些桶里的数据非常多，有些非常少，很不平均，那桶内数据排序的时间复杂度就不是常量级了。在极端情况下，如果数据都被划分到一个桶里，那就退化为 O(nlogn) 的排序算法了。</li>
+</ul>
+<p><strong>桶排序比较适合用在外部排序中。</strong>所谓的外部排序就是数据存储在外部磁盘中，数据量比较大，内存有限，无法将数据全部加载到内存中。</p>
+<h1 id="2-计数排序（Counting-sort）"><a href="#2-计数排序（Counting-sort）" class="headerlink" title="2. 计数排序（Counting sort）"></a>2. 计数排序（Counting sort）</h1><p><strong>计数排序其实是桶排序的一种特殊情况。</strong>当要排序的 n 个数据，所处的范围并不大的时候，比如最大值是 k，我们就可以把数据划分成 k 个桶。每个桶内的数据值都是相同的，省掉了桶内排序的时间。</p>
+<p><img src="https://s1.ax1x.com/2020/03/30/GnUwzd.gif" alt="GnUwzd.gif"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">countingSort</span><span class="params">(arr)</span>:</span></span><br><span class="line">    max_value = max(arr)</span><br><span class="line">    bucket_len = max_value + <span class="number">1</span></span><br><span class="line">    <span class="comment"># 每一个数都申请一个桶</span></span><br><span class="line">    bucket = [<span class="number">0</span>] * bucket_len</span><br><span class="line">    sorted_index = <span class="number">0</span></span><br><span class="line">    arr_len = len(arr)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(arr_len):</span><br><span class="line">        <span class="comment"># 索引号为该数字时,计数加一</span></span><br><span class="line">        bucket[arr[i]] += <span class="number">1</span></span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> range(bucket_len):</span><br><span class="line">        <span class="keyword">while</span> bucket[j] &gt; <span class="number">0</span>:</span><br><span class="line">            arr[sorted_index] = j</span><br><span class="line">            sorted_index += <span class="number">1</span></span><br><span class="line">            bucket[j] -= <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> arr</span><br></pre></td></tr></table></figure>
+
+<h3 id="计数排序的优化"><a href="#计数排序的优化" class="headerlink" title="计数排序的优化"></a>计数排序的优化</h3><p>如何快速计算出，每个数在有序数组中对应的存储位置呢？这个处理方法非常巧妙，很不容易想到。<br>假设只有 8 个数字，分数在 0 到 5 分之间。这 8 个数字的值我们放在一个数组 A[8]中，它们分别是：2，5，3，0，2，3，0，3。</p>
+<ol>
+<li><p>我们使用大小为 6 的数组 C[6]表示桶，其中下标对应分数。不过，C[6]内存储的并不是考生，而是对应的考生个数。像我刚刚举的那个例子，我们只需要遍历一遍考生分数，就可以得到 C[6]的值。<br><img src="https://s1.ax1x.com/2020/03/30/GnrV1S.png" alt="GnrV1S.png"></p>
+</li>
+<li><p>分数为 3 分的考生有 3 个，小于 3 分的考生有 4 个，所以，成绩为 3 分的考生在排序之后的有序数组 R[8]中，会保存下标 4，5，6 的位置。<br><img src="https://s1.ax1x.com/2020/03/30/GnDKJK.png" alt="GnDKJK.png"></p>
+</li>
+<li><p>我们对 C[6]数组顺序求和，C[6]存储的数据就变成了下面这样子。C[k]里存储小于等于分数 k 的考生个数。<br><img src="https://s1.ax1x.com/2020/03/30/Gnrs1O.png" alt="Gnrs1O.png"></p>
+</li>
+<li><p>从后到前依次扫描数组 A。比如，当扫描到 3 时，我们可以从数组 C 中取出下标为 3 的值 7，也就是说，到目前为止，包括自己在内，分数小于等于 3 的考生有 7 个，也就是说 3 是数组 R 中的第 7 个元素（也就是数组 R 中下标为 6 的位置）。当 3 放入到数组 R 中后，小于等于 3 的元素就只剩下了 6 个了，所以相应的 C[3]要减 1，变成 6。<br><img src="https://s1.ax1x.com/2020/03/30/GnyUF1.png" alt="GnyUF1.png"></p>
+</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> typing <span class="keyword">import</span> List</span><br><span class="line"><span class="keyword">import</span> itertools</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">counting_sort</span><span class="params">(a: List[int])</span>:</span></span><br><span class="line">    <span class="keyword">if</span> len(a) &lt;= <span class="number">1</span>: <span class="keyword">return</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># a中有counts[i]个数不大于i</span></span><br><span class="line">    counts = [<span class="number">0</span>] * (max(a) + <span class="number">1</span>)</span><br><span class="line">    <span class="keyword">for</span> num <span class="keyword">in</span> a:</span><br><span class="line">        counts[num] += <span class="number">1</span></span><br><span class="line">    <span class="comment"># 对数组顺序求和</span></span><br><span class="line">    counts = list(itertools.accumulate(counts))</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 临时数组，储存排序之后的结果</span></span><br><span class="line">    a_sorted = [<span class="number">0</span>] * len(a)</span><br><span class="line">    <span class="keyword">for</span> num <span class="keyword">in</span> reversed(a):</span><br><span class="line">        index = counts[num] - <span class="number">1</span></span><br><span class="line">        a_sorted[index] = num</span><br><span class="line">        counts[num] -= <span class="number">1</span></span><br><span class="line"></span><br><span class="line">    a[:] = a_sorted</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>计数排序只能用在数据范围不大的场景中，如果数据范围 k 比要排序的数据 n 大很多，就不适合用计数排序了。而且，计数排序只能给非负整数排序，如果要排序的数据是其他类型的，要将其在不改变相对大小的情况下，转化为非负整数。</p>
+</blockquote>
+<h1 id="3-基数排序（Radix-sort）"><a href="#3-基数排序（Radix-sort）" class="headerlink" title="3. 基数排序（Radix sort）"></a>3. 基数排序（Radix sort）</h1><p>基数排序是按照低位先排序，然后收集；再按照高位排序，然后再收集；依次类推，直到最高位。有时候有些属性是有优先级顺序的，先按低优先级排序，再按高优先级排序。最后的次序就是高优先级高的在前，高优先级相同的低优先级高的在前。</p>
+<p><img src="https://s1.ax1x.com/2020/03/30/Gn6ikR.gif" alt="Gn6ikR.gif"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">radix_sort</span><span class="params">(res, d)</span>:</span></span><br><span class="line">    <span class="keyword">for</span> k <span class="keyword">in</span> range(d):  <span class="comment"># d轮排序</span></span><br><span class="line">        <span class="comment"># 每一轮生成10个列表</span></span><br><span class="line">        s = [[] <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">10</span>)]  <span class="comment"># 因为每一位数字都是0~9，故建立10个桶</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> res:</span><br><span class="line">            <span class="comment"># 按第k位放入到桶中</span></span><br><span class="line">            s[i // (<span class="number">10</span> ** k) % <span class="number">10</span>].append(i)</span><br><span class="line">        <span class="comment"># 按当前桶的顺序重排列表</span></span><br><span class="line">        cur = [j <span class="keyword">for</span> i <span class="keyword">in</span> s <span class="keyword">for</span> j <span class="keyword">in</span> i]</span><br><span class="line">        <span class="comment"># 更新原数组</span></span><br><span class="line">        res[:] = cur</span><br><span class="line">    <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>基数排序对要排序的数据是有要求的，需要可以分割出独立的“位”来比较，而且位之间有递进的关系，如果 a 数据的高位比 b 数据大，那剩下的低位就不用比较了。除此之外，每一位的数据范围不能太大，要可以用线性排序算法来排序，否则，基数排序的时间复杂度就无法做到 O(n) 了。解答开篇</p>
+</blockquote>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p><img src="https://s1.ax1x.com/2020/03/30/GnRcGR.png" alt="GnRcGR.png"></p>
+<p><img src="https://s1.ax1x.com/2020/03/30/GnR0qU.png" alt="GnR0qU.png"></p>
 
     </article>
     <!-- license  -->
     
         <div class="license-wrapper">
             <p>Author：<a href="https://liangweijiang.github.io">liangweijiang</a>
-            <p>原文链接：<a href="https://liangweijiang.github.io/2020/03/23/Interview-experience/">https://liangweijiang.github.io/2020/03/23/Interview-experience/</a>
-            <p>发表日期：<a href="https://liangweijiang.github.io/2020/03/23/Interview-experience/">March 23rd 2020, 5:27:04 pm</a>
-            <p>更新日期：<a href="https://liangweijiang.github.io/2020/03/23/Interview-experience/">March 23rd 2020, 5:29:08 pm</a>
+            <p>原文链接：<a href="https://liangweijiang.github.io/2020/03/30/data-structure-06/">https://liangweijiang.github.io/2020/03/30/data-structure-06/</a>
+            <p>发表日期：<a href="https://liangweijiang.github.io/2020/03/30/data-structure-06/">March 30th 2020, 6:37:12 pm</a>
+            <p>更新日期：<a href="https://liangweijiang.github.io/2020/03/30/data-structure-06/">March 30th 2020, 6:38:06 pm</a>
             <p>版权声明：本文采用<a rel="license noopener" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
         </div>
     
@@ -431,17 +457,12 @@ height:50vh;
     <ul class="post-paginator">
         <li class="next">
             
-                <div class="nextSlogan">Next Post</div>
-                <a href= "/2020/03/25/algorithm-17/" title= "每日一道算法之--电话号码的字母组合">
-                    <div class="nextTitle">每日一道算法之--电话号码的字母组合</div>
-                </a>
-            
         </li>
         <li class="previous">
             
                 <div class="prevSlogan">Previous Post</div>
-                <a href= "/2020/03/23/data-structure-01/" title= "数据结构学习笔记---数组">
-                    <div class="prevTitle">数据结构学习笔记---数组</div>
+                <a href= "/2020/03/30/NetworkProtocol-08/" title= "《趣谈网络协议》学习笔记之--陌生的数据中心(上)">
+                    <div class="prevTitle">《趣谈网络协议》学习笔记之--陌生的数据中心(上)</div>
                 </a>
             
         </li>
@@ -555,7 +576,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#头条一面总结"><span class="toc-number">1.</span> <span class="toc-text">头条一面总结</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#一-实现队列的方法"><span class="toc-number">1.0.1.</span> <span class="toc-text">一. 实现队列的方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#二-输入一个网址到页面显示出来-发生了生么事"><span class="toc-number">1.0.2.</span> <span class="toc-text">二. 输入一个网址到页面显示出来,发生了生么事</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#三-负载均衡求最小平均响应时间-有点没理解面试官的问题-现在都没怎么理解-的实现"><span class="toc-number">1.0.3.</span> <span class="toc-text">三.负载均衡求最小平均响应时间(有点没理解面试官的问题,现在都没怎么理解)的实现</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#四-优先级队列的实现-以及为什么堆的时间复杂度"><span class="toc-number">1.0.4.</span> <span class="toc-text">四. 优先级队列的实现,以及为什么堆的时间复杂度?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#五-单链表实现快排"><span class="toc-number">1.0.5.</span> <span class="toc-text">五. 单链表实现快排</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#总结"><span class="toc-number">1.1.</span> <span class="toc-text">总结</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-桶排序（Bucket-sort）"><span class="toc-number">1.</span> <span class="toc-text">1. 桶排序（Bucket sort）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#桶排序的时间复杂度"><span class="toc-number">1.1.</span> <span class="toc-text">桶排序的时间复杂度</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#桶排序的缺点"><span class="toc-number">1.2.</span> <span class="toc-text">桶排序的缺点</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-计数排序（Counting-sort）"><span class="toc-number">2.</span> <span class="toc-text">2. 计数排序（Counting sort）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#计数排序的优化"><span class="toc-number">2.0.1.</span> <span class="toc-text">计数排序的优化</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-基数排序（Radix-sort）"><span class="toc-number">3.</span> <span class="toc-text">3. 基数排序（Radix sort）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#总结"><span class="toc-number">3.1.</span> <span class="toc-text">总结</span></a></li></ol></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
