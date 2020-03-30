@@ -22,7 +22,7 @@
     <meta name="description" content="">
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-    <title>每日一道算法之--电话号码的字母组合 · Jiang&#39;s Blog</title>
+    <title>《趣谈网络协议》学习笔记之--陌生的数据中心(上) · Jiang&#39;s Blog</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -217,7 +217,7 @@
                 <a href="/" >Jiang&#39;s blog</a>
             </div>
             <div class="post-title">
-                <a href="#" class="post-name">每日一道算法之--电话号码的字母组合</a>
+                <a href="#" class="post-name">《趣谈网络协议》学习笔记之--陌生的数据中心(上)</a>
             </div>
     </div>
     
@@ -247,7 +247,7 @@ height:50vh;
         <h1 class="intro-title">
             <!-- 主页  -->
             
-            每日一道算法之--电话号码的字母组合
+            《趣谈网络协议》学习笔记之--陌生的数据中心(上)
             <!-- 404 -->
             
         </h1>
@@ -266,20 +266,18 @@ height:50vh;
                 
                     <div class= post-intro-tags >
     
-        <a class="post-tag" href="javascript:void(0);" data-tags = "回溯">回溯</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "队列">队列</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags = "网络协议">网络协议</a>
     
 </div>
                 
                 
                     <div class="post-intro-read">
-                        <span>Word count: <span class="post-count word-count">617</span>Reading time: <span class="post-count reading-time">2 min</span></span>
+                        <span>Word count: <span class="post-count word-count">7.9k</span>Reading time: <span class="post-count reading-time">27 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
                     <span class="post-intro-calander iconfont-archer">&#xe676;</span>
-                    <span class="post-intro-time">2020/03/25</span>
+                    <span class="post-intro-time">2020/03/30</span>
                     
                     <span id="busuanzi_container_page_pv" class="busuanzi-pv">
                         <span class="iconfont-archer">&#xe602;</span>
@@ -403,40 +401,238 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
     <article class="article-entry">
-        <h1 id="电话号码的字母组合"><a href="#电话号码的字母组合" class="headerlink" title="电话号码的字母组合"></a>电话号码的字母组合</h1><p>力扣第17题:<a href="https://leetcode-cn.com/problems/letter-combinations-of-a-phone-number/" target="_blank" rel="noopener">https://leetcode-cn.com/problems/letter-combinations-of-a-phone-number/</a></p>
-<p>给定一个仅包含数字 2-9 的字符串，返回所有它能表示的字母组合。<br>给出数字到字母的映射如下（与电话按键相同）。注意 1 不对应任何字母。</p>
-<p><a href="https://imgchr.com/i/8XzG9S" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2020/03/25/8XzG9S.th.png" alt="8XzG9S.th.png"></a></p>
-<p>示例:</p>
-<blockquote>
-<p>输入：”23”<br>输出：[“ad”, “ae”, “af”, “bd”, “be”, “bf”, “cd”, “ce”, “cf”].<br>说明:<br>尽管上面的答案是按字典序排列的，但是你可以任意选择答案输出的顺序。</p>
+        <blockquote>
+<p>学习自极客时间《趣谈网络协议》 作者：刘超</p>
 </blockquote>
-<h2 id="1-回溯"><a href="#1-回溯" class="headerlink" title="1. 回溯"></a>1. 回溯</h2><ul>
-<li>首先看一看数字对应的可能是3个字母或是4个字母。所以可以构建列表或者哈希表，因为列表的话索引值需要转化，所以适合构建哈希表。</li>
-<li>给出如下回溯函数 backtrack(combination, next_digits) ，它将一个目前已经产生的组合 combination 和接下来准备要输入的数字 next_digits 作为参数。</li>
-<li>一个数字下面有三或4中可能，所以每一种可能都要穷举出来，每递归一层输入的字符串就减小一个长度</li>
+<h1 id="1-DNS协议"><a href="#1-DNS协议" class="headerlink" title="1. DNS协议"></a>1. DNS协议</h1><h2 id="1-1-DNS域名结构"><a href="#1-1-DNS域名结构" class="headerlink" title="1.1 DNS域名结构"></a>1.1 DNS域名结构</h2><h3 id="一-域名的层次结构"><a href="#一-域名的层次结构" class="headerlink" title="一. 域名的层次结构"></a>一. 域名的层次结构</h3><ul>
+<li>像Linux目录结构一样，现代因特网采用层次树状结构的命名方法，任何一个连接在因特网上的主机或路由器，都有一个唯一的层次结构的名字，该名字称为域名。</li>
+<li>每一个域名（英文域名）都是一个标号序列（labels），用字母（A-Z，a-z，大小写等价）、数字（0-9）和连接符（-）组成，标号序列总长度不能超过255个字符，它由点号分割成一个个的标号（label），每个标号应该在63个字符之内，每个标号都可以看成一个层次的域名。级别最低的域名写在左边，级别最高的域名写在右边。</li>
+<li><strong>域名服务主要是基于UDP实现的，服务器的端口号为53。</strong></li>
 </ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">letterCombinations</span><span class="params">(self, digits: str)</span> -&gt; List[str]:</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> digits: <span class="keyword">return</span> []</span><br><span class="line">        phone = &#123;</span><br><span class="line">            <span class="string">'2'</span>: <span class="string">'abc'</span>,</span><br><span class="line">            <span class="string">'3'</span>: <span class="string">'def'</span>,</span><br><span class="line">            <span class="string">'4'</span>: <span class="string">'ghi'</span>,</span><br><span class="line">            <span class="string">'5'</span>: <span class="string">'jkl'</span>,</span><br><span class="line">            <span class="string">'6'</span>: <span class="string">'mno'</span>,</span><br><span class="line">            <span class="string">'7'</span>: <span class="string">'pqrs'</span>,</span><br><span class="line">            <span class="string">'8'</span>: <span class="string">'tuv'</span>,</span><br><span class="line">            <span class="string">'9'</span>: <span class="string">'wxyz'</span>,</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">def</span> <span class="title">backtrack</span><span class="params">(combination, next_digits)</span>:</span></span><br><span class="line">            <span class="keyword">if</span> len(next_digits) == <span class="number">0</span>:</span><br><span class="line">                output.append(combination)</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                <span class="keyword">for</span> letter <span class="keyword">in</span> phone[next_digits[<span class="number">0</span>]]:</span><br><span class="line">                    backtrack(combination + letter, next_digits[<span class="number">1</span>:])</span><br><span class="line"></span><br><span class="line">        output = []</span><br><span class="line">        <span class="keyword">if</span> digits:</span><br><span class="line">            backtrack(<span class="string">""</span>, digits)</span><br><span class="line">        <span class="keyword">return</span> output</span><br></pre></td></tr></table></figure>
-
-<h3 id="复杂度分析"><a href="#复杂度分析" class="headerlink" title="复杂度分析"></a>复杂度分析</h3><p><strong>时间复杂度:</strong> O((3^N)*(4^M)),其中N为对应3个字母的数字,M为对应4个字母的数字。</p>
-<p><strong>空间复杂度：</strong>O((3^N)*(4^M))，每一个结果都需要保存。</p>
-<hr>
-<h2 id="队列"><a href="#队列" class="headerlink" title="队列"></a>队列</h2><blockquote>
-<p>作者：z1m<br>链接：<a href="https://leetcode-cn.com/problems/letter-combinations-of-a-phone-number/solution/hui-su-dui-lie-tu-jie-by-ml-zimingmeng/" target="_blank" rel="noopener">https://leetcode-cn.com/problems/letter-combinations-of-a-phone-number/solution/hui-su-dui-lie-tu-jie-by-ml-zimingmeng/</a></p>
+<p><img src="https://s1.ax1x.com/2020/03/30/GeOPBR.png" alt="GeOPBR.png"></p>
+<h3 id="二-域名的分级"><a href="#二-域名的分级" class="headerlink" title="二. 域名的分级"></a>二. 域名的分级</h3><p>域名可以划分为各个子域，子域还可以继续划分为子域的子域，这样就形成了顶级域、二级域、三级域等。</p>
+<p><img src="https://s1.ax1x.com/2020/03/30/GeO3UP.png" alt="GeO3UP.png"></p>
+<p>其中顶级域名分为：国家顶级域名、通用顶级域名、反向域名。</p>
+<ul>
+<li>国家顶级域名：中国:cn， 美国:us，英国uk…</li>
+<li>通用顶级域名：com 公司企业  edu教育机构 gov政府部门  int国际组织  mil军事部门  net网络 org非盈利组织…</li>
+<li>反向域名：只有一个arpa，用于PTR查询（IP地址转换为域名） 。 </li>
+</ul>
+<h2 id="1-2-DNS-服务器"><a href="#1-2-DNS-服务器" class="headerlink" title="1.2 DNS 服务器"></a>1.2 DNS 服务器</h2><p>在网络世界，也是这样的。你肯定记得住网站的名称，但是很难记住网站的 IP 地址，因而也需要一个地址簿，就是 DNS 服务器。<br><strong>域名是分层结构，域名服务器也是对应的层级结构</strong>。有了域名结构，还需要有一个东西去解析域名，域名需要由遍及全世界的域名服务器去解析，域名服务器实际上就是装有域名系统的主机。</p>
+<blockquote>
+<p>每个人上网，都需要访问它，但是同时，这对它来讲也是非常大的挑战。一旦它出了故障，整个互联网都将瘫痪。另外，上网的人分布在全世界各地，如果大家都去同一个地方访问某一台服务器，时延将会非常大。因而，<strong>DNS 服务器，一定要设置成高可用、高并发和分布式的。</strong></p>
 </blockquote>
-<p>使用队列，先将输入的 digits 中第一个数字对应的每一个字母入队，然后将出队的元素与第二个数字对应的每一个字母组合后入队…直到遍历到 digits 的结尾。最后队列中的元素就是所求结果。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">letterCombinations</span><span class="params">(self, digits: str)</span> -&gt; List[str]:</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> digits: <span class="keyword">return</span> []</span><br><span class="line">        phone = &#123;</span><br><span class="line">            <span class="string">'2'</span>: <span class="string">'abc'</span>,</span><br><span class="line">            <span class="string">'3'</span>: <span class="string">'def'</span>,</span><br><span class="line">            <span class="string">'4'</span>: <span class="string">'ghi'</span>,</span><br><span class="line">            <span class="string">'5'</span>: <span class="string">'jkl'</span>,</span><br><span class="line">            <span class="string">'6'</span>: <span class="string">'mno'</span>,</span><br><span class="line">            <span class="string">'7'</span>: <span class="string">'pqrs'</span>,</span><br><span class="line">            <span class="string">'8'</span>: <span class="string">'tuv'</span>,</span><br><span class="line">            <span class="string">'9'</span>: <span class="string">'wxyz'</span>,</span><br><span class="line">            &#125;</span><br><span class="line">        queue = [<span class="string">''</span>]</span><br><span class="line">        <span class="keyword">for</span> digit <span class="keyword">in</span> digits:</span><br><span class="line">            <span class="keyword">for</span> _ <span class="keyword">in</span> range(len(queue)):</span><br><span class="line">                tmp = queue.pop(<span class="number">0</span>)</span><br><span class="line">                <span class="keyword">for</span> char <span class="keyword">in</span> phone[digit]:</span><br><span class="line">                    queue.append(tmp + char)</span><br><span class="line">        <span class="keyword">return</span> queue</span><br></pre></td></tr></table></figure>
-
-<h3 id="复杂度分析-1"><a href="#复杂度分析-1" class="headerlink" title="复杂度分析"></a>复杂度分析</h3><p><strong>时间复杂度:</strong> O((3^N)*(4^M)),其中N为对应3个字母的数字,M为对应4个字母的数字。</p>
-<p><strong>空间复杂度：</strong>O((3^N)*(4^M))，每一个结果都需要保存。</p>
+<p><img src="https://s1.ax1x.com/2020/03/30/GeXZaq.png" alt="GeXZaq.png"></p>
+<ul>
+<li>根 DNS 服务器 ：返回顶级域 DNS 服务器的 IP 地址, <strong>最高层次的域名服务器，本地域名服务器解析不了的域名就会向其求助</strong>，全球共有13个不同IP地址的根域名服务器，它们的名称用一个英文字母命名，从a一直到m。</li>
+<li>顶级域 DNS 服务器：返回权威 DNS 服务器的 IP 地址, <strong>负责管理在该顶级域名服务器下注册的二级域名</strong></li>
+<li>权威 DNS 服务器 ：返回相应主机的 IP 地址, <strong>负责一个区的域名解析工作</strong></li>
+<li>本地域名服务器 : 可以看成是默认域名服务器，DNS客户进程收到主机发送过来的域名后，就会最初向该域名服务器发送查询请求</li>
+</ul>
+<h2 id="1-3-域名解析过程"><a href="#1-3-域名解析过程" class="headerlink" title="1.3 域名解析过程"></a>1.3 域名解析过程</h2><ol>
+<li>电脑客户端会发出一个 DNS 请求，<strong>并发给本地域名服务器 (本地 DNS),进行递归查询。</strong>如果是通过 DHCP 配置，本地 DNS 由你的网络服务商（ISP），如电信、移动等自动分配，它通常就在你网络服务商的某个机房。</li>
+<li>本地 DNS 收到来自客户端的请求。你可以想象这台服务器上缓存了一张域名与之对应 IP 地址的大表格。如果能找到，它直接就返回 IP 地址。<strong>如果没有，本地 DNS 会迭代询问根域名服务器</strong>。</li>
+<li>根域名服务器收到来自本地 DNS 的请求，告诉本地域名服务器，下一次应该查询的顶级域名服务器的IP地址。</li>
+<li>本地域名服务器向顶级域名服务器进行查询。</li>
+<li>顶级域名服务器告诉本地域名服务器，下一步查询权限服务器的IP地址。</li>
+<li>本地域名服务器向权限服务器进行查询。</li>
+<li>权限服务器告诉本地域名服务器所查询的主机的IP地址。</li>
+<li>本地域名服务器最后把查询结果告诉主机</li>
+</ol>
+<p><img src="https://s1.ax1x.com/2020/03/30/GexoeH.png" alt="GexoeH.png"></p>
+<h2 id="1-4-负载均衡"><a href="#1-4-负载均衡" class="headerlink" title="1.4 负载均衡"></a>1.4 负载均衡</h2><p>站在客户端角度，这是一次 DNS 递归查询过程。因为本地 DNS 全权为它效劳，它只要坐等结果即可。在这个过程中，<strong>DNS 除了可以通过名称映射为 IP 地址，它还可以做另外一件事，就是负载均衡。</strong></p>
+<h3 id="一-内部负载均衡"><a href="#一-内部负载均衡" class="headerlink" title="一. 内部负载均衡"></a>一. 内部负载均衡</h3><p>DNS 首先可以做内部负载均衡。</p>
+<ul>
+<li><p>一个应用要访问数据库，在这个应用里面应该配置这个数据库的 IP 地址，还是应该配置这个数据库的域名呢？显然应该配置域名，因为一旦这个数据库，因为某种原因，换到了另外一台机器上，而如果有多个应用都配置了这台数据库的话，一换 IP 地址，就需要将这些应用全部修改一遍。但是如果配置了域名，则只要在 DNS 服务器里，将域名映射为新的 IP 地址，这个工作就完成了，大大简化了运维。</p>
+</li>
+<li><p>在这个基础上，我们可以再进一步。例如，某个应用要访问另外一个应用，如果配置另外一个应用的 IP 地址，那么这个访问就是一对一的。但是当被访问的应用撑不住的时候，我们其实可以部署多个。但是，访问它的应用，如何在多个之间进行负载均衡？只要配置成为域名就可以了。在域名解析的时候，我们只要配置策略，这次返回第一个 IP，下次返回第二个 IP，就可以实现负载均衡了。</p>
+</li>
+</ul>
+<h3 id="二-全局负载均衡"><a href="#二-全局负载均衡" class="headerlink" title="二. 全局负载均衡"></a>二. 全局负载均衡</h3><p>为了保证我们的应用高可用，往往会部署在多个机房，每个地方都会有自己的 IP 地址。当用户访问某个域名的时候，这个 IP 地址可以轮询访问多个数据中心。如果一个数据中心因为某种原因挂了，只要在 DNS 服务器里面，将这个数据中心对应的 IP 地址删除，就可以实现一定的高可用。</p>
+<h4 id="DNS-访问数据中心中对象存储上的静态资源"><a href="#DNS-访问数据中心中对象存储上的静态资源" class="headerlink" title="DNS 访问数据中心中对象存储上的静态资源"></a>DNS 访问数据中心中对象存储上的静态资源</h4><p>假设全国有多个数据中心，托管在多个运营商，<strong>每个数据中心三个可用区（Available Zone）。对象存储通过跨可用区部署，实现高可用性。</strong>在每个数据中心中，都至少部署两个内部负载均衡器，内部负载均衡器后面对接多个对象存储的前置服务器（Proxy-server）。</p>
+<p><img src="https://s1.ax1x.com/2020/03/30/GmCe81.png" alt="GmCe81.png"></p>
+<ol>
+<li>当一个客户端要访问 object.yourcompany.com 的时候，需要将域名转换为 IP 地址进行访问，所以它要请求本地 DNS 解析器</li>
+<li>本地 DNS 解析器先查看看本地的缓存是否有这个记录。如果有则直接使用，因为上面的过程太复杂了，如果每次都要递归解析，就太麻烦了。</li>
+<li>如果本地无缓存，则需要请求本地的 DNS 服务器。</li>
+<li>本地的 DNS 服务器一般部署在你的数据中心或者你所在的运营商的网络中，本地 DNS 服务器也需要看本地是否有缓存，如果有则返回，因为它也不想把上面的递归过程再走一遍。</li>
+<li>至 7. 如果本地没有，本地 DNS 才需要递归地从根 DNS 服务器，查到.com 的顶级域名服务器，最终查到 yourcompany.com 的权威 DNS 服务器，给本地 DNS 服务器，权威 DNS 服务器按说会返回真实要访问的 IP 地址。</li>
+</ol>
+<blockquote>
+<ul>
+<li>对于不需要做全局负载均衡的简单应用来讲，yourcompany.com 的权威 DNS 服务器可以直接将 object.yourcompany.com 这个域名解析为一个或者多个 IP 地址，然后客户端可以通过多个 IP 地址，进行简单的轮询，实现简单的负载均衡。</li>
+</ul>
+</blockquote>
+<ul>
+<li>但是对于复杂的应用，尤其是跨地域跨运营商的大型应用，则需要更加复杂的全局负载均衡机制，因而需要专门的设备或者服务器来做这件事情，这就是全局负载均衡器（GSLB，Global Server Load Balance）。</li>
+</ul>
+<p>在 yourcompany.com 的 DNS 服务器中，一般是通过配置 CNAME 的方式，给 object.yourcompany.com 起一个别名，例如 object.vip.yourcomany.com，然后告诉本地 DNS 服务器，让它请求 GSLB 解析这个域名，<strong>GSLB 就可以在解析这个域名的过程中，通过自己的策略实现负载均衡。</strong></p>
+<p>两层的 GSLB，是因为分运营商和地域,这样不同运营商的客户，可以访问该相同运营商机房中的资源，这样不跨运营商访问，有利于提高吞吐量，减少时延。</p>
+<ol>
+<li>第一层 GSLB，通过查看请求它的本地 DNS 服务器所在的运营商，就知道用户所在的运营商。假设是移动，通过 CNAME 的方式，通过另一个别名 object.yd.yourcompany.com，告诉本地 DNS 服务器去请求第二层的 GSLB。</li>
+<li>第二层 GSLB，通过查看请求它的本地 DNS 服务器所在的地址，就知道用户所在的地理位置，然后将距离用户位置比较近的 Region 里面，六个内部负载均衡（SLB，Server Load Balancer）的地址，返回给本地 DNS 服务器。</li>
+<li>本地 DNS 服务器将结果返回给本地 DNS 解析器。</li>
+<li>本地 DNS 解析器将结果缓存后，返回给客户端。</li>
+<li>客户端开始访问属于相同运营商的距离较近的 Region 1 中的对象存储，当然客户端得到了六个 IP 地址，它可以通过负载均衡的方式，随机或者轮询选择一个可用区进行访问。<strong>对象存储一般会有三个备份，从而可以实现对存储读写的负载均衡。</strong></li>
+</ol>
+<h2 id="1-5-总结"><a href="#1-5-总结" class="headerlink" title="1.5 总结"></a>1.5 总结</h2><ul>
+<li>DNS 是网络世界的地址簿，可以通过域名查地址，因为域名服务器是按照树状结构组织的，因而域名查找是使用递归的方法，并通过缓存的方式增强性能；</li>
+<li>在域名和 IP 的映射过程中，给了应用基于域名做负载均衡的机会，可以是简单的负载均衡，也可以根据地址和运营商做全局的负载均衡。</li>
+</ul>
+<h2 id="1-6-问题思考"><a href="#1-6-问题思考" class="headerlink" title="1.6 问题思考"></a>1.6 问题思考</h2><p><strong>(1) 全局负载均衡为什么要分地址和运营商呢？</strong><br>分地址和运营商主要是为了返回最优的ip，也就是离用户最近的ip，提高用户访问的速度，分运营商也是返回最快的一条路径。gslb失灵一般是因为一个ns请求gslb的时候，看不到用户真实的ip，从而不一定是最优的，而且这个返回的结果可能给一个用户或者一万个用户，可以通过流量监测来缓解。</p>
+<p><strong>(2) 全局负载均衡使用过程中，常常遇到失灵的情况，你知道具体有哪些情况吗？对应应该怎么来解决呢？</strong><br>全局负载均衡失灵的时间，可以分情况来应对，</p>
+<ol>
+<li>全局负载均衡器因为流量过大，而导致的失灵，<br>此情况，是因为流量已经超过了当前机器的极限所导致的，针对此只能通过扩容来解决。</li>
+<li>全局负载均衡器因为机器故障了，导致的失灵。<br>此情况的发生，说明机器存在负载均衡器有单点问题，须通过增加备机，或者更为可靠的集群来解决。</li>
+<li>全局负载均衡器因为网络故障，导致的失灵。<br>此情况，案例莫过于支付宝的光纤被挖掘机挖断，此问题可通过接入更多的线路来解决。</li>
+</ol>
+<p><strong>（3）如果权威 DNS 连不上，怎么办？</strong></p>
+<ul>
+<li>一般情况下，DNS 是基于 UDP 协议的。在应用层设置一个超时器，如果 UDP 发出没有回应，则会进行重试。</li>
+<li>DNS 服务器一般也是高可用的，很少情况下会挂。即便挂了，也会很快切换，重试一般就会成功。</li>
+<li>对于客户端来讲，为了 DNS 解析能够成功，也会配置多个 DNS 服务器，当一个不成功的时候，可以选择另一个来尝试。</li>
+</ul>
+<hr>
+<h2 id="1-7-DNS存在的问题"><a href="#1-7-DNS存在的问题" class="headerlink" title="1.7 DNS存在的问题"></a>1.7 DNS存在的问题</h2><ol>
+<li><p><strong>域名缓存问题</strong></p>
+<ul>
+<li>DNS在本地做一个缓存，也就是说，不是每一个请求，它都会去访问权威 DNS 服务器，而是访问过一次就把结果缓存到自己本地，当其他人来问的时候，直接就返回这个缓存数据,<strong>但是如果IP地址更换了而缓存没有及时更新,就会出现错误。</strong></li>
+<li>另外，有的运营商会把一些静态页面，缓存到本运营商的服务器内，这样用户请求的时候，就不用跨运营商进行访问，这样既加快了速度，也减少了运营商之间流量计算的成本。在域名解析的时候，不会将用户导向真正的网站，而是指向这个缓存的服务器。当页面更新，用户会访问到老的页面。</li>
+<li>本地做一个缓存，直接返回缓存数据。可能会导致全局负载均衡失败，因为上次进行的缓存，不一定是这次离客户最近的地方，可能会绕远路。</li>
+</ul>
+</li>
+<li><p><strong>域名转发问题</strong><br>如果是A运营商将解析的请求转发给B运营商，B去权威DNS服务器查询的话，权威服务器会认为你是B运营商的，就返回了B运营商的网站地址，结果每次都会跨运营商，速度就会很慢。</p>
+</li>
+<li><p><strong>出口NAT问题</strong><br>出口的时候，很多机房都会配置 NAT，也即网络地址转换，使得从这个网关出去的包，都换成新的 IP 地址，当然请求返回的时候，在这个网关，再将 IP 地址转换回去。一旦做了网络地址转化后，权威的DNS服务器，没法通过地址来判断客户到底是哪个运营商，极有可能误判运营商，导致跨运营商访问。</p>
+</li>
+<li><p>*<em>域名更新问题 *</em><br>本地DNS服务器是由不同地区，不同运营商独立部署的，对域名解析缓存的处理上，有区别，有的会偷懒忽略解析结果TTL的时间限制，在权威 DNS 服务器解析变更的时候，解析结果在全网生效的周期非常漫长,导致服务器没有更新新的ip而是指向旧的ip。</p>
+</li>
+<li><p><strong>解析延迟问题</strong><br>DNS 的查询过程需要递归遍历多个 DNS 服务器，才能获得最终的解析结果，这会带来一定的时延，甚至会解析超时。</p>
+</li>
+</ol>
+<hr>
+<h1 id="2-HttpDNS"><a href="#2-HttpDNS" class="headerlink" title="2. HttpDNS"></a>2. HttpDNS</h1><ul>
+<li>HttpDNS 其实就是，不走传统的 DNS 解析，而是自己搭建基于 HTTP 协议的 DNS 服务器集群，分布在多个地点和多个运营商。当客户端需要 DNS 解析的时候，直接通过 HTTP 协议进行请求这个服务器集群，得到就近的地址。</li>
+<li>这就相当于每家基于 HTTP 协议，自己实现自己的域名解析，自己做一个自己的地址簿，而不使用统一的地址簿。但是默认的域名解析都是走 DNS 的，因而使用 HttpDNS 需要绕过默认的 DNS 路径，就不能使用默认的客户端。<strong>使用 HttpDNS 的，往往是手机应用，需要在手机端嵌入支持 HttpDNS 的客户端 SDK。</strong></li>
+</ul>
+<h2 id="2-1-HttpDNS-的工作模式"><a href="#2-1-HttpDNS-的工作模式" class="headerlink" title="2.1 HttpDNS 的工作模式"></a>2.1 HttpDNS 的工作模式</h2><ol>
+<li>在客户端的 SDK 里动态请求服务端，获取 HttpDNS 服务器的 IP 列表，缓存到本地。随着不断地解析域名，SDK 也会在本地缓存 DNS 域名解析的结果。</li>
+<li>当手机应用要访问一个地址的时候，首先看是否有本地的缓存，如果有就直接返回。这个缓存和本地 DNS 的缓存不一样的是，这个是手机应用自己做的，而非整个运营商统一做的。如何更新、何时更新，手机应用的客户端可以和服务器协调来做这件事情。</li>
+<li>如果本地没有，就需要请求 HttpDNS 的服务器，在本地 HttpDNS 服务器的 IP 列表中，选择一个发出 HTTP 的请求，会返回一个要访问的网站的 IP 列表。</li>
+</ol>
+<p>请求方式如下:</p>
+<pre><code>curl http://106.2.xxx.xxx/d?dn=c.m.163.com
+{
+&quot;dns&quot;:[{&quot;host&quot;:&quot;c.m.163.com&quot;,&quot;ips&quot;:[&quot;223.252.199.12&quot;],&quot;ttl&quot;:300,&quot;http2&quot;:0}],
+&quot;client&quot;:{&quot;ip&quot;:&quot;106.2.81.50&quot;,&quot;line&quot;:269692944}
+}</code></pre><p>手机客户端自然知道手机在哪个运营商、哪个地址。由于是直接的 HTTP 通信，HttpDNS 服务器能够准确知道这些信息，因而可以做精准的全局负载均衡。当然，当所有这些都不工作的时候，可以切换到传统的 LocalDNS 来解析，慢也比访问不到好。</p>
+<p><img src="https://s1.ax1x.com/2020/03/30/Gme7JU.png" alt="Gme7JU.png"></p>
+<p>那 HttpDNS 是如何解决上面DNS的问题的呢？<br>其实归结起来就是两大问题。<strong>一是解析速度和更新速度的平衡问题，二是智能调度的问题，对应的解决方案是 HttpDNS 的缓存设计和调度设计。</strong></p>
+<h2 id="2-2-HttpDNS-的缓存设计"><a href="#2-2-HttpDNS-的缓存设计" class="headerlink" title="2.2 HttpDNS 的缓存设计"></a>2.2 HttpDNS 的缓存设计</h2><p><strong>HttpDNS 就是将解析速度和更新速度全部掌控在自己手中。</strong></p>
+<ul>
+<li>一方面，解析的过程，不需要本地 DNS 服务递归的调用一大圈，一个 HTTP 的请求直接搞定，要实时更新的时候，马上就能起作用；</li>
+<li>另一方面为了提高解析速度，本地也有缓存，缓存是在客户端 SDK 维护的，过期时间、更新时间，都可以自己控制。</li>
+</ul>
+<p><strong>HttpDNS 的缓存设计策略也是应用架构中常用的缓存设计模式，也即分为客户端、缓存、数据源三层。</strong></p>
+<ul>
+<li>对于应用架构来讲，就是应用、缓存、数据库。常见的是 Tomcat、Redis、MySQL。</li>
+<li>对于 HttpDNS 来讲，就是手机客户端、DNS 缓存、HttpDNS 服务器</li>
+</ul>
+<p>DNS 缓存在内存中，也可以持久化到存储上，从而 APP 重启之后，能够尽快从存储中加载上次累积的经常访问的网站的解析结果。<br><strong>解析可以同步进行，也就是直接调用 HttpDNS 的接口，返回最新的记录，更新缓存；也可以异步进行，添加一个解析任务到后台，由后台任务调用 HttpDNS 的接口</strong>。</p>
+<ol>
+<li><p>同步解析</p>
+<ul>
+<li>同步更新的优点是实时性好，缺点是如果有多个请求都发现过期的时候，同时会请求 HttpDNS 多次，其实是一种浪费。</li>
+<li>同步更新的方式对应到应用架构中缓存的 Cache-Aside 机制，也即先读缓存，不命中读数据库，同时将结果写入缓存。</li>
+</ul>
+</li>
+<li><p>异步解析</p>
+<ul>
+<li>异步更新的优点是，可以将多个请求都发现过期的情况，合并为一个对于 HttpDNS 的请求任务，只执行一次，减少 HttpDNS 的压力。同时可以在即将过期的时候，就创建一个任务进行预加载，防止过期之后再刷新，称为<strong>预加载</strong>。</li>
+<li>它的缺点是当前请求拿到过期数据的时候，如果客户端允许使用过期数据，需要冒一次风险。如果过期的数据还能请求，就没问题；如果不能请求，则失败一次，等下次缓存更新后，再请求方能成功。</li>
+<li>异步更新的机制对应到应用架构中缓存的 Refresh-Ahead 机制，即业务仅仅访问缓存，当过期的时候定期刷新。在著名的应用缓存** Guava Cache <strong>中，有个 RefreshAfterWrite 机制，对于并发情况下，多个缓存访问不命中从而引发并发回源的情况，可以采取只有一个请求回源的模式。在应用架构的缓存中，也常常用</strong>数据预热<strong>或者</strong>预加载**的机制。</li>
+</ul>
+</li>
+</ol>
+<p>##2.3 HttpDNS 的调度设计<br><strong>客户端</strong></p>
+<ul>
+<li>HTTPDNS服务端可以根据手机的国家，省市地点，运营商，选择最佳的服务节点。</li>
+<li>如果有多个节点，还会考虑错误率、请求时间、服务器压力、网络状况等，进行综合选择，而非仅仅考虑地理位置。当有一个节点宕机或者性能下降的时候，可以尽快进行切换。</li>
+</ul>
+<p><strong>服务端</strong><br>应用可以通过调用 HttpDNS 的管理接口，配置不同服务质量的优先级、权重。HttpDNS 会根据这些策略综合地理位置和线路状况算出一个排序，优先访问当前那些优质的、时延低的 IP 地址。</p>
+<blockquote>
+<p>HttpDNS 通过智能调度之后返回的结果，也会缓存在客户端。为了不让缓存使得调度失真，客户端可以根据不同的移动网络运营商 WIFI 的 SSID 来分维度缓存。不同的运营商或者 WIFI 解析出来的结果会不同。</p>
+</blockquote>
+<h2 id="2-4-总结"><a href="#2-4-总结" class="headerlink" title="2.4 总结"></a>2.4 总结</h2><ul>
+<li>传统的 DNS 有很多问题，例如解析慢、更新不及时。因为缓存、转发、NAT 问题导致客户端误会自己所在的位置和运营商，从而影响流量的调度。</li>
+<li>HttpDNS 通过客户端 SDK 和服务端，通过 HTTP 直接调用解析 DNS 的方式，绕过了传统 DNS 的这些缺点，实现了智能的调度。</li>
+</ul>
+<h2 id="2-5-问题思考"><a href="#2-5-问题思考" class="headerlink" title="2.5 问题思考"></a>2.5 问题思考</h2><p>使用 HttpDNS，需要向 HttpDNS 服务器请求解析域名，可是客户端怎么知道 HttpDNS 服务器的地址或者域名呢？</p>
+<p>.httpdns服务器的地址一般不变 可以使用dns的方式获取httpdns服务器的ip地址 也可以直接把httpdns服务器的ip地址写死在客户端中。</p>
+<hr>
+<h1 id="3-CDN"><a href="#3-CDN" class="headerlink" title="3. CDN"></a>3. CDN</h1><h2 id="3-1-什么是CDN"><a href="#3-1-什么是CDN" class="headerlink" title="3.1 什么是CDN?"></a>3.1 什么是CDN?</h2><p>CDN的全称是Content Delivery Network，即<strong>内容分发网络</strong>。CDN是一组分布在多个不同的地理位置的WEB服务器，用于更加有效的向用户发布内容，在优化性能时，会根据距离的远近来选择 。<br>这些分布在各个地方的各个数据中心的节点，就称为边缘节点。</p>
+<p><img src="https://s1.ax1x.com/2020/03/30/Gms7t0.png" alt="Gms7t0.png"></p>
+<p>这就是 CDN 分发系统的架构。CDN 系统的缓存，也是一层一层的，能不访问后端真正的源，就不打扰它。</p>
+<h2 id="3-2-CDN分发"><a href="#3-2-CDN分发" class="headerlink" title="3.2 CDN分发"></a>3.2 CDN分发</h2><p><strong>客户端如何找到相应的边缘节点进行访问 ?</strong><br>基于 DNS 的全局负载均衡主要用来选择一个就近的同样运营商的服务器进行访问。<strong>CDN 分发网络也是一个分布在多个区域、多个运营商的分布式系统，也可以用相同的思路选择最合适的边缘节点。</strong></p>
+<p><img src="https://s1.ax1x.com/2020/03/30/Gm6joR.png" alt="Gm6joR.png"></p>
+<ul>
+<li>有了 CDN 之后,在 web.com 这个权威 DNS 服务器上，会设置一个 CNAME 别名，指向另外一个域名 <a href="http://www.web.cdn.com，返回给本地" target="_blank" rel="noopener">www.web.cdn.com，返回给本地</a> DNS 服务器。</li>
+<li>当本地 DNS 服务器拿到这个新的域名时，需要继续解析这个新的域名。这个时候，再访问的就不是 web.com 的权威 DNS 服务器了，而是 web.cdn.com 的权威 DNS 服务器，这是 CDN 自己的权威 DNS 服务器。在这个服务器上，还是会设置一个 CNAME，指向另外一个域名，也即 <strong>CDN 网络的全局负载均衡器</strong>。</li>
+<li>接下来，本地 DNS 服务器去请求 CDN 的全局负载均衡器解析域名，全局负载均衡器会为用户选择一台合适的缓存服务器提供服务，选择的依据包括：<ul>
+<li>根据用户 IP 地址，判断哪一台服务器距用户最近；</li>
+<li>用户所处的运营商；</li>
+<li>根据用户所请求的 URL 中携带的内容名称，判断哪一台服务器上有用户所需的内容；</li>
+<li>查询各个服务器当前的负载情况，判断哪一台服务器尚有服务能力。</li>
+</ul>
+</li>
+<li>基于以上这些条件，进行综合分析之后，全局负载均衡器会返回一台缓存服务器的 IP 地址。</li>
+</ul>
+<p>本地 DNS 服务器缓存这个 IP 地址，然后将 IP 返回给客户端，客户端去访问这个边缘节点，下载资源。缓存服务器响应用户请求，将用户所需内容传送到用户终端。如果这台缓存服务器上并没有用户想要的内容，那么这台服务器就要向它的上一级缓存服务器请求内容，直至追溯到网站的源服务器将内容拉到本地。</p>
+<h2 id="3-3-CDN缓存的内容"><a href="#3-3-CDN缓存的内容" class="headerlink" title="3.3 CDN缓存的内容"></a>3.3 CDN缓存的内容</h2><blockquote>
+<p>CDN能够缓存JavaScript脚本，css样式表，图片，图标，Flash等静态资源文件（不包括html页面），这些静态资源文件的访问频率很高，将其缓存在CDN可以极大地提高网站的访问速度，但由于CDN是部署在网络运营商的机房，所以在一般的网站很少用CDN加速。</p>
+</blockquote>
+<p><img src="https://s1.ax1x.com/2020/03/30/Gm2API.png" alt="Gm2API.png"></p>
+<p><strong>在进入数据中心的时候，我们希望通过最外层接入层的缓存，将大部分静态资源的访问拦在边缘。</strong>而 CDN 则更进一步，将这些静态资源缓存到离用户更近的数据中心。越接近客户，访问性能越好，时延越低。</p>
+<blockquote>
+<p>nginx是在网站的接入层缓存静态资源，CDN是在数据中心之外，离客户端很近的地方缓存静态资源</p>
+</blockquote>
+<h2 id="3-4-流媒体协议和CDN"><a href="#3-4-流媒体协议和CDN" class="headerlink" title="3.4 流媒体协议和CDN"></a>3.4 流媒体协议和CDN</h2><p><strong>CDN 支持流媒体协议，</strong>例如前面讲过的 RTMP 协议。在很多情况下，这相当于一个代理，从上一级缓存读取内容，转发给用户。由于流媒体往往是连续的，因而可以进行预先缓存的策略，也可以预先推送到用户的客户端。</p>
+<ul>
+<li><p>对于静态页面来讲，内容的分发往往采取<strong>拉取</strong>的方式，也即当发现未命中的时候，再去上一级进行拉取。但是，流媒体数据量大，如果出现<strong>回源</strong>，压力会比较大，所以往往采取<strong>主动推送</strong>的模式，将热点数据主动推送到边缘节点。</p>
+</li>
+<li><p>对于流媒体来讲，很多 CDN 还提供<strong>预处理</strong>服务，也即文件在分发之前，经过一定的处理。例如将视频转换为不同的码流，以适应不同的网络带宽的用户需求；再如对视频进行<strong>分片</strong>，降低存储压力，也使得客户端可以选择使用不同的码率加载不同的分片。这就是我们常见的，“超清、标清、流畅等”。</p>
+</li>
+<li><p>对于流媒体 CDN 来讲，有个关键的问题是<strong>防盗链</strong>问题。最常用也最简单的方法就是** HTTP 头的 referer 字段，** 当浏览器发送请求的时候，一般会带上 referer，告诉服务器是从哪个页面链接过来的，服务器基于此可以获得一些信息用于处理。如果 refer 信息不是来自本站，就阻止访问或者跳到其它链接。</p>
+</li>
+</ul>
+<h3 id="时间戳防盗链"><a href="#时间戳防盗链" class="headerlink" title="时间戳防盗链"></a>时间戳防盗链</h3><p>时间戳防盗链就是使用 CDN 的管理员可以在配置界面上，和 CDN 厂商约定一个加密字符串。<br>时间戳防盗链的流程如下:</p>
+<ol>
+<li>客户端取出当前的时间戳，要访问的资源及其路径，连同加密字符串进行签名算法得到一个字符串，然后生成一个下载链接，带上这个签名字符串和截止时间戳去访问 CDN。</li>
+<li>在 CDN 服务端，根据取出过期时间，和当前 CDN 节点时间进行比较，确认请求是否过期。然后 CDN 服务端有了资源及路径，时间戳，以及约定的加密字符串，根据相同的签名算法计算签名，如果匹配则一致，访问合法，才会将资源返回给客户。</li>
+</ol>
+<h2 id="3-5-动态数据的缓存"><a href="#3-5-动态数据的缓存" class="headerlink" title="3.5 动态数据的缓存"></a>3.5 动态数据的缓存</h2><p>现在也有动态 CDN，主要有两种模式。</p>
+<ul>
+<li>一种为生鲜超市模式，也即<strong>边缘计算的模式</strong>。既然数据是动态生成的，所以数据的逻辑计算和存储，也相应的放在边缘的节点。其中定时从源数据那里同步存储的数据，然后在边缘进行计算得到结果。</li>
+<li>另一种是冷链运输模式，也即<strong>路径优化的模式</strong>。数据不是在边缘计算生成的，而是在源站生成的，但是数据的下发则可以通过 CDN 的网络，对路径进行优化。因为 CDN 节点较多，能够找到离源站很近的边缘节点，也能找到离用户很近的边缘节点。中间的链路完全由 CDN 来规划，选择一个更加可靠的路径，使用类似专线的方式进行访问。</li>
+</ul>
+<h3 id="TCP连接和CDN加速"><a href="#TCP连接和CDN加速" class="headerlink" title="TCP连接和CDN加速"></a>TCP连接和CDN加速</h3><ul>
+<li>对于常用的 TCP 连接，在公网上传输的时候经常会丢数据，导致 TCP 的窗口始终很小，发送速度上不去。根据前面的 TCP 流量控制和拥塞控制的原理，在 CDN 加速网络中可以调整 TCP 的参数，使得 TCP 可以更加激进地传输数据。</li>
+<li>可以通过多个请求复用一个连接，保证每次动态请求到达时。连接都已经建立了，不必临时三次握手或者建立过多的连接，增加服务器的压力。另外，可以通过对传输数据进行压缩，增加传输效率。</li>
+</ul>
+<h2 id="3-6-总结"><a href="#3-6-总结" class="headerlink" title="3.6 总结"></a>3.6 总结</h2><ul>
+<li>CDN 和电商系统的分布式仓储系统一样，分为中心节点、区域节点、边缘节点，而<strong>数据缓存在离用户最近的位置。</strong></li>
+<li>CDN 最擅长的是缓存静态数据，除此之外还可以缓存流媒体数据，这时候要注意使用防盗链。它也支持动态数据的缓存，一种是边缘计算的生鲜超市模式，另一种是链路优化的冷链运输模式。</li>
+</ul>
+<h2 id="3-7-问题思考"><a href="#3-7-问题思考" class="headerlink" title="3.7 问题思考"></a>3.7 问题思考</h2><p>CDN 如何使用 HttpDNS ？<br>参照阿里云CDN HTTPDNS方式；客户端请求服务URL:umc.danuoyi.alicdn.com xxx，参数是客户端ip地址和待解析的域名；然后返回多个ip地址，客户端轮训这些ip地址。</p>
 
     </article>
     <!-- license  -->
     
         <div class="license-wrapper">
             <p>Author：<a href="https://liangweijiang.github.io">liangweijiang</a>
-            <p>原文链接：<a href="https://liangweijiang.github.io/2020/03/25/algorithm-17/">https://liangweijiang.github.io/2020/03/25/algorithm-17/</a>
-            <p>发表日期：<a href="https://liangweijiang.github.io/2020/03/25/algorithm-17/">March 25th 2020, 2:32:46 pm</a>
-            <p>更新日期：<a href="https://liangweijiang.github.io/2020/03/25/algorithm-17/">March 25th 2020, 2:33:35 pm</a>
+            <p>原文链接：<a href="https://liangweijiang.github.io/2020/03/30/NetworkProtocol-08/">https://liangweijiang.github.io/2020/03/30/NetworkProtocol-08/</a>
+            <p>发表日期：<a href="https://liangweijiang.github.io/2020/03/30/NetworkProtocol-08/">March 30th 2020, 3:23:58 pm</a>
+            <p>更新日期：<a href="https://liangweijiang.github.io/2020/03/30/NetworkProtocol-08/">March 30th 2020, 3:25:19 pm</a>
             <p>版权声明：本文采用<a rel="license noopener" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
         </div>
     
@@ -444,17 +640,12 @@ height:50vh;
     <ul class="post-paginator">
         <li class="next">
             
-                <div class="nextSlogan">Next Post</div>
-                <a href= "/2020/03/25/data-structure-02/" title= "数据结构学习笔记---链表">
-                    <div class="nextTitle">数据结构学习笔记---链表</div>
-                </a>
-            
         </li>
         <li class="previous">
             
                 <div class="prevSlogan">Previous Post</div>
-                <a href= "/2020/03/23/Interview-experience/" title= "头条一面凉经">
-                    <div class="prevTitle">头条一面凉经</div>
+                <a href= "/2020/03/29/data-structure-05/" title= "数据结构学习笔记---经典排序（上）">
+                    <div class="prevTitle">数据结构学习笔记---经典排序（上）</div>
                 </a>
             
         </li>
@@ -568,7 +759,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#电话号码的字母组合"><span class="toc-number">1.</span> <span class="toc-text">电话号码的字母组合</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-回溯"><span class="toc-number">1.1.</span> <span class="toc-text">1. 回溯</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#复杂度分析"><span class="toc-number">1.1.1.</span> <span class="toc-text">复杂度分析</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#队列"><span class="toc-number">1.2.</span> <span class="toc-text">队列</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#复杂度分析-1"><span class="toc-number">1.2.1.</span> <span class="toc-text">复杂度分析</span></a></li></ol></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-DNS协议"><span class="toc-number">1.</span> <span class="toc-text">1. DNS协议</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1-DNS域名结构"><span class="toc-number">1.1.</span> <span class="toc-text">1.1 DNS域名结构</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#一-域名的层次结构"><span class="toc-number">1.1.1.</span> <span class="toc-text">一. 域名的层次结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#二-域名的分级"><span class="toc-number">1.1.2.</span> <span class="toc-text">二. 域名的分级</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2-DNS-服务器"><span class="toc-number">1.2.</span> <span class="toc-text">1.2 DNS 服务器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-3-域名解析过程"><span class="toc-number">1.3.</span> <span class="toc-text">1.3 域名解析过程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-4-负载均衡"><span class="toc-number">1.4.</span> <span class="toc-text">1.4 负载均衡</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#一-内部负载均衡"><span class="toc-number">1.4.1.</span> <span class="toc-text">一. 内部负载均衡</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#二-全局负载均衡"><span class="toc-number">1.4.2.</span> <span class="toc-text">二. 全局负载均衡</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#DNS-访问数据中心中对象存储上的静态资源"><span class="toc-number">1.4.2.1.</span> <span class="toc-text">DNS 访问数据中心中对象存储上的静态资源</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-5-总结"><span class="toc-number">1.5.</span> <span class="toc-text">1.5 总结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-6-问题思考"><span class="toc-number">1.6.</span> <span class="toc-text">1.6 问题思考</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-7-DNS存在的问题"><span class="toc-number">1.7.</span> <span class="toc-text">1.7 DNS存在的问题</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-HttpDNS"><span class="toc-number">2.</span> <span class="toc-text">2. HttpDNS</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-HttpDNS-的工作模式"><span class="toc-number">2.1.</span> <span class="toc-text">2.1 HttpDNS 的工作模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2-HttpDNS-的缓存设计"><span class="toc-number">2.2.</span> <span class="toc-text">2.2 HttpDNS 的缓存设计</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-4-总结"><span class="toc-number">2.3.</span> <span class="toc-text">2.4 总结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-5-问题思考"><span class="toc-number">2.4.</span> <span class="toc-text">2.5 问题思考</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-CDN"><span class="toc-number">3.</span> <span class="toc-text">3. CDN</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#3-1-什么是CDN"><span class="toc-number">3.1.</span> <span class="toc-text">3.1 什么是CDN?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-2-CDN分发"><span class="toc-number">3.2.</span> <span class="toc-text">3.2 CDN分发</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-3-CDN缓存的内容"><span class="toc-number">3.3.</span> <span class="toc-text">3.3 CDN缓存的内容</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-4-流媒体协议和CDN"><span class="toc-number">3.4.</span> <span class="toc-text">3.4 流媒体协议和CDN</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#时间戳防盗链"><span class="toc-number">3.4.1.</span> <span class="toc-text">时间戳防盗链</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-5-动态数据的缓存"><span class="toc-number">3.5.</span> <span class="toc-text">3.5 动态数据的缓存</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#TCP连接和CDN加速"><span class="toc-number">3.5.1.</span> <span class="toc-text">TCP连接和CDN加速</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-6-总结"><span class="toc-number">3.6.</span> <span class="toc-text">3.6 总结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-7-问题思考"><span class="toc-number">3.7.</span> <span class="toc-text">3.7 问题思考</span></a></li></ol></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
