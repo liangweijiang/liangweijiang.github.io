@@ -359,6 +359,38 @@ height:50vh;
     
     
     <article class="index-post">
+        <a class="abstract-title" href = "/2020/02/20/DRF-03/" >
+            
+                <span>DRF源码解析3--routers对路由的封装</span>
+        </a>
+        <div class="abstract-content">
+            当我们想最方便的使用drf的路由的时候,只需要用DefaultRoute实例化一个路由实例,然后注册,再讲注册后的组件加入urlpatterns即可
+123456from rest_framework.routers import DefaultRouterrouter = DefaultRouter()# 其中BookModelView继承了viewsets.ModelViewSetrouter.register(r'^book', views.BookModelView)urlpatterns += router.urls
+到底routers底层是怎么样实现的呢
+routersDef...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/02/20</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "DRF">DRF</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href = "/2020/02/19/DRF-02/" >
             
                 <span>DRF源码解析2--viewsets.ModelViewSet对视图的封装</span>
@@ -1308,9 +1340,26 @@ height:50vh;
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 52
+        Total : 53
         </div>
         <!-- search  -->
         
@@ -1427,6 +1476,11 @@ height:50vh;
     
     <div class="archive-year"> 2020 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/01</span><a class="archive-post-title" href= "/2020/04/01/data-structure-08/" >数据结构学习笔记---散列表</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -1901,6 +1955,8 @@ height:50vh;
         <span class="sidebar-tag-name" data-tags="字典树"><span class="iconfont-archer">&#xe606;</span>字典树</span>
     
         <span class="sidebar-tag-name" data-tags="跳表"><span class="iconfont-archer">&#xe606;</span>跳表</span>
+    
+        <span class="sidebar-tag-name" data-tags="散列表"><span class="iconfont-archer">&#xe606;</span>散列表</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
