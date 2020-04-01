@@ -22,7 +22,7 @@
     <meta name="description" content="">
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-    <title>每日一道算法之--组合总和 · Jiang&#39;s Blog</title>
+    <title>每日一道算法之--不同路径 · Jiang&#39;s Blog</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -217,7 +217,7 @@
                 <a href="/" >Jiang&#39;s blog</a>
             </div>
             <div class="post-title">
-                <a href="#" class="post-name">每日一道算法之--组合总和</a>
+                <a href="#" class="post-name">每日一道算法之--不同路径</a>
             </div>
     </div>
     
@@ -247,7 +247,7 @@ height:50vh;
         <h1 class="intro-title">
             <!-- 主页  -->
             
-            每日一道算法之--组合总和
+            每日一道算法之--不同路径
             <!-- 404 -->
             
         </h1>
@@ -266,20 +266,18 @@ height:50vh;
                 
                     <div class= post-intro-tags >
     
-        <a class="post-tag" href="javascript:void(0);" data-tags = "数组">数组</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "回溯思想">回溯思想</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags = "动态规划">动态规划</a>
     
 </div>
                 
                 
                     <div class="post-intro-read">
-                        <span>Word count: <span class="post-count word-count">817</span>Reading time: <span class="post-count reading-time">3 min</span></span>
+                        <span>Word count: <span class="post-count word-count">884</span>Reading time: <span class="post-count reading-time">3 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
                     <span class="post-intro-calander iconfont-archer">&#xe676;</span>
-                    <span class="post-intro-time">2020/03/05</span>
+                    <span class="post-intro-time">2020/04/01</span>
                     
                     <span id="busuanzi_container_page_pv" class="busuanzi-pv">
                         <span class="iconfont-archer">&#xe602;</span>
@@ -403,56 +401,66 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
     <article class="article-entry">
-        <h1 id="组合总和"><a href="#组合总和" class="headerlink" title="组合总和"></a>组合总和</h1><p>力扣第39题:<a href="https://leetcode-cn.com/problems/combination-sum/" target="_blank" rel="noopener">https://leetcode-cn.com/problems/combination-sum/</a><br><strong>参考文章</strong><br><a href="https://leetcode-cn.com/problems/combination-sum/solution/hui-su-suan-fa-jian-zhi-python-dai-ma-java-dai-m-2/" target="_blank" rel="noopener">回溯算法 + 剪枝</a></p>
-<p><a href="https://time.geekbang.org/column/article/74788" target="_blank" rel="noopener">极客时间-数据结构与算法之美</a></p>
-<p>给定一个无重复元素的数组 candidates 和一个目标数 target ，找出 candidates 中所有可以使数字和为 target 的组合。</p>
-<p>candidates 中的数字可以无限制重复被选取。</p>
-<p>说明：</p>
-<ul>
-<li>所有数字（包括 target）都是正整数。</li>
-<li>解集不能包含重复的组合。<br>示例 1:<blockquote>
-<p>输入: candidates = [2,3,6,7], target = 7,<br>所求解集为:<br>[<br>[7],<br>[2,2,3]<br>]</p>
+        <h1 id="不同路径"><a href="#不同路径" class="headerlink" title="不同路径"></a>不同路径</h1><p>力扣第62题 : <a href="https://leetcode-cn.com/problems/unique-paths/" target="_blank" rel="noopener">https://leetcode-cn.com/problems/unique-paths/</a></p>
+<p>一个机器人位于一个 m x n 网格的左上角 （起始点在下图中标记为“Start” ）。</p>
+<p>机器人每次只能向下或者向右移动一步。机器人试图达到网格的右下角（在下图中标记为“Finish”）。</p>
+<p>问总共有多少条不同的路径？</p>
+<p>示例 1:</p>
+<blockquote>
+<p>输入: m = 3, n = 2<br>输出: 3<br>解释:<br>从左上角开始，总共有 3 条路径可以到达右下角。</p>
 </blockquote>
-</li>
-</ul>
+<ol>
+<li>向右 -&gt; 向右 -&gt; 向下</li>
+<li>向右 -&gt; 向下 -&gt; 向右</li>
+<li>向下 -&gt; 向右 -&gt; 向右</li>
+</ol>
 <p>示例 2:</p>
 <blockquote>
-<p>输入: candidates = [2,3,5], target = 8,<br>所求解集为:<br>[<br>  [2,2,2,2],<br>  [2,3,3],<br>  [3,5]<br>]</p>
+<p>输入: m = 7, n = 3<br>输出: 28</p>
 </blockquote>
-<h2 id="回溯思想"><a href="#回溯思想" class="headerlink" title="回溯思想"></a>回溯思想</h2><p>当我第一眼看到这个题的时候,我第一时间想到就是DP,但是仔细阅读题目的时候就可以发现,这道题是求所有可能的总和,而动态规划只能解决最有问题,所以以后遇到求总和问题的时候,就应该先想到回溯的思想去解决问题.</p>
-<blockquote>
-<p>回溯的处理思想，有点类似枚举搜索。我们枚举所有的解，找到满足期望的解。为了有规律地枚举所有可能的解，避免遗漏和重复，我们把问题求解的过程分为多个阶段。每个阶段，我们都会面对一个岔路口，我们先随意选一条路走，当发现这条路走不通的时候（不符合期望的解），就回退到上一个岔路口，另选一种走法继续走。</p>
-</blockquote>
-<p>相信看过明日边缘和蝴蝶效应这些电影的人应该很容易去理解回溯,下面就来用回溯思想去分析一下这道题.</p>
-<p><img src="https://s2.ax1x.com/2020/03/05/3HlYNT.png" alt="3HlYNT.png"></p>
-<p><a href="https://imgchr.com/i/3HlO2Q" target="_blank" rel="noopener"><img src="https://s2.ax1x.com/2020/03/05/3HlO2Q.png" alt="3HlO2Q.png"></a></p>
+<h2 id="动态规划"><a href="#动态规划" class="headerlink" title="动态规划"></a>动态规划</h2><p>我们可以假设dp[row][col]是到达第row行第col列的最多可能,那么达到第row行第col列只有两种可能</p>
 <ul>
-<li><p>可以看到,以蓝色点递归可以找到所有的组合</p>
-</li>
-<li><p>但是有一些节点是重复的,因为递归时没有加限制条件,更深一层的递归又会重复去考虑之前已经计算过的组合,所以需要去排序.</p>
-</li>
-<li><p>排好序之后,当候选数组的元素比目标数还大时,该元素后面的数可以都不用去考虑了.</p>
-</li>
+<li>第row行col- 1列从左边向右移动一位</li>
+<li>第row- 1行col列从上到下移动一位</li>
 </ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">combinationSum</span><span class="params">(self, candidates: List[int], target: int)</span> -&gt; List[List[int]]:</span></span><br><span class="line">        candidates.sort()</span><br><span class="line">        n = len(candidates)</span><br><span class="line">        res = []</span><br><span class="line">        <span class="function"><span class="keyword">def</span> <span class="title">helper</span><span class="params">(start, cur_num, tmp)</span>:</span></span><br><span class="line">            <span class="keyword">if</span> cur_num == <span class="number">0</span>:</span><br><span class="line">                res.append(tmp) </span><br><span class="line">                <span class="keyword">return</span> </span><br><span class="line">            <span class="comment"># 这里是去重, 排序之后,start前面的元素都不用去考虑了</span></span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> range(start, n):</span><br><span class="line">                <span class="comment"># 剪枝,该元素比目标数还大,则直接跳出</span></span><br><span class="line">                <span class="comment"># 这里是自下往上组合,上图中是自上往下组合,原理都一样</span></span><br><span class="line">                <span class="keyword">if</span> cur_num - candidates[i] &lt; <span class="number">0</span>:</span><br><span class="line">                    <span class="keyword">break</span></span><br><span class="line">                helper(i, cur_num - candidates[i], tmp + [candidates[i]])</span><br><span class="line">        helper(<span class="number">0</span>, target, [])</span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
+<p>所以状态转移方程为:</p>
+<pre><code>dp[row][col] = dp[row][col - 1] + dp[row - 1][col]</code></pre><p>注意，对于第一行 dp[0][j]，或者第一列 dp[i][0]，由于都是在边界，所以只能为 1</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">uniquePaths</span><span class="params">(self, m: int, n: int)</span> -&gt; int:</span></span><br><span class="line">        <span class="comment"># 边界处只能为1</span></span><br><span class="line">        dp = [[<span class="number">1</span>]*n] + [[<span class="number">1</span>]+[<span class="number">0</span>] * (n<span class="number">-1</span>) <span class="keyword">for</span> _ <span class="keyword">in</span> range(m<span class="number">-1</span>)]</span><br><span class="line">        print(dp)</span><br><span class="line">        <span class="comment">#print(dp)</span></span><br><span class="line">        <span class="keyword">for</span> row <span class="keyword">in</span> range(<span class="number">1</span>, m):</span><br><span class="line">            <span class="keyword">for</span> col <span class="keyword">in</span> range(<span class="number">1</span>, n):</span><br><span class="line">                dp[row][col] = dp[row<span class="number">-1</span>][col] + dp[row][col<span class="number">-1</span>]</span><br><span class="line">        <span class="keyword">return</span> dp[<span class="number">-1</span>][<span class="number">-1</span>]</span><br></pre></td></tr></table></figure>
 
-<h3 id="复杂度分析"><a href="#复杂度分析" class="headerlink" title="复杂度分析"></a>复杂度分析</h3><p><strong>时间复杂度:</strong>每一次递归遍历考虑所有可能的组合,所以时间复杂度为$$O(n^2)$$</p>
-<p><strong>空间复杂度:</strong>O(n)</p>
-<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>回溯思想可能是一个时间复杂度较高的算法,很多时候可以用dp去优化,但是在枚举所有可能的结果的时候,就是发挥它的特点的时候了,不要因为复杂度高就不去考虑,所以还是的脚踏实地去学习编程吧!!!</p>
-<p><strong>相似题目</strong></p>
-<p><a href="https://leetcode-cn.com/problems/combination-sum-ii/" target="_blank" rel="noopener">组合总和II</a></p>
-<p><a href="https://leetcode-cn.com/problems/combination-sum-iii/" target="_blank" rel="noopener">组合总和III</a></p>
-<p><a href="https://leetcode-cn.com/problems/permutations/" target="_blank" rel="noopener">全排列</a></p>
-<p><a href="https://leetcode-cn.com/problems/n-queens/" target="_blank" rel="noopener">N皇后</a></p>
+<h3 id="复杂度分析"><a href="#复杂度分析" class="headerlink" title="复杂度分析"></a>复杂度分析</h3><p><strong>时间复杂度：</strong>O(m*n),每一种可能都要遍历到</p>
+<p><strong>空间复杂度：</strong>O(m * n)</p>
+<hr>
+<h2 id="优化动态规划"><a href="#优化动态规划" class="headerlink" title="优化动态规划"></a>优化动态规划</h2><p>可以发现二维数组占用了太多内存,分析题目发现,其实每一行的子问题只和最后一个结果相关,所以可以将二维数组简化为一维数组</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">uniquePaths</span><span class="params">(self, m: int, n: int)</span> -&gt; int:</span></span><br><span class="line">        cur = [<span class="number">1</span>] * n</span><br><span class="line">        <span class="keyword">for</span> row <span class="keyword">in</span> range(<span class="number">1</span>, m):</span><br><span class="line">            <span class="keyword">for</span> col <span class="keyword">in</span> range(<span class="number">1</span>, n):</span><br><span class="line">                cur[col] += cur[col - <span class="number">1</span>]</span><br><span class="line">        <span class="keyword">return</span> cur[<span class="number">-1</span>]</span><br></pre></td></tr></table></figure>
+<p>空间复杂度可以降为 O(n)</p>
+<h1 id="不同路径II"><a href="#不同路径II" class="headerlink" title="不同路径II"></a>不同路径II</h1><p>力扣第63题 : <a href="https://leetcode-cn.com/problems/unique-paths-ii/" target="_blank" rel="noopener">https://leetcode-cn.com/problems/unique-paths-ii/</a></p>
+<p>一个机器人位于一个 m x n 网格的左上角 （起始点在下图中标记为“Start” ）。</p>
+<p>机器人每次只能向下或者向右移动一步。机器人试图达到网格的右下角（在下图中标记为“Finish”）。</p>
+<p>现在考虑网格中有障碍物。那么从左上角到右下角将会有多少条不同的路径？</p>
+<p>示例 1:</p>
+<blockquote>
+<p>输入:<br>[<br>  [0,0,0],<br>  [0,1,0],<br>  [0,0,0]<br>]<br>输出: 2<br>解释:<br>3x3 网格的正中间有一个障碍物。<br>从左上角到右下角一共有 2 条不同的路径：</p>
+</blockquote>
+<ol>
+<li>向右 -&gt; 向右 -&gt; 向下 -&gt; 向下</li>
+<li>向下 -&gt; 向下 -&gt; 向右 -&gt; 向右</li>
+</ol>
+<h2 id="动态规划-1"><a href="#动态规划-1" class="headerlink" title="动态规划"></a>动态规划</h2><p>这题和上面唯一的区别就是有了障碍物,这样我们就需要判断是否存在障碍物了,而且<strong>边界也要判断</strong>。</p>
+<p><strong>最初的版本</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">uniquePathsWithObstacles</span><span class="params">(self, obstacleGrid: List[List[int]])</span> -&gt; int:</span></span><br><span class="line">        rows = len(obstacleGrid)</span><br><span class="line">        cols = len(obstacleGrid[<span class="number">0</span>])</span><br><span class="line">        dp = [<span class="number">1</span>] + [<span class="number">0</span>]* (cols - <span class="number">1</span>)</span><br><span class="line">        <span class="keyword">for</span> row <span class="keyword">in</span> range(rows):</span><br><span class="line">            <span class="keyword">for</span> col <span class="keyword">in</span> range(cols):</span><br><span class="line">                <span class="keyword">if</span> obstacleGrid[row][col] == <span class="number">1</span>:</span><br><span class="line">                    dp[col] = <span class="number">0</span></span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    dp[col] += dp[col - <span class="number">1</span>]</span><br><span class="line">        <span class="keyword">return</span> dp[<span class="number">-1</span>]</span><br></pre></td></tr></table></figure>
+<p>这里会出现一个问题,就是当col 为 0 时, col - 1 为 -1 ,这样会取到了倒数第一个数据,从而造成错误</p>
+<p><strong>改进版本</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">uniquePathsWithObstacles</span><span class="params">(self, obstacleGrid: List[List[int]])</span> -&gt; int:</span></span><br><span class="line">        rows = len(obstacleGrid)</span><br><span class="line">        cols = len(obstacleGrid[<span class="number">0</span>])</span><br><span class="line">        <span class="comment"># 在最后在加一个元素0,就可以解决边界问题</span></span><br><span class="line">        dp = [<span class="number">1</span>] + [<span class="number">0</span>]* cols</span><br><span class="line">        <span class="keyword">for</span> row <span class="keyword">in</span> range(rows):</span><br><span class="line">            <span class="keyword">for</span> col <span class="keyword">in</span> range(cols):</span><br><span class="line">                <span class="keyword">if</span> obstacleGrid[row][col] == <span class="number">1</span>:</span><br><span class="line">                    dp[col] = <span class="number">0</span></span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    dp[col] += dp[col - <span class="number">1</span>]</span><br><span class="line">        <span class="keyword">return</span> dp[<span class="number">-2</span>]</span><br></pre></td></tr></table></figure>
+
 
     </article>
     <!-- license  -->
     
         <div class="license-wrapper">
             <p>Author：<a href="https://liangweijiang.github.io">liangweijiang</a>
-            <p>原文链接：<a href="https://liangweijiang.github.io/2020/03/05/algorithm-39/">https://liangweijiang.github.io/2020/03/05/algorithm-39/</a>
-            <p>发表日期：<a href="https://liangweijiang.github.io/2020/03/05/algorithm-39/">March 5th 2020, 8:55:27 pm</a>
-            <p>更新日期：<a href="https://liangweijiang.github.io/2020/03/05/algorithm-39/">March 5th 2020, 8:56:39 pm</a>
+            <p>原文链接：<a href="https://liangweijiang.github.io/2020/04/01/algorithm-62-63/">https://liangweijiang.github.io/2020/04/01/algorithm-62-63/</a>
+            <p>发表日期：<a href="https://liangweijiang.github.io/2020/04/01/algorithm-62-63/">April 1st 2020, 4:05:08 pm</a>
+            <p>更新日期：<a href="https://liangweijiang.github.io/2020/04/01/algorithm-62-63/">April 1st 2020, 4:05:52 pm</a>
             <p>版权声明：本文采用<a rel="license noopener" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
         </div>
     
@@ -460,17 +468,12 @@ height:50vh;
     <ul class="post-paginator">
         <li class="next">
             
-                <div class="nextSlogan">Next Post</div>
-                <a href= "/2020/03/09/LoadBalancing/" title= "学习笔记之---负载均衡">
-                    <div class="nextTitle">学习笔记之---负载均衡</div>
-                </a>
-            
         </li>
         <li class="previous">
             
                 <div class="prevSlogan">Previous Post</div>
-                <a href= "/2020/03/04/python-02/" title= "python单例模式的实现">
-                    <div class="prevTitle">python单例模式的实现</div>
+                <a href= "/2020/04/01/algorithm-55/" title= "每日一道算法之--跳跃游戏">
+                    <div class="prevTitle">每日一道算法之--跳跃游戏</div>
                 </a>
             
         </li>
@@ -584,7 +587,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#组合总和"><span class="toc-number">1.</span> <span class="toc-text">组合总和</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#回溯思想"><span class="toc-number">1.1.</span> <span class="toc-text">回溯思想</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#复杂度分析"><span class="toc-number">1.1.1.</span> <span class="toc-text">复杂度分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#总结"><span class="toc-number">1.1.2.</span> <span class="toc-text">总结</span></a></li></ol></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#不同路径"><span class="toc-number">1.</span> <span class="toc-text">不同路径</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#动态规划"><span class="toc-number">1.1.</span> <span class="toc-text">动态规划</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#复杂度分析"><span class="toc-number">1.1.1.</span> <span class="toc-text">复杂度分析</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#优化动态规划"><span class="toc-number">1.2.</span> <span class="toc-text">优化动态规划</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#不同路径II"><span class="toc-number">2.</span> <span class="toc-text">不同路径II</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#动态规划-1"><span class="toc-number">2.1.</span> <span class="toc-text">动态规划</span></a></li></ol></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
