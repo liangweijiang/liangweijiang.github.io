@@ -346,6 +346,36 @@
     
     
     <article class="index-post">
+        <a class="abstract-title" href = "/2020/02/22/DRF-04/" >
+            
+                <span>DRF源码解析4--版本控制组件的封装</span>
+        </a>
+        <div class="abstract-content">
+            一.DRF中APIView的initial()方法初始化版本信息在讲到DRF对ruquest的封装时,返回新封装的Request后,DRF执行了initial()方法对组件的初始化
+12345678910111213def initial(self, request, *args, **kwargs):	# 版本控制组件       version, scheme = self.determine_version(request, *args, **kwargs)	# 将版本空值信息写入request中       request.version, request.versioning_...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/02/22</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "DRF">DRF</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href = "/2020/02/20/DRF-03/" >
             
                 <span>DRF源码解析3--routers对路由的封装</span>
@@ -1254,9 +1284,26 @@ routersDef...
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 53
+        Total : 54
         </div>
         <!-- search  -->
         
@@ -1373,6 +1420,11 @@ routersDef...
     
     <div class="archive-year"> 2020 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/07</span><a class="archive-post-title" href= "/2020/04/07/algorithm-75/" >每日一道算法之--颜色分类</a>
+        </li>
     
     
         <li class="archive-post-item">
