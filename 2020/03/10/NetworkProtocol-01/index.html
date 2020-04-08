@@ -431,11 +431,8 @@ height:50vh;
 </ul>
 <hr>
 <h1 id="2-网络分层的真实含义是什么？"><a href="#2-网络分层的真实含义是什么？" class="headerlink" title="2. 网络分层的真实含义是什么？"></a>2. 网络分层的真实含义是什么？</h1><h2 id="2-1-网络为什么要分层？"><a href="#2-1-网络为什么要分层？" class="headerlink" title="2.1 网络为什么要分层？"></a>2.1 网络为什么要分层？</h2><blockquote>
-<p>-对于软件世界来说,在计算机领域，任何问题到了某个复杂的阶段，如果当前方法不能解决问题，必定可以通过加多一层来解决，如果加多一层都解决不了问题，那肯定是这个问题模型的层次已经到极限了。</p>
+<p>对于软件世界来说,在计算机领域，任何问题到了某个复杂的阶段，如果当前方法不能解决问题，必定可以通过加多一层来解决，如果加多一层都解决不了问题，那肯定是这个问题模型的层次已经到极限了。<br>TCP 的实现将所有的逻辑耦合在了整个七层，不用 TCP 的可靠传输机制都没有办法。</p>
 </blockquote>
-<ul>
-<li>对于网络协议。有的想基于 TCP，自己不操心就能够保证到达；有的想自己实现可靠通信，不基于 TCP，而使用 UDP。一旦分了层就好办了，定制化后要依赖于下一层的接口，只要实现自己的逻辑就可以了。如果 TCP 的实现将所有的逻辑耦合在了整个七层，不用 TCP 的可靠传输机制都没有办法。</li>
-</ul>
 <p><strong>1）各层之间相互独立：</strong>高层是不需要知道底层的功能是采取硬件技术来实现的，它只需要知道通过与底层的接口就可以获得所需要的服务；<br><strong>2）灵活性好：</strong>各层都可以采用最适当的技术来实现，例如某一层的实现技术发生了变化，用硬件代替了软件，只要这一层的功能与接口保持不变，实现技术的变化都并不会对其他各层以及整个系统的工作产生影响； </p>
 <p><strong>3）易于实现和标准化：</strong>由于采取了规范的层次结构去组织网络功能与协议，因此可以将计算机网络复杂的通信过程，划分为有序的连续动作与有序的交互过程，有利于将网络复杂的通信工作过程化解为一系列可以控制和实现的功能模块，使得复杂的计算机网络系统变得易于设计，实现和标准化</p>
 <p><strong>在网络协议中的分层。不仅仅是根据负责的功能来简单的划分层次，而且层与层之间会有不可缺少的的封装与传递。对于网络模型各层的封装是根据整个网络模型从上到下的工作流程来划分的。但是，每层之间会有一定的联系，不是独立工作的。</strong></p>
@@ -550,7 +547,7 @@ height:50vh;
             <p>Author：<a href="https://liangweijiang.github.io">liangweijiang</a>
             <p>原文链接：<a href="https://liangweijiang.github.io/2020/03/10/NetworkProtocol-01/">https://liangweijiang.github.io/2020/03/10/NetworkProtocol-01/</a>
             <p>发表日期：<a href="https://liangweijiang.github.io/2020/03/10/NetworkProtocol-01/">March 10th 2020, 4:56:43 pm</a>
-            <p>更新日期：<a href="https://liangweijiang.github.io/2020/03/10/NetworkProtocol-01/">March 30th 2020, 3:59:29 pm</a>
+            <p>更新日期：<a href="https://liangweijiang.github.io/2020/03/10/NetworkProtocol-01/">April 8th 2020, 2:17:22 pm</a>
             <p>版权声明：本文采用<a rel="license noopener" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
         </div>
     
