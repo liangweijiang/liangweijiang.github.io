@@ -1,0 +1,2259 @@
+<!DOCTYPE html>
+<html lang="en">
+    <!-- title -->
+
+
+
+
+<!-- keywords -->
+
+
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" >
+    <meta name="author" content="liangweijiang">
+    <meta name="renderer" content="webkit">
+    <meta name="copyright" content="liangweijiang">
+    
+    <meta name="keywords" content="hexo,hexo-theme,hexo-blog">
+    
+    <meta name="description" content="">
+    <meta http-equiv="Cache-control" content="no-cache">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <title>每日一道算法之--前缀和总结 · Jiang&#39;s Blog</title>
+    <style type="text/css">
+    @font-face {
+        font-family: 'Oswald-Regular';
+        src: url("/font/Oswald-Regular.ttf");
+    }
+
+    body {
+        margin: 0;
+    }
+
+    header,
+    footer,
+    .back-top,
+    .sidebar,
+    .container,
+    .site-intro-meta,
+    .toc-wrapper {
+        display: none;
+    }
+
+    .site-intro {
+        position: relative;
+        z-index: 3;
+        width: 100%;
+        /* height: 50vh; */
+        overflow: hidden;
+    }
+
+    .site-intro-placeholder {
+        position: absolute;
+        z-index: -2;
+        top: 0;
+        left: 0;
+        width: calc(100% + 300px);
+        height: 100%;
+        background: repeating-linear-gradient(-45deg, #444 0, #444 80px, #333 80px, #333 160px);
+        background-position: center center;
+        transform: translate3d(-226px, 0, 0);
+        animation: gradient-move 2.5s ease-out 0s infinite;
+    }
+
+    @keyframes gradient-move {
+        0% {
+            transform: translate3d(-226px, 0, 0);
+        }
+        100% {
+            transform: translate3d(0, 0, 0);
+        }
+    }
+
+</style>
+
+    <link rel="preload" href= "/css/style.css?v=20180824" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+    <link rel="stylesheet" href= "/css/mobile.css?v=20180824" media="(max-width: 980px)">
+    
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+    
+    <!-- /*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
+/* This file is meant as a standalone workflow for
+- testing support for link[rel=preload]
+- enabling async CSS loading in browsers that do not support rel=preload
+- applying rel preload css once loaded, whether supported or not.
+*/ -->
+<script>
+(function( w ){
+	"use strict";
+	// rel=preload support test
+	if( !w.loadCSS ){
+		w.loadCSS = function(){};
+	}
+	// define on the loadCSS obj
+	var rp = loadCSS.relpreload = {};
+	// rel=preload feature support test
+	// runs once and returns a function for compat purposes
+	rp.support = (function(){
+		var ret;
+		try {
+			ret = w.document.createElement( "link" ).relList.supports( "preload" );
+		} catch (e) {
+			ret = false;
+		}
+		return function(){
+			return ret;
+		};
+	})();
+
+	// if preload isn't supported, get an asynchronous load by using a non-matching media attribute
+	// then change that media back to its intended value on load
+	rp.bindMediaToggle = function( link ){
+		// remember existing media attr for ultimate state, or default to 'all'
+		var finalMedia = link.media || "all";
+
+		function enableStylesheet(){
+			link.media = finalMedia;
+		}
+
+		// bind load handlers to enable media
+		if( link.addEventListener ){
+			link.addEventListener( "load", enableStylesheet );
+		} else if( link.attachEvent ){
+			link.attachEvent( "onload", enableStylesheet );
+		}
+
+		// Set rel and non-applicable media type to start an async request
+		// note: timeout allows this to happen async to let rendering continue in IE
+		setTimeout(function(){
+			link.rel = "stylesheet";
+			link.media = "only x";
+		});
+		// also enable media after 3 seconds,
+		// which will catch very old browsers (android 2.x, old firefox) that don't support onload on link
+		setTimeout( enableStylesheet, 3000 );
+	};
+
+	// loop through link elements in DOM
+	rp.poly = function(){
+		// double check this to prevent external calls from running
+		if( rp.support() ){
+			return;
+		}
+		var links = w.document.getElementsByTagName( "link" );
+		for( var i = 0; i < links.length; i++ ){
+			var link = links[ i ];
+			// qualify links to those with rel=preload and as=style attrs
+			if( link.rel === "preload" && link.getAttribute( "as" ) === "style" && !link.getAttribute( "data-loadcss" ) ){
+				// prevent rerunning on link
+				link.setAttribute( "data-loadcss", true );
+				// bind listeners to toggle media back
+				rp.bindMediaToggle( link );
+			}
+		}
+	};
+
+	// if unsupported, run the polyfill
+	if( !rp.support() ){
+		// run once at least
+		rp.poly();
+
+		// rerun poly on an interval until onload
+		var run = w.setInterval( rp.poly, 500 );
+		if( w.addEventListener ){
+			w.addEventListener( "load", function(){
+				rp.poly();
+				w.clearInterval( run );
+			} );
+		} else if( w.attachEvent ){
+			w.attachEvent( "onload", function(){
+				rp.poly();
+				w.clearInterval( run );
+			} );
+		}
+	}
+
+
+	// commonjs
+	if( typeof exports !== "undefined" ){
+		exports.loadCSS = loadCSS;
+	}
+	else {
+		w.loadCSS = loadCSS;
+	}
+}( typeof global !== "undefined" ? global : this ) );
+</script>
+
+    <link rel="icon" href= "/assets/911.ico" />
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js" as="script" />
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js" as="script" />
+    <link rel="preload" href="/scripts/main.js" as="script" />
+    <link rel="preload" as="font" href="/font/Oswald-Regular.ttf" crossorigin>
+    <link rel="preload" as="font" href="https://at.alicdn.com/t/font_327081_1dta1rlogw17zaor.woff" crossorigin>
+    
+    <!-- fancybox -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" defer></script>
+    <!-- 百度统计  -->
+    
+    <!-- 谷歌统计  -->
+    
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+    
+        <body class="post-body">
+    
+    
+<header class="header">
+
+    <div class="read-progress"></div>
+    <div class="header-sidebar-menu">&#xe775;</div>
+    <!-- post页的toggle banner  -->
+    
+    <div class="banner">
+            <div class="blog-title">
+                <a href="/" >Jiang&#39;s blog</a>
+            </div>
+            <div class="post-title">
+                <a href="#" class="post-name">每日一道算法之--前缀和总结</a>
+            </div>
+    </div>
+    
+    <a class="home-link" href=/>Jiang's blog</a>
+</header>
+    <div class="wrapper">
+        <div class="site-intro" style="
+
+
+
+
+
+
+
+height:50vh;
+">
+    
+    <!-- 主页  -->
+    
+    
+    <!-- 404页  -->
+            
+    <div class="site-intro-placeholder"></div>
+    <div class="site-intro-img" style="background-image: url(/intro/911.jpg)"></div>
+    <div class="site-intro-meta">
+        <!-- 标题  -->
+        <h1 class="intro-title">
+            <!-- 主页  -->
+            
+            每日一道算法之--前缀和总结
+            <!-- 404 -->
+            
+        </h1>
+        <!-- 副标题 -->
+        <p class="intro-subtitle">
+            <!-- 主页副标题  -->
+            
+            
+            <!-- 404 -->
+            
+        </p>
+        <!-- 文章页meta -->
+        
+            <div class="post-intros">
+                <!-- 文章页标签  -->
+                
+                    <div class= post-intro-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "哈希表">哈希表</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "位运算">位运算</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "前缀和">前缀和</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "状态压缩">状态压缩</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "二进制">二进制</a>
+    
+</div>
+                
+                
+                    <div class="post-intro-read">
+                        <span>Word count: <span class="post-count word-count">2.2k</span>Reading time: <span class="post-count reading-time">8 min</span></span>
+                    </div>
+                
+                <div class="post-intro-meta">
+                    <span class="post-intro-calander iconfont-archer">&#xe676;</span>
+                    <span class="post-intro-time">2020/05/21</span>
+                    
+                    <span id="busuanzi_container_page_pv" class="busuanzi-pv">
+                        <span class="iconfont-archer">&#xe602;</span>
+                        <span id="busuanzi_value_page_pv"></span>
+                    </span>
+                    
+                    <span class="shareWrapper">
+                        <span class="iconfont-archer shareIcon">&#xe71d;</span>
+                        <span class="shareText">Share</span>
+                        <ul class="shareList">
+                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
+                                <div class="share-qrcode"></div>
+                            </li>
+                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
+                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
+                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
+                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
+        
+    </div>
+</div>
+        <script>
+ 
+  // get user agent
+  var browser = {
+    versions: function () {
+      var u = window.navigator.userAgent;
+      return {
+        userAgent: u,
+        trident: u.indexOf('Trident') > -1, //IE内核
+        presto: u.indexOf('Presto') > -1, //opera内核
+        webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
+        gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核
+        mobile: !!u.match(/AppleWebKit.*Mobile.*/), //是否为移动终端
+        ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
+        android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或者uc浏览器
+        iPhone: u.indexOf('iPhone') > -1 || u.indexOf('Mac') > -1, //是否为iPhone或者安卓QQ浏览器
+        iPad: u.indexOf('iPad') > -1, //是否为iPad
+        webApp: u.indexOf('Safari') == -1, //是否为web应用程序，没有头部与底部
+        weixin: u.indexOf('MicroMessenger') == -1, //是否为微信浏览器
+        uc: u.indexOf('UCBrowser') > -1 //是否为android下的UC浏览器
+      };
+    }()
+  }
+  console.log("userAgent:" + browser.versions.userAgent);
+
+  // callback
+  function fontLoaded() {
+    console.log('font loaded');
+    if (document.getElementsByClassName('site-intro-meta')) {
+      document.getElementsByClassName('intro-title')[0].classList.add('intro-fade-in');
+      document.getElementsByClassName('intro-subtitle')[0].classList.add('intro-fade-in');
+      var postIntros = document.getElementsByClassName('post-intros')[0]
+      if (postIntros) {
+        postIntros.classList.add('post-fade-in');
+      }
+    }
+  }
+
+  // UC不支持跨域，所以直接显示
+  function asyncCb(){
+    if (browser.versions.uc) {
+      console.log("UCBrowser");
+      fontLoaded();
+    } else {
+      WebFont.load({
+        custom: {
+          families: ['Oswald-Regular']
+        },
+        loading: function () {  //所有字体开始加载
+          // console.log('loading');
+        },
+        active: function () {  //所有字体已渲染
+          fontLoaded();
+        },
+        inactive: function () { //字体预加载失败，无效字体或浏览器不支持加载
+          console.log('inactive: timeout');
+          fontLoaded();
+        },
+        timeout: 5000 // Set the timeout to two seconds
+      });
+    }
+  }
+
+  function asyncErr(){
+    console.warn('script load from CDN failed, will load local script')
+  }
+
+  // load webfont-loader async, and add callback function
+  function async(u, cb, err) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (cb) { o.addEventListener('load', function (e) { cb(null, e); }, false); }
+    if (err) { o.addEventListener('error', function (e) { err(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+
+  var asyncLoadWithFallBack = function(arr, success, reject) {
+      var currReject = function(){
+        reject()
+        arr.shift()
+        if(arr.length)
+          async(arr[0], success, currReject)
+        }
+
+      async(arr[0], success, currReject)
+  }
+
+  asyncLoadWithFallBack([
+    "https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js", 
+    "https://cdn.bootcss.com/webfont/1.6.28/webfontloader.js",
+    "/lib/webfontloader.min.js"
+  ], asyncCb, asyncErr)
+</script>        
+        <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
+        <div class="container container-unloaded">
+            <main class="main post-page">
+    <article class="article-entry">
+        <h1 id="前缀和总结"><a href="#前缀和总结" class="headerlink" title="前缀和总结"></a>前缀和总结</h1><p>昨天刷到力扣每一一题 第1371题《每个元音包含偶数次的最长子字符串》时，想了很久搜没有思路，于是我去看了题解，发觉这道题考察的知识点还挺多的，位运算，前缀和，哈希表的优化，状态压缩等，前缀和这一个知识点我尤其的好奇，因为我印象中就刷过两道，当时我记得那两道都不是用前缀和写的，也没去多在意，今天就好好总结一下前缀和这一东西.</p>
+<h2 id="1-和为K的子数组"><a href="#1-和为K的子数组" class="headerlink" title="1. 和为K的子数组"></a>1. 和为K的子数组</h2><p>力扣第560题: <a href="https://leetcode-cn.com/problems/subarray-sum-equals-k/" target="_blank" rel="noopener">https://leetcode-cn.com/problems/subarray-sum-equals-k/</a></p>
+<p>给定一个整数数组和一个整数 k，你需要找到该数组中和为 k 的连续的子数组的个数。</p>
+<p>示例 1 :</p>
+<blockquote>
+<p>输入:nums = [1,1,1], k = 2<br>输出: 2 , [1,1] 与 [1,1] 为两种不同的情况。</p>
+</blockquote>
+<h3 id="1-1-前缀和"><a href="#1-1-前缀和" class="headerlink" title="1.1 前缀和"></a>1.1 前缀和</h3><p>参考作者：hyj8<br>链接：<a href="https://leetcode-cn.com/problems/subarray-sum-equals-k/solution/dai-ni-da-tong-qian-zhui-he-cong-zui-ben-fang-fa-y/" target="_blank" rel="noopener">https://leetcode-cn.com/problems/subarray-sum-equals-k/solution/dai-ni-da-tong-qian-zhui-he-cong-zui-ben-fang-fa-y/</a></p>
+<ul>
+<li>什么是前缀和：<ul>
+<li>从 第 0 项 到 当前项 的 总和</li>
+</ul>
+</li>
+<li>如果用一个数组 prefixSum 表示：<br>prefixSum[x] = nums[0] + nums[1] +…+nums[x] (prefixSum[x]：nums 的 第 0 到 第 x 项 的总和)</li>
+</ul>
+<ul>
+<li>所以有，nums 某一项 = 两个相邻 前缀和 之差：<br>  nums[x] = prefixSum[x] - prefixSum[x - 1]</li>
+</ul>
+<ul>
+<li>所以有，nums 的 第 i 到 j 项 的总和：<br>nums[i] +…+nums[j]=prefixSum[j] - prefixSum[i - 1]</li>
+</ul>
+<p>我们知道 i 当然可以为 0，此时 i - 1 为 - 1，我们让 prefixSum[-1] 为 0，此时：<br>nums[0] +…+nums[j]=prefixSum[j]</p>
+<p>题目等价转化：</p>
+<p>从【有几种 i、j 组合，使得从第 i 到 j 项的子数组的求和 === k】</p>
+<p>↓ ↓ ↓ 转化为 ↓ ↓ ↓</p>
+<p>【有几种 i、j 组合，满足 i &lt; j 且 prefixSum[ j ] - prefixSum[ i - 1 ] === k】</p>
+<p>于是我们想求出 prefixSum 数组的每一项，再看哪些项相减 === k，统计 count</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">subarraySum</span><span class="params">(self, nums: List[int], k: int)</span> -&gt; int:</span></span><br><span class="line">      cnt, n =  <span class="number">0</span>, len(nums)</span><br><span class="line">      pre = [<span class="number">0</span>] * (n + <span class="number">1</span>)</span><br><span class="line">      <span class="keyword">for</span> i <span class="keyword">in</span> range(n):</span><br><span class="line">          pre[i + <span class="number">1</span>] = pre[i] + nums[i]</span><br><span class="line">      <span class="keyword">for</span> i <span class="keyword">in</span> range(n):</span><br><span class="line">          <span class="keyword">for</span> j <span class="keyword">in</span> range(i, n):</span><br><span class="line">              <span class="keyword">if</span> (pre[j + <span class="number">1</span>] - pre[i] == k): cnt += <span class="number">1</span></span><br><span class="line">      <span class="keyword">return</span> cnt</span><br></pre></td></tr></table></figure>
+<p>但通式有 i、j 2 个变量，需要两层 for 循环，时间复杂度依旧是 O(n^2)</p>
+<h3 id="前缀和-哈希表优化。"><a href="#前缀和-哈希表优化。" class="headerlink" title="前缀和 + 哈希表优化。"></a>前缀和 + 哈希表优化。</h3><ul>
+<li>我们不关心 前缀和 具体对应哪一项，只关心 前缀和 的值和 出现次数。</li>
+<li>用 prefixSum 变量，保存当前项的前缀和，存入 map</li>
+<li>这样 map 代替了 prefixSum 数组，记录出现过的 前缀和 和 出现次数</li>
+</ul>
+<p>核心流程</p>
+<ul>
+<li>map 存什么键值对：<ul>
+<li>键： 前缀和，从第 0 项到当前项的总和</li>
+<li>值： 这个 前缀和 值出现了几次</li>
+</ul>
+</li>
+<li>遍历 nums 之前，我们预置边界情况 (即之前提到的 prefixSum[-1] = 0)：map 初始放入 0:1 键值对，即预设已经出现 1 次为 0 的前缀和</li>
+<li>遍历 nums 的每一项，求当前项的前缀和，存入 map 中<ul>
+<li>之前没有存过，则存入，初始值为 1</li>
+<li>之前存过，则对应值 +1，即出现次数 +1</li>
+</ul>
+</li>
+<li>边存边查看 map ，如果 map 中已存在 key 为 当前前缀和 - k<ul>
+<li>说明存在 【之前求出的前缀和】，它的值满足 【当前前缀和】-【之前求出的前缀和】 === k</li>
+<li>把 【之前求出的前缀和】 出现的次数，累加给 count 计数器</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">subarraySum</span><span class="params">(self, nums: List[int], k: int)</span> -&gt; int:</span></span><br><span class="line">        count = <span class="number">0</span></span><br><span class="line">        nums_sum = <span class="number">0</span></span><br><span class="line">        res_has = &#123;<span class="number">0</span>:<span class="number">1</span>&#125;</span><br><span class="line">        <span class="keyword">for</span> num <span class="keyword">in</span> nums:</span><br><span class="line">            nums_sum += num</span><br><span class="line">            <span class="keyword">if</span> (nums_sum - k) <span class="keyword">in</span> res_has :</span><br><span class="line">               count += res_has[nums_sum - k]</span><br><span class="line">            <span class="keyword">if</span> nums_sum <span class="keyword">in</span> res_has:</span><br><span class="line">                res_has[nums_sum] += <span class="number">1</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                res_has[nums_sum] = <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> count</span><br></pre></td></tr></table></figure>
+
+<h3 id="复杂度分析"><a href="#复杂度分析" class="headerlink" title="复杂度分析"></a>复杂度分析</h3><p>时间复杂度：O(n)，其中 nn 为数组的长度。我们遍历数组的时间复杂度为 O(n)，中间利用哈希表查询删除的复杂度均为 O(1)，因此总时间复杂度为 O(n)。</p>
+<p>空间复杂度：O(n)，其中 n 为数组的长度。哈希表在最坏情况下可能有 n 个不同的键值，因此需要 O(n) 的空间复杂度。</p>
+<hr>
+<h2 id="2-统计「优美子数组」"><a href="#2-统计「优美子数组」" class="headerlink" title="2. 统计「优美子数组」"></a>2. 统计「优美子数组」</h2><p>力扣第1248题 : <a href="https://leetcode-cn.com/problems/count-number-of-nice-subarrays/" target="_blank" rel="noopener">https://leetcode-cn.com/problems/count-number-of-nice-subarrays/</a><br>给你一个整数数组 nums 和一个整数 k。</p>
+<p>如果某个 连续 子数组中恰好有 k 个奇数数字，我们就认为这个子数组是「优美子数组」。</p>
+<p>请返回这个数组中「优美子数组」的数目。</p>
+<p>示例 1：</p>
+<blockquote>
+<p>输入：nums = [1,1,2,1,1], k = 3<br>输出：2<br>解释：包含 3 个奇数的子数组是 [1,1,2,1] 和 [1,2,1,1] 。</p>
+</blockquote>
+<p>示例 2：</p>
+<blockquote>
+<p>输入：nums = [2,4,6], k = 1<br>输出：0<br>解释：数列中不包含任何奇数，所以不存在优美子数组。</p>
+</blockquote>
+<p>示例 3：</p>
+<blockquote>
+<p>输入：nums = [2,2,2,1,2,2,1,2,2,2], k = 2<br>输出：16</p>
+</blockquote>
+<p>看了众多题解后,我慢慢开始理清了思路,看一下这道题,模板是一模一样的.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">numberOfSubarrays</span><span class="params">(self, nums: List[int], k: int)</span> -&gt; int:</span></span><br><span class="line">        cnt = &#123;<span class="number">0</span>: <span class="number">1</span>&#125;</span><br><span class="line">        count = cur = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> num <span class="keyword">in</span> nums:</span><br><span class="line">            <span class="keyword">if</span> num %<span class="number">2</span> != <span class="number">0</span>:</span><br><span class="line">                cur += <span class="number">1</span></span><br><span class="line">            <span class="keyword">if</span> (cur - k) <span class="keyword">in</span> cnt:</span><br><span class="line">                count += cnt[cur - k]</span><br><span class="line">            <span class="keyword">if</span> cur <span class="keyword">in</span> cnt:</span><br><span class="line">                cnt[cur] += <span class="number">1</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                cnt[cur] = <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> count</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="3-每个元音包含偶数次的最长子字符串"><a href="#3-每个元音包含偶数次的最长子字符串" class="headerlink" title="3. 每个元音包含偶数次的最长子字符串"></a>3. 每个元音包含偶数次的最长子字符串</h2><p>力扣第1371题: <a href="https://leetcode-cn.com/problems/find-the-longest-substring-containing-vowels-in-even-counts/" target="_blank" rel="noopener">https://leetcode-cn.com/problems/find-the-longest-substring-containing-vowels-in-even-counts/</a></p>
+<p>给你一个字符串 s ，请你返回满足以下条件的最长子字符串的长度：每个元音字母，即 ‘a’，’e’，’i’，’o’，’u’ ，在子字符串中都恰好出现了偶数次。</p>
+<p>示例 1：</p>
+<blockquote>
+<p>输入：s = “eleetminicoworoep”<br>输出：13<br>解释：最长子字符串是 “leetminicowor” ，它包含 e，i，o 各 2 个，以及 0 个 a，u 。</p>
+</blockquote>
+<p>示例 2：</p>
+<blockquote>
+<p>输入：s = “leetcodeisgreat”<br>输出：5<br>解释：最长子字符串是 “leetc” ，其中包含 2 个 e 。</p>
+</blockquote>
+<p>示例 3：</p>
+<blockquote>
+<p>输入：s = “bcbcbc”<br>输出：6<br>解释：这个示例中，字符串 “bcbcbc” 本身就是最长的，因为所有的元音 a，e，i，o，u 都出现了 0 次。</p>
+</blockquote>
+<h3 id="前缀和-状态压缩"><a href="#前缀和-状态压缩" class="headerlink" title="前缀和 + 状态压缩"></a>前缀和 + 状态压缩</h3><p>1、状态压缩<br>这道题的状态压缩说实话我是没有想到的,其实感觉不难想到才对。</p>
+<ul>
+<li>利用二进制和位运算，我们可以定义一个长度为5的二进制。00001表示出现了a，00010表示出现e，00100表示出现i，01000表示出现o，10000表示出现u，这样就会存在2^5即32种可能。</li>
+<li>根据异或运算规律，异或本身为 0，根据这一点，可以判断出这个元音出现的次数是否为偶数。</li>
+</ul>
+<p>2、前缀和</p>
+<ul>
+<li>和上面两道题对比，可以发现，上面两道题我们是能明确知道两个前缀的差值是恒定的，而这道题的差值是变化的。</li>
+<li>但是这个差值是为偶数，而且是个人都知道，如果两个数的奇偶性相同，那么他们的差值必为偶数。因此我们可以对前缀和稍作修改，从维护元音字母出现的次数改作维护元音字母出现次数的奇偶性</li>
+<li>这样我们只要实时维护每个元音字母出现的奇偶性，可以利用哈希表存储每一种奇偶性（即考虑所有的元音字母）对应最早出现的位置，边遍历边更新答案。</li>
+<li>因为用哈希表的话，维护起来比较浪费资源，利用上面的状态压缩，可以将状态用一个32长度的数组来存储。</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">findTheLongestSubstring</span><span class="params">(self, s: str)</span> -&gt; int:</span></span><br><span class="line">        words = [<span class="string">'a'</span>, <span class="string">'e'</span>, <span class="string">'i'</span>, <span class="string">'o'</span>, <span class="string">'u'</span>]</span><br><span class="line">        status, res = <span class="number">0</span>, <span class="number">0</span></span><br><span class="line">        pos = [<span class="number">0</span>] + [<span class="number">-1</span>] * <span class="number">31</span></span><br><span class="line">        <span class="keyword">for</span> i, word <span class="keyword">in</span> enumerate(s):</span><br><span class="line">            <span class="keyword">if</span> word <span class="keyword">in</span> words:</span><br><span class="line">                status ^= <span class="number">1</span> &lt;&lt; words.index(word)</span><br><span class="line">        </span><br><span class="line">            <span class="keyword">if</span> pos[status] &gt;= <span class="number">0</span>:</span><br><span class="line">                res = max(res, i + <span class="number">1</span> - pos[status])          </span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                pos[status] = i + <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
+
+<h3 id="复杂度分析-1"><a href="#复杂度分析-1" class="headerlink" title="复杂度分析"></a>复杂度分析</h3><p><strong>时间复杂度</strong>：O(n)，其中 nn 为字符串 s 的长度。我们只需要遍历一遍字符串即可求得答案，因此时间复杂度为O(n)。</p>
+<p><strong>空间复杂度</strong>：O(S)O，其中 S 表示元音字母压缩成一个状态数的最大值，在本题中 S = 32。我们需要对应 SS 大小的空间来存放每个状态第一次出现的位置，因此需要 O(S) 的空间复杂度。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>经过今天的练习,我总结了一下关于前缀和题目的思路:</p>
+<ul>
+<li>先找到这一串数字的规律,如果符合前缀和的思路,就可以尝试去找到前缀和的差值</li>
+<li>有些题目的前缀和差值是恒定的,这种就可以直接用模板去解答,而有一些差值不是恒定的,就要找到差值和状态之间的关联</li>
+<li>对于数据量很大的题目,可能哈希表不合适,可以试着用其他数据结构去代替.</li>
+</ul>
+
+    </article>
+    <!-- license  -->
+    
+        <div class="license-wrapper">
+            <p>Author：<a href="https://liangweijiang.github.io">liangweijiang</a>
+            <p>原文链接：<a href="https://liangweijiang.github.io/2020/05/21/algorithm-PrefixAnd/">https://liangweijiang.github.io/2020/05/21/algorithm-PrefixAnd/</a>
+            <p>发表日期：<a href="https://liangweijiang.github.io/2020/05/21/algorithm-PrefixAnd/">May 21st 2020, 10:47:38 pm</a>
+            <p>更新日期：<a href="https://liangweijiang.github.io/2020/05/21/algorithm-PrefixAnd/">May 21st 2020, 10:49:35 pm</a>
+            <p>版权声明：本文采用<a rel="license noopener" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
+        </div>
+    
+    <!-- paginator  -->
+    <ul class="post-paginator">
+        <li class="next">
+            
+        </li>
+        <li class="previous">
+            
+                <div class="prevSlogan">Previous Post</div>
+                <a href= "/2020/05/14/algorithm-229/" title= "每日一道算法之--求众数II">
+                    <div class="prevTitle">每日一道算法之--求众数II</div>
+                </a>
+            
+        </li>
+    </ul>
+    <!-- 评论插件 -->
+    <!-- 来必力City版安装代码 -->
+
+<!-- City版安装代码已完成 -->
+    
+    
+    <!-- gitalk评论 -->
+
+    <!-- partial('_partial/comment/changyan') -->
+    <!--PC版-->
+
+
+    
+    
+
+    <!-- 评论 -->
+</main>
+            <!-- profile -->
+            
+        </div>
+        <footer class="footer footer-unloaded">
+    <!-- social  -->
+    
+    <div class="social">
+        
+    
+        
+            
+                <a href="mailto:1210457866@qq.com" class="iconfont-archer email" title=email ></a>
+            
+        
+    
+        
+            
+                <a href="https://github.com/liangweijiang" class="iconfont-archer github" target="_blank" title=github></a>
+            
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+    </div>
+    
+    <!-- powered by Hexo  -->
+    <div class="copyright">
+        <span id="hexo-power">Powered by <a href="https://hexo.io/" target="_blank">Hexo</a></span><span class="iconfont-archer power">&#xe635;</span><span id="theme-info">theme <a href="https://github.com/fi3ework/hexo-theme-archer" target="_blank">Archer</a></span>
+    </div>
+    <!-- 不蒜子  -->
+    
+    <div class="busuanzi-container">
+    
+     
+    <span id="busuanzi_container_site_pv">PV: <span id="busuanzi_value_site_pv"></span> :)</span>
+    
+    </div>
+    
+</footer>
+    </div>
+    <!-- toc -->
+    
+    <div class="toc-wrapper" style=
+    
+
+
+
+
+
+
+
+top:50vh;
+
+    >
+        <div class="toc-catalog">
+            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+        </div>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#前缀和总结"><span class="toc-number">1.</span> <span class="toc-text">前缀和总结</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-和为K的子数组"><span class="toc-number">1.1.</span> <span class="toc-text">1. 和为K的子数组</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-前缀和"><span class="toc-number">1.1.1.</span> <span class="toc-text">1.1 前缀和</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#前缀和-哈希表优化。"><span class="toc-number">1.1.2.</span> <span class="toc-text">前缀和 + 哈希表优化。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#复杂度分析"><span class="toc-number">1.1.3.</span> <span class="toc-text">复杂度分析</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-统计「优美子数组」"><span class="toc-number">1.2.</span> <span class="toc-text">2. 统计「优美子数组」</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-每个元音包含偶数次的最长子字符串"><span class="toc-number">1.3.</span> <span class="toc-text">3. 每个元音包含偶数次的最长子字符串</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#前缀和-状态压缩"><span class="toc-number">1.3.1.</span> <span class="toc-text">前缀和 + 状态压缩</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#复杂度分析-1"><span class="toc-number">1.3.2.</span> <span class="toc-text">复杂度分析</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#总结"><span class="toc-number">1.4.</span> <span class="toc-text">总结</span></a></li></ol></li></ol>
+    </div>
+    
+    <div class="back-top iconfont-archer">&#xe639;</div>
+    <div class="sidebar sidebar-hide">
+    <ul class="sidebar-tabs sidebar-tabs-active-0">
+        <li class="sidebar-tab-archives"><span class="iconfont-archer">&#xe67d;</span><span class="tab-name">Archive</span></li>
+        <li class="sidebar-tab-tags"><span class="iconfont-archer">&#xe61b;</span><span class="tab-name">Tag</span></li>
+        <li class="sidebar-tab-categories"><span class="iconfont-archer">&#xe666;</span><span class="tab-name">Cate</span></li>
+    </ul>
+    <div class="sidebar-content sidebar-content-show-archive">
+          <div class="sidebar-panel-archives">
+    <!-- 在ejs中将archive按照时间排序 -->
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <div class="total-and-search">
+        <div class="total-archive">
+        Total : 60
+        </div>
+        <!-- search  -->
+        
+    </div>
+    
+    <div class="post-archive">
+    
+    
+    
+    
+    <div class="archive-year"> 2020 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/26</span><a class="archive-post-title" href= "/2020/02/26/algorithm-152/" >每日一道算法之--乘积最大子序和</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/24</span><a class="archive-post-title" href= "/2020/02/24/algorithm-15/" >每日一道算法之--三数之和</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/20</span><a class="archive-post-title" href= "/2020/02/20/DRF-03/" >DRF源码解析3--routers对路由的封装</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/19</span><a class="archive-post-title" href= "/2020/02/19/DRF-02/" >DRF源码解析2--viewsets.ModelViewSet对视图的封装</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/19</span><a class="archive-post-title" href= "/2020/02/19/DRF-01/" >DRF源码解析1--APIView对request的重新封装</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> Invalid date </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href= "/2020/02/22/DRF-04/" >DRF源码解析4--版本控制组件的封装</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> Invalid date </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href= "/2020/02/24/DRF-05/" >DRF源码解析5--认证组件的封装和初始化</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> Invalid date </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href= "/2020/02/26/DRF-06/" >DRF源码解析6--权限组件的封装和初始化</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> Invalid date </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href= "/2020/02/29/algorithm-121/" >每日一道算法之--买卖股票的最佳时机</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> Invalid date </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href= "/2020/02/29/algorithm-3/" >每日一道算法之--无重复的最长的子字符串</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> 2020 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/21</span><a class="archive-post-title" href= "/2020/05/21/algorithm-PrefixAnd/" >每日一道算法之--前缀和总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/14</span><a class="archive-post-title" href= "/2020/05/14/algorithm-229/" >每日一道算法之--求众数II</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/11</span><a class="archive-post-title" href= "/2020/05/11/algorithm-50/" >每日一道算法之--Pow(x, n)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/09</span><a class="archive-post-title" href= "/2020/05/09/algorithm-1011/" >每日一道算法之--在 D 天内送达包裹的能力</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/10</span><a class="archive-post-title" href= "/2020/04/10/algorithm-82/" >每日一道算法之--删除排序链表中的重复元素 II</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/07</span><a class="archive-post-title" href= "/2020/04/07/algorithm-75/" >每日一道算法之--颜色分类</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/01</span><a class="archive-post-title" href= "/2020/04/01/data-structure-08/" >数据结构学习笔记---散列表</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/01</span><a class="archive-post-title" href= "/2020/04/01/algorithm-62-63/" >每日一道算法之--不同路径</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/01</span><a class="archive-post-title" href= "/2020/04/01/algorithm-55/" >每日一道算法之--跳跃游戏</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/31</span><a class="archive-post-title" href= "/2020/03/31/data-structure-07/" >数据结构学习笔记---跳表</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/30</span><a class="archive-post-title" href= "/2020/03/30/data-structure-06/" >数据结构学习笔记---线性排序</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/29</span><a class="archive-post-title" href= "/2020/03/29/data-structure-05/" >数据结构学习笔记---经典排序</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/27</span><a class="archive-post-title" href= "/2020/03/27/data-structure-04/" >数据结构学习笔记---队列</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/25</span><a class="archive-post-title" href= "/2020/03/25/data-structure-02/" >数据结构学习笔记---链表</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/23</span><a class="archive-post-title" href= "/2020/03/23/Interview-experience/" >头条一面凉经</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/23</span><a class="archive-post-title" href= "/2020/03/23/data-structure-01/" >数据结构学习笔记---数组</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/22</span><a class="archive-post-title" href= "/2020/03/22/NetworkProtocol-04/" >《趣谈网络协议》学习笔记之--最重要的传输层(上)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/20</span><a class="archive-post-title" href= "/2020/03/20/algorithm-23/" >每日一道算法之--合并K个排序链表</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/18</span><a class="archive-post-title" href= "/2020/03/18/algorithm-300/" >每日一道算法之--最长上升子序列</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/15</span><a class="archive-post-title" href= "/2020/03/15/algorithm-1143/" >每日一道算法之--最长公共子序列</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/15</span><a class="archive-post-title" href= "/2020/03/15/algorithm-695/" >每日一道算法之--岛屿的最大面积</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/14</span><a class="archive-post-title" href= "/2020/03/14/restful/" >学习笔记之---restful架构</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/14</span><a class="archive-post-title" href= "/2020/03/14/osi--tcp/" >学习笔记之---七层网络协议和四层网络协议的区别</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/13</span><a class="archive-post-title" href= "/2020/03/13/stack-heap/" >学习笔记之---堆和栈的区别</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/09</span><a class="archive-post-title" href= "/2020/03/09/LoadBalancing/" >学习笔记之---负载均衡</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/04</span><a class="archive-post-title" href= "/2020/03/04/python-GC/" >python的垃圾回收机制</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/03</span><a class="archive-post-title" href= "/2020/03/03/algorithm-20/" >每日一道算法之--有效的括号</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/02</span><a class="archive-post-title" href= "/2020/03/02/algorithm-stock/" >每日一道算法之--股票问题总结</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> Invalid date </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href= "/2020/03/02/algorithm-206/" >每日一道算法之--链表反转</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> 2020 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/03</span><a class="archive-post-title" href= "/2020/03/03/algorithm-102/" >每日一道算法之--二叉树的层次遍历</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> Invalid date </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href= "/2020/03/04/python-01/" >python与其他语言的对比</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> Invalid date </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href= "/2020/03/04/python-02/" >python单例模式的实现</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> 2020 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/05</span><a class="archive-post-title" href= "/2020/03/05/algorithm-39/" >每日一道算法之--组合总和</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> Invalid date </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href= "/2020/03/09/algorithm-Interview-03/" >每日一道算法之--数组中的重复数字</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> Invalid date </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href= "/2020/03/10/NetworkProtocol-01/" >《趣谈网络协议》学习笔记之--通信协议综述</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> Invalid date </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href= "/2020/03/11/algorithm-153/" >每日一道算法之--寻找旋转排序数组中的最小值</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> Invalid date </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href= "/2020/03/12/algorithm-interview-14/" >每日一道算法之--剪绳子</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> Invalid date </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href= "/2020/03/14/algorithm-155/" >每日一道算法之--最小栈</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> Invalid date </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href= "/2020/03/15/NetworkProtocol-02/" >《趣谈网络协议》学习笔记之--从二层到三层（上）</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> Invalid date </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href= "/2020/03/16/NetworkProtocol-03/" >《趣谈网络协议》学习笔记之--从二层到三层（下）</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> Invalid date </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href= "/2020/03/16/dream/" >写给自己的一些话</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> Invalid date </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href= "/2020/03/23/NetworkProtocol-05/" >《趣谈网络协议》学习笔记之--最重要的传输层(下)</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> Invalid date </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href= "/2020/03/25/algorithm-17/" >每日一道算法之--电话号码的字母组合</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> Invalid date </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href= "/2020/03/25/NetworkProtocol-06/" >《趣谈网络协议》学习笔记之--最常用的运用层(上)</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> Invalid date </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href= "/2020/03/26/algorithm-backtrack/" >每日一道算法之--回溯算法总结和全排列问题</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> Invalid date </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href= "/2020/03/26/data-structure-03/" >数据结构学习笔记---栈</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> Invalid date </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href= "/2020/03/26/NetworkProtocol-07/" >《趣谈网络协议》学习笔记之--最常用的运用层(下)</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> Invalid date </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href= "/2020/03/28/algorithm-820/" >每日一道算法之--单词的压缩编码</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> Invalid date </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href= "/2020/03/30/NetworkProtocol-08/" >《趣谈网络协议》学习笔记之--陌生的数据中心(上)</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> Invalid date </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href= "/2020/05/08/algorithm-118/" >每日一道算法之--杨辉三角</a>
+        </li>
+    
+    </div>
+  </div>
+        <div class="sidebar-panel-tags">
+    <div class="sidebar-tags-name">
+    
+        <span class="sidebar-tag-name" data-tags="DRF"><span class="iconfont-archer">&#xe606;</span>DRF</span>
+    
+        <span class="sidebar-tag-name" data-tags="动态规划"><span class="iconfont-archer">&#xe606;</span>动态规划</span>
+    
+        <span class="sidebar-tag-name" data-tags="滑动窗口"><span class="iconfont-archer">&#xe606;</span>滑动窗口</span>
+    
+        <span class="sidebar-tag-name" data-tags="双指针"><span class="iconfont-archer">&#xe606;</span>双指针</span>
+    
+        <span class="sidebar-tag-name" data-tags="哈希表"><span class="iconfont-archer">&#xe606;</span>哈希表</span>
+    
+        <span class="sidebar-tag-name" data-tags="排序"><span class="iconfont-archer">&#xe606;</span>排序</span>
+    
+        <span class="sidebar-tag-name" data-tags="指针"><span class="iconfont-archer">&#xe606;</span>指针</span>
+    
+        <span class="sidebar-tag-name" data-tags="链表"><span class="iconfont-archer">&#xe606;</span>链表</span>
+    
+        <span class="sidebar-tag-name" data-tags="递归"><span class="iconfont-archer">&#xe606;</span>递归</span>
+    
+        <span class="sidebar-tag-name" data-tags="状态机"><span class="iconfont-archer">&#xe606;</span>状态机</span>
+    
+        <span class="sidebar-tag-name" data-tags="树的遍历"><span class="iconfont-archer">&#xe606;</span>树的遍历</span>
+    
+        <span class="sidebar-tag-name" data-tags="栈"><span class="iconfont-archer">&#xe606;</span>栈</span>
+    
+        <span class="sidebar-tag-name" data-tags="数组"><span class="iconfont-archer">&#xe606;</span>数组</span>
+    
+        <span class="sidebar-tag-name" data-tags="python"><span class="iconfont-archer">&#xe606;</span>python</span>
+    
+        <span class="sidebar-tag-name" data-tags="垃圾回收"><span class="iconfont-archer">&#xe606;</span>垃圾回收</span>
+    
+        <span class="sidebar-tag-name" data-tags="设计模式"><span class="iconfont-archer">&#xe606;</span>设计模式</span>
+    
+        <span class="sidebar-tag-name" data-tags="回溯思想"><span class="iconfont-archer">&#xe606;</span>回溯思想</span>
+    
+        <span class="sidebar-tag-name" data-tags="负载均衡"><span class="iconfont-archer">&#xe606;</span>负载均衡</span>
+    
+        <span class="sidebar-tag-name" data-tags="网络协议"><span class="iconfont-archer">&#xe606;</span>网络协议</span>
+    
+        <span class="sidebar-tag-name" data-tags="二分查找"><span class="iconfont-archer">&#xe606;</span>二分查找</span>
+    
+        <span class="sidebar-tag-name" data-tags="数学"><span class="iconfont-archer">&#xe606;</span>数学</span>
+    
+        <span class="sidebar-tag-name" data-tags="贪心算法"><span class="iconfont-archer">&#xe606;</span>贪心算法</span>
+    
+        <span class="sidebar-tag-name" data-tags="堆栈"><span class="iconfont-archer">&#xe606;</span>堆栈</span>
+    
+        <span class="sidebar-tag-name" data-tags="内存分配"><span class="iconfont-archer">&#xe606;</span>内存分配</span>
+    
+        <span class="sidebar-tag-name" data-tags="计算机网络"><span class="iconfont-archer">&#xe606;</span>计算机网络</span>
+    
+        <span class="sidebar-tag-name" data-tags="BSF"><span class="iconfont-archer">&#xe606;</span>BSF</span>
+    
+        <span class="sidebar-tag-name" data-tags="DFS"><span class="iconfont-archer">&#xe606;</span>DFS</span>
+    
+        <span class="sidebar-tag-name" data-tags="回溯"><span class="iconfont-archer">&#xe606;</span>回溯</span>
+    
+        <span class="sidebar-tag-name" data-tags="贪心"><span class="iconfont-archer">&#xe606;</span>贪心</span>
+    
+        <span class="sidebar-tag-name" data-tags="分治"><span class="iconfont-archer">&#xe606;</span>分治</span>
+    
+        <span class="sidebar-tag-name" data-tags="优先队列"><span class="iconfont-archer">&#xe606;</span>优先队列</span>
+    
+        <span class="sidebar-tag-name" data-tags="堆"><span class="iconfont-archer">&#xe606;</span>堆</span>
+    
+        <span class="sidebar-tag-name" data-tags="队列"><span class="iconfont-archer">&#xe606;</span>队列</span>
+    
+        <span class="sidebar-tag-name" data-tags="字典树"><span class="iconfont-archer">&#xe606;</span>字典树</span>
+    
+        <span class="sidebar-tag-name" data-tags="跳表"><span class="iconfont-archer">&#xe606;</span>跳表</span>
+    
+        <span class="sidebar-tag-name" data-tags="散列表"><span class="iconfont-archer">&#xe606;</span>散列表</span>
+    
+        <span class="sidebar-tag-name" data-tags="二分法"><span class="iconfont-archer">&#xe606;</span>二分法</span>
+    
+        <span class="sidebar-tag-name" data-tags="位运算"><span class="iconfont-archer">&#xe606;</span>位运算</span>
+    
+        <span class="sidebar-tag-name" data-tags="快速幂"><span class="iconfont-archer">&#xe606;</span>快速幂</span>
+    
+        <span class="sidebar-tag-name" data-tags="摩尔投票法"><span class="iconfont-archer">&#xe606;</span>摩尔投票法</span>
+    
+        <span class="sidebar-tag-name" data-tags="前缀和"><span class="iconfont-archer">&#xe606;</span>前缀和</span>
+    
+        <span class="sidebar-tag-name" data-tags="状态压缩"><span class="iconfont-archer">&#xe606;</span>状态压缩</span>
+    
+        <span class="sidebar-tag-name" data-tags="二进制"><span class="iconfont-archer">&#xe606;</span>二进制</span>
+    
+    </div>
+    <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
+    <div class="tag-load-fail" style="display: none; color: #ccc; font-size: 0.6rem;">
+    缺失模块。<br/>
+    1、请确保node版本大于6.2<br/>
+    2、在博客根目录（注意不是archer根目录）执行以下命令：<br/>
+    <span style="color: #f75357; font-size: 1rem; line-height: 2rem;">npm i hexo-generator-json-content --save</span><br/>
+    3、在根目录_config.yml里添加配置：
+    <pre style="color: #787878; font-size: 0.6rem;">
+jsonContent:
+  meta: false
+  pages: false
+  posts:
+    title: true
+    date: true
+    path: true
+    text: false
+    raw: false
+    content: false
+    slug: false
+    updated: false
+    comments: false
+    link: false
+    permalink: false
+    excerpt: false
+    categories: true
+    tags: true</pre>
+    </div> 
+    <div class="sidebar-tags-list"></div>
+</div>
+        <div class="sidebar-panel-categories">
+    <div class="sidebar-categories-name">
+    
+        <span class="sidebar-category-name" data-categories="django-rest-framework"><span class="iconfont-archer">&#xe60a;</span>django-rest-framework</span>
+    
+        <span class="sidebar-category-name" data-categories="数据结构与算法"><span class="iconfont-archer">&#xe60a;</span>数据结构与算法</span>
+    
+        <span class="sidebar-category-name" data-categories="python"><span class="iconfont-archer">&#xe60a;</span>python</span>
+    
+        <span class="sidebar-category-name" data-categories="随笔"><span class="iconfont-archer">&#xe60a;</span>随笔</span>
+    
+        <span class="sidebar-category-name" data-categories="面经"><span class="iconfont-archer">&#xe60a;</span>面经</span>
+    
+    </div>
+    <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>
+    <div class="sidebar-categories-list"></div>
+</div>
+    </div>
+</div> 
+    <script>
+    var siteMeta = {
+        root: "/",
+        author: "liangweijiang"
+    }
+</script>
+    <!-- CDN failover -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+    <script type="text/javascript">
+        if (typeof window.$ === 'undefined')
+        {
+            console.warn('jquery load from jsdelivr failed, will load local script')
+            document.write('<script src="/lib/jquery.min.js">\x3C/script>')
+        }
+    </script>
+    <script src="/scripts/main.js"></script>
+    <!-- algolia -->
+    
+    <!-- busuanzi  -->
+    
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+    <!-- CNZZ  -->
+    
+    </div>
+    <!-- async load share.js -->
+    
+        <script src="/scripts/share.js" async></script>    
+     
+    </body>
+</html>
+
+
