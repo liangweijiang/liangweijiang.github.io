@@ -359,6 +359,81 @@ height:50vh;
     
     
     <article class="index-post">
+        <a class="abstract-title" href = "/2020/03/02/algorithm-206/" >
+            
+                <span>每日一道算法之--链表反转</span>
+        </a>
+        <div class="abstract-content">
+            反转链表力扣第206题:https://leetcode-cn.com/problems/reverse-linked-list/submissions/
+反转一个单链表。
+示例:
+
+输入: 1-&gt;2-&gt;3-&gt;4-&gt;5-&gt;NULL输出: 5-&gt;4-&gt;3-&gt;2-&gt;1-&gt;NULL
+
+进阶:你可以迭代或递归地反转链表。你能否用两种方法解决这道题？
+1.递归解决1.1 创建新的节点一开始的时候我的想法是,既然是反转链表,那就可以创建一个新的节点来重新存储,然后直接递归到最后的节点,在不断地回溯中将新节点指向回溯的节点.
+12345678...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/03/02</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "链表">链表</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "递归">递归</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href = "/2020/03/02/algorithm-stock/" >
+            
+                <span>每日一道算法之--股票问题总结</span>
+        </a>
+        <div class="abstract-content">
+            股票问题总结最近在leetcode刷题的时候发现了一个很好的解决股票问题的题解,所以收藏了这个链接,他主要运用了状态机的思想,从而非常有效的解决股票等dp问题
+文章如下:
+
+本文参考自英文版LeetCode：https://leetcode.com/problems/best-time-to-buy-and-sell-stock-with-transaction-fee/discuss/108870/Most-consistent-ways-of-dealing-with-the-series-of-stock-problems
+
+很多读者抱怨股票系列问题奇技淫巧太多，如果面试真的遇到这...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/03/02</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "动态规划">动态规划</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "状态机">状态机</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href = "/2020/02/29/algorithm-3/" >
             
                 <span>每日一道算法之--无重复的最长的子字符串</span>
@@ -629,69 +704,10 @@ routersDef...
         </div>
     </article>
     
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2020/02/19/DRF-02/" >
-            
-                <span>DRF源码解析2--viewsets.ModelViewSet对视图的封装</span>
-        </a>
-        <div class="abstract-content">
-            viewsetsdrf中  viewsets  对  view  进行了更加深层的封装,在CBV编程中减少代码的冗余,截取viewsets源码如下
-12345678class ModelViewSet(mixins.CreateModelMixin,                   mixins.RetrieveModelMixin,                   mixins.UpdateModelMixin,                   mixins.DestroyModelMixin,                   mixins.ListModelMixin...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/02/19</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "DRF">DRF</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2020/02/19/DRF-01/" >
-            
-                <span>DRF源码解析1--APIView对request的重新封装</span>
-        </a>
-        <div class="abstract-content">
-            截取APIView12345678910111213141516171819202122232425262728293031323334353637383940414243444546@classmethodclass APIView(View):	def as_view(cls, **initkwargs):		if isinstance(getattr(cls, 'queryset', None), models.query.QuerySet):		def force_evaluation():		raise RuntimeError(		'Do not evaluate the `...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/02/19</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "DRF">DRF</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
     <!-- paginator  -->
     
     <nav class="page-nav">
-        <a class="extend prev" rel="prev" href="/page/5/">&lt; PREV</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span>
+        <a class="extend prev" rel="prev" href="/page/5/">&lt; PREV</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/7/">NEXT &gt;</a>
     </nav>
     
 </main>
@@ -1718,9 +1734,39 @@ routersDef...
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 60
+        Total : 62
         </div>
         <!-- search  -->
         
@@ -2286,6 +2332,34 @@ routersDef...
             <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href= "/2020/05/08/algorithm-118/" >每日一道算法之--杨辉三角</a>
         </li>
     
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> Invalid date </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href= "/2020/06/01/likou-assort01/" >力扣习题分类之----回溯算法</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> Invalid date </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href= "/2020/06/01/likou-assort02/" >力扣习题分类之----DFS深度优先搜索</a>
+        </li>
+    
     </div>
   </div>
         <div class="sidebar-panel-tags">
@@ -2376,6 +2450,8 @@ routersDef...
         <span class="sidebar-tag-name" data-tags="状态压缩"><span class="iconfont-archer">&#xe606;</span>状态压缩</span>
     
         <span class="sidebar-tag-name" data-tags="二进制"><span class="iconfont-archer">&#xe606;</span>二进制</span>
+    
+        <span class="sidebar-tag-name" data-tags="深度优先搜索"><span class="iconfont-archer">&#xe606;</span>深度优先搜索</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
