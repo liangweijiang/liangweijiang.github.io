@@ -359,6 +359,38 @@ height:50vh;
     
     
     <article class="index-post">
+        <a class="abstract-title" href = "/2020/02/24/DRF-05/" >
+            
+                <span>DRF源码解析5--认证组件的封装和初始化</span>
+        </a>
+        <div class="abstract-content">
+            1.认证组件的初始化在对DRF的版本认证里说到,initial()不仅对版本认证组件进行了初始化,同时还初始化了认证组件,现在来分析一下DRF是怎么样初始化认证方法的
+12def perform_authentication(self, request):    request.user
+可以看到,perform_authentication()方法返回了request(相当于封装的Request),进入request中找到uesr方法
+1.1 截取Request部分代码如下:123456789101112131415161718192021222324252627class Reque...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/02/24</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "DRF">DRF</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href = "/2020/02/24/algorithm-15/" >
             
                 <span>每日一道算法之--三数之和</span>
@@ -1506,9 +1538,26 @@ routersDef...
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 65
+        Total : 66
         </div>
         <!-- search  -->
         
@@ -1987,6 +2036,11 @@ routersDef...
     
     
         <li class="archive-post-item">
+            <span class="archive-post-date">08/01</span><a class="archive-post-title" href= "/2020/08/01/dynamic-proxy/" >动态代理源码解析(基于jdk8)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
             <span class="archive-post-date">07/30</span><a class="archive-post-title" href= "/2020/07/30/Hashmap/" >java8之重新认识HashMap（转自美团技术团队）</a>
         </li>
     
@@ -2249,6 +2303,8 @@ routersDef...
         <span class="sidebar-tag-name" data-tags="java"><span class="iconfont-archer">&#xe606;</span>java</span>
     
         <span class="sidebar-tag-name" data-tags="hashmap"><span class="iconfont-archer">&#xe606;</span>hashmap</span>
+    
+        <span class="sidebar-tag-name" data-tags="动态代理"><span class="iconfont-archer">&#xe606;</span>动态代理</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>

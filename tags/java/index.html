@@ -346,6 +346,47 @@
     
     
     <article class="index-post">
+        <a class="abstract-title" href = "/2020/08/01/dynamic-proxy/" >
+            
+                <span>动态代理源码解析(基于jdk8)</span>
+        </a>
+        <div class="abstract-content">
+            什么是动态代理?动态代理是一种方便运行时动态构建代理、动态处理代理方法调用的机制，很多场景都是利用类似机制做到的，比如用来包装 RPC 调用、面向切面的编程（AOP）。
+动态代理的实现方式动态代理实现的方式有很多,我这里主要了解了两种最常见的方式
+
+JDK 自身提供的动态代理，就是主要利用了反射机制。
+利用更高性能的字节码操作机制，类似 ASM、cglib（基于 ASM）、Javassist 等。
+
+由静态代理到动态代理
+代理就是可以认为在不修改已有代码的前提下，在目标对象基础上增加额外的功能。
+
+首先定义一个UserService接口，表示被代理的接口
+12345package com...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/08/01</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "java">java</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "动态代理">动态代理</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href = "/2020/07/30/Hashmap/" >
             
                 <span>java8之重新认识HashMap（转自美团技术团队）</span>
@@ -1274,9 +1315,26 @@ Java为数据结构中的映射定义了一个接口java.util.Map，此接口主
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 65
+        Total : 66
         </div>
         <!-- search  -->
         
@@ -1755,6 +1813,11 @@ Java为数据结构中的映射定义了一个接口java.util.Map，此接口主
     
     
         <li class="archive-post-item">
+            <span class="archive-post-date">08/01</span><a class="archive-post-title" href= "/2020/08/01/dynamic-proxy/" >动态代理源码解析(基于jdk8)</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
             <span class="archive-post-date">07/30</span><a class="archive-post-title" href= "/2020/07/30/Hashmap/" >java8之重新认识HashMap（转自美团技术团队）</a>
         </li>
     
@@ -2017,6 +2080,8 @@ Java为数据结构中的映射定义了一个接口java.util.Map，此接口主
         <span class="sidebar-tag-name" data-tags="java"><span class="iconfont-archer">&#xe606;</span>java</span>
     
         <span class="sidebar-tag-name" data-tags="hashmap"><span class="iconfont-archer">&#xe606;</span>hashmap</span>
+    
+        <span class="sidebar-tag-name" data-tags="动态代理"><span class="iconfont-archer">&#xe606;</span>动态代理</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
